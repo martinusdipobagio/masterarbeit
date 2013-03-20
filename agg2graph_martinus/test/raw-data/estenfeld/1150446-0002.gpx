@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>20111210215958</name>
+	<trkseg>
+		<trkpt lat="49.849216667" lon="10.004693333">
+			<ele>287.200000</ele>
+			<time>2011-12-10T23:12:58Z</time>
+			<course>131.029999</course>
+			<speed>31.267933</speed>
+			<name>WPT6902</name>
+			<desc>WPT6902</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.849048333" lon="10.005038333">
+			<ele>286.700000</ele>
+			<time>2011-12-10T23:12:59Z</time>
+			<course>129.679993</course>
+			<speed>31.262789</speed>
+			<name>WPT6903</name>
+			<desc>WPT6903</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848865000" lon="10.005388333">
+			<ele>284.700000</ele>
+			<time>2011-12-10T23:13:00Z</time>
+			<course>128.949997</course>
+			<speed>31.720644</speed>
+			<name>WPT6904</name>
+			<desc>WPT6904</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848690000" lon="10.005748333">
+			<ele>283.800000</ele>
+			<time>2011-12-10T23:13:01Z</time>
+			<course>127.279999</course>
+			<speed>31.854401</speed>
+			<name>WPT6905</name>
+			<desc>WPT6905</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848518333" lon="10.006125000">
+			<ele>283.300000</ele>
+			<time>2011-12-10T23:13:02Z</time>
+			<course>126.260002</course>
+			<speed>32.265957</speed>
+			<name>WPT6906</name>
+			<desc>WPT6906</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848346667" lon="10.006493333">
+			<ele>281.200000</ele>
+			<time>2011-12-10T23:13:03Z</time>
+			<course>125.699997</course>
+			<speed>32.157921</speed>
+			<name>WPT6907</name>
+			<desc>WPT6907</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848178333" lon="10.006865000">
+			<ele>281.500000</ele>
+			<time>2011-12-10T23:13:04Z</time>
+			<course>124.970001</course>
+			<speed>31.921278</speed>
+			<name>WPT6908</name>
+			<desc>WPT6908</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.848018333" lon="10.007228333">
+			<ele>282.000000</ele>
+			<time>2011-12-10T23:13:05Z</time>
+			<course>124.419998</course>
+			<speed>31.638334</speed>
+			<name>WPT6909</name>
+			<desc>WPT6909</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847861667" lon="10.007596667">
+			<ele>283.400000</ele>
+			<time>2011-12-10T23:13:06Z</time>
+			<course>123.669998</course>
+			<speed>31.566311</speed>
+			<name>WPT6910</name>
+			<desc>WPT6910</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847713333" lon="10.007961667">
+			<ele>284.300000</ele>
+			<time>2011-12-10T23:13:07Z</time>
+			<course>122.730003</course>
+			<speed>31.329666</speed>
+			<name>WPT6911</name>
+			<desc>WPT6911</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847561667" lon="10.008341667">
+			<ele>284.900000</ele>
+			<time>2011-12-10T23:13:08Z</time>
+			<course>122.010002</course>
+			<speed>31.504578</speed>
+			<name>WPT6912</name>
+			<desc>WPT6912</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847411667" lon="10.008715000">
+			<ele>283.100000</ele>
+			<time>2011-12-10T23:13:09Z</time>
+			<course>121.309998</course>
+			<speed>31.396544</speed>
+			<name>WPT6913</name>
+			<desc>WPT6913</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847266667" lon="10.009095000">
+			<ele>281.800000</ele>
+			<time>2011-12-10T23:13:10Z</time>
+			<course>120.610001</course>
+			<speed>31.540588</speed>
+			<name>WPT6914</name>
+			<desc>WPT6914</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.847126667" lon="10.009478333">
+			<ele>279.800000</ele>
+			<time>2011-12-10T23:13:11Z</time>
+			<course>119.639999</course>
+			<speed>31.525156</speed>
+			<name>WPT6915</name>
+			<desc>WPT6915</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846985000" lon="10.009863333">
+			<ele>278.300000</ele>
+			<time>2011-12-10T23:13:12Z</time>
+			<course>120.339996</course>
+			<speed>31.617756</speed>
+			<name>WPT6916</name>
+			<desc>WPT6916</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846840000" lon="10.010248333">
+			<ele>277.000000</ele>
+			<time>2011-12-10T23:13:13Z</time>
+			<course>119.959999</course>
+			<speed>31.705212</speed>
+			<name>WPT6917</name>
+			<desc>WPT6917</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846695000" lon="10.010635000">
+			<ele>275.500000</ele>
+			<time>2011-12-10T23:13:14Z</time>
+			<course>119.739998</course>
+			<speed>31.674345</speed>
+			<name>WPT6918</name>
+			<desc>WPT6918</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846558333" lon="10.011030000">
+			<ele>274.400000</ele>
+			<time>2011-12-10T23:13:15Z</time>
+			<course>119.449997</course>
+			<speed>31.792667</speed>
+			<name>WPT6919</name>
+			<desc>WPT6919</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846413333" lon="10.011420000">
+			<ele>272.600000</ele>
+			<time>2011-12-10T23:13:16Z</time>
+			<course>119.339996</course>
+			<speed>31.648623</speed>
+			<name>WPT6920</name>
+			<desc>WPT6920</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846275000" lon="10.011806667">
+			<ele>271.500000</ele>
+			<time>2011-12-10T23:13:17Z</time>
+			<course>119.110001</course>
+			<speed>31.550879</speed>
+			<name>WPT6921</name>
+			<desc>WPT6921</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846138333" lon="10.012190000">
+			<ele>269.600000</ele>
+			<time>2011-12-10T23:13:18Z</time>
+			<course>118.529999</course>
+			<speed>31.597178</speed>
+			<name>WPT6922</name>
+			<desc>WPT6922</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.846005000" lon="10.012581667">
+			<ele>267.700000</ele>
+			<time>2011-12-10T23:13:19Z</time>
+			<course>118.230003</course>
+			<speed>31.628044</speed>
+			<name>WPT6923</name>
+			<desc>WPT6923</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845875000" lon="10.012971667">
+			<ele>266.800000</ele>
+			<time>2011-12-10T23:13:20Z</time>
+			<course>118.190002</course>
+			<speed>31.730934</speed>
+			<name>WPT6924</name>
+			<desc>WPT6924</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845736667" lon="10.013351667">
+			<ele>265.900000</ele>
+			<time>2011-12-10T23:13:21Z</time>
+			<course>118.879997</course>
+			<speed>31.586889</speed>
+			<name>WPT6925</name>
+			<desc>WPT6925</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845600000" lon="10.013740000">
+			<ele>264.100000</ele>
+			<time>2011-12-10T23:13:22Z</time>
+			<course>119.480003</course>
+			<speed>31.437700</speed>
+			<name>WPT6926</name>
+			<desc>WPT6926</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845463333" lon="10.014126667">
+			<ele>262.800000</ele>
+			<time>2011-12-10T23:13:23Z</time>
+			<course>119.440002</course>
+			<speed>31.612612</speed>
+			<name>WPT6927</name>
+			<desc>WPT6927</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845330000" lon="10.014516667">
+			<ele>262.000000</ele>
+			<time>2011-12-10T23:13:24Z</time>
+			<course>119.489998</course>
+			<speed>31.751511</speed>
+			<name>WPT6928</name>
+			<desc>WPT6928</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845191667" lon="10.014908333">
+			<ele>261.500000</ele>
+			<time>2011-12-10T23:13:25Z</time>
+			<course>119.629997</course>
+			<speed>31.653767</speed>
+			<name>WPT6929</name>
+			<desc>WPT6929</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.845050000" lon="10.015293333">
+			<ele>260.900000</ele>
+			<time>2011-12-10T23:13:26Z</time>
+			<course>119.510002</course>
+			<speed>31.643478</speed>
+			<name>WPT6930</name>
+			<desc>WPT6930</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844910000" lon="10.015675000">
+			<ele>260.400000</ele>
+			<time>2011-12-10T23:13:27Z</time>
+			<course>119.389999</course>
+			<speed>31.766945</speed>
+			<name>WPT6931</name>
+			<desc>WPT6931</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844768333" lon="10.016056667">
+			<ele>259.900000</ele>
+			<time>2011-12-10T23:13:28Z</time>
+			<course>119.559998</course>
+			<speed>31.550879</speed>
+			<name>WPT6932</name>
+			<desc>WPT6932</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844626667" lon="10.016448333">
+			<ele>258.200000</ele>
+			<time>2011-12-10T23:13:29Z</time>
+			<course>119.370003</course>
+			<speed>31.936710</speed>
+			<name>WPT6933</name>
+			<desc>WPT6933</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844486667" lon="10.016833333">
+			<ele>257.600000</ele>
+			<time>2011-12-10T23:13:30Z</time>
+			<course>119.750000</course>
+			<speed>31.715500</speed>
+			<name>WPT6934</name>
+			<desc>WPT6934</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>2.300000</hdop></trkpt>
+		<trkpt lat="49.844341667" lon="10.017218333">
+			<ele>256.700000</ele>
+			<time>2011-12-10T23:13:31Z</time>
+			<course>120.699997</course>
+			<speed>31.797812</speed>
+			<name>WPT6935</name>
+			<desc>WPT6935</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844196667" lon="10.017598333">
+			<ele>256.900000</ele>
+			<time>2011-12-10T23:13:32Z</time>
+			<course>120.610001</course>
+			<speed>31.545732</speed>
+			<name>WPT6936</name>
+			<desc>WPT6936</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.844048333" lon="10.017975000">
+			<ele>256.500000</ele>
+			<time>2011-12-10T23:13:33Z</time>
+			<course>121.279999</course>
+			<speed>31.478855</speed>
+			<name>WPT6937</name>
+			<desc>WPT6937</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843895000" lon="10.018353333">
+			<ele>255.700000</ele>
+			<time>2011-12-10T23:13:34Z</time>
+			<course>121.379997</course>
+			<speed>31.556023</speed>
+			<name>WPT6938</name>
+			<desc>WPT6938</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843741667" lon="10.018723333">
+			<ele>256.500000</ele>
+			<time>2011-12-10T23:13:35Z</time>
+			<course>122.160004</course>
+			<speed>31.602322</speed>
+			<name>WPT6939</name>
+			<desc>WPT6939</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843593333" lon="10.019081667">
+			<ele>257.300000</ele>
+			<time>2011-12-10T23:13:36Z</time>
+			<course>121.980003</course>
+			<speed>31.669201</speed>
+			<name>WPT6940</name>
+			<desc>WPT6940</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843448333" lon="10.019445000">
+			<ele>257.400000</ele>
+			<time>2011-12-10T23:13:37Z</time>
+			<course>121.820000</course>
+			<speed>31.442844</speed>
+			<name>WPT6941</name>
+			<desc>WPT6941</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843306667" lon="10.019803333">
+			<ele>258.400000</ele>
+			<time>2011-12-10T23:13:38Z</time>
+			<course>122.230003</course>
+			<speed>31.309090</speed>
+			<name>WPT6942</name>
+			<desc>WPT6942</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843158333" lon="10.020156667">
+			<ele>258.800000</ele>
+			<time>2011-12-10T23:13:39Z</time>
+			<course>122.669998</course>
+			<speed>31.036434</speed>
+			<name>WPT6943</name>
+			<desc>WPT6943</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.843006667" lon="10.020515000">
+			<ele>260.200000</ele>
+			<time>2011-12-10T23:13:40Z</time>
+			<course>123.209999</course>
+			<speed>30.959267</speed>
+			<name>WPT6944</name>
+			<desc>WPT6944</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842853333" lon="10.020878333">
+			<ele>260.100000</ele>
+			<time>2011-12-10T23:13:41Z</time>
+			<course>123.430000</course>
+			<speed>30.923256</speed>
+			<name>WPT6945</name>
+			<desc>WPT6945</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842693333" lon="10.021233333">
+			<ele>259.800000</ele>
+			<time>2011-12-10T23:13:42Z</time>
+			<course>124.199997</course>
+			<speed>30.912966</speed>
+			<name>WPT6946</name>
+			<desc>WPT6946</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842530000" lon="10.021581667">
+			<ele>261.600000</ele>
+			<time>2011-12-10T23:13:43Z</time>
+			<course>124.970001</course>
+			<speed>31.427412</speed>
+			<name>WPT6947</name>
+			<desc>WPT6947</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842365000" lon="10.021936667">
+			<ele>262.200000</ele>
+			<time>2011-12-10T23:13:44Z</time>
+			<course>125.139999</course>
+			<speed>32.157921</speed>
+			<name>WPT6948</name>
+			<desc>WPT6948</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842196667" lon="10.022281667">
+			<ele>262.300000</ele>
+			<time>2011-12-10T23:13:45Z</time>
+			<course>125.720001</course>
+			<speed>32.147633</speed>
+			<name>WPT6949</name>
+			<desc>WPT6949</desc>
+			<fix>3d</fix>
+			<sat>6</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.842033333" lon="10.022621667">
+			<ele>262.300000</ele>
+			<time>2011-12-10T23:13:46Z</time>
+			<course>125.370003</course>
+			<speed>31.201056</speed>
+			<name>WPT6950</name>
+			<desc>WPT6950</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.700000</hdop></trkpt>
+		<trkpt lat="49.841690000" lon="10.023356667">
+			<ele>261.300000</ele>
+			<time>2011-12-10T23:13:48Z</time>
+			<course>125.980003</course>
+			<speed>32.343121</speed>
+			<name>WPT6951</name>
+			<desc>WPT6951</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.700000</hdop></trkpt>
+		<trkpt lat="49.841145000" lon="10.024476667">
+			<ele>261.200000</ele>
+			<time>2011-12-10T23:13:51Z</time>
+			<course>127.709999</course>
+			<speed>32.811268</speed>
+			<name>WPT6952</name>
+			<desc>WPT6952</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840961667" lon="10.024845000">
+			<ele>260.900000</ele>
+			<time>2011-12-10T23:13:52Z</time>
+			<course>127.680000</course>
+			<speed>32.636356</speed>
+			<name>WPT6953</name>
+			<desc>WPT6953</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840790000" lon="10.025191667">
+			<ele>261.300000</ele>
+			<time>2011-12-10T23:13:53Z</time>
+			<course>127.730003</course>
+			<speed>32.399712</speed>
+			<name>WPT6954</name>
+			<desc>WPT6954</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840598333" lon="10.025561667">
+			<ele>263.500000</ele>
+			<time>2011-12-10T23:13:54Z</time>
+			<course>128.429993</course>
+			<speed>32.322544</speed>
+			<name>WPT6955</name>
+			<desc>WPT6955</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840420000" lon="10.025896667">
+			<ele>264.100000</ele>
+			<time>2011-12-10T23:13:55Z</time>
+			<course>128.610001</course>
+			<speed>31.664055</speed>
+			<name>WPT6956</name>
+			<desc>WPT6956</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840245000" lon="10.026238333">
+			<ele>264.900000</ele>
+			<time>2011-12-10T23:13:56Z</time>
+			<course>128.860001</course>
+			<speed>31.370823</speed>
+			<name>WPT6957</name>
+			<desc>WPT6957</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.840053333" lon="10.026598333">
+			<ele>267.100000</ele>
+			<time>2011-12-10T23:13:57Z</time>
+			<course>128.710007</course>
+			<speed>31.370823</speed>
+			<name>WPT6958</name>
+			<desc>WPT6958</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.839878333" lon="10.026940000">
+			<ele>269.000000</ele>
+			<time>2011-12-10T23:13:58Z</time>
+			<course>128.429993</course>
+			<speed>31.514866</speed>
+			<name>WPT6959</name>
+			<desc>WPT6959</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.839703333" lon="10.027283333">
+			<ele>269.700000</ele>
+			<time>2011-12-10T23:13:59Z</time>
+			<course>128.139999</course>
+			<speed>31.339956</speed>
+			<name>WPT6960</name>
+			<desc>WPT6960</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.839526667" lon="10.027630000">
+			<ele>271.600000</ele>
+			<time>2011-12-10T23:14:00Z</time>
+			<course>128.869995</course>
+			<speed>31.545732</speed>
+			<name>WPT6961</name>
+			<desc>WPT6961</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.839340000" lon="10.027981667">
+			<ele>272.700000</ele>
+			<time>2011-12-10T23:14:01Z</time>
+			<course>129.990005</course>
+			<speed>31.710356</speed>
+			<name>WPT6962</name>
+			<desc>WPT6962</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.839156667" lon="10.028305000">
+			<ele>272.800000</ele>
+			<time>2011-12-10T23:14:02Z</time>
+			<course>131.320007</course>
+			<speed>31.520012</speed>
+			<name>WPT6963</name>
+			<desc>WPT6963</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.900000</hdop></trkpt>
+		<trkpt lat="49.838970000" lon="10.028616667">
+			<ele>270.900000</ele>
+			<time>2011-12-10T23:14:03Z</time>
+			<course>132.460007</course>
+			<speed>31.514866</speed>
+			<name>WPT6964</name>
+			<desc>WPT6964</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.838786667" lon="10.028926667">
+			<ele>270.200000</ele>
+			<time>2011-12-10T23:14:04Z</time>
+			<course>132.759995</course>
+			<speed>31.324522</speed>
+			<name>WPT6965</name>
+			<desc>WPT6965</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.838603333" lon="10.029238333">
+			<ele>269.600000</ele>
+			<time>2011-12-10T23:14:05Z</time>
+			<course>132.919998</course>
+			<speed>31.237066</speed>
+			<name>WPT6966</name>
+			<desc>WPT6966</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.838421667" lon="10.029550000">
+			<ele>267.700000</ele>
+			<time>2011-12-10T23:14:06Z</time>
+			<course>133.259995</course>
+			<speed>31.478855</speed>
+			<name>WPT6967</name>
+			<desc>WPT6967</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.838226667" lon="10.029866667">
+			<ele>267.000000</ele>
+			<time>2011-12-10T23:14:07Z</time>
+			<course>133.259995</course>
+			<speed>31.777233</speed>
+			<name>WPT6968</name>
+			<desc>WPT6968</desc>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>1.300000</hdop></trkpt>
+		<trkpt lat="49.838028333" lon="10.030183333">
+			<ele>268.400000</ele>
+			<time>2011-12-10T23:14:08Z</time>
+			<course>133.520004</course>
+			<speed>31.694921</speed>
+			<name>WPT6969</name>
+			<desc>WPT6969</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.837830000" lon="10.030485000">
+			<ele>270.000000</ele>
+			<time>2011-12-10T23:14:09Z</time>
+			<course>134.100006</course>
+			<speed>31.139322</speed>
+			<name>WPT6970</name>
+			<desc>WPT6970</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.837631667" lon="10.030786667">
+			<ele>271.400000</ele>
+			<time>2011-12-10T23:14:10Z</time>
+			<course>134.690002</course>
+			<speed>31.159901</speed>
+			<name>WPT6971</name>
+			<desc>WPT6971</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.837433333" lon="10.031083333">
+			<ele>273.300000</ele>
+			<time>2011-12-10T23:14:11Z</time>
+			<course>134.809998</course>
+			<speed>30.979845</speed>
+			<name>WPT6972</name>
+			<desc>WPT6972</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.837230000" lon="10.031383333">
+			<ele>273.600000</ele>
+			<time>2011-12-10T23:14:12Z</time>
+			<course>134.580002</course>
+			<speed>31.237066</speed>
+			<name>WPT6973</name>
+			<desc>WPT6973</desc>
+			<fix>3d</fix>
+			<sat>5</sat>
+			<hdop>1.200000</hdop></trkpt></trkseg></trk>
+</gpx>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+  	<name>20100624225139</name>
+
+	<trkseg>		<trkpt lat="52.488995000" lon="13.260553333">
+  			<ele>54.400000</ele>
+  			<time>2010-06-24T20:51:40Z</time>
+  			<course>42.830002</course>
+  			<speed>22.789888</speed>
+  			<name>WPT1635</name>
+  			<cmt>WPT1635</cmt>
+  			<desc>WPT1635</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

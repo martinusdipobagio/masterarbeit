@@ -1,0 +1,8 @@
+loadagg		bevern
+input		bevern
+clean
+agg
+saveagg		bevern
+road
+osm
+statistics

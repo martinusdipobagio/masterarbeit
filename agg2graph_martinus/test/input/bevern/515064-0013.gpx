@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm from OpenStreetMap GPS data">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="52.7386104" lon="7.9722444">
+			<ele>57.8165283</ele>
+			<time>2009-09-15T16:08:03Z</time></trkpt>
+		<trkpt lat="52.7388732" lon="7.9723735">
+			<ele>57.8165283</ele>
+			<time>2009-09-15T16:08:16Z</time></trkpt>
+		<trkpt lat="52.7389747" lon="7.9729219">
+			<ele>55.8937988</ele>
+			<time>2009-09-15T16:08:26Z</time></trkpt>
+		<trkpt lat="52.7388348" lon="7.9731903">
+			<ele>57.8165283</ele>
+			<time>2009-09-15T16:08:32Z</time></trkpt></trkseg></trk>
+</gpx>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Autobahn: Halle - Würzburg</name>
+	<number>1</number>
+	<trkseg>
+		<trkpt lat="49.881453" lon="9.995333">
+			<ele>346.743</ele>
+			<time>2010-05-11T17:29:47Z</time></trkpt>
+		<trkpt lat="49.881156" lon="9.995171">
+			<ele>346.743</ele>
+			<time>2010-05-11T17:29:48Z</time></trkpt>
+		<trkpt lat="49.880863" lon="9.995004">
+			<ele>343.712</ele>
+			<time>2010-05-11T17:29:49Z</time></trkpt>
+		<trkpt lat="49.880572" lon="9.994841">
+			<ele>343.699</ele>
+			<time>2010-05-11T17:29:50Z</time></trkpt>
+		<trkpt lat="49.879103" lon="9.994071">
+			<ele>342.557</ele>
+			<time>2010-05-11T17:29:55Z</time></trkpt>
+		<trkpt lat="49.876760" lon="9.993074">
+			<ele>338.875</ele>
+			<time>2010-05-11T17:30:03Z</time></trkpt>
+		<trkpt lat="49.876467" lon="9.992967">
+			<ele>338.862</ele>
+			<time>2010-05-11T17:30:04Z</time></trkpt>
+		<trkpt lat="49.874977" lon="9.992522">
+			<ele>335.694</ele>
+			<time>2010-05-11T17:30:09Z</time></trkpt></trkseg></trk>
+</gpx>

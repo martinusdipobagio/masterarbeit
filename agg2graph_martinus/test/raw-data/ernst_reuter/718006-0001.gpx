@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>    	<name>Track2010/05/15_17:43</name>
+    
+      	<trkseg>		<trkpt lat="52.54186" lon="13.414616">
+        			<time>2010-05-15T15:43:43Z</time>
+        			<desc>lat.=52.541860, lon.=13.414616, Alt.=114.419823m. Speed=4.972404m/h.</desc>
+        			<ele>114.419823</ele>
+      </trkpt>
+      		<trkpt lat="52.541966" lon="13.414618">
+        			<time>2010-05-15T15:43:44Z</time>
+        			<desc>lat.=52.541966, lon.=13.414618, Alt.=114.489014m. Speed=7.537453m/h.</desc>
+        			<ele>114.489014</ele>
+      </trkpt>
+      		<trkpt lat="52.541906" lon="13.414526">
+        			<time>2010-05-15T15:43:45Z</time>
+        			<desc>lat.=52.541906, lon.=13.414526, Alt.=114.587410m. Speed=5.705986m/h.</desc>
+        			<ele>114.587410</ele>
+      </trkpt>
+      		<trkpt lat="52.541922" lon="13.414514">
+        			<time>2010-05-15T15:43:46Z</time>
+        			<desc>lat.=52.541922, lon.=13.414514, Alt.=114.645973m. Speed=5.884050m/h.</desc>
+        			<ele>114.645973</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

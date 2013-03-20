@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Würzburg - Halle - Wernigerode</name>
+	<number>1</number>
+	<trkseg>
+		<trkpt lat="49.825063" lon="9.988532">
+			<ele>257.949</ele>
+			<time>2010-05-16T12:56:45Z</time></trkpt>
+		<trkpt lat="49.826291" lon="9.989298">
+			<ele>260.651</ele>
+			<time>2010-05-16T12:56:50Z</time></trkpt>
+		<trkpt lat="49.827573" lon="9.989980">
+			<ele>263.162</ele>
+			<time>2010-05-16T12:56:55Z</time></trkpt>
+		<trkpt lat="49.829697" lon="9.990943">
+			<ele>268.563</ele>
+			<time>2010-05-16T12:57:03Z</time></trkpt>
+		<trkpt lat="49.829968" lon="9.991059">
+			<ele>268.563</ele>
+			<time>2010-05-16T12:57:04Z</time></trkpt>
+		<trkpt lat="49.831882" lon="9.991955">
+			<ele>270.998</ele>
+			<time>2010-05-16T12:57:11Z</time></trkpt>
+		<trkpt lat="49.834320" lon="9.993641">
+			<ele>271.985</ele>
+			<time>2010-05-16T12:57:20Z</time></trkpt>
+		<trkpt lat="49.836587" lon="9.996048">
+			<ele>270.606</ele>
+			<time>2010-05-16T12:57:29Z</time></trkpt>
+		<trkpt lat="49.837245" lon="9.996991">
+			<ele>268.892</ele>
+			<time>2010-05-16T12:57:32Z</time></trkpt>
+		<trkpt lat="49.838907" lon="10.000091">
+			<ele>267.392</ele>
+			<time>2010-05-16T12:57:41Z</time></trkpt>
+		<trkpt lat="49.839688" lon="10.001887">
+			<ele>265.233</ele>
+			<time>2010-05-16T12:57:46Z</time></trkpt>
+		<trkpt lat="49.841067" lon="10.005096">
+			<ele>263.119</ele>
+			<time>2010-05-16T12:57:56Z</time></trkpt>
+		<trkpt lat="49.842342" lon="10.007167">
+			<ele>264.472</ele>
+			<time>2010-05-16T12:58:05Z</time></trkpt>
+		<trkpt lat="49.843856" lon="10.008748">
+			<ele>267.919</ele>
+			<time>2010-05-16T12:58:15Z</time></trkpt>
+		<trkpt lat="49.844011" lon="10.008873">
+			<ele>267.917</ele>
+			<time>2010-05-16T12:58:16Z</time></trkpt>
+		<trkpt lat="49.845100" lon="10.009616">
+			<ele>270.806</ele>
+			<time>2010-05-16T12:58:23Z</time></trkpt>
+		<trkpt lat="49.846784" lon="10.010438">
+			<ele>273.825</ele>
+			<time>2010-05-16T12:58:35Z</time></trkpt>
+		<trkpt lat="49.847513" lon="10.010834">
+			<ele>274.381</ele>
+			<time>2010-05-16T12:58:41Z</time></trkpt>
+		<trkpt lat="49.847884" lon="10.011527">
+			<ele>276.022</ele>
+			<time>2010-05-16T12:58:47Z</time></trkpt>
+		<trkpt lat="49.847685" lon="10.012241">
+			<ele>276.751</ele>
+			<time>2010-05-16T12:58:51Z</time></trkpt>
+		<trkpt lat="49.847216" lon="10.012430">
+			<ele>277.058</ele>
+			<time>2010-05-16T12:58:55Z</time></trkpt>
+		<trkpt lat="49.846806" lon="10.011787">
+			<ele>278.453</ele>
+			<time>2010-05-16T12:59:00Z</time></trkpt>
+		<trkpt lat="49.846883" lon="10.011063">
+			<ele>279.827</ele>
+			<time>2010-05-16T12:59:04Z</time></trkpt>
+		<trkpt lat="49.847074" lon="10.010495">
+			<ele>281.355</ele>
+			<time>2010-05-16T12:59:07Z</time></trkpt>
+		<trkpt lat="49.847724" lon="10.008719">
+			<ele>284.871</ele>
+			<time>2010-05-16T12:59:15Z</time></trkpt>
+		<trkpt lat="49.848517" lon="10.006879">
+			<ele>287.923</ele>
+			<time>2010-05-16T12:59:24Z</time></trkpt></trkseg></trk>
+</gpx>

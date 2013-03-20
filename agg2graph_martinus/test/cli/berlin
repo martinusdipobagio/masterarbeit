@@ -1,0 +1,8 @@
+loadagg		berlin
+input		berlin
+clean
+agg
+saveagg		berlin
+road
+osm
+statistics

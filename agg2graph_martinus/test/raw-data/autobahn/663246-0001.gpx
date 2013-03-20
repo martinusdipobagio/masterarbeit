@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>20100330162727</name>
+	<trkseg>
+		<trkpt lat="49.883020000" lon="9.996255000">
+			<ele>200.731000</ele>
+			<time>2010-03-30T16:21:37.148Z</time>
+			<name>WPT6850</name>
+			<desc>WPT6850</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.255000</hdop></trkpt>
+		<trkpt lat="49.882693000" lon="9.996062000">
+			<ele>200.637000</ele>
+			<time>2010-03-30T16:21:38.149Z</time>
+			<name>WPT6851</name>
+			<desc>WPT6851</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.255000</hdop></trkpt>
+		<trkpt lat="49.882368000" lon="9.995867000">
+			<ele>201.166000</ele>
+			<time>2010-03-30T16:21:39.150Z</time>
+			<name>WPT6852</name>
+			<desc>WPT6852</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.882045000" lon="9.995675000">
+			<ele>200.304000</ele>
+			<time>2010-03-30T16:21:40.151Z</time>
+			<name>WPT6853</name>
+			<desc>WPT6853</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.881723000" lon="9.995488000">
+			<ele>200.336000</ele>
+			<time>2010-03-30T16:21:41.152Z</time>
+			<name>WPT6854</name>
+			<desc>WPT6854</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.881403000" lon="9.995303000">
+			<ele>199.943000</ele>
+			<time>2010-03-30T16:21:42.153Z</time>
+			<name>WPT6855</name>
+			<desc>WPT6855</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.881083000" lon="9.995122000">
+			<ele>199.683000</ele>
+			<time>2010-03-30T16:21:43.154Z</time>
+			<name>WPT6856</name>
+			<desc>WPT6856</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.880763000" lon="9.994947000">
+			<ele>198.817000</ele>
+			<time>2010-03-30T16:21:44.155Z</time>
+			<name>WPT6857</name>
+			<desc>WPT6857</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.880437000" lon="9.994777000">
+			<ele>198.169000</ele>
+			<time>2010-03-30T16:21:45.156Z</time>
+			<name>WPT6858</name>
+			<desc>WPT6858</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.880108000" lon="9.994613000">
+			<ele>197.543000</ele>
+			<time>2010-03-30T16:21:46.157Z</time>
+			<name>WPT6859</name>
+			<desc>WPT6859</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.879777000" lon="9.994455000">
+			<ele>197.089000</ele>
+			<time>2010-03-30T16:21:47.158Z</time>
+			<name>WPT6860</name>
+			<desc>WPT6860</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.879440000" lon="9.994297000">
+			<ele>196.821000</ele>
+			<time>2010-03-30T16:21:48.159Z</time>
+			<name>WPT6861</name>
+			<desc>WPT6861</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.879102000" lon="9.994138000">
+			<ele>196.397000</ele>
+			<time>2010-03-30T16:21:49.160Z</time>
+			<name>WPT6862</name>
+			<desc>WPT6862</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.878765000" lon="9.993982000">
+			<ele>196.363000</ele>
+			<time>2010-03-30T16:21:50.161Z</time>
+			<name>WPT6863</name>
+			<desc>WPT6863</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.878430000" lon="9.993832000">
+			<ele>195.734000</ele>
+			<time>2010-03-30T16:21:51.162Z</time>
+			<name>WPT6864</name>
+			<desc>WPT6864</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.878097000" lon="9.993688000">
+			<ele>195.339000</ele>
+			<time>2010-03-30T16:21:52.163Z</time>
+			<name>WPT6865</name>
+			<desc>WPT6865</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.145000</hdop></trkpt>
+		<trkpt lat="49.877763000" lon="9.993548000">
+			<ele>194.962000</ele>
+			<time>2010-03-30T16:21:53.164Z</time>
+			<name>WPT6866</name>
+			<desc>WPT6866</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.254000</hdop></trkpt>
+		<trkpt lat="49.877428000" lon="9.993407000">
+			<ele>194.652000</ele>
+			<time>2010-03-30T16:21:54.165Z</time>
+			<name>WPT6867</name>
+			<desc>WPT6867</desc>
+			<fix>2d</fix>
+			<sat>9</sat>
+			<hdop>1.118000</hdop></trkpt>
+		<trkpt lat="49.877092000" lon="9.993268000">
+			<ele>194.321000</ele>
+			<time>2010-03-30T16:21:55.166Z</time>
+			<name>WPT6868</name>
+			<desc>WPT6868</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.589000</hdop></trkpt>
+		<trkpt lat="49.876755000" lon="9.993135000">
+			<ele>193.873000</ele>
+			<time>2010-03-30T16:21:56.167Z</time>
+			<name>WPT6869</name>
+			<desc>WPT6869</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.149000</hdop></trkpt>
+		<trkpt lat="49.876413000" lon="9.993010000">
+			<ele>192.702000</ele>
+			<time>2010-03-30T16:21:57.168Z</time>
+			<name>WPT6870</name>
+			<desc>WPT6870</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.149000</hdop></trkpt>
+		<trkpt lat="49.876073000" lon="9.992893000">
+			<ele>192.048000</ele>
+			<time>2010-03-30T16:21:58.169Z</time>
+			<name>WPT6871</name>
+			<desc>WPT6871</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.149000</hdop></trkpt>
+		<trkpt lat="49.875730000" lon="9.992783000">
+			<ele>191.218000</ele>
+			<time>2010-03-30T16:21:59.170Z</time>
+			<name>WPT6872</name>
+			<desc>WPT6872</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.149000</hdop></trkpt>
+		<trkpt lat="49.875383000" lon="9.992682000">
+			<ele>190.417000</ele>
+			<time>2010-03-30T16:22:00.171Z</time>
+			<name>WPT6873</name>
+			<desc>WPT6873</desc>
+			<fix>2d</fix>
+			<sat>7</sat>
+			<hdop>1.253000</hdop></trkpt>
+		<trkpt lat="49.875033000" lon="9.992585000">
+			<ele>189.625000</ele>
+			<time>2010-03-30T16:22:01.172Z</time>
+			<name>WPT6874</name>
+			<desc>WPT6874</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.144000</hdop></trkpt>
+		<trkpt lat="49.874683000" lon="9.992495000">
+			<ele>189.293000</ele>
+			<time>2010-03-30T16:22:02.173Z</time>
+			<name>WPT6875</name>
+			<desc>WPT6875</desc>
+			<fix>2d</fix>
+			<sat>8</sat>
+			<hdop>1.144000</hdop></trkpt></trkseg></trk>
+</gpx>

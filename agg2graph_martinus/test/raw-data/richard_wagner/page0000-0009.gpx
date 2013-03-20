@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="52.5134682" lon="13.3010584">
+			<time>2011-05-02T22:15:16Z</time></trkpt>
+		<trkpt lat="52.5134629" lon="13.3012032">
+			<time>2011-05-02T22:15:19Z</time></trkpt>
+		<trkpt lat="52.5134629" lon="13.3013266">
+			<time>2011-05-02T22:15:22Z</time></trkpt>
+		<trkpt lat="52.5134521" lon="13.3017611">
+			<time>2011-05-02T22:15:33Z</time></trkpt>
+		<trkpt lat="52.5134414" lon="13.3031344">
+			<time>2011-05-02T22:16:06Z</time></trkpt>
+		<trkpt lat="52.5134199" lon="13.3042502">
+			<time>2011-05-02T22:16:34Z</time></trkpt>
+		<trkpt lat="52.5134092" lon="13.3049583">
+			<time>2011-05-02T22:16:51Z</time></trkpt>
+		<trkpt lat="52.5134253" lon="13.3052641">
+			<time>2011-05-02T22:16:58Z</time></trkpt>
+		<trkpt lat="52.5134897" lon="13.3069431">
+			<time>2011-05-02T22:17:39Z</time></trkpt>
+		<trkpt lat="52.5134843" lon="13.3070021">
+			<time>2011-05-02T22:17:41Z</time></trkpt>
+		<trkpt lat="52.5134897" lon="13.3071792">
+			<time>2011-05-02T22:17:45Z</time></trkpt>
+		<trkpt lat="52.513538" lon="13.3085793">
+			<time>2011-05-02T22:18:19Z</time></trkpt>
+		<trkpt lat="52.5135701" lon="13.3094859">
+			<time>2011-05-02T22:18:41Z</time></trkpt></trkseg>
+	<trkseg>
+		<trkpt lat="52.5174593" lon="13.3066964">
+			<time>2011-05-02T22:35:22Z</time></trkpt>
+		<trkpt lat="52.5180816" lon="13.3064818">
+			<time>2011-05-02T22:35:47Z</time></trkpt>
+		<trkpt lat="52.5192618" lon="13.306353">
+			<time>2011-05-02T22:36:34Z</time></trkpt>
+		<trkpt lat="52.519412" lon="13.3063638">
+			<time>2011-05-02T22:36:40Z</time></trkpt></trkseg></trk>
+</gpx>

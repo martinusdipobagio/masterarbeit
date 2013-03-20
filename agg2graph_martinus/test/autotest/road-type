@@ -1,0 +1,6 @@
+input		13-road-type
+agg
+road 		minEdgeWeight=1
+resetview
+savelayer	input
+savelayer	intersections road

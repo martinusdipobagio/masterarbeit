@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>M-HH</name>
+	<extensions>
+		<gpxx:TrackExtension>
+			<gpxx:DisplayColor>Cyan</gpxx:DisplayColor></gpxx:TrackExtension></extensions>
+	<trkseg>
+		<trkpt lat="49.8751581274" lon="9.9927923083">
+			<ele>313.05</ele>
+			<time>2011-10-08T09:46:13Z</time></trkpt>
+		<trkpt lat="49.8753881268" lon="9.9928548373">
+			<ele>313.05</ele>
+			<time>2011-10-08T09:46:14Z</time></trkpt>
+		<trkpt lat="49.8763170093" lon="9.9931159336">
+			<ele>314.49</ele>
+			<time>2011-10-08T09:46:18Z</time></trkpt>
+		<trkpt lat="49.8774884641" lon="9.9934887607">
+			<ele>318.33</ele>
+			<time>2011-10-08T09:46:23Z</time></trkpt>
+		<trkpt lat="49.8791601509" lon="9.9942070059">
+			<ele>321.70</ele>
+			<time>2011-10-08T09:46:30Z</time></trkpt>
+		<trkpt lat="49.8803771194" lon="9.9948238302">
+			<ele>323.62</ele>
+			<time>2011-10-08T09:46:35Z</time></trkpt></trkseg></trk>
+</gpx>

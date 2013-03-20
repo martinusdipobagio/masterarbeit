@@ -1,0 +1,9 @@
+input		berlin
+clean
+agg
+road		minEdgeWeight=1
+osm
+resetview
+savelayer	osm	intersections	road
+savelayer	osm	road
+statistics

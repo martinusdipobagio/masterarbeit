@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Würzburg - Halle - Wernigerode</name>
+	<number>1</number>
+	<trkseg>
+		<trkpt lat="49.875911" lon="9.992919">
+			<ele>321.520</ele>
+			<time>2010-05-16T13:01:16Z</time></trkpt>
+		<trkpt lat="49.876921" lon="9.993247">
+			<ele>324.073</ele>
+			<time>2010-05-16T13:01:19Z</time></trkpt>
+		<trkpt lat="49.879546" lon="9.994366">
+			<ele>328.227</ele>
+			<time>2010-05-16T13:01:27Z</time></trkpt>
+		<trkpt lat="49.882984" lon="9.996277">
+			<ele>326.173</ele>
+			<time>2010-05-16T13:01:38Z</time></trkpt></trkseg></trk>
+</gpx>

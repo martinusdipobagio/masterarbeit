@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+  	<name>20100624225245</name>
+
+	<trkseg>		<trkpt lat="52.498531667" lon="13.272820000">
+  			<ele>40.300000</ele>
+  			<time>2010-06-24T20:52:45Z</time>
+  			<course>45.910000</course>
+  			<speed>18.221622</speed>
+  			<name>WPT1636</name>
+  			<cmt>WPT1636</cmt>
+  			<desc>WPT1636</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+		<trkpt lat="52.499573333" lon="13.277065000">
+  			<ele>45.800000</ele>
+  			<time>2010-06-24T20:53:02Z</time>
+  			<course>85.019997</course>
+  			<speed>18.988144</speed>
+  			<name>WPT1637</name>
+  			<cmt>WPT1637</cmt>
+  			<desc>WPT1637</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499573333" lon="13.277341667">
+  			<ele>45.500000</ele>
+  			<time>2010-06-24T20:53:03Z</time>
+  			<course>85.110001</course>
+  			<speed>18.916122</speed>
+  			<name>WPT1638</name>
+  			<cmt>WPT1638</cmt>
+  			<desc>WPT1638</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499591667" lon="13.277630000">
+  			<ele>47.700000</ele>
+  			<time>2010-06-24T20:53:04Z</time>
+  			<course>85.099998</course>
+  			<speed>19.358545</speed>
+  			<name>WPT1639</name>
+  			<cmt>WPT1639</cmt>
+  			<desc>WPT1639</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499603333" lon="13.277905000">
+  			<ele>49.400000</ele>
+  			<time>2010-06-24T20:53:05Z</time>
+  			<course>84.309998</course>
+  			<speed>19.235077</speed>
+  			<name>WPT1640</name>
+  			<cmt>WPT1640</cmt>
+  			<desc>WPT1640</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.499626667" lon="13.278170000">
+  			<ele>49.900000</ele>
+  			<time>2010-06-24T20:53:06Z</time>
+  			<course>83.959999</course>
+  			<speed>18.669189</speed>
+  			<name>WPT1641</name>
+  			<cmt>WPT1641</cmt>
+  			<desc>WPT1641</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499648333" lon="13.278451667">
+  			<ele>50.800000</ele>
+  			<time>2010-06-24T20:53:07Z</time>
+  			<course>82.089996</course>
+  			<speed>18.417110</speed>
+  			<name>WPT1642</name>
+  			<cmt>WPT1642</cmt>
+  			<desc>WPT1642</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499668333" lon="13.278703333">
+  			<ele>50.600000</ele>
+  			<time>2010-06-24T20:53:08Z</time>
+  			<course>81.379997</course>
+  			<speed>17.902666</speed>
+  			<name>WPT1643</name>
+  			<cmt>WPT1643</cmt>
+  			<desc>WPT1643</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499695000" lon="13.278981667">
+  			<ele>51.600000</ele>
+  			<time>2010-06-24T20:53:09Z</time>
+  			<course>82.480003</course>
+  			<speed>17.866655</speed>
+  			<name>WPT1644</name>
+  			<cmt>WPT1644</cmt>
+  			<desc>WPT1644</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.499713333" lon="13.279231667">
+  			<ele>51.600000</ele>
+  			<time>2010-06-24T20:53:10Z</time>
+  			<course>82.599998</course>
+  			<speed>17.820356</speed>
+  			<name>WPT1645</name>
+  			<cmt>WPT1645</cmt>
+  			<desc>WPT1645</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.500065000" lon="13.280773333">
+  			<ele>51.100000</ele>
+  			<time>2010-06-24T20:53:18Z</time>
+  			<course>68.230003</course>
+  			<speed>14.651378</speed>
+  			<name>WPT1646</name>
+  			<cmt>WPT1646</cmt>
+  			<desc>WPT1646</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.500183333" lon="13.280876667">
+  			<ele>50.700000</ele>
+  			<time>2010-06-24T20:53:19Z</time>
+  			<course>56.939999</course>
+  			<speed>14.003178</speed>
+  			<name>WPT1647</name>
+  			<cmt>WPT1647</cmt>
+  			<desc>WPT1647</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.500668333" lon="13.281143333">
+  			<ele>54.500000</ele>
+  			<time>2010-06-24T20:53:22Z</time>
+  			<course>31.000000</course>
+  			<speed>14.538200</speed>
+  			<name>WPT1648</name>
+  			<cmt>WPT1648</cmt>
+  			<desc>WPT1648</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.500866667" lon="13.281201667">
+  			<ele>52.100000</ele>
+  			<time>2010-06-24T20:53:23Z</time>
+  			<course>26.790001</course>
+  			<speed>14.821144</speed>
+  			<name>WPT1649</name>
+  			<cmt>WPT1649</cmt>
+  			<desc>WPT1649</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.501003333" lon="13.281288333">
+  			<ele>49.400000</ele>
+  			<time>2010-06-24T20:53:24Z</time>
+  			<course>23.809999</course>
+  			<speed>14.651378</speed>
+  			<name>WPT1650</name>
+  			<cmt>WPT1650</cmt>
+  			<desc>WPT1650</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.501125000" lon="13.281346667">
+  			<ele>47.900000</ele>
+  			<time>2010-06-24T20:53:25Z</time>
+  			<course>22.750000</course>
+  			<speed>14.080344</speed>
+  			<name>WPT1651</name>
+  			<cmt>WPT1651</cmt>
+  			<desc>WPT1651</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.500000</hdop>
+</trkpt>
+		<trkpt lat="52.502498333" lon="13.280928333">
+  			<ele>48.700000</ele>
+  			<time>2010-06-24T20:53:45Z</time>
+  			<course>345.980011</course>
+  			<speed>3.781167</speed>
+  			<name>WPT1652</name>
+  			<cmt>WPT1652</cmt>
+  			<desc>WPT1652</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+		<trkpt lat="52.502243333" lon="13.281055000">
+  			<ele>49.000000</ele>
+  			<time>2010-06-24T20:54:02Z</time>
+  			<course>172.449997</course>
+  			<speed>2.644244</speed>
+  			<name>WPT1653</name>
+  			<cmt>WPT1653</cmt>
+  			<desc>WPT1653</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+		<trkpt lat="52.502223333" lon="13.281085000">
+  			<ele>49.000000</ele>
+  			<time>2010-06-24T20:54:03Z</time>
+  			<course>174.000000</course>
+  			<speed>2.258411</speed>
+  			<name>WPT1654</name>
+  			<cmt>WPT1654</cmt>
+  			<desc>WPT1654</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+		<trkpt lat="52.502208333" lon="13.281098333">
+  			<ele>48.900000</ele>
+  			<time>2010-06-24T20:54:04Z</time>
+  			<course>188.250000</course>
+  			<speed>2.201822</speed>
+  			<name>WPT1655</name>
+  			<cmt>WPT1655</cmt>
+  			<desc>WPT1655</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+		<trkpt lat="52.502181667" lon="13.281088333">
+  			<ele>49.000000</ele>
+  			<time>2010-06-24T20:54:05Z</time>
+  			<course>194.520004</course>
+  			<speed>2.181244</speed>
+  			<name>WPT1656</name>
+  			<cmt>WPT1656</cmt>
+  			<desc>WPT1656</desc>
+  			<fix>2d</fix>
+  			<sat>3</sat>
+  			<hdop>2.700000</hdop>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

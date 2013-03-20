@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="49.87670660018921" lon="9.993170499801636">
+			<ele>343.0</ele>
+			<course>13.0078125</course>
+			<speed>26.25</speed>
+			<src>gps</src>
+			<sat>5</sat>
+			<time>2011-09-09T11:51:18Z</time></trkpt>
+		<trkpt lat="49.881073236465454" lon="9.995246529579163">
+			<ele>355.0</ele>
+			<course>18.632813</course>
+			<speed>26.5</speed>
+			<src>gps</src>
+			<sat>6</sat>
+			<time>2011-09-09T11:51:36Z</time></trkpt></trkseg></trk>
+</gpx>

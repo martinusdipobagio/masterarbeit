@@ -1,0 +1,15 @@
+input		06-merge-algorithm
+clean		Epsilon=1
+agg			maxDistance=40
+road
+osm
+resetview
+savelayer	input
+savelayer	matching
+savelayer	matching merging
+savelayer	agg
+savelayer	osm	agg
+savelayer	osm	input
+savelayer	osm	input	agg
+savelayer	osm	intersections	road
+savelayer	osm	road

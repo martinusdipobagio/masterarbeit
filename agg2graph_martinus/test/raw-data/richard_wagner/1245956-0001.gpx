@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>GpsPruneTrack</name>
+	<number>1</number>
+	<trkseg>
+		<trkpt lat="52.51637455" lon="13.3102925">
+			<ele>90.19999694824219</ele>
+			<time>2012-06-04T05:39:05Z</time></trkpt>
+		<trkpt lat="52.51652689" lon="13.30977274">
+			<ele>88.69999694824219</ele>
+			<time>2012-06-04T05:39:09Z</time></trkpt>
+		<trkpt lat="52.51668897" lon="13.30921071">
+			<ele>86.0999984741211</ele>
+			<time>2012-06-04T05:39:13Z</time></trkpt>
+		<trkpt lat="52.51685183" lon="13.30866339">
+			<ele>85.5</ele>
+			<time>2012-06-04T05:39:17Z</time></trkpt>
+		<trkpt lat="52.517004" lon="13.3081282">
+			<ele>85.30000305175781</ele>
+			<time>2012-06-04T05:39:21Z</time></trkpt>
+		<trkpt lat="52.5172072" lon="13.3075115">
+			<ele>83.5999984741211</ele>
+			<time>2012-06-04T05:39:25Z</time></trkpt>
+		<trkpt lat="52.5174533" lon="13.30689134">
+			<ele>83.30000305175781</ele>
+			<time>2012-06-04T05:39:29Z</time></trkpt>
+		<trkpt lat="52.51765583" lon="13.306194">
+			<ele>84.5</ele>
+			<time>2012-06-04T05:39:33Z</time></trkpt>
+		<trkpt lat="52.51783699" lon="13.30557023">
+			<ele>83.80000305175781</ele>
+			<time>2012-06-04T05:39:37Z</time></trkpt>
+		<trkpt lat="52.51797667" lon="13.30510665">
+			<ele>83.4000015258789</ele>
+			<time>2012-06-04T05:39:41Z</time></trkpt>
+		<trkpt lat="52.51803492" lon="13.30489932">
+			<ele>83.0</ele>
+			<time>2012-06-04T05:39:45Z</time></trkpt>
+		<trkpt lat="52.51801001" lon="13.30476601">
+			<ele>81.69999694824219</ele>
+			<time>2012-06-04T05:40:13Z</time></trkpt>
+		<trkpt lat="52.51807502" lon="13.3045126">
+			<ele>81.5999984741211</ele>
+			<time>2012-06-04T05:40:17Z</time></trkpt>
+		<trkpt lat="52.51824134" lon="13.30412534">
+			<ele>82.0</ele>
+			<time>2012-06-04T05:40:21Z</time></trkpt>
+		<trkpt lat="52.51842215" lon="13.30359751">
+			<ele>80.5</ele>
+			<time>2012-06-04T05:40:25Z</time></trkpt>
+		<trkpt lat="52.51858935" lon="13.30294964">
+			<ele>80.80000305175781</ele>
+			<time>2012-06-04T05:40:29Z</time></trkpt>
+		<trkpt lat="52.51884686" lon="13.30222442">
+			<ele>81.0999984741211</ele>
+			<time>2012-06-04T05:40:33Z</time></trkpt>
+		<trkpt lat="52.51909044" lon="13.3015049">
+			<ele>80.80000305175781</ele>
+			<time>2012-06-04T05:40:37Z</time></trkpt></trkseg></trk>
+</gpx>

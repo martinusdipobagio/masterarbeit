@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<gpx version="1.1"
+  creator="Marengo Route Creator - http://www.marengo-ltd.com/map/"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <trkseg>
+        <trkpt lat="52.51725894542702" lon="13.304550647735596">
+          <name>0</name>
+        </trkpt>
+        <trkpt lat="52.51771595466241" lon="13.304443359375">
+          <name>1</name>
+        </trkpt>
+        <trkpt lat="52.51804238692021" lon="13.304443359375">
+          <name>2</name>
+        </trkpt>
+        <trkpt lat="52.51783347055461" lon="13.30518364906311">
+          <name>3</name>
+        </trkpt>
+        <trkpt lat="52.51758538108023" lon="13.30569863319397">
+          <name>4</name>
+        </trkpt>
+        <trkpt lat="52.51733729020497" lon="13.306288719177246">
+          <name>5</name>
+        </trkpt>
+        <trkpt lat="52.517402577413236" lon="13.306396007537842">
+          <name>6</name>
+        </trkpt>
+        <trkpt lat="52.51678887382563" lon="13.306503295898438">
+          <name>7</name>
+        </trkpt>
+        <trkpt lat="52.5162861527979" lon="13.306578397750854">
+          <name>8</name>
+        </trkpt>
+        <trkpt lat="52.51597276535075" lon="13.306878805160522">
+          <name>9</name>
+        </trkpt>
+        <trkpt lat="52.51569854950095" lon="13.306374549865723">
+          <name>10</name>
+        </trkpt>
+        <trkpt lat="52.514915066214606" lon="13.306782245635986">
+          <name>11</name>
+        </trkpt>
+        <trkpt lat="52.514849775310154" lon="13.306803703308105">
+          <name>12</name>
+        </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

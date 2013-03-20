@@ -1,0 +1,7 @@
+input		06-merge-algorithm
+agg			maxDistance=40
+resetview
+savelayer	input
+savelayer	matching
+savelayer	matching merging
+savelayer	agg

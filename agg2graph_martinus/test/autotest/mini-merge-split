@@ -1,0 +1,14 @@
+input		mini-merge-split
+clean
+agg
+road		minEdgeWeight=1	maxIntersectionMergeDistance=20 removeBorderRoads=false
+osm
+resetview
+savelayer	input
+savelayer	osm input
+savelayer	clean
+savelayer	matching
+savelayer	matching merging
+savelayer	agg
+savelayer	intersections road
+savelayer	osm intersections road

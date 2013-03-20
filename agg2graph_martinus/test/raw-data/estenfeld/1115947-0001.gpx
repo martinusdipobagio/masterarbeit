@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>M-HH</name>
+	<extensions>
+		<gpxx:TrackExtension>
+			<gpxx:DisplayColor>Cyan</gpxx:DisplayColor></gpxx:TrackExtension></extensions>
+	<trkseg>
+		<trkpt lat="49.8386066593" lon="10.0294766296">
+			<ele>281.80</ele>
+			<time>2011-10-08T09:43:01Z</time></trkpt>
+		<trkpt lat="49.8391581886" lon="10.0285220984">
+			<ele>280.84</ele>
+			<time>2011-10-08T09:43:04Z</time></trkpt>
+		<trkpt lat="49.8405677732" lon="10.0259170868">
+			<ele>277.96</ele>
+			<time>2011-10-08T09:43:12Z</time></trkpt>
+		<trkpt lat="49.8420176748" lon="10.0229895394">
+			<ele>274.59</ele>
+			<time>2011-10-08T09:43:21Z</time></trkpt>
+		<trkpt lat="49.8437511362" lon="10.0189672317">
+			<ele>274.59</ele>
+			<time>2011-10-08T09:43:34Z</time></trkpt>
+		<trkpt lat="49.8441509530" lon="10.0179878902">
+			<ele>277.96</ele>
+			<time>2011-10-08T09:43:37Z</time></trkpt>
+		<trkpt lat="49.8442831356" lon="10.0176567212">
+			<ele>277.96</ele>
+			<time>2011-10-08T09:43:38Z</time></trkpt>
+		<trkpt lat="49.8445416335" lon="10.0169918686">
+			<ele>280.84</ele>
+			<time>2011-10-08T09:43:40Z</time></trkpt>
+		<trkpt lat="49.8447988741" lon="10.0163220707">
+			<ele>275.56</ele>
+			<time>2011-10-08T09:43:42Z</time></trkpt>
+		<trkpt lat="49.8449264467" lon="10.0159861241">
+			<ele>277.00</ele>
+			<time>2011-10-08T09:43:43Z</time></trkpt>
+		<trkpt lat="49.8460471071" lon="10.0129174255">
+			<ele>280.36</ele>
+			<time>2011-10-08T09:43:52Z</time></trkpt>
+		<trkpt lat="49.8466563877" lon="10.0112100318">
+			<ele>282.28</ele>
+			<time>2011-10-08T09:43:57Z</time></trkpt>
+		<trkpt lat="49.8472782411" lon="10.0095297117">
+			<ele>284.21</ele>
+			<time>2011-10-08T09:44:02Z</time></trkpt>
+		<trkpt lat="49.8479213845" lon="10.0078711845">
+			<ele>286.13</ele>
+			<time>2011-10-08T09:44:07Z</time></trkpt>
+		<trkpt lat="49.8484729975" lon="10.0065932795">
+			<ele>289.49</ele>
+			<time>2011-10-08T09:44:11Z</time></trkpt>
+		<trkpt lat="49.8493826855" lon="10.0047732331">
+			<ele>291.90</ele>
+			<time>2011-10-08T09:44:17Z</time></trkpt></trkseg></trk>
+</gpx>

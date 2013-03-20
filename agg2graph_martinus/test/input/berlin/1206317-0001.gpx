@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm from OpenStreetMap GPS data">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="52.5199510" lon="13.2798530">
+			<ele>43.4220000</ele>
+			<time>2012-04-01T18:00:14Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>80</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5196840" lon="13.2798170">
+			<ele>43.9410000</ele>
+			<time>2012-04-01T18:00:22Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>75</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5194430" lon="13.2798500">
+			<ele>43.3690000</ele>
+			<time>2012-04-01T18:00:29Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>78</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5192190" lon="13.2798440">
+			<ele>43.1210000</ele>
+			<time>2012-04-01T18:00:36Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>76</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5189900" lon="13.2798400">
+			<ele>43.4270000</ele>
+			<time>2012-04-01T18:00:44Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>65</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5187590" lon="13.2798600">
+			<ele>43.7370000</ele>
+			<time>2012-04-01T18:00:53Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>0</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5186700" lon="13.2798610">
+			<ele>43.9440000</ele>
+			<time>2012-04-01T18:00:59Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>0</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5186630" lon="13.2798600">
+			<ele>43.9720000</ele>
+			<time>2012-04-01T18:01:00Z</time>
+			<extensions>
+				<tp1:TrackPointExtension>
+					<tp1:cad>0</tp1:cad></tp1:TrackPointExtension></extensions></trkpt>
+		<trkpt lat="52.5186510" lon="13.2798700">
+			<ele>44.2470000</ele>
+			<time>2012-04-01T18:01:19Z</time></trkpt></trkseg></trk>
+</gpx>

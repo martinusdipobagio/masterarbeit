@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="49.883053333" lon="9.996206667">
+			<ele>370.700000</ele>
+			<time>2009-09-11T12:51:38Z</time>
+			<course>199.759995</course>
+			<speed>33.166233</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.882770000" lon="9.996048333">
+			<ele>370.900000</ele>
+			<time>2009-09-11T12:51:39Z</time>
+			<course>200.059998</course>
+			<speed>32.950165</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.882496667" lon="9.995888333">
+			<ele>371.000000</ele>
+			<time>2009-09-11T12:51:40Z</time>
+			<course>200.360001</course>
+			<speed>33.315422</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.882210000" lon="9.995723333">
+			<ele>371.200000</ele>
+			<time>2009-09-11T12:51:41Z</time>
+			<course>200.580002</course>
+			<speed>33.711544</speed>
+			<fix>3d</fix>
+			<sat>7</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.881926667" lon="9.995556667">
+			<ele>371.300000</ele>
+			<time>2009-09-11T12:51:42Z</time>
+			<course>200.509995</course>
+			<speed>34.128246</speed>
+			<fix>3d</fix>
+			<sat>7</sat>
+			<hdop>1.200000</hdop></trkpt>
+		<trkpt lat="49.881638333" lon="9.995388333">
+			<ele>371.400000</ele>
+			<time>2009-09-11T12:51:43Z</time>
+			<course>200.380005</course>
+			<speed>34.493500</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.881343333" lon="9.995221667">
+			<ele>371.500000</ele>
+			<time>2009-09-11T12:51:44Z</time>
+			<course>199.789993</course>
+			<speed>34.966789</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.881046667" lon="9.995056667">
+			<ele>371.500000</ele>
+			<time>2009-09-11T12:51:45Z</time>
+			<course>199.570007</course>
+			<speed>35.357765</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.880745000" lon="9.994891667">
+			<ele>371.500000</ele>
+			<time>2009-09-11T12:51:46Z</time>
+			<course>199.380005</course>
+			<speed>35.645855</speed>
+			<fix>3d</fix>
+			<sat>8</sat>
+			<hdop>1.100000</hdop></trkpt>
+		<trkpt lat="49.880443333" lon="9.994728333">
+			<ele>371.400000</ele>
+			<time>2009-09-11T12:51:47Z</time>
+			<course>199.059998</course>
+			<speed>35.352623</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.880146667" lon="9.994568333">
+			<ele>371.400000</ele>
+			<time>2009-09-11T12:51:48Z</time>
+			<course>198.800003</course>
+			<speed>35.038811</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.879848333" lon="9.994410000">
+			<ele>371.200000</ele>
+			<time>2009-09-11T12:51:49Z</time>
+			<course>198.759995</course>
+			<speed>35.028522</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.879546667" lon="9.994251667">
+			<ele>371.000000</ele>
+			<time>2009-09-11T12:51:50Z</time>
+			<course>198.729996</course>
+			<speed>35.506954</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.879238333" lon="9.994093333">
+			<ele>370.800000</ele>
+			<time>2009-09-11T12:51:51Z</time>
+			<course>198.699997</course>
+			<speed>35.933945</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.878933333" lon="9.993933333">
+			<ele>370.300000</ele>
+			<time>2009-09-11T12:51:52Z</time>
+			<course>198.259995</course>
+			<speed>36.360935</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.878616667" lon="9.993775000">
+			<ele>369.600000</ele>
+			<time>2009-09-11T12:51:53Z</time>
+			<course>197.610001</course>
+			<speed>36.700466</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.878296667" lon="9.993628333">
+			<ele>369.300000</ele>
+			<time>2009-09-11T12:51:54Z</time>
+			<course>196.259995</course>
+			<speed>36.875378</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.877980000" lon="9.993488333">
+			<ele>369.000000</ele>
+			<time>2009-09-11T12:51:55Z</time>
+			<course>195.199997</course>
+			<speed>37.065723</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.877655000" lon="9.993355000">
+			<ele>368.700000</ele>
+			<time>2009-09-11T12:51:56Z</time>
+			<course>194.600006</course>
+			<speed>37.194332</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.877326667" lon="9.993228333">
+			<ele>368.300000</ele>
+			<time>2009-09-11T12:51:57Z</time>
+			<course>194.009995</course>
+			<speed>37.281788</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.877003333" lon="9.993106667">
+			<ele>367.900000</ele>
+			<time>2009-09-11T12:51:58Z</time>
+			<course>193.240005</course>
+			<speed>37.261211</speed>
+			<fix>3d</fix>
+			<sat>10</sat>
+			<hdop>0.800000</hdop></trkpt>
+		<trkpt lat="49.876675000" lon="9.992991667">
+			<ele>367.400000</ele>
+			<time>2009-09-11T12:51:59Z</time>
+			<course>192.570007</course>
+			<speed>37.266357</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>1.000000</hdop></trkpt>
+		<trkpt lat="49.876346667" lon="9.992880000">
+			<ele>366.900000</ele>
+			<time>2009-09-11T12:52:00Z</time>
+			<course>192.149994</course>
+			<speed>37.266357</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>1.000000</hdop></trkpt>
+		<trkpt lat="49.876015000" lon="9.992773333">
+			<ele>366.200000</ele>
+			<time>2009-09-11T12:52:01Z</time>
+			<course>191.710007</course>
+			<speed>37.322945</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.875686667" lon="9.992671667">
+			<ele>365.400000</ele>
+			<time>2009-09-11T12:52:02Z</time>
+			<course>191.110001</course>
+			<speed>37.389824</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.875358333" lon="9.992575000">
+			<ele>364.600000</ele>
+			<time>2009-09-11T12:52:03Z</time>
+			<course>190.320007</course>
+			<speed>37.070866</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.875030000" lon="9.992486667">
+			<ele>363.800000</ele>
+			<time>2009-09-11T12:52:04Z</time>
+			<course>189.729996</course>
+			<speed>36.582146</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt>
+		<trkpt lat="49.874706667" lon="9.992403333">
+			<ele>362.900000</ele>
+			<time>2009-09-11T12:52:05Z</time>
+			<course>189.179993</course>
+			<speed>36.072845</speed>
+			<fix>3d</fix>
+			<sat>9</sat>
+			<hdop>0.900000</hdop></trkpt></trkseg></trk>
+</gpx>

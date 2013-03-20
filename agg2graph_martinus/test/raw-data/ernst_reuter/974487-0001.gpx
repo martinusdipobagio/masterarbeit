@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+        	<name>TRK1</name>
+        	<desc>Von aktivem Track</desc>
+        	<extensions>
+            		<mgn:extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mgn="http://www.magellangps.com/mgnext/0/2">
+                			<mgn:favorite>0</mgn:favorite>
+                			<mgn:time>2011-03-25T18:29:20Z</mgn:time>
+                			<mgn:reverse>0</mgn:reverse>
+                			<mgn:visibility>1</mgn:visibility>
+                			<mgn:time2find>537</mgn:time2find>
+         </mgn:extensions>
+        </extensions>
+        
+            	<trkseg>		<trkpt lat="52.548775" lon="13.260426">
+                			<ele>32.226563</ele>
+                			<time>2011-03-25T16:30:06.000Z</time>
+                			<name>Position 604</name>
+            </trkpt>
+            </trkseg></trk>
+</gpx>

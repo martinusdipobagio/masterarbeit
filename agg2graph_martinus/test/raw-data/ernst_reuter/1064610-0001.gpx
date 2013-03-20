@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>	<name>PruneTrack</name>	<number>1</number>
+			<trkseg>		<trkpt lat="52.49169409275055" lon="13.394619226455688">			<ele>128.0</ele>			<time>2011-07-27T01:08:39Z</time></trkpt>
+				<trkpt lat="52.49160289764404" lon="13.394924998283386">			<ele>127.0</ele>			<time>2011-07-27T01:08:44Z</time></trkpt>
+				<trkpt lat="52.4906051158905" lon="13.397794961929321">			<ele>123.0</ele>			<time>2011-07-27T01:09:20Z</time></trkpt>
+				<trkpt lat="52.49062120914459" lon="13.398041725158691">			<ele>122.0</ele>			<time>2011-07-27T01:09:39Z</time></trkpt>
+				<trkpt lat="52.49062657356262" lon="13.398277759552002">			<ele>122.0</ele>			<time>2011-07-27T01:09:43Z</time></trkpt>
+				<trkpt lat="52.490524649620056" lon="13.39858889579773">			<ele>122.0</ele>			<time>2011-07-27T01:09:48Z</time></trkpt>
+				<trkpt lat="52.49044418334961" lon="13.399050235748291">			<ele>122.0</ele>			<time>2011-07-27T01:09:53Z</time></trkpt>
+				<trkpt lat="52.49041736125946" lon="13.399243354797363">			<ele>121.0</ele>			<time>2011-07-27T01:09:57Z</time></trkpt>
+				<trkpt lat="52.49040126800537" lon="13.399978280067444">			<ele>119.0</ele>			<time>2011-07-27T01:10:06Z</time></trkpt>
+				<trkpt lat="52.49034225940704" lon="13.400284051895142">			<ele>119.0</ele>			<time>2011-07-27T01:10:10Z</time></trkpt>
+				<trkpt lat="52.490326166152954" lon="13.400616645812988">			<ele>119.0</ele>			<time>2011-07-27T01:10:14Z</time></trkpt>
+				<trkpt lat="52.48912453651428" lon="13.406721353530884">			<ele>118.0</ele>			<time>2011-07-27T01:10:45Z</time></trkpt>
+				<trkpt lat="52.48899579048157" lon="13.407488465309143">			<ele>117.0</ele>			<time>2011-07-27T01:10:49Z</time></trkpt>
+				<trkpt lat="52.488893866539" lon="13.407992720603943">			<ele>118.0</ele>			<time>2011-07-27T01:10:54Z</time></trkpt>
+				<trkpt lat="52.48892605304718" lon="13.40804636478424">			<ele>117.0</ele>			<time>2011-07-27T01:11:01Z</time></trkpt>
+		</trkseg></trk>
+</gpx>

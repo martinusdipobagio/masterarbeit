@@ -1,0 +1,7 @@
+input		03-forward-backward
+clean
+agg
+resetview
+savelayer	osm input
+savelayer	matching
+savelayer	osm agg

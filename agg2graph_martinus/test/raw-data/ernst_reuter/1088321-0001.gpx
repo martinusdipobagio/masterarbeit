@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>	<name>GpsPruneTrack</name>	<number>1</number>
+			<trkseg>		<trkpt lat="52.52230882644653" lon="13.409419655799866">			<ele>100.0</ele>			<time>2011-08-21T17:24:12Z</time></trkpt>
+				<trkpt lat="52.522287368774414" lon="13.409280180931091">			<ele>97.0</ele>			<time>2011-08-21T17:24:43Z</time></trkpt>
+				<trkpt lat="52.522255182266235" lon="13.409210443496704">			<ele>95.0</ele>			<time>2011-08-21T17:24:50Z</time></trkpt>
+				<trkpt lat="52.5223034620285" lon="13.409124612808228">			<ele>93.0</ele>			<time>2011-08-21T17:24:54Z</time></trkpt>
+				<trkpt lat="52.52231419086456" lon="13.408990502357483">			<ele>92.0</ele>			<time>2011-08-21T17:24:59Z</time></trkpt>
+				<trkpt lat="52.52230882644653" lon="13.408786654472351">			<ele>92.0</ele>			<time>2011-08-21T17:25:08Z</time></trkpt>
+				<trkpt lat="52.52220690250397" lon="13.40882420539856">			<ele>91.0</ele>			<time>2011-08-21T17:25:18Z</time></trkpt>
+				<trkpt lat="52.52214789390564" lon="13.40883493423462">			<ele>92.0</ele>			<time>2011-08-21T17:25:26Z</time></trkpt>
+				<trkpt lat="52.522024512290955" lon="13.408716917037964">			<ele>93.0</ele>			<time>2011-08-21T17:25:31Z</time></trkpt>
+				<trkpt lat="52.522029876708984" lon="13.408614993095398">			<ele>94.0</ele>			<time>2011-08-21T17:25:36Z</time></trkpt>
+				<trkpt lat="52.52181529998779" lon="13.408185839653015">			<ele>174.0</ele>			<time>2011-08-21T17:26:08Z</time></trkpt>
+				<trkpt lat="52.52186357975006" lon="13.408041000366211">			<ele>173.0</ele>			<time>2011-08-21T17:26:37Z</time></trkpt>
+				<trkpt lat="52.521793842315674" lon="13.40808391571045">			<ele>169.0</ele>			<time>2011-08-21T17:27:08Z</time></trkpt>
+				<trkpt lat="52.521498799324036" lon="13.407869338989258">			<ele>167.0</ele>			<time>2011-08-21T17:27:14Z</time></trkpt>
+				<trkpt lat="52.52133786678314" lon="13.40756356716156">			<ele>167.0</ele>			<time>2011-08-21T17:27:18Z</time></trkpt>
+				<trkpt lat="52.52119839191437" lon="13.40732216835022">			<ele>166.0</ele>			<time>2011-08-21T17:27:22Z</time></trkpt>
+				<trkpt lat="52.52108037471771" lon="13.407171964645386">			<ele>165.0</ele>			<time>2011-08-21T17:27:28Z</time></trkpt>
+				<trkpt lat="52.520989179611206" lon="13.406984210014343">			<ele>164.0</ele>			<time>2011-08-21T17:27:32Z</time></trkpt>
+				<trkpt lat="52.52105355262756" lon="13.407230973243713">			<ele>164.0</ele>			<time>2011-08-21T17:27:35Z</time></trkpt>
+				<trkpt lat="52.520983815193176" lon="13.40705394744873">			<ele>162.0</ele>			<time>2011-08-21T17:27:56Z</time></trkpt>
+				<trkpt lat="52.52080678939819" lon="13.406689167022705">			<ele>162.0</ele>			<time>2011-08-21T17:28:00Z</time></trkpt>
+				<trkpt lat="52.52061903476715" lon="13.40631365776062">			<ele>156.0</ele>			<time>2011-08-21T17:28:04Z</time></trkpt>
+				<trkpt lat="52.52045273780823" lon="13.406040072441101">			<ele>156.0</ele>			<time>2011-08-21T17:28:10Z</time></trkpt>
+				<trkpt lat="52.52043128013611" lon="13.405857682228088">			<ele>155.0</ele>			<time>2011-08-21T17:28:15Z</time></trkpt>
+				<trkpt lat="52.52033472061157" lon="13.405535817146301">			<ele>155.0</ele>			<time>2011-08-21T17:28:19Z</time></trkpt>
+				<trkpt lat="52.52016305923462" lon="13.404790163040161">			<ele>137.0</ele>			<time>2011-08-21T17:28:24Z</time></trkpt>
+				<trkpt lat="52.51987874507904" lon="13.404269814491272">			<ele>135.0</ele>			<time>2011-08-21T17:28:28Z</time></trkpt>
+				<trkpt lat="52.519492506980896" lon="13.403754830360413">			<ele>132.0</ele>			<time>2011-08-21T17:28:32Z</time></trkpt>
+				<trkpt lat="52.519052624702454" lon="13.402848243713379">			<ele>121.0</ele>			<time>2011-08-21T17:28:38Z</time></trkpt>
+				<trkpt lat="52.5188273191452" lon="13.402236700057983">			<ele>107.0</ele>			<time>2011-08-21T17:28:42Z</time></trkpt>
+				<trkpt lat="52.51859664916992" lon="13.401705622673035">			<ele>104.0</ele>			<time>2011-08-21T17:28:46Z</time></trkpt>
+				<trkpt lat="52.51834452152252" lon="13.400852680206299">			<ele>99.0</ele>			<time>2011-08-21T17:28:52Z</time></trkpt>
+				<trkpt lat="52.51815676689148" lon="13.400418162345886">			<ele>94.0</ele>			<time>2011-08-21T17:28:56Z</time></trkpt>
+	</trkseg></trk>
+</gpx>

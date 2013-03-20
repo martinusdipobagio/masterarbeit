@@ -1,0 +1,9 @@
+input		04-long-parallel
+agg			maxDistance=250	maxPointGhostDist=150
+road
+resetview
+savelayer	osm input
+savelayer	matching
+savelayer	matching merging
+savelayer	osm agg
+savelayer	osm intersections road

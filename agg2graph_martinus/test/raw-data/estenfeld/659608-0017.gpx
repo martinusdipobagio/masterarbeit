@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>ACTIVE LOG: 21 MRZ 2010 15:05</name>
+	<extensions>
+		<gpxx:TrackExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+			<gpxx:DisplayColor>White</gpxx:DisplayColor></gpxx:TrackExtension></extensions>
+	<trkseg>
+		<trkpt lat="49.8384870" lon="10.0297400">
+			<ele>288.0500000</ele>
+			<time>2010-03-21T16:41:08Z</time></trkpt>
+		<trkpt lat="49.8409970" lon="10.0251820">
+			<ele>283.7300000</ele>
+			<time>2010-03-21T16:41:18Z</time></trkpt>
+		<trkpt lat="49.8434220" lon="10.0198150">
+			<ele>279.8800000</ele>
+			<time>2010-03-21T16:41:29Z</time></trkpt>
+		<trkpt lat="49.8461340" lon="10.0126280">
+			<ele>277.4800000</ele>
+			<time>2010-03-21T16:41:43Z</time></trkpt>
+		<trkpt lat="49.8480040" lon="10.0075840">
+			<ele>279.8800000</ele>
+			<time>2010-03-21T16:41:53Z</time></trkpt>
+		<trkpt lat="49.8489950" lon="10.0054130">
+			<ele>282.7700000</ele>
+			<time>2010-03-21T16:41:59Z</time></trkpt></trkseg></trk>
+</gpx>

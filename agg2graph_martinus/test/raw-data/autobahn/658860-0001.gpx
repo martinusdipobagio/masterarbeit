@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<trkseg>
+		<trkpt lat="49.881381667" lon="9.994866667">
+			<ele>312.900000</ele>
+			<time>2010-03-30T16:21:43Z</time>
+			<course>203.119995</course>
+			<speed>38.444435</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.500000</hdop></trkpt>
+		<trkpt lat="49.881041667" lon="9.994691667">
+			<ele>313.400000</ele>
+			<time>2010-03-30T16:21:44Z</time>
+			<course>202.389999</course>
+			<speed>38.387844</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.500000</hdop></trkpt>
+		<trkpt lat="49.880703333" lon="9.994536667">
+			<ele>316.100000</ele>
+			<time>2010-03-30T16:21:45Z</time>
+			<course>201.539993</course>
+			<speed>38.300388</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.500000</hdop></trkpt>
+		<trkpt lat="49.880366667" lon="9.994338333">
+			<ele>317.300000</ele>
+			<time>2010-03-30T16:21:46Z</time>
+			<course>201.289993</course>
+			<speed>38.403278</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.500000</hdop></trkpt>
+		<trkpt lat="49.880040000" lon="9.994185000">
+			<ele>316.900000</ele>
+			<time>2010-03-30T16:21:47Z</time>
+			<course>199.960007</course>
+			<speed>37.631611</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.500000</hdop></trkpt>
+		<trkpt lat="49.879353333" lon="9.993840000">
+			<ele>312.000000</ele>
+			<time>2010-03-30T16:21:49Z</time>
+			<course>198.020004</course>
+			<speed>38.933155</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.600000</hdop></trkpt>
+		<trkpt lat="49.875008333" lon="9.992198333">
+			<ele>306.900000</ele>
+			<time>2010-03-30T16:22:02Z</time>
+			<course>194.970001</course>
+			<speed>35.347477</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.600000</hdop></trkpt>
+		<trkpt lat="49.874728333" lon="9.991946667">
+			<ele>304.600000</ele>
+			<time>2010-03-30T16:22:03Z</time>
+			<course>195.720001</course>
+			<speed>35.167423</speed>
+			<fix>3d</fix>
+			<sat>4</sat>
+			<hdop>2.600000</hdop></trkpt></trkseg></trk>
+</gpx>

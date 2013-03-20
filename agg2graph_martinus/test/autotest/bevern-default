@@ -1,0 +1,13 @@
+input		bevern
+clean
+agg
+road		
+osm
+resetview
+savelayer	osm
+savelayer	osm clean
+savelayer	osm input
+savelayer	osm agg
+savelayer	osm	road
+savelayer	osm	intersections	road
+statistics

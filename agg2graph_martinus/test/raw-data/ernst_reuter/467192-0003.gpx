@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+		<name>2007-12-21_home-work (3)</name>
+	
+			<trkseg>		<trkpt lat="52.502118" lon="13.347038">
+						<time>2007-12-21T19:39:01Z</time>
+						<ele>-125.700007489</ele>
+		</trkpt>
+				<trkpt lat="52.502113" lon="13.347045">
+						<time>2007-12-21T19:39:02Z</time>
+						<ele>-125.600002609</ele>
+		</trkpt>
+				<trkpt lat="52.502115" lon="13.34704">
+						<time>2007-12-21T19:39:03Z</time>
+						<ele>-125.600002609</ele>
+		</trkpt>
+				<trkpt lat="52.502113" lon="13.347041">
+						<time>2007-12-21T19:39:03Z</time>
+						<ele>-125.600002609</ele>
+		</trkpt>
+				<trkpt lat="52.502113" lon="13.347041">
+						<time>2007-12-21T19:39:04Z</time>
+						<ele>-125.600002609</ele>
+		</trkpt>
+				<trkpt lat="52.502111" lon="13.347043">
+						<time>2007-12-21T19:39:05Z</time>
+						<ele>-125.600002609</ele>
+		</trkpt>
+	</trkseg>
+</trk>
+</gpx>

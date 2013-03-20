@@ -1,0 +1,9 @@
+input		bevern
+clean
+agg
+road		minEdgeWeight=2
+osm
+resetview
+savelayer	osm	intersections	road
+savelayer	osm	road
+statistics

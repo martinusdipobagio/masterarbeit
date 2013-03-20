@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Unbenannt</name>
+	<trkseg>
+		<trkpt lat="49.874620" lon="9.992610">
+			<ele>320.840100</ele>
+			<time>2012-05-20T13:50:06Z</time></trkpt>
+		<trkpt lat="49.875722" lon="9.992907">
+			<ele>324.134000</ele>
+			<time>2012-05-20T13:50:12Z</time></trkpt>
+		<trkpt lat="49.876862" lon="9.993275">
+			<ele>322.204600</ele>
+			<time>2012-05-20T13:50:18Z</time></trkpt>
+		<trkpt lat="49.878042" lon="9.993758">
+			<ele>320.872400</ele>
+			<time>2012-05-20T13:50:24Z</time></trkpt>
+		<trkpt lat="49.879195" lon="9.994292">
+			<ele>326.539800</ele>
+			<time>2012-05-20T13:50:30Z</time></trkpt>
+		<trkpt lat="49.880342" lon="9.994885">
+			<ele>323.693800</ele>
+			<time>2012-05-20T13:50:36Z</time></trkpt>
+		<trkpt lat="49.881487" lon="9.995508">
+			<ele>325.735100</ele>
+			<time>2012-05-20T13:50:42Z</time></trkpt>
+		<trkpt lat="49.882673" lon="9.996177">
+			<ele>331.611400</ele>
+			<time>2012-05-20T13:50:48Z</time></trkpt></trkseg></trk>
+</gpx>

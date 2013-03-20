@@ -1,0 +1,6 @@
+input		11-merge-intersection
+agg
+road 		minEdgeWeight=1 	maxIntersectionMergeDistance=200
+resetview
+savelayer	input
+savelayer	intersections road

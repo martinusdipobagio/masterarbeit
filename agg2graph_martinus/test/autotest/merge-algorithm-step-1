@@ -1,0 +1,6 @@
+input		merge-algorithm-step-1
+agg			maxDistance=40
+resetview
+savelayer	input
+savelayer	clean
+savelayer	agg

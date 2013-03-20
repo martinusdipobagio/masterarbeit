@@ -1,0 +1,2203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+  	<name>20110131071534</name>
+
+	<trkseg>		<trkpt lat="52.509720000" lon="13.277085000">
+  			<ele>49.800000</ele>
+  			<time>2011-01-31T06:15:34Z</time>
+  			<course>0.000000</course>
+  			<speed>0.000000</speed>
+  			<name>WPT001</name>
+  			<cmt>WPT001</cmt>
+  			<desc>WPT001</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>2.500000</hdop>
+</trkpt>
+		<trkpt lat="52.509731667" lon="13.277093333">
+  			<ele>52.000000</ele>
+  			<time>2011-01-31T06:15:41Z</time>
+  			<course>11.468265</course>
+  			<speed>0.567936</speed>
+  			<name>WPT008</name>
+  			<cmt>WPT008</cmt>
+  			<desc>WPT008</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>2.400000</hdop>
+</trkpt>
+		<trkpt lat="52.509743333" lon="13.277106667">
+  			<ele>54.900000</ele>
+  			<time>2011-01-31T06:15:50Z</time>
+  			<course>11.468262</course>
+  			<speed>0.567936</speed>
+  			<name>WPT017</name>
+  			<cmt>WPT017</cmt>
+  			<desc>WPT017</desc>
+  			<fix>3d</fix>
+  			<sat>4</sat>
+  			<hdop>2.400000</hdop>
+</trkpt>
+		<trkpt lat="52.509765000" lon="13.277126667">
+  			<ele>59.500000</ele>
+  			<time>2011-01-31T06:15:52Z</time>
+  			<course>28.413435</course>
+  			<speed>1.898490</speed>
+  			<name>WPT019</name>
+  			<cmt>WPT019</cmt>
+  			<desc>WPT019</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509776667" lon="13.277136667">
+  			<ele>61.700000</ele>
+  			<time>2011-01-31T06:15:54Z</time>
+  			<course>24.535254</course>
+  			<speed>0.815791</speed>
+  			<name>WPT021</name>
+  			<cmt>WPT021</cmt>
+  			<desc>WPT021</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509788333" lon="13.277146667">
+  			<ele>63.900000</ele>
+  			<time>2011-01-31T06:15:56Z</time>
+  			<course>27.550117</course>
+  			<speed>1.464829</speed>
+  			<name>WPT023</name>
+  			<cmt>WPT023</cmt>
+  			<desc>WPT023</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509765000" lon="13.277098333">
+  			<ele>57.300000</ele>
+  			<time>2011-01-31T06:16:05Z</time>
+  			<course>238.361053</course>
+  			<speed>1.061065</speed>
+  			<name>WPT032</name>
+  			<cmt>WPT032</cmt>
+  			<desc>WPT032</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509758333" lon="13.277083333">
+  			<ele>54.900000</ele>
+  			<time>2011-01-31T06:16:06Z</time>
+  			<course>233.861511</course>
+  			<speed>1.258404</speed>
+  			<name>WPT033</name>
+  			<cmt>WPT033</cmt>
+  			<desc>WPT033</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509758333" lon="13.277065000">
+  			<ele>51.800000</ele>
+  			<time>2011-01-31T06:16:16Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT043</name>
+  			<cmt>WPT043</cmt>
+  			<desc>WPT043</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509770000" lon="13.277081667">
+  			<ele>54.500000</ele>
+  			<time>2011-01-31T06:16:19Z</time>
+  			<course>31.325787</course>
+  			<speed>0.651582</speed>
+  			<name>WPT046</name>
+  			<cmt>WPT046</cmt>
+  			<desc>WPT046</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509785000" lon="13.277110000">
+  			<ele>58.900000</ele>
+  			<time>2011-01-31T06:16:22Z</time>
+  			<course>47.610077</course>
+  			<speed>1.376002</speed>
+  			<name>WPT049</name>
+  			<cmt>WPT049</cmt>
+  			<desc>WPT049</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509800000" lon="13.277135000">
+  			<ele>62.900000</ele>
+  			<time>2011-01-31T06:16:24Z</time>
+  			<course>40.433517</course>
+  			<speed>1.218750</speed>
+  			<name>WPT051</name>
+  			<cmt>WPT051</cmt>
+  			<desc>WPT051</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509808333" lon="13.277155000">
+  			<ele>66.200000</ele>
+  			<time>2011-01-31T06:16:26Z</time>
+  			<course>50.596104</course>
+  			<speed>0.876831</speed>
+  			<name>WPT053</name>
+  			<cmt>WPT053</cmt>
+  			<desc>WPT053</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509818333" lon="13.277170000">
+  			<ele>68.600000</ele>
+  			<time>2011-01-31T06:16:28Z</time>
+  			<course>50.596096</course>
+  			<speed>0.584554</speed>
+  			<name>WPT055</name>
+  			<cmt>WPT055</cmt>
+  			<desc>WPT055</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509826667" lon="13.277183333">
+  			<ele>71.200000</ele>
+  			<time>2011-01-31T06:16:31Z</time>
+  			<course>31.325754</course>
+  			<speed>0.434388</speed>
+  			<name>WPT058</name>
+  			<cmt>WPT058</cmt>
+  			<desc>WPT058</desc>
+  			<fix>3d</fix>
+  			<sat>5</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509796667" lon="13.277116667">
+  			<ele>56.000000</ele>
+  			<time>2011-01-31T06:17:07Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT094</name>
+  			<cmt>WPT094</cmt>
+  			<desc>WPT094</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509811667" lon="13.277125000">
+  			<ele>55.100000</ele>
+  			<time>2011-01-31T06:18:09Z</time>
+  			<course>0.000000</course>
+  			<speed>0.371065</speed>
+  			<name>WPT156</name>
+  			<cmt>WPT156</cmt>
+  			<desc>WPT156</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509800000" lon="13.277098333">
+  			<ele>53.100000</ele>
+  			<time>2011-01-31T06:18:58Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT205</name>
+  			<cmt>WPT205</cmt>
+  			<desc>WPT205</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509788333" lon="13.277085000">
+  			<ele>52.000000</ele>
+  			<time>2011-01-31T06:19:04Z</time>
+  			<course>196.925690</course>
+  			<speed>0.387866</speed>
+  			<name>WPT211</name>
+  			<cmt>WPT211</cmt>
+  			<desc>WPT211</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509746667" lon="13.277071667">
+  			<ele>46.900000</ele>
+  			<time>2011-01-31T06:19:39Z</time>
+  			<course>180.000000</course>
+  			<speed>0.371065</speed>
+  			<name>WPT246</name>
+  			<cmt>WPT246</cmt>
+  			<desc>WPT246</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509765000" lon="13.277145000">
+  			<ele>54.000000</ele>
+  			<time>2011-01-31T06:22:06Z</time>
+  			<course>168.531738</course>
+  			<speed>0.567936</speed>
+  			<name>WPT393</name>
+  			<cmt>WPT393</cmt>
+  			<desc>WPT393</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509835000" lon="13.277170000">
+  			<ele>53.800000</ele>
+  			<time>2011-01-31T06:23:33Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT480</name>
+  			<cmt>WPT480</cmt>
+  			<desc>WPT480</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509845000" lon="13.277161667">
+  			<ele>54.700000</ele>
+  			<time>2011-01-31T06:23:38Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT485</name>
+  			<cmt>WPT485</cmt>
+  			<desc>WPT485</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509818333" lon="13.277143333">
+  			<ele>61.100000</ele>
+  			<time>2011-01-31T06:24:20Z</time>
+  			<course>31.325758</course>
+  			<speed>0.434388</speed>
+  			<name>WPT527</name>
+  			<cmt>WPT527</cmt>
+  			<desc>WPT527</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509796667" lon="13.277163333">
+  			<ele>49.300000</ele>
+  			<time>2011-01-31T06:24:43Z</time>
+  			<course>45.408901</course>
+  			<speed>0.792826</speed>
+  			<name>WPT550</name>
+  			<cmt>WPT550</cmt>
+  			<desc>WPT550</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509800000" lon="13.277190000">
+  			<ele>50.500000</ele>
+  			<time>2011-01-31T06:24:45Z</time>
+  			<course>61.291271</course>
+  			<speed>0.772477</speed>
+  			<name>WPT552</name>
+  			<cmt>WPT552</cmt>
+  			<desc>WPT552</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509788333" lon="13.277211667">
+  			<ele>53.800000</ele>
+  			<time>2011-01-31T06:24:47Z</time>
+  			<course>139.566467</course>
+  			<speed>1.218750</speed>
+  			<name>WPT554</name>
+  			<cmt>WPT554</cmt>
+  			<desc>WPT554</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509788333" lon="13.277236667">
+  			<ele>56.200000</ele>
+  			<time>2011-01-31T06:24:49Z</time>
+  			<course>115.147308</course>
+  			<speed>0.873203</speed>
+  			<name>WPT556</name>
+  			<cmt>WPT556</cmt>
+  			<desc>WPT556</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509800000" lon="13.277250000">
+  			<ele>57.300000</ele>
+  			<time>2011-01-31T06:24:52Z</time>
+  			<course>346.317505</course>
+  			<speed>0.954757</speed>
+  			<name>WPT559</name>
+  			<cmt>WPT559</cmt>
+  			<desc>WPT559</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509811667" lon="13.277245000">
+  			<ele>56.800000</ele>
+  			<time>2011-01-31T06:24:53Z</time>
+  			<course>345.380737</course>
+  			<speed>1.342181</speed>
+  			<name>WPT560</name>
+  			<cmt>WPT560</cmt>
+  			<desc>WPT560</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509818333" lon="13.277230000">
+  			<ele>56.700000</ele>
+  			<time>2011-01-31T06:24:55Z</time>
+  			<course>309.403900</course>
+  			<speed>0.584554</speed>
+  			<name>WPT562</name>
+  			<cmt>WPT562</cmt>
+  			<desc>WPT562</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509830000" lon="13.277221667">
+  			<ele>56.400000</ele>
+  			<time>2011-01-31T06:24:59Z</time>
+  			<course>343.074341</course>
+  			<speed>0.387866</speed>
+  			<name>WPT566</name>
+  			<cmt>WPT566</cmt>
+  			<desc>WPT566</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509835000" lon="13.277238333">
+  			<ele>55.900000</ele>
+  			<time>2011-01-31T06:25:12Z</time>
+  			<course>90.000000</course>
+  			<speed>0.112920</speed>
+  			<name>WPT579</name>
+  			<cmt>WPT579</cmt>
+  			<desc>WPT579</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509850000" lon="13.277246667">
+  			<ele>55.400000</ele>
+  			<time>2011-01-31T06:25:14Z</time>
+  			<course>13.682491</course>
+  			<speed>0.954757</speed>
+  			<name>WPT581</name>
+  			<cmt>WPT581</cmt>
+  			<desc>WPT581</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509861667" lon="13.277253333">
+  			<ele>52.400000</ele>
+  			<time>2011-01-31T06:25:18Z</time>
+  			<course>0.000000</course>
+  			<speed>0.556597</speed>
+  			<name>WPT585</name>
+  			<cmt>WPT585</cmt>
+  			<desc>WPT585</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509845000" lon="13.277230000">
+  			<ele>51.000000</ele>
+  			<time>2011-01-31T06:25:29Z</time>
+  			<course>202.084854</course>
+  			<speed>0.600670</speed>
+  			<name>WPT596</name>
+  			<cmt>WPT596</cmt>
+  			<desc>WPT596</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509850000" lon="13.277210000">
+  			<ele>48.600000</ele>
+  			<time>2011-01-31T06:25:33Z</time>
+  			<course>315.760498</course>
+  			<speed>1.294841</speed>
+  			<name>WPT600</name>
+  			<cmt>WPT600</cmt>
+  			<desc>WPT600</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509861667" lon="13.277198333">
+  			<ele>46.000000</ele>
+  			<time>2011-01-31T06:25:35Z</time>
+  			<course>337.915161</course>
+  			<speed>0.600670</speed>
+  			<name>WPT602</name>
+  			<cmt>WPT602</cmt>
+  			<desc>WPT602</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509853333" lon="13.277185000">
+  			<ele>46.900000</ele>
+  			<time>2011-01-31T06:25:40Z</time>
+  			<course>196.925659</course>
+  			<speed>0.387866</speed>
+  			<name>WPT607</name>
+  			<cmt>WPT607</cmt>
+  			<desc>WPT607</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509815000" lon="13.277211667">
+  			<ele>47.700000</ele>
+  			<time>2011-01-31T06:26:01Z</time>
+  			<course>200.060944</course>
+  			<speed>0.987581</speed>
+  			<name>WPT625</name>
+  			<cmt>WPT625</cmt>
+  			<desc>WPT625</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509835000" lon="13.277203333">
+  			<ele>48.700000</ele>
+  			<time>2011-01-31T06:26:12Z</time>
+  			<course>202.084869</course>
+  			<speed>1.201340</speed>
+  			<name>WPT636</name>
+  			<cmt>WPT636</cmt>
+  			<desc>WPT636</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509841667" lon="13.277186667">
+  			<ele>50.900000</ele>
+  			<time>2011-01-31T06:26:48Z</time>
+  			<course>317.605865</course>
+  			<speed>0.502441</speed>
+  			<name>WPT672</name>
+  			<cmt>WPT672</cmt>
+  			<desc>WPT672</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509803333" lon="13.277220000">
+  			<ele>62.300000</ele>
+  			<time>2011-01-31T06:27:02Z</time>
+  			<course>157.915131</course>
+  			<speed>0.600670</speed>
+  			<name>WPT686</name>
+  			<cmt>WPT686</cmt>
+  			<desc>WPT686</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509788333" lon="13.277260000">
+  			<ele>65.900000</ele>
+  			<time>2011-01-31T06:27:15Z</time>
+  			<course>129.403885</course>
+  			<speed>0.584554</speed>
+  			<name>WPT699</name>
+  			<cmt>WPT699</cmt>
+  			<desc>WPT699</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509781667" lon="13.277276667">
+  			<ele>69.000000</ele>
+  			<time>2011-01-31T06:27:17Z</time>
+  			<course>123.313637</course>
+  			<speed>0.675619</speed>
+  			<name>WPT701</name>
+  			<cmt>WPT701</cmt>
+  			<desc>WPT701</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509770000" lon="13.277291667">
+  			<ele>72.000000</ele>
+  			<time>2011-01-31T06:27:19Z</time>
+  			<course>118.708710</course>
+  			<speed>0.772478</speed>
+  			<name>WPT703</name>
+  			<cmt>WPT703</cmt>
+  			<desc>WPT703</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509750000" lon="13.277306667">
+  			<ele>71.300000</ele>
+  			<time>2011-01-31T06:27:21Z</time>
+  			<course>156.503815</course>
+  			<speed>1.416145</speed>
+  			<name>WPT705</name>
+  			<cmt>WPT705</cmt>
+  			<desc>WPT705</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509738333" lon="13.277315000">
+  			<ele>71.800000</ele>
+  			<time>2011-01-31T06:27:23Z</time>
+  			<course>148.674194</course>
+  			<speed>0.651582</speed>
+  			<name>WPT707</name>
+  			<cmt>WPT707</cmt>
+  			<desc>WPT707</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509726667" lon="13.277331667">
+  			<ele>73.500000</ele>
+  			<time>2011-01-31T06:27:27Z</time>
+  			<course>157.915085</course>
+  			<speed>0.600670</speed>
+  			<name>WPT711</name>
+  			<cmt>WPT711</cmt>
+  			<desc>WPT711</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509716667" lon="13.277345000">
+  			<ele>74.900000</ele>
+  			<time>2011-01-31T06:27:29Z</time>
+  			<course>123.313599</course>
+  			<speed>0.675620</speed>
+  			<name>WPT713</name>
+  			<cmt>WPT713</cmt>
+  			<desc>WPT713</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509705000" lon="13.277358333">
+  			<ele>76.300000</ele>
+  			<time>2011-01-31T06:27:31Z</time>
+  			<course>129.403824</course>
+  			<speed>0.584555</speed>
+  			<name>WPT715</name>
+  			<cmt>WPT715</cmt>
+  			<desc>WPT715</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509693333" lon="13.277375000">
+  			<ele>78.200000</ele>
+  			<time>2011-01-31T06:27:36Z</time>
+  			<course>137.605774</course>
+  			<speed>1.004884</speed>
+  			<name>WPT720</name>
+  			<cmt>WPT720</cmt>
+  			<desc>WPT720</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509750000" lon="13.277275000">
+  			<ele>63.400000</ele>
+  			<time>2011-01-31T06:27:51Z</time>
+  			<course>296.818970</course>
+  			<speed>1.644890</speed>
+  			<name>WPT735</name>
+  			<cmt>WPT735</cmt>
+  			<desc>WPT735</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509746667" lon="13.277246667">
+  			<ele>62.100000</ele>
+  			<time>2011-01-31T06:27:52Z</time>
+  			<course>259.059692</course>
+  			<speed>1.955174</speed>
+  			<name>WPT736</name>
+  			<cmt>WPT736</cmt>
+  			<desc>WPT736</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509738333" lon="13.277206667">
+  			<ele>61.900000</ele>
+  			<time>2011-01-31T06:27:53Z</time>
+  			<course>251.103897</course>
+  			<speed>2.864453</speed>
+  			<name>WPT737</name>
+  			<cmt>WPT737</cmt>
+  			<desc>WPT737</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509735000" lon="13.277136667">
+  			<ele>58.900000</ele>
+  			<time>2011-01-31T06:27:54Z</time>
+  			<course>265.526306</course>
+  			<speed>4.757134</speed>
+  			<name>WPT738</name>
+  			<cmt>WPT738</cmt>
+  			<desc>WPT738</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509735000" lon="13.277048333">
+  			<ele>56.700000</ele>
+  			<time>2011-01-31T06:27:55Z</time>
+  			<course>270.000031</course>
+  			<speed>5.984760</speed>
+  			<name>WPT739</name>
+  			<cmt>WPT739</cmt>
+  			<desc>WPT739</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509735000" lon="13.276953333">
+  			<ele>55.200000</ele>
+  			<time>2011-01-31T06:27:56Z</time>
+  			<course>270.000031</course>
+  			<speed>6.436440</speed>
+  			<name>WPT740</name>
+  			<cmt>WPT740</cmt>
+  			<desc>WPT740</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509731667" lon="13.276853333">
+  			<ele>52.900000</ele>
+  			<time>2011-01-31T06:27:57Z</time>
+  			<course>266.865204</course>
+  			<speed>6.785355</speed>
+  			<name>WPT741</name>
+  			<cmt>WPT741</cmt>
+  			<desc>WPT741</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509731667" lon="13.276738333">
+  			<ele>50.700000</ele>
+  			<time>2011-01-31T06:27:58Z</time>
+  			<course>270.000031</course>
+  			<speed>7.791481</speed>
+  			<name>WPT742</name>
+  			<cmt>WPT742</cmt>
+  			<desc>WPT742</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509726667" lon="13.276618333">
+  			<ele>49.800000</ele>
+  			<time>2011-01-31T06:27:59Z</time>
+  			<course>266.083679</course>
+  			<speed>8.149272</speed>
+  			<name>WPT743</name>
+  			<cmt>WPT743</cmt>
+  			<desc>WPT743</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509723333" lon="13.276486667">
+  			<ele>49.500000</ele>
+  			<time>2011-01-31T06:28:00Z</time>
+  			<course>267.618134</course>
+  			<speed>8.928397</speed>
+  			<name>WPT744</name>
+  			<cmt>WPT744</cmt>
+  			<desc>WPT744</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509720000" lon="13.276356667">
+  			<ele>50.000000</ele>
+  			<time>2011-01-31T06:28:01Z</time>
+  			<course>267.587646</course>
+  			<speed>8.815577</speed>
+  			<name>WPT745</name>
+  			<cmt>WPT745</cmt>
+  			<desc>WPT745</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509711667" lon="13.276216667">
+  			<ele>49.200000</ele>
+  			<time>2011-01-31T06:28:02Z</time>
+  			<course>264.414276</course>
+  			<speed>9.530540</speed>
+  			<name>WPT746</name>
+  			<cmt>WPT746</cmt>
+  			<desc>WPT746</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509700000" lon="13.276083333">
+  			<ele>48.600000</ele>
+  			<time>2011-01-31T06:28:03Z</time>
+  			<course>261.818909</course>
+  			<speed>9.126486</speed>
+  			<name>WPT747</name>
+  			<cmt>WPT747</cmt>
+  			<desc>WPT747</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509693333" lon="13.275955000">
+  			<ele>48.500000</ele>
+  			<time>2011-01-31T06:28:04Z</time>
+  			<course>265.121521</course>
+  			<speed>8.726462</speed>
+  			<name>WPT748</name>
+  			<cmt>WPT748</cmt>
+  			<desc>WPT748</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509693333" lon="13.275833333">
+  			<ele>49.300000</ele>
+  			<time>2011-01-31T06:28:05Z</time>
+  			<course>270.000061</course>
+  			<speed>8.243169</speed>
+  			<name>WPT749</name>
+  			<cmt>WPT749</cmt>
+  			<desc>WPT749</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509685000" lon="13.275705000">
+  			<ele>49.200000</ele>
+  			<time>2011-01-31T06:28:06Z</time>
+  			<course>263.910156</course>
+  			<speed>8.744196</speed>
+  			<name>WPT750</name>
+  			<cmt>WPT750</cmt>
+  			<desc>WPT750</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509678333" lon="13.275578333">
+  			<ele>49.600000</ele>
+  			<time>2011-01-31T06:28:07Z</time>
+  			<course>265.057648</course>
+  			<speed>8.613959</speed>
+  			<name>WPT751</name>
+  			<cmt>WPT751</cmt>
+  			<desc>WPT751</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509673333" lon="13.275460000">
+  			<ele>50.100000</ele>
+  			<time>2011-01-31T06:28:08Z</time>
+  			<course>266.028687</course>
+  			<speed>8.036629</speed>
+  			<name>WPT752</name>
+  			<cmt>WPT752</cmt>
+  			<desc>WPT752</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509670000" lon="13.275345000">
+  			<ele>50.600000</ele>
+  			<time>2011-01-31T06:28:09Z</time>
+  			<course>267.273438</course>
+  			<speed>7.800323</speed>
+  			<name>WPT753</name>
+  			<cmt>WPT753</cmt>
+  			<desc>WPT753</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509663333" lon="13.275238333">
+  			<ele>51.000000</ele>
+  			<time>2011-01-31T06:28:10Z</time>
+  			<course>264.136902</course>
+  			<speed>7.264896</speed>
+  			<name>WPT754</name>
+  			<cmt>WPT754</cmt>
+  			<desc>WPT754</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509655000" lon="13.275138333">
+  			<ele>51.900000</ele>
+  			<time>2011-01-31T06:28:11Z</time>
+  			<course>262.203583</course>
+  			<speed>6.838425</speed>
+  			<name>WPT755</name>
+  			<cmt>WPT755</cmt>
+  			<desc>WPT755</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509646667" lon="13.275040000">
+  			<ele>52.900000</ele>
+  			<time>2011-01-31T06:28:12Z</time>
+  			<course>262.073090</course>
+  			<speed>6.726567</speed>
+  			<name>WPT756</name>
+  			<cmt>WPT756</cmt>
+  			<desc>WPT756</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509643333" lon="13.274945000">
+  			<ele>53.600000</ele>
+  			<time>2011-01-31T06:28:13Z</time>
+  			<course>266.700562</course>
+  			<speed>6.447141</speed>
+  			<name>WPT757</name>
+  			<cmt>WPT757</cmt>
+  			<desc>WPT757</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509636667" lon="13.274860000">
+  			<ele>54.300000</ele>
+  			<time>2011-01-31T06:28:14Z</time>
+  			<course>262.657043</course>
+  			<speed>5.806554</speed>
+  			<name>WPT758</name>
+  			<cmt>WPT758</cmt>
+  			<desc>WPT758</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509620000" lon="13.274791667">
+  			<ele>55.200000</ele>
+  			<time>2011-01-31T06:28:15Z</time>
+  			<course>248.162003</course>
+  			<speed>4.987649</speed>
+  			<name>WPT759</name>
+  			<cmt>WPT759</cmt>
+  			<desc>WPT759</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509616667" lon="13.274726667">
+  			<ele>55.600000</ele>
+  			<time>2011-01-31T06:28:16Z</time>
+  			<course>265.183746</course>
+  			<speed>4.419497</speed>
+  			<name>WPT760</name>
+  			<cmt>WPT760</cmt>
+  			<desc>WPT760</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509610000" lon="13.274676667">
+  			<ele>56.700000</ele>
+  			<time>2011-01-31T06:28:17Z</time>
+  			<course>257.643341</course>
+  			<speed>3.467947</speed>
+  			<name>WPT761</name>
+  			<cmt>WPT761</cmt>
+  			<desc>WPT761</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509610000" lon="13.274631667">
+  			<ele>56.800000</ele>
+  			<time>2011-01-31T06:28:18Z</time>
+  			<course>270.000031</course>
+  			<speed>3.048849</speed>
+  			<name>WPT762</name>
+  			<cmt>WPT762</cmt>
+  			<desc>WPT762</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509610000" lon="13.274601667">
+  			<ele>57.500000</ele>
+  			<time>2011-01-31T06:28:19Z</time>
+  			<course>270.000000</course>
+  			<speed>2.032566</speed>
+  			<name>WPT763</name>
+  			<cmt>WPT763</cmt>
+  			<desc>WPT763</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509605000" lon="13.274580000">
+  			<ele>58.200000</ele>
+  			<time>2011-01-31T06:28:20Z</time>
+  			<course>249.235153</course>
+  			<speed>1.569943</speed>
+  			<name>WPT764</name>
+  			<cmt>WPT764</cmt>
+  			<desc>WPT764</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509605000" lon="13.274526667">
+  			<ele>53.100000</ele>
+  			<time>2011-01-31T06:28:26Z</time>
+  			<course>277.203308</course>
+  			<speed>2.959285</speed>
+  			<name>WPT770</name>
+  			<cmt>WPT770</cmt>
+  			<desc>WPT770</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509601667" lon="13.274465000">
+  			<ele>53.800000</ele>
+  			<time>2011-01-31T06:28:27Z</time>
+  			<course>264.924744</course>
+  			<speed>4.194498</speed>
+  			<name>WPT771</name>
+  			<cmt>WPT771</cmt>
+  			<desc>WPT771</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509601667" lon="13.274393333">
+  			<ele>54.300000</ele>
+  			<time>2011-01-31T06:28:28Z</time>
+  			<course>270.000031</course>
+  			<speed>4.855575</speed>
+  			<name>WPT772</name>
+  			<cmt>WPT772</cmt>
+  			<desc>WPT772</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509601667" lon="13.274320000">
+  			<ele>55.000000</ele>
+  			<time>2011-01-31T06:28:29Z</time>
+  			<course>270.000031</course>
+  			<speed>4.968495</speed>
+  			<name>WPT773</name>
+  			<cmt>WPT773</cmt>
+  			<desc>WPT773</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509593333" lon="13.274245000">
+  			<ele>56.400000</ele>
+  			<time>2011-01-31T06:28:30Z</time>
+  			<course>259.654053</course>
+  			<speed>5.165399</speed>
+  			<name>WPT774</name>
+  			<cmt>WPT774</cmt>
+  			<desc>WPT774</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509605000" lon="13.274146667">
+  			<ele>56.100000</ele>
+  			<time>2011-01-31T06:28:31Z</time>
+  			<course>281.030762</course>
+  			<speed>6.787706</speed>
+  			<name>WPT775</name>
+  			<cmt>WPT775</cmt>
+  			<desc>WPT775</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509616667" lon="13.274041667">
+  			<ele>56.300000</ele>
+  			<time>2011-01-31T06:28:32Z</time>
+  			<course>280.346008</course>
+  			<speed>7.231557</speed>
+  			<name>WPT776</name>
+  			<cmt>WPT776</cmt>
+  			<desc>WPT776</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509636667" lon="13.273936667">
+  			<ele>56.700000</ele>
+  			<time>2011-01-31T06:28:33Z</time>
+  			<course>287.378082</course>
+  			<speed>7.454227</speed>
+  			<name>WPT777</name>
+  			<cmt>WPT777</cmt>
+  			<desc>WPT777</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509651667" lon="13.273836667">
+  			<ele>57.500000</ele>
+  			<time>2011-01-31T06:28:34Z</time>
+  			<course>283.845001</course>
+  			<speed>6.977947</speed>
+  			<name>WPT778</name>
+  			<cmt>WPT778</cmt>
+  			<desc>WPT778</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509681667" lon="13.273738333">
+  			<ele>58.000000</ele>
+  			<time>2011-01-31T06:28:35Z</time>
+  			<course>296.623108</course>
+  			<speed>7.452446</speed>
+  			<name>WPT779</name>
+  			<cmt>WPT779</cmt>
+  			<desc>WPT779</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509720000" lon="13.273640000">
+  			<ele>59.400000</ele>
+  			<time>2011-01-31T06:28:36Z</time>
+  			<course>302.639923</course>
+  			<speed>7.911728</speed>
+  			<name>WPT780</name>
+  			<cmt>WPT780</cmt>
+  			<desc>WPT780</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509758333" lon="13.273528333">
+  			<ele>59.600000</ele>
+  			<time>2011-01-31T06:28:37Z</time>
+  			<course>299.424347</course>
+  			<speed>8.686098</speed>
+  			<name>WPT781</name>
+  			<cmt>WPT781</cmt>
+  			<desc>WPT781</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509785000" lon="13.273403333">
+  			<ele>60.000000</ele>
+  			<time>2011-01-31T06:28:38Z</time>
+  			<course>289.316437</course>
+  			<speed>8.974183</speed>
+  			<name>WPT782</name>
+  			<cmt>WPT782</cmt>
+  			<desc>WPT782</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509835000" lon="13.273123333">
+  			<ele>59.900000</ele>
+  			<time>2011-01-31T06:28:40Z</time>
+  			<course>285.669922</course>
+  			<speed>9.616843</speed>
+  			<name>WPT783</name>
+  			<cmt>WPT783</cmt>
+  			<desc>WPT783</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509861667" lon="13.272983333">
+  			<ele>60.600000</ele>
+  			<time>2011-01-31T06:28:41Z</time>
+  			<course>287.378174</course>
+  			<speed>9.938924</speed>
+  			<name>WPT784</name>
+  			<cmt>WPT784</cmt>
+  			<desc>WPT784</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509880000" lon="13.272841667">
+  			<ele>60.900000</ele>
+  			<time>2011-01-31T06:28:42Z</time>
+  			<course>282.004059</course>
+  			<speed>9.812746</speed>
+  			<name>WPT785</name>
+  			<cmt>WPT785</cmt>
+  			<desc>WPT785</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509898333" lon="13.272693333">
+  			<ele>59.800000</ele>
+  			<time>2011-01-31T06:28:43Z</time>
+  			<course>281.479218</course>
+  			<speed>10.254974</speed>
+  			<name>WPT786</name>
+  			<cmt>WPT786</cmt>
+  			<desc>WPT786</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509918333" lon="13.272556667">
+  			<ele>59.600000</ele>
+  			<time>2011-01-31T06:28:44Z</time>
+  			<course>283.519958</course>
+  			<speed>9.523307</speed>
+  			<name>WPT787</name>
+  			<cmt>WPT787</cmt>
+  			<desc>WPT787</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509933333" lon="13.272435000">
+  			<ele>59.900000</ele>
+  			<time>2011-01-31T06:28:45Z</time>
+  			<course>281.451385</course>
+  			<speed>8.410548</speed>
+  			<name>WPT788</name>
+  			<cmt>WPT788</cmt>
+  			<desc>WPT788</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509945000" lon="13.272323333">
+  			<ele>60.300000</ele>
+  			<time>2011-01-31T06:28:46Z</time>
+  			<course>279.740631</course>
+  			<speed>7.676267</speed>
+  			<name>WPT789</name>
+  			<cmt>WPT789</cmt>
+  			<desc>WPT789</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509941667" lon="13.272208333">
+  			<ele>60.200000</ele>
+  			<time>2011-01-31T06:28:47Z</time>
+  			<course>267.273407</course>
+  			<speed>7.800275</speed>
+  			<name>WPT790</name>
+  			<cmt>WPT790</cmt>
+  			<desc>WPT790</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509930000" lon="13.272090000">
+  			<ele>60.700000</ele>
+  			<time>2011-01-31T06:28:48Z</time>
+  			<course>260.798584</course>
+  			<speed>8.121794</speed>
+  			<name>WPT791</name>
+  			<cmt>WPT791</cmt>
+  			<desc>WPT791</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509918333" lon="13.271970000">
+  			<ele>60.600000</ele>
+  			<time>2011-01-31T06:28:49Z</time>
+  			<course>260.924225</course>
+  			<speed>8.233282</speed>
+  			<name>WPT792</name>
+  			<cmt>WPT792</cmt>
+  			<desc>WPT792</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509906667" lon="13.271846667">
+  			<ele>60.000000</ele>
+  			<time>2011-01-31T06:28:50Z</time>
+  			<course>261.165619</course>
+  			<speed>8.456371</speed>
+  			<name>WPT793</name>
+  			<cmt>WPT793</cmt>
+  			<desc>WPT793</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509883333" lon="13.271735000">
+  			<ele>60.500000</ele>
+  			<time>2011-01-31T06:28:51Z</time>
+  			<course>251.051483</course>
+  			<speed>7.999080</speed>
+  			<name>WPT794</name>
+  			<cmt>WPT794</cmt>
+  			<desc>WPT794</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509845000" lon="13.271640000">
+  			<ele>60.700000</ele>
+  			<time>2011-01-31T06:28:52Z</time>
+  			<course>236.456284</course>
+  			<speed>7.722495</speed>
+  			<name>WPT795</name>
+  			<cmt>WPT795</cmt>
+  			<desc>WPT795</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509796667" lon="13.271558333">
+  			<ele>61.300000</ele>
+  			<time>2011-01-31T06:28:53Z</time>
+  			<course>225.801270</course>
+  			<speed>7.717773</speed>
+  			<name>WPT796</name>
+  			<cmt>WPT796</cmt>
+  			<desc>WPT796</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509735000" lon="13.271491667">
+  			<ele>62.100000</ele>
+  			<time>2011-01-31T06:28:54Z</time>
+  			<course>213.343918</course>
+  			<speed>8.217396</speed>
+  			<name>WPT797</name>
+  			<cmt>WPT797</cmt>
+  			<desc>WPT797</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509670000" lon="13.271431667">
+  			<ele>62.500000</ele>
+  			<time>2011-01-31T06:28:55Z</time>
+  			<course>209.327713</course>
+  			<speed>8.299491</speed>
+  			<name>WPT798</name>
+  			<cmt>WPT798</cmt>
+  			<desc>WPT798</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.700000</hdop>
+</trkpt>
+		<trkpt lat="52.509601667" lon="13.271375000">
+  			<ele>63.100000</ele>
+  			<time>2011-01-31T06:28:56Z</time>
+  			<course>206.780823</course>
+  			<speed>8.520800</speed>
+  			<name>WPT799</name>
+  			<cmt>WPT799</cmt>
+  			<desc>WPT799</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509536667" lon="13.271320000">
+  			<ele>63.300000</ele>
+  			<time>2011-01-31T06:28:57Z</time>
+  			<course>207.248199</course>
+  			<speed>8.138930</speed>
+  			<name>WPT800</name>
+  			<cmt>WPT800</cmt>
+  			<desc>WPT800</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509471667" lon="13.271261667">
+  			<ele>63.600000</ele>
+  			<time>2011-01-31T06:28:58Z</time>
+  			<course>208.643661</course>
+  			<speed>8.244779</speed>
+  			<name>WPT801</name>
+  			<cmt>WPT801</cmt>
+  			<desc>WPT801</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509411667" lon="13.271191667">
+  			<ele>64.000000</ele>
+  			<time>2011-01-31T06:28:59Z</time>
+  			<course>215.377411</course>
+  			<speed>8.191718</speed>
+  			<name>WPT802</name>
+  			<cmt>WPT802</cmt>
+  			<desc>WPT802</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509361667" lon="13.271108333">
+  			<ele>64.200000</ele>
+  			<time>2011-01-31T06:29:00Z</time>
+  			<course>225.409210</course>
+  			<speed>7.928298</speed>
+  			<name>WPT803</name>
+  			<cmt>WPT803</cmt>
+  			<desc>WPT803</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509330000" lon="13.270995000">
+  			<ele>62.300000</ele>
+  			<time>2011-01-31T06:29:01Z</time>
+  			<course>245.341064</course>
+  			<speed>8.449129</speed>
+  			<name>WPT804</name>
+  			<cmt>WPT804</cmt>
+  			<desc>WPT804</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509303333" lon="13.270880000">
+  			<ele>62.300000</ele>
+  			<time>2011-01-31T06:29:02Z</time>
+  			<course>249.143600</course>
+  			<speed>8.337892</speed>
+  			<name>WPT805</name>
+  			<cmt>WPT805</cmt>
+  			<desc>WPT805</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509285000" lon="13.270750000">
+  			<ele>62.400000</ele>
+  			<time>2011-01-31T06:29:03Z</time>
+  			<course>256.954315</course>
+  			<speed>9.041201</speed>
+  			<name>WPT806</name>
+  			<cmt>WPT806</cmt>
+  			<desc>WPT806</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+		<trkpt lat="52.509266667" lon="13.270615000">
+  			<ele>63.200000</ele>
+  			<time>2011-01-31T06:29:04Z</time>
+  			<course>257.421844</course>
+  			<speed>9.371536</speed>
+  			<name>WPT807</name>
+  			<cmt>WPT807</cmt>
+  			<desc>WPT807</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509258333" lon="13.270455000">
+  			<ele>63.100000</ele>
+  			<time>2011-01-31T06:29:05Z</time>
+  			<course>265.108948</course>
+  			<speed>10.880057</speed>
+  			<name>WPT808</name>
+  			<cmt>WPT808</cmt>
+  			<desc>WPT808</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509246667" lon="13.270295000">
+  			<ele>63.700000</ele>
+  			<time>2011-01-31T06:29:06Z</time>
+  			<course>263.168365</course>
+  			<speed>10.917959</speed>
+  			<name>WPT809</name>
+  			<cmt>WPT809</cmt>
+  			<desc>WPT809</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509243333" lon="13.270116667">
+  			<ele>65.100000</ele>
+  			<time>2011-01-31T06:29:07Z</time>
+  			<course>268.241028</course>
+  			<speed>12.088272</speed>
+  			<name>WPT810</name>
+  			<cmt>WPT810</cmt>
+  			<desc>WPT810</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509231667" lon="13.269948333">
+  			<ele>66.300000</ele>
+  			<time>2011-01-31T06:29:08Z</time>
+  			<course>263.503601</course>
+  			<speed>11.478757</speed>
+  			<name>WPT811</name>
+  			<cmt>WPT811</cmt>
+  			<desc>WPT811</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509211667" lon="13.269781667">
+  			<ele>66.900000</ele>
+  			<time>2011-01-31T06:29:09Z</time>
+  			<course>258.846527</course>
+  			<speed>11.509521</speed>
+  			<name>WPT812</name>
+  			<cmt>WPT812</cmt>
+  			<desc>WPT812</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509196667" lon="13.269610000">
+  			<ele>67.800000</ele>
+  			<time>2011-01-31T06:29:10Z</time>
+  			<course>261.830200</course>
+  			<speed>11.750153</speed>
+  			<name>WPT813</name>
+  			<cmt>WPT813</cmt>
+  			<desc>WPT813</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509185000" lon="13.269433333">
+  			<ele>68.300000</ele>
+  			<time>2011-01-31T06:29:11Z</time>
+  			<course>263.807617</course>
+  			<speed>12.039920</speed>
+  			<name>WPT814</name>
+  			<cmt>WPT814</cmt>
+  			<desc>WPT814</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509178333" lon="13.269248333">
+  			<ele>67.900000</ele>
+  			<time>2011-01-31T06:29:12Z</time>
+  			<course>266.611664</course>
+  			<speed>12.556230</speed>
+  			<name>WPT815</name>
+  			<cmt>WPT815</cmt>
+  			<desc>WPT815</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509170000" lon="13.269063333">
+  			<ele>67.800000</ele>
+  			<time>2011-01-31T06:29:13Z</time>
+  			<course>265.767334</course>
+  			<speed>12.568563</speed>
+  			<name>WPT816</name>
+  			<cmt>WPT816</cmt>
+  			<desc>WPT816</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509155000" lon="13.268878333">
+  			<ele>67.600000</ele>
+  			<time>2011-01-31T06:29:14Z</time>
+  			<course>262.411926</course>
+  			<speed>12.645019</speed>
+  			<name>WPT817</name>
+  			<cmt>WPT817</cmt>
+  			<desc>WPT817</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.800000</hdop>
+</trkpt>
+		<trkpt lat="52.509140000" lon="13.268693333">
+  			<ele>66.900000</ele>
+  			<time>2011-01-31T06:29:15Z</time>
+  			<course>262.411926</course>
+  			<speed>12.645022</speed>
+  			<name>WPT818</name>
+  			<cmt>WPT818</cmt>
+  			<desc>WPT818</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509125000" lon="13.268506667">
+  			<ele>66.600000</ele>
+  			<time>2011-01-31T06:29:16Z</time>
+  			<course>262.478912</course>
+  			<speed>12.756968</speed>
+  			<name>WPT819</name>
+  			<cmt>WPT819</cmt>
+  			<desc>WPT819</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509116667" lon="13.268311667">
+  			<ele>66.500000</ele>
+  			<time>2011-01-31T06:29:17Z</time>
+  			<course>265.983673</course>
+  			<speed>13.244353</speed>
+  			<name>WPT820</name>
+  			<cmt>WPT820</cmt>
+  			<desc>WPT820</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509101667" lon="13.268118333">
+  			<ele>66.200000</ele>
+  			<time>2011-01-31T06:29:18Z</time>
+  			<course>262.735443</course>
+  			<speed>13.204907</speed>
+  			<name>WPT821</name>
+  			<cmt>WPT821</cmt>
+  			<desc>WPT821</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509090000" lon="13.267916667">
+  			<ele>67.100000</ele>
+  			<time>2011-01-31T06:29:19Z</time>
+  			<course>264.570374</course>
+  			<speed>13.725103</speed>
+  			<name>WPT822</name>
+  			<cmt>WPT822</cmt>
+  			<desc>WPT822</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509078333" lon="13.267711667">
+  			<ele>67.300000</ele>
+  			<time>2011-01-31T06:29:20Z</time>
+  			<course>264.658173</course>
+  			<speed>13.949954</speed>
+  			<name>WPT823</name>
+  			<cmt>WPT823</cmt>
+  			<desc>WPT823</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509071667" lon="13.267505000">
+  			<ele>66.100000</ele>
+  			<time>2011-01-31T06:29:21Z</time>
+  			<course>266.966217</course>
+  			<speed>14.021944</speed>
+  			<name>WPT824</name>
+  			<cmt>WPT824</cmt>
+  			<desc>WPT824</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509056667" lon="13.267301667">
+  			<ele>66.000000</ele>
+  			<time>2011-01-31T06:29:22Z</time>
+  			<course>263.089172</course>
+  			<speed>13.877277</speed>
+  			<name>WPT825</name>
+  			<cmt>WPT825</cmt>
+  			<desc>WPT825</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509045000" lon="13.267108333">
+  			<ele>66.000000</ele>
+  			<time>2011-01-31T06:29:23Z</time>
+  			<course>264.337830</course>
+  			<speed>13.163151</speed>
+  			<name>WPT826</name>
+  			<cmt>WPT826</cmt>
+  			<desc>WPT826</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509036667" lon="13.266910000">
+  			<ele>64.900000</ele>
+  			<time>2011-01-31T06:29:24Z</time>
+  			<course>266.050964</course>
+  			<speed>13.469676</speed>
+  			<name>WPT827</name>
+  			<cmt>WPT827</cmt>
+  			<desc>WPT827</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509021667" lon="13.266718333">
+  			<ele>65.100000</ele>
+  			<time>2011-01-31T06:29:25Z</time>
+  			<course>262.672974</course>
+  			<speed>13.092924</speed>
+  			<name>WPT828</name>
+  			<cmt>WPT828</cmt>
+  			<desc>WPT828</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.509010000" lon="13.266521667">
+  			<ele>64.900000</ele>
+  			<time>2011-01-31T06:29:26Z</time>
+  			<course>264.433197</course>
+  			<speed>13.387921</speed>
+  			<name>WPT829</name>
+  			<cmt>WPT829</cmt>
+  			<desc>WPT829</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508998333" lon="13.266320000">
+  			<ele>64.000000</ele>
+  			<time>2011-01-31T06:29:27Z</time>
+  			<course>264.570404</course>
+  			<speed>13.725132</speed>
+  			<name>WPT830</name>
+  			<cmt>WPT830</cmt>
+  			<desc>WPT830</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508991667" lon="13.266115000">
+  			<ele>64.300000</ele>
+  			<time>2011-01-31T06:29:28Z</time>
+  			<course>266.941589</course>
+  			<speed>13.909207</speed>
+  			<name>WPT831</name>
+  			<cmt>WPT831</cmt>
+  			<desc>WPT831</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508983333" lon="13.265913333">
+  			<ele>64.100000</ele>
+  			<time>2011-01-31T06:29:29Z</time>
+  			<course>266.116058</course>
+  			<speed>13.695008</speed>
+  			<name>WPT832</name>
+  			<cmt>WPT832</cmt>
+  			<desc>WPT832</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508968333" lon="13.265713333">
+  			<ele>64.200000</ele>
+  			<time>2011-01-31T06:29:30Z</time>
+  			<course>262.975159</course>
+  			<speed>13.653129</speed>
+  			<name>WPT833</name>
+  			<cmt>WPT833</cmt>
+  			<desc>WPT833</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508956667" lon="13.265515000">
+  			<ele>64.400000</ele>
+  			<time>2011-01-31T06:29:31Z</time>
+  			<course>264.479706</course>
+  			<speed>13.500331</speed>
+  			<name>WPT834</name>
+  			<cmt>WPT834</cmt>
+  			<desc>WPT834</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508945000" lon="13.265311667">
+  			<ele>64.400000</ele>
+  			<time>2011-01-31T06:29:32Z</time>
+  			<course>264.614655</course>
+  			<speed>13.837568</speed>
+  			<name>WPT835</name>
+  			<cmt>WPT835</cmt>
+  			<desc>WPT835</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508933333" lon="13.265108333">
+  			<ele>64.100000</ele>
+  			<time>2011-01-31T06:29:33Z</time>
+  			<course>264.614655</course>
+  			<speed>13.837571</speed>
+  			<name>WPT836</name>
+  			<cmt>WPT836</cmt>
+  			<desc>WPT836</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508918333" lon="13.264896667">
+  			<ele>63.500000</ele>
+  			<time>2011-01-31T06:29:34Z</time>
+  			<course>263.358826</course>
+  			<speed>14.437988</speed>
+  			<name>WPT837</name>
+  			<cmt>WPT837</cmt>
+  			<desc>WPT837</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508903333" lon="13.264695000">
+  			<ele>63.800000</ele>
+  			<time>2011-01-31T06:29:35Z</time>
+  			<course>263.032654</course>
+  			<speed>13.765230</speed>
+  			<name>WPT838</name>
+  			<cmt>WPT838</cmt>
+  			<desc>WPT838</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508888333" lon="13.264485000">
+  			<ele>63.300000</ele>
+  			<time>2011-01-31T06:29:36Z</time>
+  			<course>263.306580</course>
+  			<speed>14.325840</speed>
+  			<name>WPT839</name>
+  			<cmt>WPT839</cmt>
+  			<desc>WPT839</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508880000" lon="13.264276667">
+  			<ele>62.900000</ele>
+  			<time>2011-01-31T06:29:37Z</time>
+  			<course>266.239990</course>
+  			<speed>14.145725</speed>
+  			<name>WPT840</name>
+  			<cmt>WPT840</cmt>
+  			<desc>WPT840</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508865000" lon="13.264070000">
+  			<ele>62.700000</ele>
+  			<time>2011-01-31T06:29:38Z</time>
+  			<course>263.199615</course>
+  			<speed>14.101566</speed>
+  			<name>WPT841</name>
+  			<cmt>WPT841</cmt>
+  			<desc>WPT841</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508853333" lon="13.263871667">
+  			<ele>63.400000</ele>
+  			<time>2011-01-31T06:29:39Z</time>
+  			<course>264.479706</course>
+  			<speed>13.500362</speed>
+  			<name>WPT842</name>
+  			<cmt>WPT842</cmt>
+  			<desc>WPT842</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508835000" lon="13.263673333">
+  			<ele>63.900000</ele>
+  			<time>2011-01-31T06:29:40Z</time>
+  			<course>261.364288</course>
+  			<speed>13.591847</speed>
+  			<name>WPT843</name>
+  			<cmt>WPT843</cmt>
+  			<desc>WPT843</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508823333" lon="13.263468333">
+  			<ele>63.700000</ele>
+  			<time>2011-01-31T06:29:41Z</time>
+  			<course>264.658203</course>
+  			<speed>13.950034</speed>
+  			<name>WPT844</name>
+  			<cmt>WPT844</cmt>
+  			<desc>WPT844</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508815000" lon="13.263265000">
+  			<ele>63.600000</ele>
+  			<time>2011-01-31T06:29:42Z</time>
+  			<course>266.147797</course>
+  			<speed>13.807726</speed>
+  			<name>WPT845</name>
+  			<cmt>WPT845</cmt>
+  			<desc>WPT845</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508805000" lon="13.263063333">
+  			<ele>63.500000</ele>
+  			<time>2011-01-31T06:29:43Z</time>
+  			<course>265.342407</course>
+  			<speed>13.708880</speed>
+  			<name>WPT846</name>
+  			<cmt>WPT846</cmt>
+  			<desc>WPT846</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508796667" lon="13.262868333">
+  			<ele>63.000000</ele>
+  			<time>2011-01-31T06:29:44Z</time>
+  			<course>265.983704</course>
+  			<speed>13.244450</speed>
+  			<name>WPT847</name>
+  			<cmt>WPT847</cmt>
+  			<desc>WPT847</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508788333" lon="13.262686667">
+  			<ele>62.800000</ele>
+  			<time>2011-01-31T06:29:45Z</time>
+  			<course>265.690002</course>
+  			<speed>12.343453</speed>
+  			<name>WPT848</name>
+  			<cmt>WPT848</cmt>
+  			<desc>WPT848</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508785000" lon="13.262518333">
+  			<ele>62.700000</ele>
+  			<time>2011-01-31T06:29:46Z</time>
+  			<course>268.136627</course>
+  			<speed>11.411201</speed>
+  			<name>WPT849</name>
+  			<cmt>WPT849</cmt>
+  			<desc>WPT849</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508773333" lon="13.262361667">
+  			<ele>62.600000</ele>
+  			<time>2011-01-31T06:29:47Z</time>
+  			<course>263.024506</course>
+  			<speed>10.693868</speed>
+  			<name>WPT850</name>
+  			<cmt>WPT850</cmt>
+  			<desc>WPT850</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508766667" lon="13.262218333">
+  			<ele>62.500000</ele>
+  			<time>2011-01-31T06:29:48Z</time>
+  			<course>265.630066</course>
+  			<speed>9.739649</speed>
+  			<name>WPT851</name>
+  			<cmt>WPT851</cmt>
+  			<desc>WPT851</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508758333" lon="13.262081667">
+  			<ele>62.500000</ele>
+  			<time>2011-01-31T06:29:49Z</time>
+  			<course>264.279053</course>
+  			<speed>9.305998</speed>
+  			<name>WPT852</name>
+  			<cmt>WPT852</cmt>
+  			<desc>WPT852</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508751667" lon="13.261951667">
+  			<ele>62.600000</ele>
+  			<time>2011-01-31T06:29:50Z</time>
+  			<course>265.183868</course>
+  			<speed>8.839167</speed>
+  			<name>WPT853</name>
+  			<cmt>WPT853</cmt>
+  			<desc>WPT853</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508743333" lon="13.261826667">
+  			<ele>62.600000</ele>
+  			<time>2011-01-31T06:29:51Z</time>
+  			<course>263.749146</course>
+  			<speed>8.519845</speed>
+  			<name>WPT854</name>
+  			<cmt>WPT854</cmt>
+  			<desc>WPT854</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508740000" lon="13.261708333">
+  			<ele>62.600000</ele>
+  			<time>2011-01-31T06:29:52Z</time>
+  			<course>267.350189</course>
+  			<speed>8.026084</speed>
+  			<name>WPT855</name>
+  			<cmt>WPT855</cmt>
+  			<desc>WPT855</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508735000" lon="13.261595000">
+  			<ele>62.200000</ele>
+  			<time>2011-01-31T06:29:53Z</time>
+  			<course>265.854187</course>
+  			<speed>7.698881</speed>
+  			<name>WPT856</name>
+  			<cmt>WPT856</cmt>
+  			<desc>WPT856</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508731667" lon="13.261506667">
+  			<ele>62.000000</ele>
+  			<time>2011-01-31T06:29:54Z</time>
+  			<course>266.452240</course>
+  			<speed>5.996389</speed>
+  			<name>WPT857</name>
+  			<cmt>WPT857</cmt>
+  			<desc>WPT857</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508728333" lon="13.261441667">
+  			<ele>61.700000</ele>
+  			<time>2011-01-31T06:29:55Z</time>
+  			<course>265.183838</course>
+  			<speed>4.419586</speed>
+  			<name>WPT858</name>
+  			<cmt>WPT858</cmt>
+  			<desc>WPT858</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508728333" lon="13.261403333">
+  			<ele>61.400000</ele>
+  			<time>2011-01-31T06:29:56Z</time>
+  			<course>270.000000</course>
+  			<speed>2.597220</speed>
+  			<name>WPT859</name>
+  			<cmt>WPT859</cmt>
+  			<desc>WPT859</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508728333" lon="13.261385000">
+  			<ele>60.900000</ele>
+  			<time>2011-01-31T06:29:58Z</time>
+  			<course>270.000000</course>
+  			<speed>0.112923</speed>
+  			<name>WPT861</name>
+  			<cmt>WPT861</cmt>
+  			<desc>WPT861</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508740000" lon="13.261413333">
+  			<ele>59.800000</ele>
+  			<time>2011-01-31T06:30:06Z</time>
+  			<course>22.085360</course>
+  			<speed>0.600672</speed>
+  			<name>WPT869</name>
+  			<cmt>WPT869</cmt>
+  			<desc>WPT869</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508728333" lon="13.261343333">
+  			<ele>60.800000</ele>
+  			<time>2011-01-31T06:30:11Z</time>
+  			<course>263.949249</course>
+  			<speed>3.520212</speed>
+  			<name>WPT874</name>
+  			<cmt>WPT874</cmt>
+  			<desc>WPT874</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508725000" lon="13.261268333">
+  			<ele>60.700000</ele>
+  			<time>2011-01-31T06:30:12Z</time>
+  			<course>265.823578</course>
+  			<speed>5.095047</speed>
+  			<name>WPT875</name>
+  			<cmt>WPT875</cmt>
+  			<desc>WPT875</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508720000" lon="13.261185000">
+  			<ele>61.300000</ele>
+  			<time>2011-01-31T06:30:13Z</time>
+  			<course>264.369995</course>
+  			<speed>5.673499</speed>
+  			<name>WPT876</name>
+  			<cmt>WPT876</cmt>
+  			<desc>WPT876</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508708333" lon="13.261095000">
+  			<ele>62.000000</ele>
+  			<time>2011-01-31T06:30:14Z</time>
+  			<course>257.976715</course>
+  			<speed>6.234591</speed>
+  			<name>WPT877</name>
+  			<cmt>WPT877</cmt>
+  			<desc>WPT877</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508698333" lon="13.260986667">
+  			<ele>62.700000</ele>
+  			<time>2011-01-31T06:30:15Z</time>
+  			<course>261.376160</course>
+  			<speed>7.423908</speed>
+  			<name>WPT878</name>
+  			<cmt>WPT878</cmt>
+  			<desc>WPT878</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508686667" lon="13.260860000">
+  			<ele>63.900000</ele>
+  			<time>2011-01-31T06:30:16Z</time>
+  			<course>261.394806</course>
+  			<speed>8.679836</speed>
+  			<name>WPT879</name>
+  			<cmt>WPT879</cmt>
+  			<desc>WPT879</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508675000" lon="13.260715000">
+  			<ele>64.700000</ele>
+  			<time>2011-01-31T06:30:17Z</time>
+  			<course>262.469452</course>
+  			<speed>9.909748</speed>
+  			<name>WPT880</name>
+  			<cmt>WPT880</cmt>
+  			<desc>WPT880</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508663333" lon="13.260561667">
+  			<ele>65.500000</ele>
+  			<time>2011-01-31T06:30:18Z</time>
+  			<course>262.874420</course>
+  			<speed>10.469756</speed>
+  			<name>WPT881</name>
+  			<cmt>WPT881</cmt>
+  			<desc>WPT881</desc>
+  			<fix>3d</fix>
+  			<sat>7</sat>
+  			<hdop>1.600000</hdop>
+</trkpt>
+		<trkpt lat="52.508655000" lon="13.260406667">
+  			<ele>66.100000</ele>
+  			<time>2011-01-31T06:30:19Z</time>
+  			<course>264.952026</course>
+  			<speed>10.542710</speed>
+  			<name>WPT882</name>
+  			<cmt>WPT882</cmt>
+  			<desc>WPT882</desc>
+  			<fix>3d</fix>
+  			<sat>6</sat>
+  			<hdop>1.900000</hdop>
+</trkpt>
+</trkseg></trk>
+</gpx>

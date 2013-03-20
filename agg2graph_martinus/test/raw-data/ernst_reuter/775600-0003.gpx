@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>
+  	<name>ACTIVE LOG081249</name>
+  	<extension>
+   		<color>9</color>
+  </extension>
+  
+   	<trkseg>		<trkpt lat="52.52075195" lon="13.41236877">
+    			<ele>40.697</ele>
+    			<time>2010-07-19T06:12:49.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51978302" lon="13.41385555">
+    			<ele>39.629</ele>
+    			<time>2010-07-19T06:12:59.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51917267" lon="13.41476440">
+    			<ele>36.587</ele>
+    			<time>2010-07-19T06:13:05.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51788712" lon="13.41547012">
+    			<ele>35.921</ele>
+    			<time>2010-07-19T06:13:14.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51773071" lon="13.41553116">
+    			<ele>34.9</ele>
+    			<time>2010-07-19T06:13:15.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51623535" lon="13.41679764">
+    			<ele>37.665</ele>
+    			<time>2010-07-19T06:13:26.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   		<trkpt lat="52.51484299" lon="13.41791821">
+    			<ele>41.464</ele>
+    			<time>2010-07-19T06:13:37.000Z</time>
+    			<extension>
+     				<flags>0</flags>
+    </extension>
+   </trkpt>
+   </trkseg></trk>
+</gpx>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>ACTIVE LOG 004</name>
+	<extensions>
+		<gpxx:TrackExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+			<gpxx:DisplayColor>Transparent</gpxx:DisplayColor></gpxx:TrackExtension></extensions>
+	<trkseg>
+		<trkpt lat="49.87467935308814" lon="9.992663394659758">
+			<ele>307.75927734375</ele>
+			<time>2011-09-14T14:27:37Z</time></trkpt>
+		<trkpt lat="49.875451494008303" lon="9.992865649983287">
+			<ele>309.681884765625</ele>
+			<time>2011-09-14T14:27:41Z</time></trkpt>
+		<trkpt lat="49.876051973551512" lon="9.993045777082443">
+			<ele>311.6044921875</ele>
+			<time>2011-09-14T14:27:44Z</time></trkpt>
+		<trkpt lat="49.877328034490347" lon="9.993468392640352">
+			<ele>314.9691162109375</ele>
+			<time>2011-09-14T14:27:50Z</time></trkpt>
+		<trkpt lat="49.877558536827564" lon="9.993542740121484">
+			<ele>314.9691162109375</ele>
+			<time>2011-09-14T14:27:51Z</time></trkpt>
+		<trkpt lat="49.878031024709344" lon="9.993703840300441">
+			<ele>316.4110107421875</ele>
+			<time>2011-09-14T14:27:53Z</time></trkpt>
+		<trkpt lat="49.879274312406778" lon="9.99425352551043">
+			<ele>316.8917236328125</ele>
+			<time>2011-09-14T14:27:58Z</time></trkpt>
+		<trkpt lat="49.879801031202078" lon="9.99451688490808">
+			<ele>318.3336181640625</ele>
+			<time>2011-09-14T14:28:00Z</time></trkpt>
+		<trkpt lat="49.881161414086819" lon="9.995246278122068">
+			<ele>319.775634765625</ele>
+			<time>2011-09-14T14:28:05Z</time></trkpt></trkseg></trk>
+</gpx>

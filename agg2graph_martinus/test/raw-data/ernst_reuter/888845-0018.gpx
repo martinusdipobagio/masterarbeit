@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>    
+      	<trkseg>		<trkpt lat="52.526132" lon="13.418045">
+        			<time>2010-12-20T07:49:05Z</time>
+      </trkpt>
+      		<trkpt lat="52.526544" lon="13.417178">
+        			<time>2010-12-20T07:49:15Z</time>
+      </trkpt>
+      		<trkpt lat="52.526887" lon="13.416433">
+        			<time>2010-12-20T07:49:28Z</time>
+      </trkpt>
+      		<trkpt lat="52.526908" lon="13.416387">
+        			<time>2010-12-20T07:49:42Z</time>
+      </trkpt>
+      		<trkpt lat="52.526908" lon="13.416387">
+        			<time>2010-12-20T07:50:27Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,7 @@
+input		05-mini-example-export
+agg
+road		minEdgeWeight=1
+osm
+resetview
+savelayer	osm	intersections road
+statistics  myvalues

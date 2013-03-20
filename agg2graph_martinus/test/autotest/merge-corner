@@ -1,0 +1,5 @@
+input		10-merge-corner
+agg			maxPointGhostDist=45
+resetview
+savelayer	input	matching
+savelayer	merging 	agg

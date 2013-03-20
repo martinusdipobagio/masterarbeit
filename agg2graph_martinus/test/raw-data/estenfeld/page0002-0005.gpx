@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Sababurg.gpx</name>
+	<desc>Wanderung Tierpark Sababurg</desc>
+	<trkseg>
+		<trkpt lat="49.847341" lon="10.008847">
+			<time>2010-03-18T15:18:03Z</time></trkpt>
+		<trkpt lat="49.844538" lon="10.016581">
+			<time>2010-03-18T15:18:20Z</time></trkpt>
+		<trkpt lat="49.842385" lon="10.021832">
+			<time>2010-03-18T15:18:32Z</time></trkpt>
+		<trkpt lat="49.839823" lon="10.02695">
+			<time>2010-03-18T15:18:46Z</time></trkpt></trkseg>
+	<trkseg>
+		<trkpt lat="49.838487" lon="10.02974">
+			<time>2010-03-21T16:41:08Z</time></trkpt>
+		<trkpt lat="49.840997" lon="10.025182">
+			<time>2010-03-21T16:41:18Z</time></trkpt>
+		<trkpt lat="49.843422" lon="10.019815">
+			<time>2010-03-21T16:41:29Z</time></trkpt>
+		<trkpt lat="49.846134" lon="10.012628">
+			<time>2010-03-21T16:41:43Z</time></trkpt>
+		<trkpt lat="49.848004" lon="10.007584">
+			<time>2010-03-21T16:41:53Z</time></trkpt>
+		<trkpt lat="49.848995" lon="10.005413">
+			<time>2010-03-21T16:41:59Z</time></trkpt></trkseg></trk>
+</gpx>

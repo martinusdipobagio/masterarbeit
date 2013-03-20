@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>Wuerzburg Kahla</name>
+	<number>1</number>
+	<trkseg>
+		<trkpt lat="49.875107" lon="9.992673">
+			<ele>311.777</ele>
+			<time>2010-08-20T07:34:22Z</time></trkpt>
+		<trkpt lat="49.876304" lon="9.993009">
+			<ele>315.369</ele>
+			<time>2010-08-20T07:34:29Z</time></trkpt>
+		<trkpt lat="49.876678" lon="9.993140">
+			<ele>316.273</ele>
+			<time>2010-08-20T07:34:31Z</time></trkpt>
+		<trkpt lat="49.877901" lon="9.993614">
+			<ele>320.398</ele>
+			<time>2010-08-20T07:34:37Z</time></trkpt>
+		<trkpt lat="49.878121" lon="9.993709">
+			<ele>320.401</ele>
+			<time>2010-08-20T07:34:38Z</time></trkpt>
+		<trkpt lat="49.879774" lon="9.994487">
+			<ele>323.242</ele>
+			<time>2010-08-20T07:34:45Z</time></trkpt>
+		<trkpt lat="49.883190" lon="9.996378">
+			<ele>323.697</ele>
+			<time>2010-08-20T07:34:59Z</time></trkpt></trkseg></trk>
+</gpx>

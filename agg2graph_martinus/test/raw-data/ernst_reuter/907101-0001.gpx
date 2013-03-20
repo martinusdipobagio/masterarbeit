@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>	<name>PruneTrack</name>	<number>1</number>
+			<trkseg>		<trkpt lat="52.499445" lon="13.418147">			<ele>89.0</ele>			<time>2010-12-21T01:33:03Z</time></trkpt>
+				<trkpt lat="52.499424" lon="13.418072">			<ele>89.0</ele>			<time>2010-12-21T01:33:04Z</time></trkpt>
+				<trkpt lat="52.499392" lon="13.417922">			<ele>89.0</ele>			<time>2010-12-21T01:33:06Z</time></trkpt>
+				<trkpt lat="52.499349" lon="13.417863">			<ele>89.0</ele>			<time>2010-12-21T01:33:07Z</time></trkpt>
+				<trkpt lat="52.499311" lon="13.417814">			<ele>89.0</ele>			<time>2010-12-21T01:33:08Z</time></trkpt>
+				<trkpt lat="52.499316" lon="13.417713">			<ele>88.0</ele>			<time>2010-12-21T01:33:09Z</time></trkpt>
+				<trkpt lat="52.499231" lon="13.417686">			<ele>88.0</ele>			<time>2010-12-21T01:33:11Z</time></trkpt>
+				<trkpt lat="52.499204" lon="13.417616">			<ele>88.0</ele>			<time>2010-12-21T01:33:13Z</time></trkpt>
+				<trkpt lat="52.499086" lon="13.417696">			<ele>88.0</ele>			<time>2010-12-21T01:33:15Z</time></trkpt>
+				<trkpt lat="52.499021" lon="13.417809">			<ele>88.0</ele>			<time>2010-12-21T01:33:16Z</time></trkpt>
+				<trkpt lat="52.498941" lon="13.417906">			<ele>88.0</ele>			<time>2010-12-21T01:33:18Z</time></trkpt>
+				<trkpt lat="52.498877" lon="13.417991">			<ele>89.0</ele>			<time>2010-12-21T01:33:19Z</time></trkpt>
+				<trkpt lat="52.498839" lon="13.418067">			<ele>88.0</ele>			<time>2010-12-21T01:33:20Z</time></trkpt>
+		</trkseg></trk>
+</gpx>

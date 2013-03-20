@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<gpx version="1.1"
+  creator="Marengo Route Creator - http://www.marengo-ltd.com/map/"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>New Route</name>
+    <trkseg>
+ <!--   <trkpt lat="53.590174121338364" lon="7.211848497390747"> -->
+    <trkpt lat="53.590154121338364" lon="7.211548497390747">
+      <name>0</name>
+    </trkpt>
+    <trkpt lat="53.590247355285165" lon="7.212384939193726">
+      <name>1</name>
+    </trkpt>
+    <trkpt lat="53.59027601201239" lon="7.212797999382019">
+      <name>2</name>
+    </trkpt>
+    <trkpt lat="53.59027601201239" lon="7.213345170021057">
+      <name>3</name>
+    </trkpt>
+  </trkseg>
+  </trk>
+</gpx>

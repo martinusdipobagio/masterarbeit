@@ -1,0 +1,14 @@
+input		berlin
+clean
+agg
+road
+osm
+resetview
+savelayer	osm
+savelayer	osm	input
+savelayer	osm	clean
+savelayer	osm	input clean
+savelayer	osm	agg
+savelayer	osm	intersections	road
+savelayer	osm	road
+statistics

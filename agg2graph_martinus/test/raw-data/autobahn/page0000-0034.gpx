@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>20100516_wuerzburg_halle_wernigerode.gpx</name>
+	<desc>Autobahn: Würzburg - Halle; Bahn: Halle - Wernigerode</desc>
+	<trkseg>
+		<trkpt lat="49.876921" lon="9.993247">
+			<time>2010-05-16T13:01:19Z</time></trkpt>
+		<trkpt lat="49.879546" lon="9.994366">
+			<time>2010-05-16T13:01:27Z</time></trkpt>
+		<trkpt lat="49.882984" lon="9.996277">
+			<time>2010-05-16T13:01:38Z</time></trkpt></trkseg></trk>
+</gpx>

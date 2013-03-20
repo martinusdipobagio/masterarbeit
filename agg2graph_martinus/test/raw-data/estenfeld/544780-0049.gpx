@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        
+<trk>
+	<name>ACTIVE LOG: 16 Mai 2009 16:13</name>
+	<extensions>
+		<gpxx:TrackExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+			<gpxx:DisplayColor>White</gpxx:DisplayColor></gpxx:TrackExtension></extensions>
+	<trkseg>
+		<trkpt lat="49.8254030" lon="9.9887400">
+			<ele>255.3700000</ele>
+			<time>2009-05-16T16:10:59Z</time></trkpt>
+		<trkpt lat="49.8288490" lon="9.9905370">
+			<ele>259.2100000</ele>
+			<time>2009-05-16T16:11:12Z</time></trkpt>
+		<trkpt lat="49.8333270" lon="9.9928760">
+			<ele>266.9000000</ele>
+			<time>2009-05-16T16:11:29Z</time></trkpt>
+		<trkpt lat="49.8352470" lon="9.9945370">
+			<ele>268.8300000</ele>
+			<time>2009-05-16T16:11:37Z</time></trkpt>
+		<trkpt lat="49.8371710" lon="9.9969980">
+			<ele>269.7900000</ele>
+			<time>2009-05-16T16:11:46Z</time></trkpt>
+		<trkpt lat="49.8389430" lon="10.0003520">
+			<ele>269.3100000</ele>
+			<time>2009-05-16T16:11:56Z</time></trkpt>
+		<trkpt lat="49.8405030" lon="10.0038990">
+			<ele>268.8300000</ele>
+			<time>2009-05-16T16:12:06Z</time></trkpt>
+		<trkpt lat="49.8421250" lon="10.0068240">
+			<ele>270.2700000</ele>
+			<time>2009-05-16T16:12:15Z</time></trkpt>
+		<trkpt lat="49.8438010" lon="10.0086430">
+			<ele>273.1500000</ele>
+			<time>2009-05-16T16:12:23Z</time></trkpt>
+		<trkpt lat="49.8454740" lon="10.0096960">
+			<ele>277.0000000</ele>
+			<time>2009-05-16T16:12:31Z</time></trkpt>
+		<trkpt lat="49.8472600" lon="10.0105950">
+			<ele>282.2800000</ele>
+			<time>2009-05-16T16:12:41Z</time></trkpt>
+		<trkpt lat="49.8475440" lon="10.0107190">
+			<ele>283.7300000</ele>
+			<time>2009-05-16T16:12:44Z</time></trkpt>
+		<trkpt lat="49.8477410" lon="10.0110190">
+			<ele>284.2100000</ele>
+			<time>2009-05-16T16:12:45Z</time></trkpt>
+		<trkpt lat="49.8477900" lon="10.0112000">
+			<ele>284.6900000</ele>
+			<time>2009-05-16T16:12:46Z</time></trkpt>
+		<trkpt lat="49.8478150" lon="10.0113690">
+			<ele>285.1700000</ele>
+			<time>2009-05-16T16:12:47Z</time></trkpt>
+		<trkpt lat="49.8478340" lon="10.0115780">
+			<ele>285.6500000</ele>
+			<time>2009-05-16T16:12:48Z</time></trkpt>
+		<trkpt lat="49.8478470" lon="10.0117210">
+			<ele>285.6500000</ele>
+			<time>2009-05-16T16:12:49Z</time></trkpt>
+		<trkpt lat="49.8477920" lon="10.0118700">
+			<ele>286.1300000</ele>
+			<time>2009-05-16T16:12:50Z</time></trkpt>
+		<trkpt lat="49.8477250" lon="10.0120550">
+			<ele>286.6100000</ele>
+			<time>2009-05-16T16:12:51Z</time></trkpt>
+		<trkpt lat="49.8476750" lon="10.0121930">
+			<ele>287.5700000</ele>
+			<time>2009-05-16T16:12:52Z</time></trkpt>
+		<trkpt lat="49.8475940" lon="10.0122600">
+			<ele>288.0500000</ele>
+			<time>2009-05-16T16:12:53Z</time></trkpt>
+		<trkpt lat="49.8474830" lon="10.0123530">
+			<ele>289.0100000</ele>
+			<time>2009-05-16T16:12:54Z</time></trkpt>
+		<trkpt lat="49.8474040" lon="10.0124070">
+			<ele>289.4900000</ele>
+			<time>2009-05-16T16:12:55Z</time></trkpt>
+		<trkpt lat="49.8472790" lon="10.0124070">
+			<ele>289.9700000</ele>
+			<time>2009-05-16T16:12:56Z</time></trkpt>
+		<trkpt lat="49.8471330" lon="10.0123800">
+			<ele>290.4600000</ele>
+			<time>2009-05-16T16:12:57Z</time></trkpt>
+		<trkpt lat="49.8470110" lon="10.0122580">
+			<ele>291.4200000</ele>
+			<time>2009-05-16T16:12:58Z</time></trkpt>
+		<trkpt lat="49.8468640" lon="10.0120480">
+			<ele>291.9000000</ele>
+			<time>2009-05-16T16:12:59Z</time></trkpt>
+		<trkpt lat="49.8467740" lon="10.0117330">
+			<ele>292.3800000</ele>
+			<time>2009-05-16T16:13:00Z</time></trkpt>
+		<trkpt lat="49.8467740" lon="10.0115020">
+			<ele>292.8600000</ele>
+			<time>2009-05-16T16:13:01Z</time></trkpt>
+		<trkpt lat="49.8467740" lon="10.0112670">
+			<ele>293.3400000</ele>
+			<time>2009-05-16T16:13:02Z</time></trkpt>
+		<trkpt lat="49.8468340" lon="10.0109380">
+			<ele>294.3000000</ele>
+			<time>2009-05-16T16:13:03Z</time></trkpt>
+		<trkpt lat="49.8469080" lon="10.0107160">
+			<ele>294.7800000</ele>
+			<time>2009-05-16T16:13:04Z</time></trkpt>
+		<trkpt lat="49.8477840" lon="10.0084770">
+			<ele>297.1800000</ele>
+			<time>2009-05-16T16:13:13Z</time></trkpt>
+		<trkpt lat="49.8492110" lon="10.0053580">
+			<ele>300.5500000</ele>
+			<time>2009-05-16T16:13:24Z</time></trkpt></trkseg></trk>
+</gpx>

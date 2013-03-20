@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="getgpxosm aus Daten von OpenStreetMap">
+        <trk>	<name>PruneTrack</name>	<number>1</number>
+			<trkseg>		<trkpt lat="52.499826550483704" lon="13.418152928352356">			<ele>82.0</ele>			<time>2011-06-13T16:46:42Z</time></trkpt>
+				<trkpt lat="52.49969780445099" lon="13.418115377426147">			<ele>87.0</ele>			<time>2011-06-13T16:46:47Z</time></trkpt>
+				<trkpt lat="52.49959051609039" lon="13.418088555335999">			<ele>88.0</ele>			<time>2011-06-13T16:46:51Z</time></trkpt>
+				<trkpt lat="52.49949395656586" lon="13.418115377426147">			<ele>91.0</ele>			<time>2011-06-13T16:46:57Z</time></trkpt>
+				<trkpt lat="52.49944567680359" lon="13.418104648590088">			<ele>95.0</ele>			<time>2011-06-13T16:47:01Z</time></trkpt>
+		</trkseg></trk>
+</gpx>

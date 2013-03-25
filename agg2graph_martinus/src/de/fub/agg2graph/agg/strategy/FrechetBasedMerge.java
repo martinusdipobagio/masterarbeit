@@ -17,6 +17,8 @@ import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
+import de.fub.agg2graph.structs.frechet.IAggregatedMap;
+import de.fub.agg2graph.structs.frechet.TreeAggMap;
 import de.fub.agg2graph.ui.gui.RenderingOptions;
 
 public class FrechetBasedMerge implements IMergeHandler {
@@ -289,4 +291,15 @@ public class FrechetBasedMerge implements IMergeHandler {
 		return result;
 	}
 
+	@Override
+	public List<AggNode> getAggNodes(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GPSPoint> getGpsPoints(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

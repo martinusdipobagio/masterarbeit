@@ -43,8 +43,10 @@ public class DefaultMergeHandler implements IMergeHandler {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.merge");
 
-	private List<AggNode> aggNodes = null;
-	private List<GPSPoint> gpsPoints = null;
+	//contains only matched points/nodes
+	private List<List<AggNode>> aggNodes = null;
+	private List<List<GPSPoint>> gpsPoints = null;
+	int max = 0;
 	public int maxLookahead = 4;
 	public double minContinuationAngle = 45;
 	// helper stuff
@@ -61,7 +63,7 @@ public class DefaultMergeHandler implements IMergeHandler {
 	private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 40; // meters
 
-	private double distance = 0;
+	private double distance = 100;
 	private AggNode beforeNode;
 
 	public DefaultMergeHandler() {
@@ -71,8 +73,8 @@ public class DefaultMergeHandler implements IMergeHandler {
 		roMatchGPS.color = Color.PINK;
 		logger.setLevel(Level.OFF);
 
-		aggNodes = new ArrayList<AggNode>();
-		gpsPoints = new ArrayList<GPSPoint>();
+		aggNodes = new ArrayList<List<AggNode>>();
+		gpsPoints = new ArrayList<List<GPSPoint>>();
 	}
 
 	public DefaultMergeHandler(AggContainer aggContainer) {
@@ -84,8 +86,8 @@ public class DefaultMergeHandler implements IMergeHandler {
 	public DefaultMergeHandler(AggContainer aggContainer,
 			List<AggNode> aggNodes, List<GPSPoint> gpsPoints) {
 		this(aggContainer);
-		this.aggNodes = aggNodes;
-		this.gpsPoints = gpsPoints;
+		this.aggNodes.add(aggNodes);
+		this.gpsPoints.add(gpsPoints);
 	}
 
 	@Override
@@ -100,215 +102,101 @@ public class DefaultMergeHandler implements IMergeHandler {
 
 	@Override
 	public List<AggNode> getAggNodes() {
-		return aggNodes;
+		//TODO
+		return getAggNodes(0);
 	}
 
+	public List<AggNode> getAggNodes(int i) {
+		return this.aggNodes.get(i);
+	}
+
+	//TODO Not sure ...
 	@Override
 	public void addAggNode(AggNode aggNode) {
-		if (this.aggNodes.size() > 0
-				&& this.aggNodes.get(this.aggNodes.size() - 1).equals(aggNode)) {
-			this.aggNodes.remove(this.aggNodes.size() - 1);
-		}
-		this.aggNodes.add(aggNode);
+		List<AggNode> agg = new ArrayList<AggNode>();
+		agg.add(aggNode);
+		this.aggNodes.add(agg);
 	}
 
+	//TODO To test
 	@Override
 	public void addAggNodes(List<AggNode> aggNodes) {
-		int i = 0;
-		while (aggNodes.size() > i
-				&& this.aggNodes.size() > 0
-				&& this.aggNodes.get(this.aggNodes.size() - 1).equals(
-						aggNodes.get(i))) {
-			this.aggNodes.remove(this.aggNodes.size() - 1);
-			i++;
-		}
-		this.aggNodes.addAll(aggNodes);
+		this.aggNodes.add(aggNodes);
 	}
 
 	@Override
 	public List<GPSPoint> getGpsPoints() {
-		return gpsPoints;
+		//TODO change the caller
+		return this.getGpsPoints(0);
 	}
 
 	@Override
+	public List<GPSPoint> getGpsPoints(int i) {
+		return this.gpsPoints.get(i);
+	}
+
+	//TODO To test
+	@Override
 	public void addGPSPoints(List<GPSPoint> gpsPoints) {
-		int i = 0;
-		while (gpsPoints.size() > i
-				&& this.gpsPoints.size() > 0
-				&& this.gpsPoints.get(this.gpsPoints.size() - 1).equals(
-						gpsPoints.get(i))) {
-			this.gpsPoints.remove(this.gpsPoints.size() - 1);
-			i++;
-		}
-		this.gpsPoints.addAll(gpsPoints);
+		this.gpsPoints.add(gpsPoints);
 	}
 
 	@Override
 	public void addGPSPoint(GPSPoint gpsPoint) {
-		if (this.gpsPoints.size() > 0
-				&& this.gpsPoints.get(this.gpsPoints.size() - 1).equals(
-						gpsPoint)) {
-			return;
-		}
-		this.gpsPoints.add(gpsPoint);
+		List<GPSPoint> tra = new ArrayList<GPSPoint>();
+		tra.add(gpsPoint);
+		this.gpsPoints.add(tra);
 	}
 
 	@Override
 	public void processSubmatch() {
-		newNodesPerConn = new HashMap<AggConnection, List<PointGhostPointPair>>();
-		pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
-		// projections of the trace to the aggregation
-		int start = 0;
-		GPSPoint lastPoint = null, point = null;
-		for (int pointIndex = 0; pointIndex < getGpsPoints().size(); pointIndex++) {
-			lastPoint = point;
-			point = getGpsPoints().get(pointIndex);
-			logger.log(Level.FINER, "point " + point);
-			// loop over all possible opposing lines
-			List<AggNode> internalAggNodes = getAggNodes();
-			boolean afterHit = false;
-			int iMax;
-			for (int i = start; i < Math.min(start + maxLookahead,
-					internalAggNodes.size() - 1); i++) {
-				iMax = Math.min(start + maxLookahead,
-						internalAggNodes.size() - 1);
-				AggNode startNode = internalAggNodes.get(i);
-				AggNode endNode = internalAggNodes.get(i + 1);
-				ILocation newPoint = GPSCalc.getProjectionPoint(point,
-						startNode, endNode);
-				newPoint = testLength(point, newPoint);
-				AggNode newNode;
-				if (newPoint == null) {
-					if (afterHit || pointIndex == 0) {
-						break;
+		this.max = aggNodes.size();
+		for(int x = 0; x < max; x++) {
+			newNodesPerConn = new HashMap<AggConnection, List<PointGhostPointPair>>();
+			pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
+			// projections of the trace to the aggregation
+			int start = 0;
+			GPSPoint lastPoint = null, point = null;
+			for (int pointIndex = 0; pointIndex < getGpsPoints(x).size(); pointIndex++) {
+				lastPoint = point;
+				point = getGpsPoints(x).get(pointIndex);
+				logger.log(Level.FINER, "point " + point);
+				// loop over all possible opposing lines
+				List<AggNode> internalAggNodes = getAggNodes(x);
+				boolean afterHit = false;
+				int iMax;
+				for (int i = start; i < Math.min(start + maxLookahead,
+						internalAggNodes.size() - 1); i++) {
+					iMax = Math.min(start + maxLookahead,
+							internalAggNodes.size() - 1);
+					AggNode startNode = internalAggNodes.get(i);
+					AggNode endNode = internalAggNodes.get(i + 1);
+					ILocation newPoint = GPSCalc.getProjectionPoint(point,
+							startNode, endNode);
+					//ok ... verstehe
+					newPoint = testLength(point, newPoint);
+					AggNode newNode;
+					if (newPoint == null) {
+						if (afterHit || pointIndex == 0) {
+							break;
+						}
+						continue;
+					} else {
+						newNode = new AggNode(newPoint, aggContainer);
+						if (!afterHit) {
+							start = Math.max(0, i - 1);
+						}
 					}
-					continue;
-				} else {
-					newNode = new AggNode(newPoint, aggContainer);
-					if (!afterHit) {
-						start = Math.max(0, i - 1);
-					}
-				}
-				newNode.setID(String.format("%s+", point.getID()));
-				logger.log(Level.FINER, String.format(
-						"made ghost point %s at %s%s", newNode, startNode,
-						endNode));
+					newNode.setID(String.format("%s+", point.getID()));
+					logger.log(Level.FINER, String.format(
+							"made ghost point %s at %s%s", newNode, startNode,
+							endNode));
 
-				AggConnection conn = startNode.getConnectionTo(endNode);
-				PointGhostPointPair pair = PointGhostPointPair
-						.createTraceToAgg(point, newNode, conn, afterHit);
-				pointGhostPointPairs.add(pair);
+					AggConnection conn = startNode.getConnectionTo(endNode);
+					PointGhostPointPair pair = PointGhostPointPair
+							.createTraceToAgg(point, newNode, conn, afterHit);
+					pointGhostPointPairs.add(pair);
 
-				if (!newNodesPerConn.containsKey(conn)) {
-					newNodesPerConn.put(conn,
-							new ArrayList<PointGhostPointPair>());
-				}
-				// remove (now) invalid ghost points of earlier trace points
-				PointGhostPointPair loopPair = null;
-				List<PointGhostPointPair> nodesOnThisConn = newNodesPerConn
-						.get(conn);
-				for (int m = nodesOnThisConn.size() - 1; m >= 0; m--) {
-					loopPair = nodesOnThisConn.get(m);
-					// is it okay?
-					if (!loopPair.getPoint().equals(lastPoint)
-							&& !loopPair.getPoint().equals(point)) {
-						nodesOnThisConn.remove(m);
-						pointGhostPointPairs.remove(loopPair);
-					}
-				}
-				// add the new pair (only the node will later be accessed)
-				nodesOnThisConn.add(pair);
-
-				afterHit = true;
-
-				// trace to agg
-				if (i < iMax - 1) {
-					AggNode nextNode = internalAggNodes.get(i + 2);
-					double nextAngle = GPSCalc.getAngleBetweenEdges(startNode,
-							endNode, endNode, nextNode);
-					if (CartesianCalc.isAngleMax(nextAngle,
-							minContinuationAngle)) {
-						break;
-					}
-				}
-			}
-
-			/*
-			 * Compute inNode and outNode such that it is the AggNode closest to
-			 * the first/last GPSPoint in the Match.
-			 */
-			inNode = aggNodes.get(0);
-			double distReal = GPSCalc.getDistanceTwoPointsMeter(inNode,
-					gpsPoints.get(0));
-			if (pointGhostPointPairs.size() > 0) {
-				AggNode ghostAggPoint = pointGhostPointPairs.get(0)
-						.getAggNode();
-				double distGhost = GPSCalc.getDistanceTwoPointsMeter(
-						ghostAggPoint, gpsPoints.get(0));
-				if (distGhost < distReal) {
-					inNode = ghostAggPoint;
-				}
-			}
-
-			outNode = aggNodes.get(aggNodes.size() - 1);
-			distReal = GPSCalc.getDistanceTwoPointsMeter(inNode,
-					gpsPoints.get(gpsPoints.size() - 1));
-			if (pointGhostPointPairs.size() > 0) {
-				AggNode ghostAggPoint = pointGhostPointPairs.get(
-						pointGhostPointPairs.size() - 1).getAggNode();
-				double distGhost = GPSCalc.getDistanceTwoPointsMeter(
-						ghostAggPoint, gpsPoints.get(gpsPoints.size() - 1));
-				if (distGhost < distReal) {
-					outNode = ghostAggPoint;
-				}
-			}
-		}
-
-		// projections of the aggregation to the trace
-		start = 0;
-		for (int pointIndex = 0; pointIndex < getAggNodes().size(); pointIndex++) {
-			AggNode node = getAggNodes().get(pointIndex);
-			logger.log(Level.FINER, "agg node " + node);
-			// loop over all possible opposing lines
-			List<GPSPoint> internalGpsPoints = getGpsPoints();
-			boolean afterHit = false;
-			int iMax;
-			for (int i = start; i < Math.min(start + maxLookahead,
-					internalGpsPoints.size() - 1); i++) {
-				iMax = Math.min(start + maxLookahead,
-						internalGpsPoints.size() - 1);
-				GPSPoint startNode = internalGpsPoints.get(i);
-				GPSPoint endNode = internalGpsPoints.get(i + 1);
-				ILocation newPoint = GPSCalc.getProjectionPoint(node,
-						startNode, endNode);
-				newPoint = testLength(point, newPoint);
-				if (newPoint == null) {
-					if (afterHit || pointIndex == 0) {
-						break;
-					}
-					continue;
-				} else {
-					if (!afterHit) {
-						start = Math.max(0, i - 1);
-					}
-				}
-				GPSPoint newNode = new GPSPoint(newPoint);
-				newNode.setID(String.format("%s+", node.getID()));
-				logger.log(Level.FINER, String.format(
-						"made ghost point %s at %s%s", newNode, startNode,
-						endNode));
-				AggNode addNode = node;
-				if (afterHit) {
-					addNode = new AggNode(node);
-					addNode.setID("dup-" + node.getID());
-				}
-				PointGhostPointPair pair = PointGhostPointPair
-						.createAggToTrace(addNode, newNode, pointIndex,
-								afterHit);
-				pointGhostPointPairs.add(pair);
-				if (afterHit && pointIndex < getAggNodes().size() - 1) {
-					AggConnection conn = getAggNodes().get(pointIndex)
-							.getConnectionTo(getAggNodes().get(pointIndex + 1));
 					if (!newNodesPerConn.containsKey(conn)) {
 						newNodesPerConn.put(conn,
 								new ArrayList<PointGhostPointPair>());
@@ -326,18 +214,129 @@ public class DefaultMergeHandler implements IMergeHandler {
 							pointGhostPointPairs.remove(loopPair);
 						}
 					}
-					newNodesPerConn.get(conn).add(pair);
-				}
-				afterHit = true;
+					// add the new pair (only the node will later be accessed)
+					nodesOnThisConn.add(pair);
 
-				// agg to trace
-				if (i < iMax - 1) {
-					GPSPoint nextNode = internalGpsPoints.get(i + 2);
-					double nextAngle = GPSCalc.getAngleBetweenEdges(startNode,
-							endNode, endNode, nextNode);
-					if (CartesianCalc.isAngleMax(nextAngle,
-							minContinuationAngle)) {
-						break;
+					afterHit = true;
+
+					// trace to agg
+					if (i < iMax - 1) {
+						AggNode nextNode = internalAggNodes.get(i + 2);
+						double nextAngle = GPSCalc.getAngleBetweenEdges(startNode,
+								endNode, endNode, nextNode);
+						if (CartesianCalc.isAngleMax(nextAngle,
+								minContinuationAngle)) {
+							break;
+						}
+					}
+				}
+
+				/*
+				 * Compute inNode and outNode such that it is the AggNode closest to
+				 * the first/last GPSPoint in the Match.
+				 */
+				inNode = aggNodes.get(x).get(0);
+				double distReal = GPSCalc.getDistanceTwoPointsMeter(inNode,
+						gpsPoints.get(x).get(0));
+				if (pointGhostPointPairs.size() > 0) {
+					AggNode ghostAggPoint = pointGhostPointPairs.get(0)
+							.getAggNode();
+					double distGhost = GPSCalc.getDistanceTwoPointsMeter(
+							ghostAggPoint, gpsPoints.get(x).get(0));
+					if (distGhost < distReal) {
+						inNode = ghostAggPoint;
+					}
+				}
+
+				outNode = aggNodes.get(x).get(aggNodes.get(x).size() - 1);
+				distReal = GPSCalc.getDistanceTwoPointsMeter(inNode,
+						gpsPoints.get(x).get(gpsPoints.get(x).size() - 1));
+				if (pointGhostPointPairs.size() > 0) {
+					AggNode ghostAggPoint = pointGhostPointPairs.get(
+							pointGhostPointPairs.size() - 1).getAggNode();
+					double distGhost = GPSCalc.getDistanceTwoPointsMeter(
+							ghostAggPoint, gpsPoints.get(x).get(gpsPoints.get(x).size() - 1));
+					if (distGhost < distReal) {
+						outNode = ghostAggPoint;
+					}
+				}
+			}
+
+			// projections of the aggregation to the trace
+			start = 0;
+			for (int pointIndex = 0; pointIndex < getAggNodes(x).size(); pointIndex++) {
+				AggNode node = getAggNodes(x).get(pointIndex);
+				logger.log(Level.FINER, "agg node " + node);
+				// loop over all possible opposing lines
+				List<GPSPoint> internalGpsPoints = getGpsPoints(x);
+				boolean afterHit = false;
+				int iMax;
+				for (int i = start; i < Math.min(start + maxLookahead,
+						internalGpsPoints.size() - 1); i++) {
+					iMax = Math.min(start + maxLookahead,
+							internalGpsPoints.size() - 1);
+					GPSPoint startNode = internalGpsPoints.get(i);
+					GPSPoint endNode = internalGpsPoints.get(i + 1);
+					ILocation newPoint = GPSCalc.getProjectionPoint(node,
+							startNode, endNode);
+					newPoint = testLength(point, newPoint);
+					if (newPoint == null) {
+						if (afterHit || pointIndex == 0) {
+							break;
+						}
+						continue;
+					} else {
+						if (!afterHit) {
+							start = Math.max(0, i - 1);
+						}
+					}
+					GPSPoint newNode = new GPSPoint(newPoint);
+					newNode.setID(String.format("%s+", node.getID()));
+					logger.log(Level.FINER, String.format(
+							"made ghost point %s at %s%s", newNode, startNode,
+							endNode));
+					AggNode addNode = node;
+					if (afterHit) {
+						addNode = new AggNode(node);
+						addNode.setID("dup-" + node.getID());
+					}
+					PointGhostPointPair pair = PointGhostPointPair
+							.createAggToTrace(addNode, newNode, pointIndex,
+									afterHit);
+					pointGhostPointPairs.add(pair);
+					if (afterHit && pointIndex < getAggNodes(x).size() - 1) {
+						AggConnection conn = getAggNodes(x).get(pointIndex)
+								.getConnectionTo(getAggNodes(x).get(pointIndex + 1));
+						if (!newNodesPerConn.containsKey(conn)) {
+							newNodesPerConn.put(conn,
+									new ArrayList<PointGhostPointPair>());
+						}
+						// remove (now) invalid ghost points of earlier trace points
+						PointGhostPointPair loopPair = null;
+						List<PointGhostPointPair> nodesOnThisConn = newNodesPerConn
+								.get(conn);
+						for (int m = nodesOnThisConn.size() - 1; m >= 0; m--) {
+							loopPair = nodesOnThisConn.get(m);
+							// is it okay?
+							if (!loopPair.getPoint().equals(lastPoint)
+									&& !loopPair.getPoint().equals(point)) {
+								nodesOnThisConn.remove(m);
+								pointGhostPointPairs.remove(loopPair);
+							}
+						}
+						newNodesPerConn.get(conn).add(pair);
+					}
+					afterHit = true;
+
+					// agg to trace
+					if (i < iMax - 1) {
+						GPSPoint nextNode = internalGpsPoints.get(i + 2);
+						double nextAngle = GPSCalc.getAngleBetweenEdges(startNode,
+								endNode, endNode, nextNode);
+						if (CartesianCalc.isAngleMax(nextAngle,
+								minContinuationAngle)) {
+							break;
+						}
 					}
 				}
 			}
@@ -353,8 +352,7 @@ public class DefaultMergeHandler implements IMergeHandler {
 		return newPoint;
 	}
 
-	private void showDebugInfo() {
-		// debug
+	private void showDebugInfo(int x) {
 		TestUI ui = (TestUI) Globals.get("ui");
 		if (ui == null) {
 			return;
@@ -363,12 +361,12 @@ public class DefaultMergeHandler implements IMergeHandler {
 		Layer mergingLayer = ui.getLayerManager().getLayer("merging");
 		// clone the lists
 		List<ILocation> aggNodesClone = new ArrayList<ILocation>(
-				aggNodes.size());
-		for (ILocation loc : aggNodes) {
+				aggNodes.get(x).size());
+		for (ILocation loc : aggNodes.get(x)) {
 			aggNodesClone.add(new GPSPoint(loc));
 		}
 		matchingLayer.addObject(aggNodesClone);
-		matchingLayer.addObject(gpsPoints); // , roMatchGPS);
+		matchingLayer.addObject(gpsPoints.get(x)); // , roMatchGPS);
 
 		// for debugging highlight trace to agg with an arrow
 		for (PointGhostPointPair pgpp : pointGhostPointPairs) {
@@ -391,88 +389,86 @@ public class DefaultMergeHandler implements IMergeHandler {
 
 	@Override
 	public void mergePoints() {
-		showDebugInfo();
+		this.max = aggNodes.size();
+		for(int x = 0; x < max; x++) {
+			showDebugInfo(x);
 
-		List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
-				10);
-		List<AggConnection> newAggConnections;
-		// add nodes
-		AggNode lastNode = null;
-		AggConnection conn = null;
-		for (AggNode node : getAggNodes()) {
-			if (lastNode == null) {
-				lastNode = node;
-				continue;
-			}
-			// TODO: Not the best solution
-			if (!lastNode.isRelevant()) {
-				lastNode = node;
-				continue;
-			}
-
-			/* Make sure that they are connected */
-			conn = lastNode.getConnectionTo(node);
-			if (conn == null) {
-				continue;
-			}
-			conn.tryToFill();
-			List<AggNode> aggNodeList = new ArrayList<AggNode>();
-			if (newNodesPerConn.get(conn) != null) {
-				for (PointGhostPointPair pair : newNodesPerConn.get(conn)) {
-					aggNodeList.add(pair.getAggNode());
+			List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
+					10);
+			List<AggConnection> newAggConnections;
+			// add nodes
+			AggNode lastNode = null;
+			AggConnection conn = null;
+			for (AggNode node : getAggNodes(x)) {
+				if (lastNode == null) {
+					lastNode = node;
+					continue;
 				}
-				newAggConnections = aggContainer.insertNodesOrdered(
-						conn.getFrom(), conn.getTo(), aggNodeList);
-				changedAggConnections.addAll(newAggConnections);
-			} else {
-				// edge without
-				changedAggConnections.add(conn);
+
+				/* Make sure that they are connected */
+				conn = lastNode.getConnectionTo(node);
+				if (conn == null) {
+					continue;
+				}
+				conn.tryToFill();
+				List<AggNode> aggNodeList = new ArrayList<AggNode>();
+				if (newNodesPerConn.get(conn) != null) {
+					for (PointGhostPointPair pair : newNodesPerConn.get(conn)) {
+						aggNodeList.add(pair.getAggNode());
+					}
+					newAggConnections = aggContainer.insertNodesOrdered(
+							conn.getFrom(), conn.getTo(), aggNodeList);
+					changedAggConnections.addAll(newAggConnections);
+				} else {
+					// edge without
+					changedAggConnections.add(conn);
+				}
+				lastNode = node;
 			}
-			lastNode = node;
-		}
 
-		// merge points
-		for (PointGhostPointPair pgpp : pointGhostPointPairs) {
-			mergePointPair(pgpp.getAggNode(), pgpp.getGPSPoint());
-		}
-
-		List<AggNode> changedAggPoints = AggConnection
-				.listToPoints(changedAggConnections);
-		// update distance and weights
-		for (AggConnection loopConn : changedAggConnections) {
-			if (loopConn == null) {
-				continue;
+			// merge points
+			for (PointGhostPointPair pgpp : pointGhostPointPairs) {
+				mergePointPair(pgpp.getAggNode(), pgpp.getGPSPoint());
 			}
-			float oldWeight = loopConn.getWeight();
-			double oldAvgDist = loopConn.getAvgDist();
-			loopConn.setAvgDist(((oldWeight - 1) * oldAvgDist + distance)
-					/ oldWeight);
-			loopConn.setWeight(oldWeight + 1);
-		}
-		for (AggNode node : changedAggPoints) {
-			node.refreshWeight();
-		}
 
-		// add turns
-		List<AggNode> turnNodes = new ArrayList<AggNode>();
-		turnNodes.addAll(changedAggPoints);
-		if (turnNodes.size() > 1) {
-			turnNodes.remove(0);
-			turnNodes.remove(turnNodes.size() - 1);
-		}
-		turnNodes.add(0, inNode);
-		turnNodes.add(0, beforeNode);
-		turnNodes.add(outNode);
-		// AggNode node;
-		for (int i = 2; i < changedAggPoints.size(); i++) {
-			changedAggPoints.get(i - 1).addTurn(changedAggPoints.get(i - 2),
-					changedAggPoints.get(i - 0));
-		}
+			List<AggNode> changedAggPoints = AggConnection
+					.listToPoints(changedAggConnections);
+			// update distance and weights
+			for (AggConnection loopConn : changedAggConnections) {
+				if (loopConn == null) {
+					continue;
+				}
+				float oldWeight = loopConn.getWeight();
+				double oldAvgDist = loopConn.getAvgDist();
+				loopConn.setAvgDist(((oldWeight - 1) * oldAvgDist + distance)
+						/ oldWeight);
+				loopConn.setWeight(oldWeight + 1);
+			}
+			for (AggNode node : changedAggPoints) {
+				node.refreshWeight();
+			}
 
-		// clean like in the GPSCleaner
-		cleaner.clean(changedAggPoints);
-		// simplify
-		rdpf.simplifyAgg(changedAggPoints, aggContainer);
+			// add turns ... Not important atm
+			List<AggNode> turnNodes = new ArrayList<AggNode>();
+			turnNodes.addAll(changedAggPoints);
+			if (turnNodes.size() > 1) {
+				turnNodes.remove(0);
+				turnNodes.remove(turnNodes.size() - 1);
+			}
+			turnNodes.add(0, inNode);
+			turnNodes.add(0, beforeNode);
+			turnNodes.add(outNode);
+			// AggNode node;
+			for (int i = 2; i < changedAggPoints.size(); i++) {
+				changedAggPoints.get(i - 1).addTurn(changedAggPoints.get(i - 2),
+						changedAggPoints.get(i - 0));
+			}
+
+			// clean like in the GPSCleaner
+			cleaner.clean(changedAggPoints);
+			// simplify
+			rdpf.simplifyAgg(changedAggPoints, aggContainer);
+		}
 	}
 
 	private void mergePointPair(AggNode aggNode, GPSPoint gpsPoint) {
@@ -506,14 +502,15 @@ public class DefaultMergeHandler implements IMergeHandler {
 		return outNode;
 	}
 
+	//TODO FAUL
 	@Override
 	public String toString() {
 		StringBuilder gps = new StringBuilder();
-		for (GPSPoint point : gpsPoints) {
+		for (List<GPSPoint> point : gpsPoints) {
 			gps.append(point).append(", ");
 		}
 		StringBuilder agg = new StringBuilder();
-		for (AggNode node : aggNodes) {
+		for (List<AggNode> node : aggNodes) {
 			agg.append(node).append(", ");
 		}
 		return String.format("MergeHandler:\n\tGPS: %s\n\tAgg: %s", gps, agg);
@@ -531,14 +528,18 @@ public class DefaultMergeHandler implements IMergeHandler {
 
 	@Override
 	public void addAggNodes(AggConnection bestConn) {
-		this.addAggNode(bestConn.getFrom());
-		this.addAggNode(bestConn.getTo());
+		List<AggNode> agg = new ArrayList<AggNode>();
+		agg.add(bestConn.getFrom());
+		agg.add(bestConn.getTo());
+		addAggNodes(agg);
 	}
 
 	@Override
 	public void addGPSPoints(GPSEdge edge) {
-		this.addGPSPoint(edge.getFrom());
-		this.addGPSPoint(edge.getTo());
+		List<GPSPoint> tra = new ArrayList<GPSPoint>();
+		tra.add(edge.getFrom());
+		tra.add(edge.getTo());
+		addGPSPoints(tra);
 	}
 
 	@Override

@@ -15,6 +15,8 @@ import java.util.List;
 import de.fub.agg2graph.structs.ClassObjectEditor;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
+import de.fub.agg2graph.structs.frechet.IAggregatedMap;
+import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 /**
  * Class for handling the merge of a set of {@link GPSPoint}s from the trace
@@ -34,7 +36,12 @@ public interface IMergeHandler {
 
 	public List<AggNode> getAggNodes();
 
+	public List<AggNode> getAggNodes(int i);
+
+	
 	public List<GPSPoint> getGpsPoints();
+
+	public List<GPSPoint> getGpsPoints(int i);
 
 	public double getDistance();
 
@@ -97,5 +104,5 @@ public interface IMergeHandler {
 	 * 
 	 * @return
 	 */
-	public List<ClassObjectEditor> getSettings();
+	public List<ClassObjectEditor> getSettings();	
 }

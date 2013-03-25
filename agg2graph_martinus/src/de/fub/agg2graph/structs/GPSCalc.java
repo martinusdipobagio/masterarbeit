@@ -16,7 +16,7 @@ import java.util.List;
 import org.jscience.mathematics.number.Float64;
 import org.jscience.mathematics.vector.Float64Vector;
 
-import de.fub.agg2graph.agg.AggConnection;
+import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
@@ -684,7 +684,7 @@ public class GPSCalc {
 		return true;
 	}
 	
-	public static ILocation CalculateMean(ILocation locationToMove, Collection<ILocation> affectedTraceLocations, double epsilon) {
+	public static AggNode CalculateMean(AggNode locationToMove, Collection<GPSPoint> affectedTraceLocations, double epsilon, AggContainer aggContainer) {
 		final double alon = locationToMove.getLon();
 		final double alat = locationToMove.getLat();
 	
@@ -695,6 +695,7 @@ public class GPSCalc {
 		
 		for(ILocation ti : affectedTraceLocations) {
 			double dist = ((GPSPoint) locationToMove).getDistanceTo((GPSPoint) ti);
+//			System.out.println("dist = " + dist);
 			if(dist > epsilon) continue;
 			
 			double damp = damp(dist, epsilon);
@@ -709,22 +710,21 @@ public class GPSCalc {
 		slon /= div;
 		slat /= div;
 	
-		return null;
-//		return new ILocation(slat + alat, slon + alon);
+//		return null;
+		return new AggNode(slat + alat, slon + alon, aggContainer);
 	}
 	
-	public static void moveLocation(TreeAggMap map, AggConnection agg, ILocation fix, ILocation toMove) {
+	public static void moveLocation(TreeAggMap map, AggNode fix, ILocation toMove, AggContainer aggContainer) {
 		// along To Perpendicular from Trace
 		final double alon = toMove.getLon();
 		final double alat = toMove.getLat();
 		final double elon = fix.getLon();
 		final double elat = fix.getLat();
 		
-		final double n = agg.getNumbers();
-		
-		map.updateLocation(new AggNode(toMove, agg.getAggContainer()),
+		final double n = 2;
+		map.updateLocation(new AggNode(toMove, aggContainer),
 				new AggNode( (alat * n + elat) / (n + 1.),
-						(alon * n +  elon) / (n + 1.), agg.getAggContainer()));
+						(alon * n +  elon) / (n + 1.), aggContainer));
 	}
 	
 	private static double damp(double distance, double epsilon) {

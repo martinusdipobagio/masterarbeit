@@ -24,6 +24,14 @@ import de.fub.agg2graph.structs.frechet.ITrace;
 
 public class FreeSpaceMatch implements ITraceDistance {
 
+	public double aggReflectionFactor = 4;
+	public int maxOutliners = 10;
+	public double maxDistance = 60;
+	public int maxLookahead = 4;
+	public double maxPathDifference = 100;
+	public int minLengthFirstSegment = 1;
+	public double maxAngle = 37;
+	
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;
 	public ITrace trace;
@@ -243,7 +251,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 	public Collection<Pair<List<AggConnection>, List<GPSEdge>>> match(
 			IAggregatedMap map, ITrace trace, ILocation start, double epsilon) {
-		BidirectionalFrechetDistance bfd = new BidirectionalFrechetDistance();
+		BidirectionalFrechetDistance bfd = new BidirectionalFrechetDistance(maxDistance);
 		bfd.setEpsilon(epsilon);
 		final TracePather tp = new TracePather(trace, start, bfd);
 		final MapPather mp = new MapPather(map, start, bfd);
@@ -297,7 +305,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 			Collection<Pair<List<AggConnection>, List<GPSEdge>>> list = new ArrayList<>();
 			list.add(result);
 
-			FrechetDistance fd = new FrechetDistance();
+			FrechetDistance fd = new FrechetDistance(maxDistance);
 			List<GPSPoint> tpPoint = new ArrayList<GPSPoint>();
 			for (GPSEdge t : tp.path)
 				tpPoint.add(t.getFrom());
@@ -319,7 +327,8 @@ public class FreeSpaceMatch implements ITraceDistance {
 	@Override
 	public Object[] getPathDifference(List<AggNode> aggPath,
 			List<GPSPoint> tracePoints, int startIndex, IMergeHandler dmh) {
-		Collection<Pair<List<AggConnection>, List<GPSEdge>>> res = match(map, trace, start, 0.0006);
+//		Collection<Pair<List<AggConnection>, List<GPSEdge>>> res = match(map, trace, start, maxDistance / 20000);
+		Collection<Pair<List<AggConnection>, List<GPSEdge>>> res = match(map, trace, start, .003);
 		
 		@SuppressWarnings({ "unchecked" })
 		Pair<List<AggConnection>, List<GPSEdge>>[] result = new Pair[res.size()];

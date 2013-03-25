@@ -10,6 +10,8 @@
  ******************************************************************************/
 package de.fub.agg2graph.agg;
 
+import java.util.List;
+
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
 
@@ -19,21 +21,55 @@ import de.fub.agg2graph.structs.ILocation;
  * @author Johannes Mitlmeier
  */
 public class PointGhostPointPair {
+	/* Point destination */
+	//Point source
 	public ILocation point;
 	public ILocation ghostPoint;
+	//Iterative
+	public AggNode source;
+	public List<GPSPoint> ghostPoints;
 	public AggConnection targetConnection;
 	public int targetStartIndex;
 	public boolean removable = false;
 
 	private PointGhostPointPair() {
-
 	}
 
+	public static PointGhostPointPair createIterative(AggNode original,
+			List<GPSPoint> neighbour, int startIndex) {
+		return createIterative(original, neighbour, startIndex, false);
+	}
+	
+	public static PointGhostPointPair createIterative(AggNode original,
+			List<GPSPoint> ghosts, int startIndex, boolean removable) {
+		PointGhostPointPair result = new PointGhostPointPair();
+		result.source = original;
+		result.ghostPoints = ghosts;
+		result.targetStartIndex = startIndex;
+		result.removable = removable;
+		return result;
+	}
+
+	/**
+	 * Create a PGPP from a AggNode to a GPSPoint and it is not removable
+	 * @param original
+	 * @param ghost
+	 * @param startIndex
+	 * @return
+	 */
 	public static PointGhostPointPair createAggToTrace(AggNode original,
 			GPSPoint ghost, int startIndex) {
 		return createAggToTrace(original, ghost, startIndex, false);
 	}
 
+	/**
+	 * Create a PGPP from a AggNode to a GPSPoint
+	 * @param original
+	 * @param ghost
+	 * @param startIndex
+	 * @param removable
+	 * @return
+	 */
 	public static PointGhostPointPair createAggToTrace(AggNode original,
 			GPSPoint ghost, int startIndex, boolean removable) {
 		PointGhostPointPair result = new PointGhostPointPair();
@@ -44,11 +80,26 @@ public class PointGhostPointPair {
 		return result;
 	}
 
+	/**
+	 * Create a PGPP from a GPSPoint to a AggNode and it is not removable
+	 * @param original
+	 * @param ghost
+	 * @param targetConnection
+	 * @return
+	 */
 	public static PointGhostPointPair createTraceToAgg(GPSPoint original,
 			AggNode ghost, AggConnection targetConnection) {
 		return createTraceToAgg(original, ghost, targetConnection, false);
 	}
 
+	/**
+	 * Create a PGPP from a GPSPoint to AggNode
+	 * @param original
+	 * @param ghost
+	 * @param targetConnection
+	 * @param removable
+	 * @return
+	 */
 	public static PointGhostPointPair createTraceToAgg(GPSPoint original,
 			AggNode ghost, AggConnection targetConnection, boolean removable) {
 		PointGhostPointPair result = new PointGhostPointPair();
@@ -93,6 +144,10 @@ public class PointGhostPointPair {
 			return (GPSPoint) ghostPoint;
 		}
 		return null;
+	}
+	
+	public List<GPSPoint> getGhostPoints() {
+		return ghostPoints;
 	}
 
 	@Override

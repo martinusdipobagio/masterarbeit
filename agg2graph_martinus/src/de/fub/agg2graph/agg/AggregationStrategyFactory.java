@@ -1,9 +1,11 @@
 package de.fub.agg2graph.agg;
 
-import de.fub.agg2graph.agg.strategy.DefaultAggregationStrategy;
-import de.fub.agg2graph.agg.strategy.FrechetMatchAggregationStrategy;
-import de.fub.agg2graph.agg.strategy.GpxmergeAggregationStrategy;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchAggregationStrategy;
+import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy;
+import de.fub.agg2graph.agg.strategy.DefaultMatchIterativeMergeStrategy;
+import de.fub.agg2graph.agg.strategy.FrechetMatchDefaultAggregationStrategy;
+import de.fub.agg2graph.agg.strategy.FrechetMatchIterativeMergeAggregationStrategy;
+import de.fub.agg2graph.agg.strategy.GpxmergeDefaultAggregationStrategy;
+import de.fub.agg2graph.agg.strategy.HausdorffMatchDefaultAggregationStrategy;
 
 /**
  * A factory that returns the {@link IAggregationStrategy} currently set via the
@@ -16,15 +18,16 @@ public class AggregationStrategyFactory {
 	/*
 	 * Default class to return. Can be overwritten by calls to setClass.
 	 */
-	private static Class<? extends IAggregationStrategy> defaultClass = DefaultAggregationStrategy.class;
-	private static Class<? extends IAggregationStrategy> gpxClass = GpxmergeAggregationStrategy.class;
-	private static Class<? extends IAggregationStrategy> hausdorffP2PClass = HausdorffMatchAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultClass = DefaultMatchDefaultMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> gpxClass = GpxmergeDefaultAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> hausdorffDefaultClass = HausdorffMatchDefaultAggregationStrategy.class;
 	@SuppressWarnings("unused")
-	private static Class<? extends IAggregationStrategy> frechetClass = FrechetMatchAggregationStrategy.class;
-//	private static Class<? extends IAggregationStrategy> hausdorffT2TClass = HausdorffTrackToTrackAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> frechetClass = FrechetMatchDefaultAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> frechetIterativeClass = FrechetMatchIterativeMergeAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultIterativeClass = DefaultMatchIterativeMergeStrategy.class;
 	//TODO
-	private static Class<? extends IAggregationStrategy> factoryClass = HausdorffMatchAggregationStrategy.class;
-	
+	private static Class<? extends IAggregationStrategy> factoryClass = DefaultMatchIterativeMergeStrategy.class;
+
 	public static void setClass(Class<? extends IAggregationStrategy> theClass) {
 		factoryClass = theClass;
 		
@@ -50,7 +53,7 @@ public class AggregationStrategyFactory {
 	 * TODO noch statisch
 	 */
 	public static String[] getAllStrategyName() {
-		String[] ret = new String[]{defaultClass.getName(), gpxClass.getName(), hausdorffP2PClass.getName()};
+		String[] ret = new String[]{defaultClass.getName(), gpxClass.getName(), hausdorffDefaultClass.getName()};
 		return ret;
 	}
 	
@@ -59,8 +62,8 @@ public class AggregationStrategyFactory {
 			factoryClass = defaultClass;
 		else if(name.equals(gpxClass.getName()))
 			factoryClass = gpxClass;
-		else if(name.equals(hausdorffP2PClass.getName()))
-			factoryClass = hausdorffP2PClass;
+		else if(name.equals(hausdorffDefaultClass.getName()))
+			factoryClass = hausdorffDefaultClass;
 	}
 	
 	public static IAggregationStrategy getClassByName(String name) {
@@ -80,9 +83,9 @@ public class AggregationStrategyFactory {
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
-		} else if(name.equals(hausdorffP2PClass.getName())) {
+		} else if(name.equals(hausdorffDefaultClass.getName())) {
 			try {
-				return hausdorffP2PClass.newInstance();
+				return hausdorffDefaultClass.newInstance();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

@@ -33,19 +33,10 @@ public class FrechetDistance {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.frechet.dist");
-	public double aggReflectionFactor = 4;
-	/** */
-	public int maxOutliners = 10;
-	/** @http://en.wikipedia.org/wiki/Outlnier */
+
 	public double maxDistance = 60;
 	/** Epsilon value */
-	public int maxLookahead = 10;
-	/** */
-	public double maxPathDifference = 100;
-	/** */
-	public int minLengthFirstSegment = 1;
-	/** */
-	public double maxAngle = 37;
+
 	/** Angle between Path and Trace */
 
 	List<AggConnection> P; //p
@@ -55,9 +46,10 @@ public class FrechetDistance {
 	private Cell[] cells = null;
 	AggContainer aggContainer;
 
-	public FrechetDistance() {
+	public FrechetDistance(double maxDistance) {
 		P = null;
 		Q = null;
+		this.maxDistance = maxDistance;
 	}
 	
 	public int getSizeP() {

@@ -20,11 +20,11 @@ public class BidirectionalFrechetDistance {
 		reverseFd.setEpsilon(epsilon);
 	}
 	
-	public BidirectionalFrechetDistance() {
-		fd = new FrechetDistance();
+	public BidirectionalFrechetDistance(double maxDistance) {
+		fd = new FrechetDistance(maxDistance);
 		fd.P = new ArrayList<>();//P
 		fd.Q = new ArrayList<>();//Q
-		reverseFd = new FrechetDistance();
+		reverseFd = new FrechetDistance(maxDistance);
 		reverseFd.P = new ArrayList<>();
 		reverseFd.Q = new ArrayList<>();
 	}

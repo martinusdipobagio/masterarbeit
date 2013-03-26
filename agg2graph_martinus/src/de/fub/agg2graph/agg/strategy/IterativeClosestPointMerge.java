@@ -54,8 +54,8 @@ public class IterativeClosestPointMerge implements IMergeHandler {
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 	
-	public double delta = 0.0001;
-	private final int k = 1;
+	public double delta = 0.003;
+	private final int k = 3;
 	public TreeAggMap map = null;
 
 	public IterativeClosestPointMerge() {
@@ -148,11 +148,6 @@ public class IterativeClosestPointMerge implements IMergeHandler {
 				List<GPSPoint> neighbour = getKSmallest(gpsPoints.get(x), node, k);
 				if(neighbour.size() > 0)
 					pointGhostPointPairs.add(PointGhostPointPair.createIterative(node, neighbour, 0));
-//				//neighbour > 0
-//				if(neighbour.size() > 0 && !kNeighbours.containsKey(node)) {
-//					kNeighbours.put(node, neighbour);
-////					System.out.println(node + " => " + neighbour);
-//				}
 			}
 		}
 	}
@@ -216,28 +211,13 @@ public class IterativeClosestPointMerge implements IMergeHandler {
 		
 		for (PointGhostPointPair pgpp : pointGhostPointPairs) {
 			List<ILocation> line = new ArrayList<ILocation>(2);
-			line.add(new GPSPoint(pgpp.source));
 			for(int j = 0; j < pgpp.ghostPoints.size(); j++) {
+				line.add(new GPSPoint(pgpp.source));
 				line.add(new GPSPoint(pgpp.ghostPoints.get(j)));
 				mergingLayer.addObject(line);
 				line = new ArrayList<ILocation>(2);
-				line.add(new GPSPoint(pgpp.source));
 			}
 		}
-//		System.out.println(kNeighbours);
-//		for(int i = 0; i < aggNodes.get(x).size(); i++) {
-//			System.out.println("current Node : " + currentNode);
-			
-//			if(kNeighbours.get(currentNode) != null) {
-//				for(GPSPoint p : kNeighbours.get(currentNode)) {
-//					List<ILocation> line = new ArrayList<ILocation>(2);
-//					System.out.println(currentNode + " <-> " + p);
-//					line.add(currentNode);
-//					line.add(p);
-//					mergingLayer.addObject(line);
-//				}
-//			}
-//		}
 	}
 
 	@Override
@@ -291,10 +271,10 @@ public class IterativeClosestPointMerge implements IMergeHandler {
 		for(int i = 0; i < ts.size(); i++) {
 //			System.out.println("Neigh " + i + "   = " + ts.get(i).getLat() + " <> " + ts.get(i).getLon());
 		}
-		AggNode to = GPSCalc.CalculateMean(a, ts, delta, aggContainer);
-		AggNode toCopy = new AggNode(to, aggContainer);
+		AggNode toMean = GPSCalc.CalculateMean(a, ts, delta, aggContainer);		
+		AggNode to = GPSCalc.moveLocation(map, a, toMean, aggContainer);
 //		GPSCalc.moveLocation(map, a, toCopy, aggContainer);
-		aggContainer.moveNodeTo(a, toCopy);
+		aggContainer.moveNodeTo(a, to);
 //		System.out.println("t         = " + to.getLat() + " <> " + to.getLon());
 	}
 

@@ -588,33 +588,6 @@ public class GPSCalc {
 		}
 	}
 	
-//	public static ILocation intersectionWithPerpendicularThrough(
-//			GPSPoint p1, GPSPoint p2, AggNode q) {
-//		final double p1x = p1.getLon();
-//		final double p1y = p1.getLat();
-//		final double p2x = p2.getLon();
-//		final double p2y = p2.getLat();
-//		
-//		final double qx = q.getLon();
-//		final double qy = q.getLat();
-//		
-//		final double a = p1y - p2y;
-//		final double b = p2x - p1x;
-//		final double c = p2x*p1y - p2y*p1x;
-//		
-//		final double pa = -b;
-//		final double pb = a;
-//		final double pc = pa*qx + pb*qy;
-//		
-//		final double D = (a*pb) - (pa*b);
-//
-//		if(D != 0.) {
-//			return new AbstractLocation((a*pc - pa*c)/D, (pb*c - b*pc)/D);
-//		} else {
-//			return null;
-//		}
-//	}
-	
 	public static ILocation intersection(ILocation p1, ILocation p2, ILocation q1, ILocation q2) {
 		final double p1x = p1.getLon();
 		final double p1y = p1.getLat();
@@ -699,7 +672,7 @@ public class GPSCalc {
 			if(dist > epsilon) continue;
 			
 			double damp = damp(dist, epsilon);
-			
+			System.out.println(damp);
 			slon += damp*(ti.getLon() - alon);
 			slat += damp*(ti.getLat() - alat);
 			++div;
@@ -714,17 +687,16 @@ public class GPSCalc {
 		return new AggNode(slat + alat, slon + alon, aggContainer);
 	}
 	
-	public static void moveLocation(TreeAggMap map, AggNode fix, ILocation toMove, AggContainer aggContainer) {
+	public static AggNode moveLocation(TreeAggMap map, AggNode fix, AggNode toMove, AggContainer aggContainer) {
 		// along To Perpendicular from Trace
 		final double alon = toMove.getLon();
 		final double alat = toMove.getLat();
 		final double elon = fix.getLon();
 		final double elat = fix.getLat();
 		
-		final double n = 2;
-		map.updateLocation(new AggNode(toMove, aggContainer),
-				new AggNode( (alat * n + elat) / (n + 1.),
-						(alon * n +  elon) / (n + 1.), aggContainer));
+		final double n = 0.5;
+		
+		return new AggNode( (alat * n + elat) / (n + 1.), (alon * n +  elon) / (n + 1.), aggContainer);
 	}
 	
 	private static double damp(double distance, double epsilon) {

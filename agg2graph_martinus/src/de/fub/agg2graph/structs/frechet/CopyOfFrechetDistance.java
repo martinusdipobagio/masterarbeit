@@ -30,7 +30,7 @@ import de.fub.agg2graph.structs.Pair;
  * @author Martinus
  * 
  */
-public class FrechetDistance {
+public class CopyOfFrechetDistance {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.frechet.dist");
@@ -47,7 +47,7 @@ public class FrechetDistance {
 	private Cell[] cells = null;
 	AggContainer aggContainer;
 
-	public FrechetDistance(double maxDistance) {
+	public CopyOfFrechetDistance(double maxDistance) {
 		P = null;
 		Q = null;
 		this.maxDistance = maxDistance;
@@ -61,7 +61,7 @@ public class FrechetDistance {
 		return (Q != null) ? Q.size() : 0;
 	}
 
-	public FrechetDistance(List<GPSEdge> a, List<GPSEdge> t, double epsilon) {
+	public CopyOfFrechetDistance(List<GPSEdge> a, List<GPSEdge> t, double epsilon) {
 		this.P = new ArrayList<AggConnection>();
 		for(GPSEdge agg : a) {
 			P.add(new AggConnection(agg.getFrom(), agg.getTo(), aggContainer));
@@ -320,9 +320,9 @@ public class FrechetDistance {
 	public HashMap<Integer, TreeSet<GPSPoint>> fromQ = new HashMap<>();
 	boolean needsRecalculation = true;
 
-	private void addP(int cellIndexi, ILocation trace, ILocation other) {
-		distanceMatrix.put(new Pair<>(trace, other),
-				GPSCalc.getDistanceTwoPointsDouble(trace, other));
+	private void addP(int cellIndexi, ILocation p, ILocation other) {
+		distanceMatrix.put(new Pair<>(p, other),
+				GPSCalc.getDistanceTwoPointsDouble(p, other));
 		if (cellIndexi != -1) {
 			if (!fromP.containsKey(cellIndexi)
 					|| fromP.get(cellIndexi) == null) {

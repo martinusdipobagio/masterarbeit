@@ -32,9 +32,9 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
-	public int maxLookahead = 5;
+	public int maxLookahead = 7;
 	public double maxPathDifference = 1000;
-	public double maxInitDistance = 100;
+	public double maxInitDistance = 150;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -131,7 +131,6 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 				List<List<AggNode>> paths = getPathsByDepth(nearPoints, 1,
 						maxLookahead);
 				
-				
 				/* Tinus - Filtering Paths */
 				for(List<AggNode> path : paths) {
 					filterPath(path);
@@ -215,8 +214,11 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 			}
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
-		System.out.println("MATCHES : " + matches.size());
+//		System.out.println("MATCHES : " + matches.size());
+//		int locCounter = 0;
 		for (IMergeHandler match : matches) {
+//			System.out.println(++locCounter + ". Match");
+			System.out.println(match.getAggNodes());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}

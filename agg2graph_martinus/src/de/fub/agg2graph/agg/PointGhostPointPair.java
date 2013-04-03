@@ -14,6 +14,7 @@ import java.util.List;
 
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
+import de.fub.agg2graph.structs.Pair;
 
 /**
  * Models a pair of a Point and its GhostPoint.
@@ -28,11 +29,42 @@ public class PointGhostPointPair {
 	//Iterative
 	public AggNode source;
 	public List<GPSPoint> ghostPoints;
+	//AttractionForce
+	public Pair<AggNode, AggNode> pairAgg;
+	public Pair<GPSPoint, GPSPoint> pairTraj;
+	public GPSPoint proj;
+	public boolean isEnd = false; //source or destination
+	
 	public AggConnection targetConnection;
 	public int targetStartIndex;
 	public boolean removable = false;
 
 	private PointGhostPointPair() {
+	}
+	
+	public static PointGhostPointPair createAttraction(AggNode original, GPSPoint proj) {
+		PointGhostPointPair result = new PointGhostPointPair();
+		result.source = original;
+		result.proj = proj;
+		result.isEnd = true;
+		
+		return result;
+	}
+	
+	public static PointGhostPointPair createAttraction(AggNode original, Pair<AggNode, AggNode> pairAgg,
+			Pair<GPSPoint, GPSPoint> pairTraj, int startIndex) {
+		return createAttraction(original, pairAgg, pairTraj, startIndex, false);
+	}
+
+	public static PointGhostPointPair createAttraction(AggNode original, Pair<AggNode, AggNode> pairAgg,
+			Pair<GPSPoint, GPSPoint> pairTraj, int startIndex, boolean removable) {
+		PointGhostPointPair result = new PointGhostPointPair();
+		result.source = original;
+		result.pairAgg = pairAgg;
+		result.pairTraj = pairTraj;
+		result.targetStartIndex = startIndex;
+		result.removable = removable;
+		return result;
 	}
 
 	public static PointGhostPointPair createIterative(AggNode original,

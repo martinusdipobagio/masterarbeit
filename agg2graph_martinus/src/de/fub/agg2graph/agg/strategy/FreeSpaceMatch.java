@@ -2,8 +2,6 @@ package de.fub.agg2graph.agg.strategy;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -12,7 +10,9 @@ import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.ITraceDistance;
+import de.fub.agg2graph.input.Trace;
 import de.fub.agg2graph.structs.ClassObjectEditor;
+import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
@@ -21,6 +21,7 @@ import de.fub.agg2graph.structs.frechet.BidirectionalFrechetDistance;
 import de.fub.agg2graph.structs.frechet.FrechetDistance;
 import de.fub.agg2graph.structs.frechet.IAggregatedMap;
 import de.fub.agg2graph.structs.frechet.ITrace;
+import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FreeSpaceMatch implements ITraceDistance {
 
@@ -31,11 +32,13 @@ public class FreeSpaceMatch implements ITraceDistance {
 	public double maxPathDifference = 100;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
-	
+
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;
 	public ITrace trace;
 	public ILocation start;
+
+	public double bestValue;
 
 	interface Pather {
 		double expectedfd();
@@ -249,9 +252,10 @@ public class FreeSpaceMatch implements ITraceDistance {
 		}
 	}
 
-	public Collection<Pair<List<AggConnection>, List<GPSEdge>>> match(
-			IAggregatedMap map, ITrace trace, ILocation start, double epsilon) {
-		BidirectionalFrechetDistance bfd = new BidirectionalFrechetDistance(maxDistance);
+	public Pair<List<AggConnection>, List<GPSEdge>> match(IAggregatedMap map,
+			ITrace trace, ILocation start, double epsilon) {
+		BidirectionalFrechetDistance bfd = new BidirectionalFrechetDistance(
+				epsilon);
 		bfd.setEpsilon(epsilon);
 		final TracePather tp = new TracePather(trace, start, bfd);
 		final MapPather mp = new MapPather(map, start, bfd);
@@ -261,7 +265,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 			if (!tp.initialPrevious()) {
 				// give up
 
-				return Collections.emptyList();
+				return null;
 			}
 		}
 		mp.expectedfd();
@@ -299,46 +303,96 @@ public class FreeSpaceMatch implements ITraceDistance {
 		// visitor.visit(result);
 		// }
 
-		int minLength = 5; // TODO
-		if (result.first().size() >= minLength
-				&& result.second().size() >= minLength) {
-			Collection<Pair<List<AggConnection>, List<GPSEdge>>> list = new ArrayList<>();
-			list.add(result);
+		// int minLength = 5; // TODO
+		// if (result.first().size() >= minLength
+		// && result.second().size() >= minLength) {
+		// Collection<Pair<List<AggConnection>, List<GPSEdge>>> list = new
+		// ArrayList<>();
+		// list.add(result);
 
-			FrechetDistance fd = new FrechetDistance(maxDistance);
-			List<GPSPoint> tpPoint = new ArrayList<GPSPoint>();
-			for (GPSEdge t : tp.path)
-				tpPoint.add(t.getFrom());
-			tpPoint.add(tp.path.get(tp.path.size() - 1).getTo());
+		// TODO bestValue
+		FrechetDistance fd = new FrechetDistance(maxDistance);
+		List<GPSPoint> tpPoint = new ArrayList<GPSPoint>();
+		for (GPSEdge t : tp.path)
+			tpPoint.add(t.getFrom());
+		tpPoint.add(tp.path.get(tp.path.size() - 1).getTo());
 
-			List<AggNode> mpPoint = new ArrayList<AggNode>();
-			for (AggConnection m : mp.path)
-				mpPoint.add(m.getFrom());
-			mpPoint.add(mp.path.get(mp.path.size() - 1).getTo());
+		List<AggNode> mpPoint = new ArrayList<AggNode>();
+		for (AggConnection m : mp.path)
+			mpPoint.add(m.getFrom());
+		mpPoint.add(mp.path.get(mp.path.size() - 1).getTo());
 
-			System.out.printf("FD: %.8f Soll: %.8f\n",
-					fd.getDistance(mp.path, tp.path), epsilon);
-			return list;
-		} else {
-			return Collections.emptyList();
-		}
+		System.out.printf("FD: %.8f Soll: %.8f\n",
+				this.bestValue = fd.getDistance(mp.path, tp.path), epsilon);
+		return result;
+		// } else {
+		// return Collections.emptyList();
+		// }
 	}
 
 	@Override
 	public Object[] getPathDifference(List<AggNode> aggPath,
 			List<GPSPoint> tracePoints, int startIndex, IMergeHandler dmh) {
-//		Collection<Pair<List<AggConnection>, List<GPSEdge>>> res = match(map, trace, start, maxDistance / 20000);
-		Collection<Pair<List<AggConnection>, List<GPSEdge>>> res = match(map, trace, start, .003);
-		
-		@SuppressWarnings({ "unchecked" })
-		Pair<List<AggConnection>, List<GPSEdge>>[] result = new Pair[res.size()];
-		int counter = 0;
-		Iterator<Pair<List<AggConnection>, List<GPSEdge>>> itRes = res.iterator();
-		while(itRes.hasNext()) {
-			result[counter++] = itRes.next();
+		double bestValue = Double.MIN_VALUE;
+		double bestValueLength = 0;
+
+		List<AggNode> aggResult = new ArrayList<AggNode>();
+		List<GPSPoint> traceResult = new ArrayList<GPSPoint>();
+
+		List<AggNode> aggLocations = aggPath;
+		/* TEST */
+		// List<GPSPoint> traceLocations = tracePoints.subList(startIndex,
+		// tracePoints.size());
+		/* UNSAFE */
+		AggNode lastAgg = aggLocations.get(aggLocations.size() - 1);
+		double bestLastDistance = Double.MAX_VALUE;
+		int bestI = -1;
+		for (int i = startIndex; i < tracePoints.size(); i++) {
+			if (bestLastDistance > GPSCalc.getDistanceTwoPointsMeter(lastAgg,
+					tracePoints.get(i))) {
+				bestI = i;
+				bestLastDistance = GPSCalc.getDistanceTwoPointsMeter(lastAgg,
+						tracePoints.get(i));
+			}
 		}
-		
-		return result;
+		List<GPSPoint> traceLocations = (bestI > -1) ? tracePoints.subList(
+				startIndex, bestI + 1) : tracePoints.subList(startIndex,
+				tracePoints.size());
+
+		map = new TreeAggMap(aggContainer);
+		AggNode last = null;
+		for (AggNode node : aggLocations) {
+			if (last != null)
+				map.insertConnection(new AggConnection(last, node, aggContainer));
+			last = node;
+		}
+
+		start = traceLocations.get(0);
+		trace = new Trace();
+		for (int i = 0; i < traceLocations.size(); i++) {
+			trace.insertEdgeLocation(i, traceLocations.get(i));
+		}
+		// TODO null gefahr
+		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start,
+				0.003);
+		bestValue = this.bestValue;
+
+		if (res == null)
+			return null;
+
+		for (int i = 0; i < res.a.size(); i++) {
+			aggResult.add(res.a.get(i).getFrom());
+		}
+		aggResult.add(res.a.get(res.a.size() - 1).getTo());
+
+		for (int i = 0; i < res.b.size(); i++) {
+			traceResult.add(res.b.get(i).getFrom());
+		}
+		traceResult.add(res.b.get(res.b.size() - 1).getTo());
+
+		bestValueLength = aggResult.size();
+		return new Object[] { bestValue, bestValueLength, aggResult,
+				traceResult };
 	}
 
 	@Override

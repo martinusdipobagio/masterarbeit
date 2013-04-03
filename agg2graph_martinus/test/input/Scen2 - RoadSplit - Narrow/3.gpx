@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.50452" minlon="13.3512439" maxlat="52.506126" maxlon="13.353233"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>2009_07_09_Manon_on_a_bus.gpx</name>
+    <desc>Manon on a bus in Berlin</desc>
+    <link href="http://api.openstreetmap.org/user/%C3%86var%20Arnfj%C3%B6r%C3%B0%20Bjarmason/traces/453159">
+    </link>
+    <trkseg>
+      
+      <trkpt lat="52.504971" lon="13.351867">
+        <time>2009-07-09T08:17:02Z</time>
+      </trkpt>
+      <trkpt lat="52.504986" lon="13.351881">
+        <time>2009-07-09T08:17:03Z</time>
+      </trkpt>
+      <trkpt lat="52.505006" lon="13.351903">
+        <time>2009-07-09T08:17:04Z</time>
+      </trkpt>
+      <trkpt lat="52.505032" lon="13.35193">
+        <time>2009-07-09T08:17:05Z</time>
+      </trkpt>
+      <trkpt lat="52.505065" lon="13.351963">
+        <time>2009-07-09T08:17:06Z</time>
+      </trkpt>
+      <trkpt lat="52.505103" lon="13.351997">
+        <time>2009-07-09T08:17:07Z</time>
+      </trkpt>
+      <trkpt lat="52.505144" lon="13.352029">
+        <time>2009-07-09T08:17:08Z</time>
+      </trkpt>
+      <trkpt lat="52.505189" lon="13.352061">
+        <time>2009-07-09T08:17:09Z</time>
+      </trkpt>
+      <trkpt lat="52.505238" lon="13.352094">
+        <time>2009-07-09T08:17:10Z</time>
+      </trkpt>
+      <trkpt lat="52.50529" lon="13.352131">
+        <time>2009-07-09T08:17:11Z</time>
+      </trkpt>
+      <trkpt lat="52.505345" lon="13.352168">
+        <time>2009-07-09T08:17:12Z</time>
+      </trkpt>
+      <trkpt lat="52.505405" lon="13.352208">
+        <time>2009-07-09T08:17:13Z</time>
+      </trkpt>
+      <trkpt lat="52.505468" lon="13.352245">
+        <time>2009-07-09T08:17:14Z</time>
+      </trkpt>
+      <trkpt lat="52.505537" lon="13.35228">
+        <time>2009-07-09T08:17:15Z</time>
+      </trkpt>
+      <trkpt lat="52.505607" lon="13.352309">
+        <time>2009-07-09T08:17:16Z</time>
+      </trkpt>
+      <trkpt lat="52.505678" lon="13.352329">
+        <time>2009-07-09T08:17:17Z</time>
+      </trkpt>
+      <trkpt lat="52.505749" lon="13.352339">
+        <time>2009-07-09T08:17:18Z</time>
+      </trkpt>
+      <trkpt lat="52.505817" lon="13.352342">
+        <time>2009-07-09T08:17:19Z</time>
+      </trkpt>
+      <trkpt lat="52.505883" lon="13.352339">
+        <time>2009-07-09T08:17:20Z</time>
+      </trkpt>
+      <trkpt lat="52.505946" lon="13.352332">
+        <time>2009-07-09T08:17:21Z</time>
+      </trkpt>
+      <trkpt lat="52.506008" lon="13.352325">
+        <time>2009-07-09T08:17:22Z</time>
+      </trkpt>
+      <trkpt lat="52.506068" lon="13.352316">
+        <time>2009-07-09T08:17:23Z</time>
+      </trkpt>
+      <trkpt lat="52.506125" lon="13.352309">
+        <time>2009-07-09T08:17:24Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

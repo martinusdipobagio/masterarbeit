@@ -23,14 +23,12 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy.State;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
-public class DefaultMatchIterativeMergeStrategy extends AbstractAggregationStrategy {
+public class DefaultMatchFrechetBasedMergeStrategy extends AbstractAggregationStrategy {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
@@ -48,10 +46,10 @@ public class DefaultMatchIterativeMergeStrategy extends AbstractAggregationStrat
 	 * Preferably use the {@link AggregationStrategyFactory} for creating
 	 * instances of this class.
 	 */
-	public DefaultMatchIterativeMergeStrategy() {
+	public DefaultMatchFrechetBasedMergeStrategy() {
 		TraceDistanceFactory.setClass(DefaultTraceDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
-		MergeHandlerFactory.setClass(IterativeClosestPointsMerge.class);
+		MergeHandlerFactory.setClass(FrechetBasedMerge.class);
 		baseMergeHandler = MergeHandlerFactory.getObject();
 	}
 

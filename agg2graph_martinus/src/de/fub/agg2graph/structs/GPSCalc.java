@@ -18,7 +18,6 @@ import org.jscience.mathematics.vector.Float64Vector;
 
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
-import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 import uk.me.jstott.jcoord.LatLng;
 
@@ -367,6 +366,14 @@ public class GPSCalc {
 				.normValue() * vecB.normValue())).doubleValue()));
 	}
 
+	public static void main(String[] args) {
+		GPSPoint a1 = new GPSPoint(2, 0);
+		GPSPoint a2 = new GPSPoint(0, 2);
+		GPSPoint b1 = new GPSPoint(0, 0);
+		GPSPoint b2 = new GPSPoint(2, 0);
+		System.out.println(getAngleBetweenEdges(a1, a2, b1, b2));
+	}
+	
 	/**
 	 * Measure the angle between two Edges
 	 * 
@@ -672,7 +679,6 @@ public class GPSCalc {
 			if(dist > epsilon) continue;
 			
 			double damp = damp(dist, epsilon);
-			System.out.println(damp);
 			slon += damp*(ti.getLon() - alon);
 			slat += damp*(ti.getLat() - alat);
 			++div;
@@ -687,7 +693,7 @@ public class GPSCalc {
 		return new AggNode(slat + alat, slon + alon, aggContainer);
 	}
 	
-	public static AggNode moveLocation(TreeAggMap map, AggNode fix, AggNode toMove, AggContainer aggContainer) {
+	public static AggNode moveLocation(AggNode fix, AggNode toMove, AggContainer aggContainer) {
 		// along To Perpendicular from Trace
 		final double alon = toMove.getLon();
 		final double alat = toMove.getLat();

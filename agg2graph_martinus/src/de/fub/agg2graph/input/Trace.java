@@ -36,49 +36,49 @@ public class Trace implements ITrace {
 		return locations.iterator();
 	}
 
-	@Override
-	public ListIterator<AggConnection> connListIterator() {
-		if (connsNeedsUpdate)
-			updateConns();
-
-		return conns().listIterator();
-	}
-
-	@Override
-	public ListIterator<AggConnection> connListIterator(ILocation start) {
-		if (connsNeedsUpdate)
-			updateConns();
-
-		ListIterator<AggConnection> it = connListIterator();
-		while (it.hasNext()) {
-			if (it.next().getFrom().compareTo((AggNode) start) == 0) {
-				it.previous();
-				return it;
-			}
-		}
-		return Collections.emptyListIterator();
-	}
-
-	@Override
-	public ArrayList<AggConnection> conns() {
-		return conns;
-	}
-
-	@Override
-	public ArrayList<ILocation> connLocations() {
-		return locations;
-	}
-
-	@Override
-	public ITrace connSubTrace(ILocation start, ILocation stop) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean connIsEmpty() {
-		return locations == null || locations.size() < 2;
-	}
+//	@Override
+//	public ListIterator<AggConnection> connListIterator() {
+//		if (connsNeedsUpdate)
+//			updateConns();
+//
+//		return conns().listIterator();
+//	}
+//
+//	@Override
+//	public ListIterator<AggConnection> connListIterator(ILocation start) {
+//		if (connsNeedsUpdate)
+//			updateConns();
+//
+//		ListIterator<AggConnection> it = connListIterator();
+//		while (it.hasNext()) {
+//			if (it.next().getFrom().compareTo((AggNode) start) == 0) {
+//				it.previous();
+//				return it;
+//			}
+//		}
+//		return Collections.emptyListIterator();
+//	}
+//
+//	@Override
+//	public ArrayList<AggConnection> conns() {
+//		return conns;
+//	}
+//
+//	@Override
+//	public ArrayList<ILocation> connLocations() {
+//		return locations;
+//	}
+//
+//	@Override
+//	public ITrace connSubTrace(ILocation start, ILocation stop) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public boolean connIsEmpty() {
+//		return locations == null || locations.size() < 2;
+//	}
 
 	@Override
 	public String name() {
@@ -91,42 +91,42 @@ public class Trace implements ITrace {
 		return null;
 	}
 
-	@Override
-	public ILocation getConnFirstLocation() {
-		return locations.get(0);
-	}
+//	@Override
+//	public ILocation getConnFirstLocation() {
+//		return locations.get(0);
+//	}
+//
+//	@Override
+//	public ILocation getConnLastLocation() {
+//		return locations.get(locations.size() - 1);
+//	}
+//
+//	@Override
+//	public void insertConnLocation(int index, ILocation location) {
+//		locations.add(index, location);
+//		connsNeedsUpdate = true;
+//	}
 
-	@Override
-	public ILocation getConnLastLocation() {
-		return locations.get(locations.size() - 1);
-	}
-
-	@Override
-	public void insertConnLocation(int index, ILocation location) {
-		locations.add(index, location);
-		connsNeedsUpdate = true;
-	}
-
-	protected void updateConns() {
-		if (!connsNeedsUpdate)
-			return;
-		conns.clear();
-
-		ILocation from = null;
-		for (ILocation l : locations) {
-			if (from == null) {
-				from = l;
-				continue;
-			}
-
-			ILocation to = l;
-			AggConnection conn = 
-					new AggConnection(new AggNode(from, aggContainer), new AggNode(to, aggContainer), aggContainer);
-			conns.add(conn);
-			from = to;
-		}
-		connsNeedsUpdate = false;
-	}
+//	protected void updateConns() {
+//		if (!connsNeedsUpdate)
+//			return;
+//		conns.clear();
+//
+//		ILocation from = null;
+//		for (ILocation l : locations) {
+//			if (from == null) {
+//				from = l;
+//				continue;
+//			}
+//
+//			ILocation to = l;
+//			AggConnection conn = 
+//					new AggConnection(new AggNode(from, aggContainer), new AggNode(to, aggContainer), aggContainer);
+//			conns.add(conn);
+//			from = to;
+//		}
+//		connsNeedsUpdate = false;
+//	}
 
 	protected void updateEdges() {
 		if (!edgesNeedsUpdate)

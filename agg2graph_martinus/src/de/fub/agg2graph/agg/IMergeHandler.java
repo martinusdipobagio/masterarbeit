@@ -36,12 +36,9 @@ public interface IMergeHandler {
 
 	public List<AggNode> getAggNodes();
 
-	public List<AggNode> getAggNodes(int i);
-
 	
 	public List<GPSPoint> getGpsPoints();
 
-	public List<GPSPoint> getGpsPoints(int i);
 
 	public double getDistance();
 

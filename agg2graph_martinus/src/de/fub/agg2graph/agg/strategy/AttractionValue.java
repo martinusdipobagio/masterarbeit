@@ -3,13 +3,16 @@ package de.fub.agg2graph.agg.strategy;
 import java.util.HashMap;
 import java.util.Map;
 
+import matlabcontrol.MatlabInvocationException;
+import matlabcontrol.MatlabProxy;
+
 public class AttractionValue {
 	public static Map<String, Double> value = new HashMap<String, Double>();
 	
 	/**
-	 * N = 5 ; s1 = 5 ; s2 = 5 ; M = 1 ; k = 0.005
+	 * Mapping Value N = 5 ; s1 = 5 ; s2 = 5 ; M = 1 ; k = 0.005
 	 */
-	public AttractionValue() {
+	public AttractionValue() {		
 		value.put("0.5", 0.2349893228573277929974838725218);
 		value.put("1.0", 0.47039229198758733988549322544592);
 		value.put("1.5", 0.7066275677048794777673421542817);

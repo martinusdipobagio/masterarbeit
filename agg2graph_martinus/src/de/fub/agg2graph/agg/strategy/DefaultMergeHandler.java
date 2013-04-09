@@ -416,10 +416,10 @@ public class DefaultMergeHandler implements IMergeHandler {
 				continue;
 			}
 			// TODO: Not the best solution
-			if (!lastNode.isRelevant()) {
-				lastNode = node;
-				continue;
-			}
+//			if (!lastNode.isRelevant()) {
+//				lastNode = node;
+//				continue;
+//			}
 
 			/* Make sure that they are connected */
 			conn = lastNode.getConnectionTo(node);

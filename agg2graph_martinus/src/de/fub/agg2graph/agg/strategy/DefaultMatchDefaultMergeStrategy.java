@@ -10,6 +10,8 @@
  ******************************************************************************/
 package de.fub.agg2graph.agg.strategy;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +25,7 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.input.GPXWriter;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
@@ -33,8 +36,8 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 			.getLogger("agg2graph.agg.default.strategy");
 
 	public int maxLookahead = 7;
-	public double maxPathDifference = 1000;
-	public double maxInitDistance = 150;
+	public double maxPathDifference = 100;	//1000;
+	public double maxInitDistance = 20; 	//150;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -223,6 +226,15 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 				match.mergePoints();
 			}
 		}
+		
+		try {
+			new File("test/input/output-test").mkdirs();			
+			GPXWriter.writeSegment(new File(
+					new String("test/input/output-test" + toString() + ".gpx")), new GPSSegment(mergeHandler.getAggNodes()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void filterPath(List<AggNode> path) {
@@ -294,5 +306,10 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 				path.remove(path.size() - 1);
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "DefaultMatch-DefaultMerge";
 	}
 }

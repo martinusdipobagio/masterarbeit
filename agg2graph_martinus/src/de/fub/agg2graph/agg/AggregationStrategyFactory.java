@@ -48,7 +48,7 @@ public class AggregationStrategyFactory {
 	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;
 	//TODO
-	private static Class<? extends IAggregationStrategy> factoryClass = HausdorffMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> factoryClass = DefaultMatchAttractionMergeStrategy.class;
 
 	public static void setClass(Class<? extends IAggregationStrategy> theClass) {
 		factoryClass = theClass;

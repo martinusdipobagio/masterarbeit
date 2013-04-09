@@ -57,7 +57,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 
 		Graphics2D g2 = (Graphics2D)g;
 //		int tileSize = state.tileSize;
-		int tileSize = 80;
+		int tileSize = 100;
 		Rectangle r = g.getClipBounds();
 		startx = r.x/tileSize;
 		starty = r.y/tileSize;

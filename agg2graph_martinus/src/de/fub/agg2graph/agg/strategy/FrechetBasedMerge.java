@@ -57,10 +57,10 @@ public class FrechetBasedMerge implements IMergeHandler {
 	private double distance = 0;
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
-	
+
 	public HashSet<GPSEdge> criticalEdges = new HashSet<GPSEdge>();
 	HashMap<AggNode, TreeSet<AggNode>> AtoT = new HashMap<AggNode, TreeSet<AggNode>>();
-	
+
 	public FrechetBasedMerge() {
 		// debugging
 		logger.setLevel(Level.ALL);
@@ -152,7 +152,7 @@ public class FrechetBasedMerge implements IMergeHandler {
 
 	@Override
 	public void processSubmatch() {
-		//TODO
+		// TODO
 	}
 
 	@SuppressWarnings("unused")
@@ -173,7 +173,8 @@ public class FrechetBasedMerge implements IMergeHandler {
 		Layer matchingLayer = ui.getLayerManager().getLayer("matching");
 		Layer mergingLayer = ui.getLayerManager().getLayer("merging");
 		// clone the lists
-		List<ILocation> aggNodesClone = new ArrayList<ILocation>(aggNodes.size());
+		List<ILocation> aggNodesClone = new ArrayList<ILocation>(
+				aggNodes.size());
 		for (ILocation loc : aggNodes) {
 			aggNodesClone.add(new GPSPoint(loc));
 		}
@@ -182,12 +183,12 @@ public class FrechetBasedMerge implements IMergeHandler {
 
 		Iterator<AggNode> it = AtoT.keySet().iterator();
 		AggNode nextKey;
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			nextKey = it.next();
-			if(AtoT.get(nextKey) == null)
+			if (AtoT.get(nextKey) == null)
 				continue;
 			List<ILocation> line = new ArrayList<ILocation>(2);
-			for(ILocation to : AtoT.get(nextKey)) {
+			for (ILocation to : AtoT.get(nextKey)) {
 				line.add(new GPSPoint(nextKey));
 				line.add(new GPSPoint(to));
 				mergingLayer.addObject(line);
@@ -209,31 +210,29 @@ public class FrechetBasedMerge implements IMergeHandler {
 	@Override
 	public void mergePoints() {
 		this.max = aggNodes.size();
-		for (int x = 0; x < max; x++) {
 
-			// add nodes
-			AggNode lastNode = null;
-			AggConnection conn = null;
-			for (AggNode node : getAggNodes()) {
-				if (lastNode == null) {
-					lastNode = node;
-					continue;
-				}
-
-				/* Make sure that they are connected */
-				conn = lastNode.getConnectionTo(node);
-				if (conn == null) {
-					continue;
-				}
-				// aConn.add(new AggConnection(lastNode, node, aggContainer));
-				conn.tryToFill();
-
+		// add nodes
+		AggNode lastNode = null;
+		AggConnection conn = null;
+		for (AggNode node : getAggNodes()) {
+			if (lastNode == null) {
 				lastNode = node;
+				continue;
 			}
-			frechetMerge(aggNodes, gpsPoints);
+
+			/* Make sure that they are connected */
+			conn = lastNode.getConnectionTo(node);
+			if (conn == null) {
+				continue;
+			}
+			// aConn.add(new AggConnection(lastNode, node, aggContainer));
+			conn.tryToFill();
+
+			lastNode = node;
 		}
+		frechetMerge(aggNodes, gpsPoints);
 	}
-	
+
 	public void frechetMerge(List<AggNode> agg, List<GPSPoint> tra) {
 		// Convert to vectors for frechet input.
 		AggNode lastAgg = null;
@@ -242,17 +241,17 @@ public class FrechetBasedMerge implements IMergeHandler {
 		List<GPSEdge> Tv = new ArrayList<GPSEdge>();
 		AggNode to;
 
-		for(AggNode a : agg) {
-			if(lastAgg == null) {
+		for (AggNode a : agg) {
+			if (lastAgg == null) {
 				lastAgg = a;
 				continue;
 			}
 			Av.add(new GPSEdge(lastAgg, a));
 			lastAgg = a;
 		}
-		
-		for(GPSPoint t : tra) {
-			if(lastTra == null) {
+
+		for (GPSPoint t : tra) {
+			if (lastTra == null) {
 				lastTra = t;
 				continue;
 			}
@@ -260,15 +259,15 @@ public class FrechetBasedMerge implements IMergeHandler {
 			lastTra = t;
 		}
 
-//		// Value of epsilon not relevant in our use case.
+		// // Value of epsilon not relevant in our use case.
 		FrechetDistance fd = new FrechetDistance(Av, Tv, 400.);
 		// Compute critical values and the meta information needed by our
 		// algorithm.
 		double epsilon = fd.computeEpsilon();
-		System.out.println("FrechetBasedMerge: Use epsilon of: " + epsilon
-				+ " isOk " + fd.isInDistance());
+		// System.out.println("FrechetBasedMerge: Use epsilon of: " + epsilon
+		// + " isOk " + fd.isInDistance());
 		fd.computeMetaData();
-//		// Map points from A to T
+		// // Map points from A to T
 		for (Entry<Integer, TreeSet<AggNode>> entry : fd.fromP.entrySet()) {
 			int i = entry.getKey();
 			if (i < fd.P.size()) {
@@ -277,39 +276,49 @@ public class FrechetBasedMerge implements IMergeHandler {
 				AtoT.put(fd.P.get(i - 1).getTo(), entry.getValue());
 			}
 		}
-		
+
 		showDebugInfo();
 
-//
-//		// Move the aggregate by the mean of the segments introduced by Frechet
-//		// critical values. See paperwork for clarification.
+		//
+		// // Move the aggregate by the mean of the segments introduced by
+		// Frechet
+		// // critical values. See paperwork for clarification.
 		List<AggNode> keySet = new ArrayList<AggNode>(AtoT.keySet());
 		for (int i = 0; i < keySet.size() - 1; i++) {
-			//TODO
+			// TODO
 			AggNode locationToMove = keySet.get(i);
 			aggContainer.addNode(locationToMove);
-			
+
 			if (AtoT.containsKey(locationToMove)) {
-				TreeSet<AggNode> affectedTraceLocations = AtoT.get(locationToMove);
+				TreeSet<AggNode> affectedTraceLocations = AtoT
+						.get(locationToMove);
 				if (affectedTraceLocations != null) {
 					TreeSet<GPSPoint> affectedTrace = new TreeSet<GPSPoint>();
 					// Save meta information for display in the gui.
 					for (AggNode ti : affectedTraceLocations) {
-						//TODO in 						
-//						double dist = locationToMove.getDistanceTo(ti);
-						double dist = GPSCalc.getDistanceTwoPointsDouble(locationToMove, ti);
+						// TODO in
+						// double dist = locationToMove.getDistanceTo(ti);
+						double dist = GPSCalc.getDistanceTwoPointsDouble(
+								locationToMove, ti);
 						if (dist <= epsilon) {
-//							System.out.println(dist + " ... " + epsilon);
-							criticalEdges.add(new GPSEdge(new GPSPoint(locationToMove), new GPSPoint(ti)));
+							// System.out.println(dist + " ... " + epsilon);
+							criticalEdges.add(new GPSEdge(new GPSPoint(
+									locationToMove), new GPSPoint(ti)));
 						}
 						affectedTrace.add(new GPSPoint(ti));
 					}
-					
-					AggNode weightedpos = GPSCalc.CalculateMean(
-							locationToMove, affectedTrace, epsilon, aggContainer);
+
+					AggNode weightedpos = GPSCalc.CalculateMean(locationToMove,
+							affectedTrace, epsilon, aggContainer);
 					AggNode toMean = new AggNode(weightedpos, aggContainer);
 					if (toMean.compareTo(locationToMove) != 0) {
-						to = GPSCalc.moveLocation(locationToMove, toMean, aggContainer);
+						to = GPSCalc.moveLocation(locationToMove, toMean,
+								aggContainer);
+						for (AggNode a : aggNodes) {
+							if (locationToMove.getLat() == a.getLat()
+									&& locationToMove.getLon() == a.getLon())
+								locationToMove = a;
+						}
 						aggContainer.moveNodeTo(locationToMove, to);
 					}
 				}
@@ -323,21 +332,29 @@ public class FrechetBasedMerge implements IMergeHandler {
 				TreeSet<GPSPoint> affectedTrace = new TreeSet<GPSPoint>();
 				// Save meta information for display in the gui.
 				for (AggNode ti : affectedTraceLocations) {
-//					double dist = locationToMove.getDistanceTo(ti);
-					double dist = GPSCalc.getDistanceTwoPointsDouble(locationToMove, ti);
-					//TODO epsilon, nicht delta
+					// double dist = locationToMove.getDistanceTo(ti);
+					double dist = GPSCalc.getDistanceTwoPointsDouble(
+							locationToMove, ti);
+					// TODO epsilon, nicht delta
 					if (dist <= epsilon) {
-						criticalEdges.add(new GPSEdge(new GPSPoint(locationToMove), new GPSPoint(ti)));						// System.err.printf("\\draw[dashed,thin] (%.8f, %.8f) to (%.8f, %.8f);\n",
+						criticalEdges.add(new GPSEdge(new GPSPoint(
+								locationToMove), new GPSPoint(ti))); // System.err.printf("\\draw[dashed,thin] (%.8f, %.8f) to (%.8f, %.8f);\n",
 						// locationToMove.getLongitude(),
 						// locationToMove.getLatitude(),
 						// ti.getLongitude(), ti.getLatitude());
 					}
 				}
-				AggNode weightedpos = GPSCalc.CalculateMean(
-						locationToMove, affectedTrace, epsilon, aggContainer);
+				AggNode weightedpos = GPSCalc.CalculateMean(locationToMove,
+						affectedTrace, epsilon, aggContainer);
 				AggNode toMean = new AggNode(weightedpos, aggContainer);
 				if (toMean.compareTo(locationToMove) != 0) {
-					to = GPSCalc.moveLocation(locationToMove, toMean, aggContainer);
+					to = GPSCalc.moveLocation(locationToMove, toMean,
+							aggContainer);
+					for (AggNode a : aggNodes) {
+						if (locationToMove.getLat() == a.getLat()
+								&& locationToMove.getLon() == a.getLon())
+							locationToMove = a;
+					}
 					aggContainer.moveNodeTo(locationToMove, to);
 				}
 			}

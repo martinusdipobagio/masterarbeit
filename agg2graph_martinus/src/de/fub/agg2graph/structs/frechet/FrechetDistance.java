@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -96,6 +97,19 @@ public class FrechetDistance {
 		private GPSEdge q;
 		private AggConnection p;
 
+		//Extension
+		List<Point> all = new ArrayList<Point>();
+		List<Point> le = new ArrayList<Point>(); 	//using vertical line
+		List<Point> ri = new ArrayList<Point>();	//using vertical line
+		List<Point> bo = new ArrayList<Point>(); 	//using horizontal line
+		List<Point> to = new ArrayList<Point>();	//using horizontal line
+		Integer alls = Integer.MIN_VALUE;
+		Integer bots = Integer.MAX_VALUE;
+		Integer tops = Integer.MIN_VALUE;
+		Integer lef = Integer.MAX_VALUE;
+		Integer rig = Integer.MIN_VALUE;
+		
+		
 		/** intervals of the reachable space */
 		Interval left;
 		Interval bottom;
@@ -137,21 +151,49 @@ public class FrechetDistance {
 			}
 			double stepsize = 1.0 / width;
 
+			//Y
 			for (int s = 0; s < width; ++s) {
 				double sStep = s * stepsize;
 				ILocation pAtt = p.at(sStep);
+				alls = Integer.MIN_VALUE;
+				List<Point> current = new ArrayList<Point>(2);
 
+				//X
 				for (int t = 0; t < width; ++t) {
 					double tStep = t * stepsize;
 					ILocation qAtt = q.at(tStep);
 
 					double distance = GPSCalc.getDistanceTwoPointsDouble(
 							pAtt, qAtt);
-					buffer.setRGB(t, width - 1 - s,
-							(distance < maxDistance) ? Color.WHITE.getRGB()
-									: Color.BLACK.getRGB());
+					
+					if(distance < maxDistance) {
+						buffer.setRGB(t, width - 1 - s, Color.WHITE.getRGB());
+						if(alls == Integer.MIN_VALUE) {
+							current.add(new Point(s, t));
+							alls = s;
+						} else if(alls == s) {
+							if(current.size() == 2)
+								current.remove(1);
+							current.add(new Point(s, t));
+								
+						}
+					} else {
+						buffer.setRGB(t, width - 1 - s, Color.BLACK.getRGB());
+					}
+				}
+				all.addAll(current);
+			}
+			
+			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
+//			System.out.println("Cell (i, j) = (" + i + ", " + j + ")");
+			if(all.size() > 0) {
+				g2.setColor(Color.GREEN);
+
+				for(int i = 0; i < all.size(); i++) {
+					g2.drawRect(all.get(i).y, width - 1 - all.get(i).x, 1, 1);
 				}
 			}
+			
 			return buffer;
 		}
 
@@ -231,6 +273,25 @@ public class FrechetDistance {
 				}
 			}
 			return buffer;
+		}
+
+		/** Not sure with the form: from Exact Algorithms ... */
+		public void scoreFunction() {
+			//1. Case
+			
+			//2. Case
+		}
+		
+		//Distance
+		private int distanceL1(Point from, Point to) {
+			if(from.x > to.x || from.y > to.y)
+				return -1;
+			return (to.x - from.x) + (to.y - from.y);
+		}
+		
+		//Three-piece configuration
+		private void segment() {
+			
 		}
 
 		public String toString() {
@@ -666,7 +727,7 @@ public class FrechetDistance {
 			}
 		}
 
-		// Calculate Rvi0
+		// Calculate Rv_i0
 		for (int i = iOfPivot + 1; i < P.size(); ++i) {
 			Cell cell = getCell(i, jOfPivot);
 			cell.left = new Interval();

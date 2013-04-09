@@ -204,7 +204,6 @@ public class AttractionForceMerge implements IMergeHandler {
 								internalGPSPoint.get(bestI)));
 			}
 		}
-
 	}
 
 	public Pair<GPSPoint, GPSPoint> getBestEdge(AggNode node, GPSPoint start,

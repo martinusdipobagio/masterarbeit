@@ -314,8 +314,8 @@ public class AttractionForceMerge implements IMergeHandler {
 	public void attractionForce(AggNode currentNode, GPSPoint projection) {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				projection);
-		// System.out.println("Att-Value = " + aValue);
-		// System.out.println("Distance  = " + distance);
+//		 System.out.println("Att-Value = " + aValue);
+//		 System.out.println("Distance  = " + distance);
 		Double aValue = av.getValue(distance);
 		if (aValue != null) {
 			ILocation newPos = GPSCalc.getPointAt((av.getKey(distance) - aValue) / av.getKey(distance),
@@ -331,13 +331,13 @@ public class AttractionForceMerge implements IMergeHandler {
 				trajEnd);
 //		System.out.println("Angle : " + angle);
 //		System.out.println("Cos   : " + Math.cos(angle));
-		if (angle > 45
-				|| Math.cos(angle) < 0)
+//		if (angle > 45
+//				|| Math.cos(angle) < 0)
 //				|| GPSCalc.getProjectionPoint(currentNode, trajStart, trajEnd) == null) // and
 //			// right
 //			// side
 //			// of
-			return;
+//			return;
 		ILocation aggProj = GPSCalc.getProjectionPoint(currentNode, before,
 				after);
 		if (aggProj == null)

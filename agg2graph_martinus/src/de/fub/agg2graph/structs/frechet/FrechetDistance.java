@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -45,7 +46,7 @@ public class FrechetDistance {
 	/** Supposed to be P */
 	public List<GPSEdge> Q; //q
 	/** Supposed to be Q */
-	private Cell[] cells = null;
+	public Cell[] cells = null;
 	AggContainer aggContainer;
 
 	public FrechetDistance(double maxDistance) {
@@ -96,19 +97,13 @@ public class FrechetDistance {
 		private double a, b, c, d;
 		private GPSEdge q;
 		private AggConnection p;
-
+		boolean isRelevant;
+		
 		//Extension
 		List<Point> all = new ArrayList<Point>();
-		List<Point> le = new ArrayList<Point>(); 	//using vertical line
-		List<Point> ri = new ArrayList<Point>();	//using vertical line
-		List<Point> bo = new ArrayList<Point>(); 	//using horizontal line
-		List<Point> to = new ArrayList<Point>();	//using horizontal line
 		Integer alls = Integer.MIN_VALUE;
-		Integer bots = Integer.MAX_VALUE;
-		Integer tops = Integer.MIN_VALUE;
-		Integer lef = Integer.MAX_VALUE;
-		Integer rig = Integer.MIN_VALUE;
-		
+		int leftBottom = 0, rightBottom = Integer.MAX_VALUE, bottomLeft = 0, topLeft = Integer.MAX_VALUE;	//Interval for LongestPath.from
+		int leftTop = 0, rightTop = Integer.MAX_VALUE, bottomRight = 0, topRight = Integer.MAX_VALUE;		//Interval for LongestPath.to
 		
 		/** intervals of the reachable space */
 		Interval left;
@@ -119,6 +114,7 @@ public class FrechetDistance {
 			this.j = j;
 			p = P.get(i);
 			q = Q.get(j);
+			isRelevant = p.isRelevant();
 			updateCell();
 		}
 
@@ -151,6 +147,10 @@ public class FrechetDistance {
 			}
 			double stepsize = 1.0 / width;
 
+			/**
+			 * Mark white-black region and convexhull of the white region
+			 * TODO: Optimization
+			 */
 			//Y
 			for (int s = 0; s < width; ++s) {
 				double sStep = s * stepsize;
@@ -166,7 +166,7 @@ public class FrechetDistance {
 					double distance = GPSCalc.getDistanceTwoPointsDouble(
 							pAtt, qAtt);
 					
-					if(distance < maxDistance) {
+					if(distance < maxDistance && isRelevant) {
 						buffer.setRGB(t, width - 1 - s, Color.WHITE.getRGB());
 						if(alls == Integer.MIN_VALUE) {
 							current.add(new Point(s, t));
@@ -174,8 +174,7 @@ public class FrechetDistance {
 						} else if(alls == s) {
 							if(current.size() == 2)
 								current.remove(1);
-							current.add(new Point(s, t));
-								
+							current.add(new Point(s, t));	
 						}
 					} else {
 						buffer.setRGB(t, width - 1 - s, Color.BLACK.getRGB());
@@ -184,16 +183,84 @@ public class FrechetDistance {
 				all.addAll(current);
 			}
 			
-			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-//			System.out.println("Cell (i, j) = (" + i + ", " + j + ")");
-			if(all.size() > 0) {
-				g2.setColor(Color.GREEN);
+			//Y
+			for (int t = 0; t < width; ++t) {
+				double tStep = t * stepsize;
+				ILocation qAtt = q.at(tStep);
+				alls = Integer.MIN_VALUE;
+				List<Point> current = new ArrayList<Point>(2);
 
-				for(int i = 0; i < all.size(); i++) {
-					g2.drawRect(all.get(i).y, width - 1 - all.get(i).x, 1, 1);
+				//X
+				for (int s = 0; s < width; ++s) {
+					double sStep = s * stepsize;
+					ILocation pAtt = p.at(sStep);
+
+					double distance = GPSCalc.getDistanceTwoPointsDouble(
+							qAtt, pAtt);
+					
+					if(distance < maxDistance && isRelevant) {
+						if(alls == Integer.MIN_VALUE) {
+							current.add(new Point(s, t));
+							alls = t;
+						} else if(alls == t) {
+							if(current.size() == 2)
+								current.remove(1);
+							current.add(new Point(s, t));	
+						}
+					} 
+				}
+				all.addAll(current);
+			}
+			
+			//All list sortieren
+			Collections.sort(all, new Comparator<Point>() {
+
+				@Override
+				public int compare(Point p1, Point p2) {
+					if(p1.y != p2.y)
+						return p1.y - p2.y;
+					else {
+						if(p1.x < p2.x)
+							return -1;
+						else if(p1.x > p2.x)
+							return 1;
+						return 0;
+					}					
+				}
+			});
+			
+			//Remove doppelte Elemente
+			for(int i = 0; i < all.size() - 1; i++) {
+				if(all.get(i).equals(all.get(i+1))) {
+					all.remove(i--);
 				}
 			}
 			
+			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
+			
+			int best = -1, current;
+			Point bestFrom = null, currentFrom;
+			Point bestTo = null, currentTo;
+			
+			for(int i = 0; i < all.size(); i++) {
+				for(int j = i+1; j < all.size(); j++) {
+					currentFrom = all.get(i);
+					currentTo = all.get(j);
+					if(currentFrom.x < currentTo.x && currentFrom.y < currentTo.y) {
+						current = (currentTo.x - currentFrom.x) + (currentTo.y - currentFrom.y);
+						if(best < current) {
+							bestFrom = currentFrom;
+							bestTo = currentTo;
+							best = current;
+						}
+					}
+				}
+			}
+			if(best > 0) {
+				g2.setColor(Color.GREEN);
+				g2.drawLine(bestFrom.y, width - 1 - bestFrom.x, bestTo.y, width - 1 - bestTo.x);
+			}
+						
 			return buffer;
 		}
 
@@ -275,6 +342,10 @@ public class FrechetDistance {
 			return buffer;
 		}
 
+		public String toString() {
+			return "(" + i + ", " + j + ") left=" + left + "  bottom=" + bottom;
+		}
+		
 		/** Not sure with the form: from Exact Algorithms ... */
 		public void scoreFunction() {
 			//1. Case
@@ -283,19 +354,35 @@ public class FrechetDistance {
 		}
 		
 		//Distance
-		private int distanceL1(Point from, Point to) {
+		public int distanceL1(Point from, Point to) {
 			if(from.x > to.x || from.y > to.y)
 				return -1;
 			return (to.x - from.x) + (to.y - from.y);
 		}
 		
 		//Three-piece configuration
-		private void segment() {
+		public void segment() {
 			
 		}
-
-		public String toString() {
-			return "(" + i + ", " + j + ") left=" + left + "  bottom=" + bottom;
+		
+		public boolean inArea(Point point, int left, int right, int bottom, int top) {
+			if(left <= point.x && point.x <= right && bottom <= point.y && point.y <= top)
+				return true;
+			else 
+				return false;
+		}
+		
+		/** Rückgabewert von longestPath */
+		class LongestPath {
+			public final Point from;
+			public final Point to;
+			public final int distance;
+			
+			public LongestPath(Point from, Point to, int distance) {
+				this.from = from;
+				this.to = to;
+				this.distance = distance;		
+			}
 		}
 	}
 

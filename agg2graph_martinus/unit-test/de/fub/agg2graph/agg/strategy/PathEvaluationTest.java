@@ -34,7 +34,7 @@ public class PathEvaluationTest extends TestCase {
 
 	@Override
 	protected void setUp() {
-		AggregationStrategyFactory.setClass(DefaultAggregationStrategy.class);
+		AggregationStrategyFactory.setClass(DefaultMatchDefaultMergeStrategy.class);
 		aggStrategy = AggregationStrategyFactory.getObject();
 		cachingStrategy = new DefaultCachingStrategy();
 		container = AggContainer.createContainer(new File("test/agg/unittest"),

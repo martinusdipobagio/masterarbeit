@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="libs/jscience/jscience.jar"/>
 	<classpathentry kind="lib" path="libs/jcoord-1.0.jar"/>
 	<classpathentry kind="lib" path="libs/sqlitejdbc-v056.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/eclipse/testWorkspace/matlabcontrol-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

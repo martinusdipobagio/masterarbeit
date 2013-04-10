@@ -21,7 +21,7 @@ import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.structs.GPSPoint;
 
 public class DefaultAggregationStrategyTest extends TestCase {
-	private DefaultAggregationStrategy das;
+	private DefaultMatchDefaultMergeStrategy das;
 	private DefaultTraceDistance dtd;
 	private DefaultMergeHandler dmh;
 	private List<AggNode> path;
@@ -30,7 +30,7 @@ public class DefaultAggregationStrategyTest extends TestCase {
 
 	@Override
 	public void setUp() {
-		das = new DefaultAggregationStrategy();
+		das = new DefaultMatchDefaultMergeStrategy();
 		dtd = (DefaultTraceDistance) das.getTraceDist();
 		dtd.maxOutliners = 1;
 		dtd.maxDistance = 40;

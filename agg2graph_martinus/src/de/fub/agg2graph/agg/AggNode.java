@@ -53,6 +53,7 @@ public class AggNode extends GPSPoint {
 
 	public AggNode(ILocation location, AggContainer aggContainer) {
 		this.aggContainer = aggContainer;
+		this.setRelevant(location.isRelevant());
 		if (location != null) {
 			init(location.getID(), location.getLat(), location.getLon(),
 					aggContainer);

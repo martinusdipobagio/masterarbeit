@@ -55,6 +55,7 @@ public class AbstractLocation implements ILocation, Hideable, Comparable<Abstrac
 		if (location != null) {
 			this.setID(location.getID());
 			this.setLatLon(location.getLat(), location.getLon());
+			this.setRelevant(location.isRelevant());
 		}
 	}
 

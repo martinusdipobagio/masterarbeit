@@ -98,6 +98,8 @@ public class FrechetDistance {
 		private GPSEdge q;
 		private AggConnection p;
 		boolean isRelevant;
+		Point from = new Point(0, 0);
+		Point to = new Point(0, 0);
 		
 		//Extension
 		List<Point> all = new ArrayList<Point>();
@@ -114,7 +116,7 @@ public class FrechetDistance {
 			this.j = j;
 			p = P.get(i);
 			q = Q.get(j);
-			isRelevant = p.isRelevant();
+			isRelevant = p.getFrom().isRelevant();
 			updateCell();
 		}
 
@@ -165,7 +167,6 @@ public class FrechetDistance {
 
 					double distance = GPSCalc.getDistanceTwoPointsDouble(
 							pAtt, qAtt);
-					
 					if(distance < maxDistance && isRelevant) {
 						buffer.setRGB(t, width - 1 - s, Color.WHITE.getRGB());
 						if(alls == Integer.MIN_VALUE) {
@@ -236,30 +237,37 @@ public class FrechetDistance {
 				}
 			}
 			
-			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-			
-			int best = -1, current;
-			Point bestFrom = null, currentFrom;
-			Point bestTo = null, currentTo;
-			
-			for(int i = 0; i < all.size(); i++) {
-				for(int j = i+1; j < all.size(); j++) {
-					currentFrom = all.get(i);
-					currentTo = all.get(j);
-					if(currentFrom.x < currentTo.x && currentFrom.y < currentTo.y) {
-						current = (currentTo.x - currentFrom.x) + (currentTo.y - currentFrom.y);
-						if(best < current) {
-							bestFrom = currentFrom;
-							bestTo = currentTo;
-							best = current;
-						}
-					}
-				}
-			}
-			if(best > 0) {
+			if(from.x == 0 && from.y == 0 && to.x == 0 && to.y == 0) {
+				Graphics2D g2 = (Graphics2D) buffer.getGraphics();
 				g2.setColor(Color.GREEN);
-				g2.drawLine(bestFrom.y, width - 1 - bestFrom.x, bestTo.y, width - 1 - bestTo.x);
+				g2.setStroke(new BasicStroke(20));
+				g2.drawLine(from.y, width - 1 - from.x, to.y, width - 1 - to.x);
 			}
+			
+//			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
+//			
+//			int best = -1, current;
+//			Point bestFrom = null, currentFrom;
+//			Point bestTo = null, currentTo;
+//			
+//			for(int i = 0; i < all.size(); i++) {
+//				for(int j = i+1; j < all.size(); j++) {
+//					currentFrom = all.get(i);
+//					currentTo = all.get(j);
+//					if(currentFrom.x < currentTo.x && currentFrom.y < currentTo.y) {
+//						current = (currentTo.x - currentFrom.x) + (currentTo.y - currentFrom.y);
+//						if(best < current) {
+//							bestFrom = currentFrom;
+//							bestTo = currentTo;
+//							best = current;
+//						}
+//					}
+//				}
+//			}
+//			if(best > 0) {
+//				g2.setColor(Color.GREEN);
+//				g2.drawLine(bestFrom.y, width - 1 - bestFrom.x, bestTo.y, width - 1 - bestTo.x);
+//			}
 						
 			return buffer;
 		}
@@ -365,24 +373,55 @@ public class FrechetDistance {
 			
 		}
 		
-		public boolean inArea(Point point, int left, int right, int bottom, int top) {
-			if(left <= point.x && point.x <= right && bottom <= point.y && point.y <= top)
-				return true;
-			else 
-				return false;
+		public boolean isEmpty() {
+			return all.size() == 0 ? true : false;
 		}
 		
-		/** Rückgabewert von longestPath */
-		class LongestPath {
-			public final Point from;
-			public final Point to;
-			public final int distance;
-			
-			public LongestPath(Point from, Point to, int distance) {
-				this.from = from;
-				this.to = to;
-				this.distance = distance;		
+		/**
+		 * 
+		 * @param direction = true ? right : top;
+		 * @return
+		 */
+		public void goTo(boolean direction) {
+			int mXindex = -1;
+			int mYindex = -1;
+			Point to = new Point(0, 0);
+//			if(from == null) {
+//				System.out.println("SCHIIIIIT Happpened cuks");
+//				return;
+//			}
+			//get the most right x and lowest from this x
+			if(direction) {
+				for(Point p : all) {
+					if(mXindex < p.x && p.x >= from.x) {
+						mXindex = p.x;
+					}
+				}
+				for(Point p : all) {
+					if((p.x == mXindex && p.y >= from.y) && (mYindex == -1 || mYindex > p.y)) {
+						mYindex = p.y;
+						to = p;
+					}
+				}
+			} 
+			//get the most top y and most left from this y
+			else {
+				for(Point p : all) {
+					if(mYindex < p.y && p.y >= from.y) {
+						mYindex = p.y;
+					}
+				}
+				for(Point p : all) {
+					if((p.y == mYindex && p.x >= from.x) && (mXindex == -1 || mXindex > p.x)) {
+						mXindex = p.x;
+						to = p;
+					}
+				}
 			}
+			
+			this.to = to;
+			if(this.to == null)
+				System.out.println("STIMMT nicht");
 		}
 	}
 
@@ -900,7 +939,6 @@ public class FrechetDistance {
 
 	//
 
-	// TODO Edge --> Point Compability
 	public Cell getCell(int i, int j) {
 		assert (0 <= i && i < P.size());
 		assert (0 <= j && j < Q.size());
@@ -920,7 +958,6 @@ public class FrechetDistance {
 		return cells[j * P.size() + i];
 	}
 
-	// TODO Edge --> Point Compability
 	public double getDistance(List<AggConnection> a, List<GPSEdge> b) {
 		if (a == null || b == null || a.size() < 1 || b.size() < 1) {
 			return Double.POSITIVE_INFINITY;
@@ -930,9 +967,7 @@ public class FrechetDistance {
 		
 		this.P = new ArrayList<AggConnection>(a);
 		this.Q = new ArrayList<GPSEdge>(b);
-//		for(GPSEdge agg : b) {
-//			P.add(new AggConnection(agg.getFrom(), agg.getTo(), aggContainer));
-//		}
+
 		resizeCells();
 
 		double result = 0;
@@ -945,7 +980,6 @@ public class FrechetDistance {
 	}
 
 	//
-	// TODO Edge --> Point Compability
 	public boolean isInDistance(List<GPSEdge> a, List<GPSEdge> b,
 			double epsilon) {
 		if (a == null || b == null || a.size() < 1 || b.size() < 1) {

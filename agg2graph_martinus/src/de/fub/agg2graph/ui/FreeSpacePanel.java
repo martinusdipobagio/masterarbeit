@@ -15,6 +15,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import de.fub.agg2graph.structs.frechet.CellContainer;
 import de.fub.agg2graph.structs.frechet.FrechetDistance;
 import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 
@@ -46,7 +47,6 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 		add(eSlider);
 		scroll.setViewportView(this);
 		this.setDoubleBuffered(true);
-
 	}
 
 
@@ -93,11 +93,13 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				g2.setComposite(savedComposite);
 			}
 		}
+
 	}
 
 	/** Listener **/
 	@Override
 	public void stateChanged(ChangeEvent e) {
+		CellContainer cont = new CellContainer(f);
 		JSlider source = (JSlider)e.getSource();
 		double epsilon = 0.003 * (source.getValue() / 10000.0);
 		f.setEpsilon(epsilon);

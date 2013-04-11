@@ -80,8 +80,9 @@ public class AggConnection extends AbstractEdge<AggNode> implements Comparable<A
 	
 	public AggConnection(ILocation from, ILocation to, AggContainer aggContainer) {
 		init(from.getLat(), from.getLon(), to.getLat(), to.getLon(), aggContainer);
+		this.from.setRelevant(from.isRelevant());
 	}
-	
+
 	/**
 	 * Initialize AggConnection. Sets lat, lon and {@link AggContainer}.
 	 * 

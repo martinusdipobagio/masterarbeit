@@ -37,16 +37,11 @@ public class FrechetDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.frechet.dist");
 
-	public double maxDistance = 60;
-	/** Epsilon value */
+	public double maxDistance = 0.003;
 
-	/** Angle between Path and Trace */
-
-	public List<AggConnection> P; //p
-	/** Supposed to be P */
-	public List<GPSEdge> Q; //q
-	/** Supposed to be Q */
-	public Cell[] cells = null;
+	public List<AggConnection> P; 	// AGG
+	public List<GPSEdge> Q; 		// TRA
+	public Cell[] cells = null; 	// List of Container
 	AggContainer aggContainer;
 
 	public FrechetDistance(double maxDistance) {
@@ -54,18 +49,18 @@ public class FrechetDistance {
 		Q = null;
 		this.maxDistance = maxDistance;
 	}
-	
+
 	public int getSizeP() {
 		return (P != null) ? P.size() : 0;
 	}
-	
+
 	public int getSizeQ() {
 		return (Q != null) ? Q.size() : 0;
 	}
 
 	public FrechetDistance(List<GPSEdge> a, List<GPSEdge> t, double epsilon) {
 		this.P = new ArrayList<AggConnection>();
-		for(GPSEdge agg : a) {
+		for (GPSEdge agg : a) {
 			P.add(new AggConnection(agg.getFrom(), agg.getTo(), aggContainer));
 		}
 		this.Q = t;
@@ -98,16 +93,16 @@ public class FrechetDistance {
 		private GPSEdge q;
 		private AggConnection p;
 		boolean isRelevant;
-		Point from = new Point(0, 0);
-		Point to = new Point(0, 0);
-		
-		//Extension
-		List<Point> all = new ArrayList<Point>();
-		Integer alls = Integer.MIN_VALUE;
-		int leftBottom = 0, rightBottom = Integer.MAX_VALUE, bottomLeft = 0, topLeft = Integer.MAX_VALUE;	//Interval for LongestPath.from
-		int leftTop = 0, rightTop = Integer.MAX_VALUE, bottomRight = 0, topRight = Integer.MAX_VALUE;		//Interval for LongestPath.to
-		
-		/** intervals of the reachable space */
+		Point from = new Point(-1, -1);
+		Point to = new Point(-1, -1);
+
+		// Extension
+		List<Point> convexHull = new ArrayList<Point>(); // Convex Hull of white
+															// region
+		Integer convexTracker = Integer.MIN_VALUE; // A help variable to
+													// determine the hull
+
+		// intervals of the reachable space
 		Interval left;
 		Interval bottom;
 
@@ -121,20 +116,18 @@ public class FrechetDistance {
 		}
 
 		private void updateCell() {
-			left = GPSCalc.getSegmentCircleIntersection2(p.getFrom()
-					.getLon(), p.getFrom().getLat(),
-					p.getTo().getLon(), p.getTo().getLat(), q
-							.getFrom().getLon(), q.getFrom().getLat(),
-					maxDistance);
+			left = GPSCalc.getSegmentCircleIntersection2(p.getFrom().getLon(),
+					p.getFrom().getLat(), p.getTo().getLon(), p.getTo()
+							.getLat(), q.getFrom().getLon(), q.getFrom()
+							.getLat(), maxDistance);
 
 			a = left.start;
 			b = left.end;
 
-			bottom = GPSCalc.getSegmentCircleIntersection2(q.getFrom()
-					.getLon(), q.getFrom().getLat(),
-					q.getTo().getLon(), q.getTo().getLat(), p
-							.getFrom().getLon(), p.getFrom().getLat(),
-					maxDistance);
+			bottom = GPSCalc.getSegmentCircleIntersection2(
+					q.getFrom().getLon(), q.getFrom().getLat(), q.getTo()
+							.getLon(), q.getTo().getLat(),
+					p.getFrom().getLon(), p.getFrom().getLat(), maxDistance);
 
 			c = bottom.start;
 			d = bottom.end;
@@ -150,125 +143,101 @@ public class FrechetDistance {
 			double stepsize = 1.0 / width;
 
 			/**
-			 * Mark white-black region and convexhull of the white region
-			 * TODO: Optimization
+			 * Mark white-black region and convexhull of the white region TODO:
+			 * Optimization
 			 */
-			//Y
+			// AGG
 			for (int s = 0; s < width; ++s) {
 				double sStep = s * stepsize;
 				ILocation pAtt = p.at(sStep);
-				alls = Integer.MIN_VALUE;
+				convexTracker = Integer.MIN_VALUE;
 				List<Point> current = new ArrayList<Point>(2);
 
-				//X
+				// TRA
 				for (int t = 0; t < width; ++t) {
 					double tStep = t * stepsize;
 					ILocation qAtt = q.at(tStep);
 
-					double distance = GPSCalc.getDistanceTwoPointsDouble(
-							pAtt, qAtt);
-					if(distance < maxDistance && isRelevant) {
+					double distance = GPSCalc.getDistanceTwoPointsDouble(pAtt,
+							qAtt);
+					if (distance < maxDistance && isRelevant) {
 						buffer.setRGB(t, width - 1 - s, Color.WHITE.getRGB());
-						if(alls == Integer.MIN_VALUE) {
+						if (convexTracker == Integer.MIN_VALUE) {
 							current.add(new Point(s, t));
-							alls = s;
-						} else if(alls == s) {
-							if(current.size() == 2)
+							convexTracker = s;
+						} else if (convexTracker == s) {
+							if (current.size() == 2)
 								current.remove(1);
-							current.add(new Point(s, t));	
+							current.add(new Point(s, t));
 						}
 					} else {
 						buffer.setRGB(t, width - 1 - s, Color.BLACK.getRGB());
 					}
 				}
-				all.addAll(current);
+				convexHull.addAll(current);
 			}
-			
-			//Y
+
+			// TRA
 			for (int t = 0; t < width; ++t) {
 				double tStep = t * stepsize;
 				ILocation qAtt = q.at(tStep);
-				alls = Integer.MIN_VALUE;
+				convexTracker = Integer.MIN_VALUE;
 				List<Point> current = new ArrayList<Point>(2);
 
-				//X
+				// AGG
 				for (int s = 0; s < width; ++s) {
 					double sStep = s * stepsize;
 					ILocation pAtt = p.at(sStep);
 
-					double distance = GPSCalc.getDistanceTwoPointsDouble(
-							qAtt, pAtt);
-					
-					if(distance < maxDistance && isRelevant) {
-						if(alls == Integer.MIN_VALUE) {
+					double distance = GPSCalc.getDistanceTwoPointsDouble(qAtt,
+							pAtt);
+
+					if (distance < maxDistance && isRelevant) {
+						if (convexTracker == Integer.MIN_VALUE) {
 							current.add(new Point(s, t));
-							alls = t;
-						} else if(alls == t) {
-							if(current.size() == 2)
+							convexTracker = t;
+						} else if (convexTracker == t) {
+							if (current.size() == 2)
 								current.remove(1);
-							current.add(new Point(s, t));	
+							current.add(new Point(s, t));
 						}
-					} 
+					}
 				}
-				all.addAll(current);
+				convexHull.addAll(current);
 			}
-			
-			//All list sortieren
-			Collections.sort(all, new Comparator<Point>() {
+
+			// Sorting All-List
+			Collections.sort(convexHull, new Comparator<Point>() {
 
 				@Override
 				public int compare(Point p1, Point p2) {
-					if(p1.y != p2.y)
+					if (p1.y != p2.y)
 						return p1.y - p2.y;
 					else {
-						if(p1.x < p2.x)
+						if (p1.x < p2.x)
 							return -1;
-						else if(p1.x > p2.x)
+						else if (p1.x > p2.x)
 							return 1;
 						return 0;
-					}					
+					}
 				}
 			});
-			
-			//Remove doppelte Elemente
-			for(int i = 0; i < all.size() - 1; i++) {
-				if(all.get(i).equals(all.get(i+1))) {
-					all.remove(i--);
+
+			// Remove duplicate elements
+			for (int i = 0; i < convexHull.size() - 1; i++) {
+				if (convexHull.get(i).equals(convexHull.get(i + 1))) {
+					convexHull.remove(i--);
 				}
 			}
-			
-			if(from.x == 0 && from.y == 0 && to.x == 0 && to.y == 0) {
+
+			// Draw the path if possible
+			if (from.x != -1 && from.y != -1 && to.x != -1 && to.y != -1) {
 				Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-				g2.setColor(Color.GREEN);
-				g2.setStroke(new BasicStroke(20));
+				g2.setColor(Color.BLUE);
+				g2.setStroke(new BasicStroke(5));
 				g2.drawLine(from.y, width - 1 - from.x, to.y, width - 1 - to.x);
 			}
-			
-//			Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-//			
-//			int best = -1, current;
-//			Point bestFrom = null, currentFrom;
-//			Point bestTo = null, currentTo;
-//			
-//			for(int i = 0; i < all.size(); i++) {
-//				for(int j = i+1; j < all.size(); j++) {
-//					currentFrom = all.get(i);
-//					currentTo = all.get(j);
-//					if(currentFrom.x < currentTo.x && currentFrom.y < currentTo.y) {
-//						current = (currentTo.x - currentFrom.x) + (currentTo.y - currentFrom.y);
-//						if(best < current) {
-//							bestFrom = currentFrom;
-//							bestTo = currentTo;
-//							best = current;
-//						}
-//					}
-//				}
-//			}
-//			if(best > 0) {
-//				g2.setColor(Color.GREEN);
-//				g2.drawLine(bestFrom.y, width - 1 - bestFrom.x, bestTo.y, width - 1 - bestTo.x);
-//			}
-						
+
 			return buffer;
 		}
 
@@ -353,75 +322,106 @@ public class FrechetDistance {
 		public String toString() {
 			return "(" + i + ", " + j + ") left=" + left + "  bottom=" + bottom;
 		}
-		
-		/** Not sure with the form: from Exact Algorithms ... */
-		public void scoreFunction() {
-			//1. Case
-			
-			//2. Case
-		}
-		
-		//Distance
-		public int distanceL1(Point from, Point to) {
-			if(from.x > to.x || from.y > to.y)
-				return -1;
-			return (to.x - from.x) + (to.y - from.y);
-		}
-		
-		//Three-piece configuration
-		public void segment() {
-			
-		}
-		
-		public boolean isEmpty() {
-			return all.size() == 0 ? true : false;
-		}
-		
+
 		/**
-		 * 
-		 * @param direction = true ? right : top;
+		 * Check if there is white region
 		 * @return
 		 */
-		public void goTo(boolean direction) {
+		public boolean isWhiteEmpty() {
+			return convexHull.size() == 0 ? true : false;
+		}
+
+		/**
+		 * Get path with given direction
+		 * @param direction
+		 *            = true ? agg : trace;
+		 * @return
+		 */
+		public void getPath(boolean direction) {
 			int mXindex = -1;
 			int mYindex = -1;
-			Point to = new Point(0, 0);
-//			if(from == null) {
-//				System.out.println("SCHIIIIIT Happpened cuks");
-//				return;
-//			}
-			//get the most right x and lowest from this x
-			if(direction) {
-				for(Point p : all) {
-					if(mXindex < p.x && p.x >= from.x) {
-						mXindex = p.x;
-					}
-				}
-				for(Point p : all) {
-					if((p.x == mXindex && p.y >= from.y) && (mYindex == -1 || mYindex > p.y)) {
-						mYindex = p.y;
-						to = p;
-					}
-				}
-			} 
-			//get the most top y and most left from this y
-			else {
-				for(Point p : all) {
-					if(mYindex < p.y && p.y >= from.y) {
+			Point to = new Point(-1, -1);
+
+			// get the most right x and lowest from this x -> direction trace
+			if (direction) {
+				for (Point p : convexHull) {
+					if (mYindex < p.y && p.y >= from.y) {
 						mYindex = p.y;
 					}
 				}
-				for(Point p : all) {
-					if((p.y == mYindex && p.x >= from.x) && (mXindex == -1 || mXindex > p.x)) {
+				for (Point p : convexHull) {
+					if ((p.y == mYindex && p.x >= from.x)
+							&& (mXindex == -1 || mXindex > p.x)) {
 						mXindex = p.x;
 						to = p;
 					}
 				}
 			}
-			
+			// get the most top y and most left from this y -> direction agg
+			else {
+				for (Point p : convexHull) {
+					if (mXindex < p.x && p.x >= from.x) {
+						mXindex = p.x;
+					}
+				}
+				for (Point p : convexHull) {
+					if ((p.x == mXindex && p.y >= from.y)
+							&& (mYindex == -1 || mYindex > p.y)) {
+						mYindex = p.y;
+						to = p;
+					}
+				}
+			}
+
 			this.to = to;
-			if(this.to == null)
-				System.out.println("STIMMT nicht");
+			if (to.x == -1 || to.y == -1) {
+				// System.out.println("i = " + this.i + " : j = " + this.j);
+				// System.out.println("STIMMT nicht");
+			}
+		}
+
+		/**
+		 * Get the from point. from shall be very left and bottom
+		 * @param limit
+		 * @return from point
+		 */
+		public Point setLowestFrom(int limit) {
+			int y = Integer.MAX_VALUE, bestI = -1;
+			int best = Integer.MAX_VALUE, current;
+			for (int k = 0; k < convexHull.size(); k++) {
+				current = convexHull.get(k).x + convexHull.get(k).y;
+				if (best > current && y > convexHull.get(k).y
+						&& convexHull.get(k).y >= limit) {
+					best = current;
+					y = convexHull.get(k).y;
+					bestI = k;
+				}
+			}
+			if (bestI == -1)
+				return new Point(-1, -1);
+			return convexHull.get(bestI);
+		}
+
+		/**
+		 * Get the longest path of a cell
+		 * @return the y-Coord
+		 */
+		public int getLongestPath() {
+			int best = -1, current;
+			Point bestTo = null, currentTo;
+
+			for (int i = 0; i < convexHull.size(); i++) {
+				currentTo = convexHull.get(i);
+				if (from.x < currentTo.x && from.y < currentTo.y) {
+					current = (currentTo.x - from.x) + (currentTo.y - from.y);
+					if (best < current) {
+						bestTo = currentTo;
+						best = current;
+					}
+				}
+			}
+			this.to = bestTo;
+			return this.to.y;
 		}
 	}
 
@@ -440,9 +440,9 @@ public class FrechetDistance {
 		AggConnection lastSegOfP = P.get(P.size() - 1);
 		ILocation lastPointOfQ = Q.get(Q.size() - 1).getTo();
 		gate = GPSCalc.getSegmentCircleIntersection2(lastSegOfP.getFrom()
-				.getLon(), lastSegOfP.getFrom().getLat(), lastSegOfP
-				.getTo().getLon(), lastSegOfP.getTo().getLat(),
-				lastPointOfQ.getLon(), lastPointOfQ.getLat(), maxDistance);
+				.getLon(), lastSegOfP.getFrom().getLat(), lastSegOfP.getTo()
+				.getLon(), lastSegOfP.getTo().getLat(), lastPointOfQ.getLon(),
+				lastPointOfQ.getLat(), maxDistance);
 
 		if (lastCell.left.isEmpty() && lastCell.bottom.isEmpty())
 			return false; // the gate would be empty.
@@ -461,11 +461,9 @@ public class FrechetDistance {
 	 * @return
 	 */
 	public double approximate(int maxSteps) {
-		double startValue = Math.max(
-				GPSCalc.getDistanceTwoPointsDouble(P.get(0).getFrom(),
-						Q.get(0).getFrom()),
-				GPSCalc.getDistanceTwoPointsDouble(
-						P.get(P.size() - 1).getTo(),
+		double startValue = Math.max(GPSCalc.getDistanceTwoPointsDouble(P
+				.get(0).getFrom(), Q.get(0).getFrom()), GPSCalc
+				.getDistanceTwoPointsDouble(P.get(P.size() - 1).getTo(),
 						Q.get(Q.size() - 1).getTo()));
 
 		setEpsilon(startValue);
@@ -511,8 +509,7 @@ public class FrechetDistance {
 		distanceMatrix.put(new Pair<>(trace, other),
 				GPSCalc.getDistanceTwoPointsDouble(trace, other));
 		if (cellIndexi != -1) {
-			if (!fromP.containsKey(cellIndexi)
-					|| fromP.get(cellIndexi) == null) {
+			if (!fromP.containsKey(cellIndexi) || fromP.get(cellIndexi) == null) {
 				fromP.put(cellIndexi, new TreeSet<AggNode>());
 			}
 			fromP.get(cellIndexi).add(new AggNode(other, aggContainer));
@@ -523,8 +520,7 @@ public class FrechetDistance {
 		distanceMatrix.put(new Pair<>(other, agg),
 				GPSCalc.getDistanceTwoPointsDouble(other, agg));
 		if (cellIndexj != -1) {
-			if (!fromQ.containsKey(cellIndexj)
-					|| fromQ.get(cellIndexj) == null) {
+			if (!fromQ.containsKey(cellIndexj) || fromQ.get(cellIndexj) == null) {
 				fromQ.put(cellIndexj, new TreeSet<GPSPoint>());
 			}
 			fromQ.get(cellIndexj).add(new GPSPoint(other));
@@ -544,10 +540,8 @@ public class FrechetDistance {
 		addP(0, P.get(0).getFrom(), Q.get(0).getFrom());
 		addQ(0, Q.get(0).getFrom(), P.get(0).getFrom());
 
-		addP(P.size(), P.get(P.size() - 1).getTo(),
-				Q.get(Q.size() - 1).getTo());
-		addQ(Q.size(), Q.get(Q.size() - 1).getTo(),
-				P.get(P.size() - 1).getTo());
+		addP(P.size(), P.get(P.size() - 1).getTo(), Q.get(Q.size() - 1).getTo());
+		addQ(Q.size(), Q.get(Q.size() - 1).getTo(), P.get(P.size() - 1).getTo());
 		// addP(0, P.firstElement().getFrom(), Q.firstElement().getFrom());
 		// addQ(0, Q.firstElement().getFrom(), P.firstElement().getFrom());
 		//
@@ -561,13 +555,15 @@ public class FrechetDistance {
 				GPSEdge q = Q.get(j);
 
 				ILocation intersectionPerpQThroughPWithQ = GPSCalc
-						.intersectionWithPerpendicularThrough(q.getFrom(), q.getTo(), p.getFrom());
+						.intersectionWithPerpendicularThrough(q.getFrom(),
+								q.getTo(), p.getFrom());
 				ILocation intersectionPerpPThroughQWithP = GPSCalc
-						.intersectionWithPerpendicularThrough(
-								p.getFrom(), p.getTo(), q.getFrom());
+						.intersectionWithPerpendicularThrough(p.getFrom(),
+								p.getTo(), q.getFrom());
 
 				if (intersectionPerpPThroughQWithP != null
-						&& GPSCalc.PntOnLine(p.getFrom(), p.getTo(), intersectionPerpPThroughQWithP)) {
+						&& GPSCalc.PntOnLine(p.getFrom(), p.getTo(),
+								intersectionPerpPThroughQWithP)) {
 					addP(-1, intersectionPerpPThroughQWithP, q.getFrom());
 					addQ(j, q.getFrom(), intersectionPerpPThroughQWithP);
 				}
@@ -585,10 +581,10 @@ public class FrechetDistance {
 
 		// The path of p has to be converted into a vertex list.
 		ArrayList<GPSPoint> a = new ArrayList<>();
-		 for(AggConnection p : P) {
-			 a.add(p.getFrom());
-		 }
-		 a.add(P.get(P.size() - 1).getTo());
+		for (AggConnection p : P) {
+			a.add(p.getFrom());
+		}
+		a.add(P.get(P.size() - 1).getTo());
 
 		for (int i = 0; i < a.size() - 1; ++i) {
 			for (int k = i + 1; k < a.size(); ++k) {
@@ -617,10 +613,10 @@ public class FrechetDistance {
 
 		a.clear();
 
-		 for(GPSEdge q : Q) {
-			 a.add(q.getFrom());
-		 }
-		 a.add(Q.get(Q.size() - 1).getTo());
+		for (GPSEdge q : Q) {
+			a.add(q.getFrom());
+		}
+		a.add(Q.get(Q.size() - 1).getTo());
 
 		for (int i = 0; i < a.size() - 1; ++i) {
 			for (int k = i + 1; k < a.size(); ++k) {
@@ -640,7 +636,7 @@ public class FrechetDistance {
 
 						addP(-1, intersection, a.get(i));
 						addQ(i, a.get(i), intersection);
-						
+
 						addP(-1, intersection, a.get(k));
 						addQ(k, a.get(k), intersection);
 					}
@@ -661,8 +657,8 @@ public class FrechetDistance {
 	public double computeEpsilon() {
 		criticalValues.clear();
 		// case a)
-		criticalValues.add(GPSCalc.getDistanceTwoPointsDouble(
-				P.get(0).getFrom(), Q.get(0).getFrom()));
+		criticalValues.add(GPSCalc.getDistanceTwoPointsDouble(P.get(0)
+				.getFrom(), Q.get(0).getFrom()));
 		criticalValues.add(GPSCalc.getDistanceTwoPointsDouble(
 				P.get(P.size() - 1).getTo(), Q.get(Q.size() - 1).getTo()));
 		// criticalValues.add(locationToLocationDistance.getDistance(P.firstElement().getFrom(),
@@ -711,13 +707,13 @@ public class FrechetDistance {
 
 		// The path of p has to be converted into a vertex list.
 		ArrayList<ILocation> a = new ArrayList<ILocation>();
-//		for (int i = 0; i < Q.size(); i++) {
-//			a.add(Q.get(i));
-//		}
-		 for(AggConnection p : P) {
-			 a.add(p.getFrom());
-		 }
-		 a.add(P.get(P.size() - 1).getTo());
+		// for (int i = 0; i < Q.size(); i++) {
+		// a.add(Q.get(i));
+		// }
+		for (AggConnection p : P) {
+			a.add(p.getFrom());
+		}
+		a.add(P.get(P.size() - 1).getTo());
 
 		for (int i = 0; i < a.size(); ++i) {
 			for (int k = 0; k < a.size(); ++k) {
@@ -749,13 +745,13 @@ public class FrechetDistance {
 		}
 
 		a.clear();
-//		for (int i = 0; i < P.size(); i++) {
-//			a.add(P.get(i));
-//		}
-		 for(GPSEdge q : Q) {
-			 a.add(q.getFrom());
-		 }
-		 a.add(Q.get(Q.size() - 1).getTo());
+		// for (int i = 0; i < P.size(); i++) {
+		// a.add(P.get(i));
+		// }
+		for (GPSEdge q : Q) {
+			a.add(q.getFrom());
+		}
+		a.add(Q.get(Q.size() - 1).getTo());
 
 		for (int i = 0; i < a.size(); ++i) {
 			for (int k = 0; k < a.size(); ++k) {
@@ -885,10 +881,8 @@ public class FrechetDistance {
 		for (int i = iOfPivot; i < P.size(); ++i) {
 			for (int j = jOfPivot; j < Q.size(); ++j) {
 				Cell cell = getCell(i, j);
-				Cell rightCell = (j < Q.size() - 1) ? getCell(i, j + 1)
-						: null;
-				Cell topCell = (i < P.size() - 1) ? getCell(i + 1, j)
-						: null;
+				Cell rightCell = (j < Q.size() - 1) ? getCell(i, j + 1) : null;
+				Cell topCell = (i < P.size() - 1) ? getCell(i + 1, j) : null;
 				// Cell rightCell = (j < Q.size() - 1) ? getCell(i, j + 1) :
 				// null;
 				// Cell topCell = (i < P.size() - 1) ? getCell(i + 1, j) : null;
@@ -943,8 +937,7 @@ public class FrechetDistance {
 		assert (0 <= i && i < P.size());
 		assert (0 <= j && j < Q.size());
 
-		if (!(0 <= i && i < P.size() && 0 <= j && j < Q
-				.size()))
+		if (!(0 <= i && i < P.size() && 0 <= j && j < Q.size()))
 			return null;
 
 		if (cells == null) {
@@ -962,9 +955,7 @@ public class FrechetDistance {
 		if (a == null || b == null || a.size() < 1 || b.size() < 1) {
 			return Double.POSITIVE_INFINITY;
 		}
-		
-		
-		
+
 		this.P = new ArrayList<AggConnection>(a);
 		this.Q = new ArrayList<GPSEdge>(b);
 
@@ -980,14 +971,13 @@ public class FrechetDistance {
 	}
 
 	//
-	public boolean isInDistance(List<GPSEdge> a, List<GPSEdge> b,
-			double epsilon) {
+	public boolean isInDistance(List<GPSEdge> a, List<GPSEdge> b, double epsilon) {
 		if (a == null || b == null || a.size() < 1 || b.size() < 1) {
 			return false;
 		}
 
 		this.P = new ArrayList<AggConnection>();
-		for(GPSEdge agg : a) {
+		for (GPSEdge agg : a) {
 			P.add(new AggConnection(agg.getFrom(), agg.getTo(), aggContainer));
 			this.Q = new ArrayList<GPSEdge>(b);
 		}

@@ -8,10 +8,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -25,8 +25,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 	private static final long serialVersionUID = 881447785476967488L;
 	
 	JFrame window = null;
-//	private JLabel eSliderLabel;
-	private JSlider eSlider;
+	private JButton eButton;
 	private JScrollPane scroll = new JScrollPane();
 
 	
@@ -39,12 +38,9 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 	public FreeSpacePanel(JFrame window, FrechetDistance f) {
 		this.window = window;
 		this.f = f;
-//		eSliderLabel = new JLabel("epsilon");
-//		eSliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		eSlider = new JSlider(JSlider.HORIZONTAL, 0, 1000, 1000);
-		eSlider.addChangeListener(this);
-//		add(eSliderLabel);
-		add(eSlider);
+		eButton = new JButton("Generate Path");
+		eButton.addChangeListener(this);
+		add(eButton);
 		scroll.setViewportView(this);
 		this.setDoubleBuffered(true);
 	}
@@ -57,7 +53,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 
 		Graphics2D g2 = (Graphics2D)g;
 //		int tileSize = state.tileSize;
-		int tileSize = 100;
+		int tileSize = 80;
 		Rectangle r = g.getClipBounds();
 		startx = r.x/tileSize;
 		starty = r.y/tileSize;
@@ -68,7 +64,6 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 		BufferedImage tile = new BufferedImage(tileSize, tileSize, BufferedImage.TYPE_INT_RGB);
 		Color color1 = new Color(100, 100, 100);
 		Color color2 = new Color(200, 200, 200);
-//		Color markerColor = new Color(50, 50, 50);
 		
 		for(int y =  starty ; y <= endy; ++y) {
 			for(int x = startx; x <= endx; ++x) {
@@ -76,9 +71,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				if(cell == null)
 					continue;
 				Color color = ((x%2 + y%2)%2 == 0) ? color1 : color2; // that is for the caro pattern.
-//				if(state.markedCelli == y && state.markedCellj == x) {
-//					color = markerColor;
-//				}
+
 				g2.setColor(color);
 				g2.fillRect(x*tileSize, y*tileSize, tileSize, tileSize);
 				
@@ -100,9 +93,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		CellContainer cont = new CellContainer(f);
-		JSlider source = (JSlider)e.getSource();
-		double epsilon = 0.003 * (source.getValue() / 10000.0);
-		f.setEpsilon(epsilon);
+		cont.getTrail();
 		repaint();
 	}
 }

@@ -49,7 +49,7 @@ public class AggregationStrategyFactory {
 	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;
 
-	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondStrategy.class;
+	private static Class<? extends IAggregationStrategy> secondStrategyClass = FrechetMatchIterativeMergeStrategy.class;
 
 	//TODO
 	private static Class<? extends IAggregationStrategy> factoryClass = SecondStrategy.class;

@@ -238,6 +238,7 @@ public class FrechetMatchIterativeMergeStrategy extends
 	 */
 	private List<AggNode> aggNodesExchange(List<AggNode> bestPath) {
 		AggNode currentNode;
+//		System.out.println(bestPath);
 		for(int i = 0; i < bestPath.size(); i++) {
 			currentNode = bestPath.get(i);
 			for(AggNode internal : internalAggNodes) {

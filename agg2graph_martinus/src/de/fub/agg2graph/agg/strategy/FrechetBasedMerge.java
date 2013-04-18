@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
+import de.fub.agg2graph.agg.PointGhostPointPair;
 import de.fub.agg2graph.graph.RamerDouglasPeuckerFilter;
 import de.fub.agg2graph.input.Globals;
 import de.fub.agg2graph.structs.ClassObjectEditor;
@@ -42,7 +44,9 @@ public class FrechetBasedMerge implements IMergeHandler {
 	// helper stuff
 	// private Map<AggNode, List<GPSPoint>> kNeighbours = new HashMap<AggNode,
 	// List<GPSPoint>>();
-
+	private Map<AggConnection, List<PointGhostPointPair>> newNodesPerConn;
+	private List<PointGhostPointPair> pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
+	
 	private AggNode inNode;
 	private AggNode outNode;
 

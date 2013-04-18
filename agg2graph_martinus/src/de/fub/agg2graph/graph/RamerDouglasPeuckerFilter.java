@@ -36,7 +36,7 @@ import de.fub.agg2graph.structs.Path;
  */
 public class RamerDouglasPeuckerFilter {
 	private double epsilon;
-	private double maxSegmentLength = 100; // meters
+	private double maxSegmentLength = 5; // meters
 
 	public RamerDouglasPeuckerFilter(double epsilon) {
 		if (epsilon < 0) {

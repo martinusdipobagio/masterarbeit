@@ -23,20 +23,18 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy.State;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class DefaultMatchIterativeMergeStrategy extends AbstractAggregationStrategy {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 1000;
-	public double maxInitDistance = 150;
+	public double maxPathDifference = 100;
+	public double maxInitDistance = 5;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -210,10 +208,10 @@ public class DefaultMatchIterativeMergeStrategy extends AbstractAggregationStrat
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
-//				AggNode node = new AggNode(currentPoint, aggContainer);
-//				node.setID("A-" + currentPoint.getID());
-//				addNodeToAgg(aggContainer, node);
-//				lastNode = node;
+				AggNode node = new AggNode(currentPoint, aggContainer);
+				node.setID("A-" + currentPoint.getID());
+				addNodeToAgg(aggContainer, node);
+				lastNode = node;
 				i++;
 			}
 		}

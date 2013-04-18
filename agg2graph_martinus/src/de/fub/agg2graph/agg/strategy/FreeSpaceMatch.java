@@ -16,11 +16,11 @@ import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.Pair;
 import de.fub.agg2graph.structs.frechet.BidirectionalFrechetDistance;
 import de.fub.agg2graph.structs.frechet.FrechetDistance;
 import de.fub.agg2graph.structs.frechet.IAggregatedMap;
 import de.fub.agg2graph.structs.frechet.ITrace;
+import de.fub.agg2graph.structs.frechet.Pair;
 import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FreeSpaceMatch implements ITraceDistance {

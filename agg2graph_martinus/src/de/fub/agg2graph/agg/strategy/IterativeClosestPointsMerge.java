@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.Map.Entry;
@@ -25,6 +26,7 @@ import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
 import de.fub.agg2graph.structs.frechet.FrechetDistance;
+import de.fub.agg2graph.structs.frechet.Pair;
 import de.fub.agg2graph.structs.frechet.TreeAggMap;
 import de.fub.agg2graph.ui.gui.Layer;
 import de.fub.agg2graph.ui.gui.RenderingOptions;
@@ -44,6 +46,7 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 	// helper stuff
 	// private Map<AggNode, List<GPSPoint>> kNeighbours = new HashMap<AggNode,
 	// List<GPSPoint>>();
+	private Map<AggConnection, List<PointGhostPointPair>> newNodesPerConn;
 	private List<PointGhostPointPair> pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
 
 	private AggNode inNode;
@@ -57,7 +60,7 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 40; // meters
 
-	private double distance = 0;
+	private double distance = 10;
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 
@@ -155,13 +158,42 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 
 	@Override
 	public void processSubmatch() {
-		this.max = aggNodes.size();
-		List<AggNode> internalAggNodes = new ArrayList<AggNode>(aggNodes);
-		for (AggNode node : internalAggNodes) {
+		newNodesPerConn = new HashMap<AggConnection, List<PointGhostPointPair>>();
+		pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
+
+		// Not interested with too few points
+		if (getAggNodes().size() < 3 || getGpsPoints().size() < 2)
+			return;
+
+		inNode = aggNodes.get(0);
+		outNode = aggNodes.get(aggNodes.size() - 1);
+
+		// projections of the aggregation to the trace
+		for (int pointIndex = 0; pointIndex < getAggNodes().size(); pointIndex++) {
+
+
+			AggNode node = getAggNodes().get(pointIndex);
+			logger.log(Level.FINER, "agg node " + node);
+			// loop over all possible opposing lines
+			PointGhostPointPair pair = null;
+			// START
 			List<GPSPoint> neighbour = getKSmallest(gpsPoints, node, k);
-			if (neighbour.size() > 0)
-				pointGhostPointPairs.add(PointGhostPointPair.createIterative(
-						node, neighbour, 0));
+			if (neighbour.size() > 0) {
+				pair = PointGhostPointPair.createIterative(
+						node, neighbour, 0);
+				pointGhostPointPairs.add(pair);
+			}
+			
+			if (pair != null && pointIndex < getAggNodes().size() - 1) {
+				AggConnection conn = getAggNodes().get(pointIndex)
+						.getConnectionTo(getAggNodes().get(pointIndex + 1));
+				if (!newNodesPerConn.containsKey(conn)) {
+					newNodesPerConn.put(conn,
+							new ArrayList<PointGhostPointPair>());
+				}
+				newNodesPerConn.get(conn).add(pair);
+			}
+			// END
 		}
 	}
 
@@ -266,7 +298,6 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 			if (conn == null) {
 				continue;
 			}
-			// aConn.add(new AggConnection(lastNode, node, aggContainer));
 			conn.tryToFill();
 
 			lastNode = node;

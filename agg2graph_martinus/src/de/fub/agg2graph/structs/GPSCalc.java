@@ -18,6 +18,7 @@ import org.jscience.mathematics.vector.Float64Vector;
 
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
+import de.fub.agg2graph.structs.frechet.Interval;
 
 import uk.me.jstott.jcoord.LatLng;
 

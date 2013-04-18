@@ -38,4 +38,7 @@ public interface IAggregationStrategy {
 	public ITraceDistance getTraceDist();
 
 	public List<ClassObjectEditor> getSettings();
+	
+	//TODO Martinus
+	public AggNode getLastNode();
 }

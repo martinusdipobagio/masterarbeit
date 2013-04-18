@@ -79,7 +79,8 @@ public class UIStepStorage extends StepStorage {
 		lm.addLayerToPanel(matchingLayer, ui.getMainPanel());
 
 		x = new RenderingOptions();
-		x.color = new Color(240, 225, 17); // yellow/orange
+//		x.color = new Color(240, 225, 17); // yellow/orange
+		x.color = new Color(218, 165, 32); // yellow/orange
 		x.zIndex = 2;
 		x.opacity = 0.7;
 		Layer mergingLayer = new Layer("merging", "Merging", x);
@@ -118,7 +119,7 @@ public class UIStepStorage extends StepStorage {
 		CleaningOptions o = getGpsCleaner().getCleaningOptions();
 		o.filterBySegmentLength = true;
 		o.minSegmentLength = 1;
-		o.maxSegmentLength = 100;
+		o.maxSegmentLength = 10;
 		o.filterByEdgeLength = true;
 		o.minEdgeLength = 0.3;
 		o.maxEdgeLength = 750;

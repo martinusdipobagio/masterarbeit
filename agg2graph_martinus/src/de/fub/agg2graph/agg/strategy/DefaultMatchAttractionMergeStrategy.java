@@ -33,8 +33,8 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 			.getLogger("agg2graph.agg.default.strategy");
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 1000;
-	public double maxInitDistance = 150;
+	public double maxPathDifference = 100;
+	public double maxInitDistance = 10;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -208,10 +208,10 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
-//				AggNode node = new AggNode(currentPoint, aggContainer);
-//				node.setID("A-" + currentPoint.getID());
-//				addNodeToAgg(aggContainer, node);
-//				lastNode = node;
+				AggNode node = new AggNode(currentPoint, aggContainer);
+				node.setID("A-" + currentPoint.getID());
+				addNodeToAgg(aggContainer, node);
+				lastNode = node;
 				i++;
 			}
 		}

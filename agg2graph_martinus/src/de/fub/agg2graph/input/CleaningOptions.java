@@ -27,7 +27,7 @@ public class CleaningOptions {
 	// min/max distance between two points (meters)
 	public boolean filterByEdgeLength = true;
 	public double minEdgeLength = 0.1;
-	public double maxEdgeLength = 500;
+	public double maxEdgeLength = 5;
 	// length change between two consecutive edges
 	public boolean filterByEdgeLengthIncrease = true;
 	public double minEdgeLengthIncreaseFactor = 10;

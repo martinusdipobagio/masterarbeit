@@ -40,7 +40,7 @@ public class LayerManager {
 	 * pixels x pixels
 	 */
 	private Dimension size;
-	public float thicknessFactor = 1;
+	public float thicknessFactor = 0.4f;
 	public boolean renderWeight = true; // false = renderAvgDist
 
 	public LayerManager(TestUI testUI) {

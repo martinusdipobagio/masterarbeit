@@ -59,9 +59,9 @@ public class DefaultMergeHandler implements IMergeHandler {
 	private RenderingOptions roMatchGPS;
 	// cleaning stuff
 	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
-			125);
+			10);
 	private static AggCleaner cleaner = new AggCleaner().enableDefault();
-	public double maxPointGhostDist = 40; // meters
+	public double maxPointGhostDist = 10; // meters
 
 	private double distance = 0;
 	private AggNode beforeNode;
@@ -415,11 +415,6 @@ public class DefaultMergeHandler implements IMergeHandler {
 				lastNode = node;
 				continue;
 			}
-			// TODO: Not the best solution
-//			if (!lastNode.isRelevant()) {
-//				lastNode = node;
-//				continue;
-//			}
 
 			/* Make sure that they are connected */
 			conn = lastNode.getConnectionTo(node);

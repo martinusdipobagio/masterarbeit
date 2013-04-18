@@ -125,8 +125,6 @@ public class CalcThread extends Thread {
 			GPSCleaner gpsCleaner = stepStorage.getGpsCleaner();
 			RamerDouglasPeuckerFilter rdpf = stepStorage
 					.getCleaningRamerDouglasPeuckerFilter();
-//			new File("test/output/clean-test").mkdirs();
-//			int counter = 0;
 			for (GPSSegment segment : stepStorage.inputSegmentList) {
 				for (GPSSegment cleanSegment : gpsCleaner.clean(segment)) {
 					// run through Douglas-Peucker here (slightly modified
@@ -134,13 +132,7 @@ public class CalcThread extends Thread {
 					cleanSegment = rdpf.simplify(cleanSegment);
 					stepStorage.cleanLayer.addObject(cleanSegment);
 					stepStorage.cleanSegmentList.add(cleanSegment);
-//					try {
-//						GPXWriter.writeSegment(new File(
-//								new String("test/output/clean-test/Data" + counter++ + ".gpx")), cleanSegment);
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
+
 				}
 			}					
 			repaintEverything();
@@ -163,6 +155,8 @@ public class CalcThread extends Thread {
 					stepStorage.getAggContainer().addSegment(inputSegment);
 				}
 			}
+			//Save the result
+			
 			repaintEverything();
 		} else if (task.equals("road")) {
 			stepStorage.clear(levels.get(task));

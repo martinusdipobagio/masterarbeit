@@ -3,10 +3,13 @@ package de.fub.agg2graph.agg.strategy;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import de.fub.agg2graph.agg.AggCleaner;
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
@@ -14,12 +17,13 @@ import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.PointGhostPointPair;
 import de.fub.agg2graph.graph.RamerDouglasPeuckerFilter;
 import de.fub.agg2graph.input.Globals;
+import de.fub.agg2graph.structs.CartesianCalc;
 import de.fub.agg2graph.structs.ClassObjectEditor;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.Pair;
+import de.fub.agg2graph.structs.frechet.Pair;
 import de.fub.agg2graph.ui.gui.Layer;
 import de.fub.agg2graph.ui.gui.RenderingOptions;
 import de.fub.agg2graph.ui.gui.TestUI;
@@ -35,6 +39,7 @@ public class AttractionForceMerge implements IMergeHandler {
 	public int maxLookahead = 4;
 	public double minContinuationAngle = 45;
 	// helper stuff
+	private Map<AggConnection, List<PointGhostPointPair>> newNodesPerConn;
 	private List<PointGhostPointPair> pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
 
 	private AggNode inNode;
@@ -45,7 +50,7 @@ public class AttractionForceMerge implements IMergeHandler {
 	// cleaning stuff
 	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
 			125);
-	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
+	private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 40; // meters
 
 	private double distance = 0;
@@ -147,62 +152,83 @@ public class AttractionForceMerge implements IMergeHandler {
 
 	@Override
 	public void processSubmatch() {
-		List<AggNode> internalAggNodes = new ArrayList<AggNode>(aggNodes);
-		List<GPSPoint> internalGPSPoint = new ArrayList<GPSPoint>(gpsPoints);
+		newNodesPerConn = new HashMap<AggConnection, List<PointGhostPointPair>>();
+		pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
+
 		Pair<AggNode, AggNode> pairAgg = null;
 		Pair<GPSPoint, GPSPoint> pairTraj = null;
-		double current, best = Double.MAX_VALUE;
-		int bestI = Integer.MAX_VALUE;
-		// get the nearest edges
-		if (internalAggNodes.size() < 3 || internalGPSPoint.size() < 2)
+
+		// Not interested with too few points
+		if (getAggNodes().size() < 3 || getGpsPoints().size() < 2)
 			return;
-		for (int h = -1; h < internalAggNodes.size() - 1; h++) {
-			bestI = 0;
-			best = Double.MAX_VALUE;
-			if (!(h == -1 || h == internalAggNodes.size() - 2)) {
-				for (int i = 0; i < internalGPSPoint.size() - 1; i++) {
-					current = GPSCalc.getDistancePointToEdgeMeter(
-							internalAggNodes.get(h + 1),
-							internalGPSPoint.get(i),
-							internalGPSPoint.get(i + 1));
-					if (current < best && GPSCalc.getProjectionPoint(internalAggNodes.get(h + 1),
-							internalGPSPoint.get(i),
-							internalGPSPoint.get(i + 1)) != null) {
+
+		inNode = aggNodes.get(0);
+		outNode = aggNodes.get(aggNodes.size() - 1);
+
+		// projections of the aggregation to the trace
+		for (int pointIndex = 0; pointIndex < getAggNodes().size(); pointIndex++) {
+			double current, best = Double.MAX_VALUE;
+			int bestI = 0;
+
+			AggNode node = getAggNodes().get(pointIndex);
+			logger.log(Level.FINER, "agg node " + node);
+			// loop over all possible opposing lines
+			List<GPSPoint> internalGpsPoints = getGpsPoints();
+			PointGhostPointPair pair = null;
+			// START
+			// For all point with exception start and end point
+			if (!(pointIndex == 0 || pointIndex == getAggNodes().size() - 1)) {
+				for (int i = 0; i < internalGpsPoints.size() - 1; i++) {
+					current = GPSCalc.getDistancePointToEdgeMeter(getAggNodes()
+							.get(pointIndex), internalGpsPoints.get(i),
+							internalGpsPoints.get(i + 1));
+					if (current < best
+							&& GPSCalc.getProjectionPoint(
+									getAggNodes().get(pointIndex),
+									internalGpsPoints.get(i),
+									internalGpsPoints.get(i + 1)) != null) {
 						best = current;
 						bestI = i;
 					}
 				}
 				if (best < Double.MAX_VALUE) {
-					pairAgg = new Pair<AggNode, AggNode>(
-							internalAggNodes.get(h),
-							internalAggNodes.get(h + 2));
+					pairAgg = new Pair<AggNode, AggNode>(getAggNodes().get(
+							pointIndex - 1), getAggNodes().get(pointIndex + 1));
 					pairTraj = new Pair<GPSPoint, GPSPoint>(
-							internalGPSPoint.get(bestI),
-							internalGPSPoint.get(bestI + 1));
+							internalGpsPoints.get(bestI),
+							internalGpsPoints.get(bestI + 1));
 				}
-				if (pairAgg != null && pairTraj != null)
-					pointGhostPointPairs.add(PointGhostPointPair
-							.createAttraction(internalAggNodes.get(h + 1),
-									pairAgg, pairTraj, 0));
+				if (pairAgg != null && pairTraj != null) {
+					pair = PointGhostPointPair.createAttraction(getAggNodes()
+							.get(pointIndex), pairAgg, pairTraj, 0);
+					pointGhostPointPairs.add(pair);
+				}
 			} else {
-				int temp = h == -1 ? 0 : internalAggNodes.size() - 1;
+				int temp = pointIndex == 0 ? 0 : getAggNodes().size() - 1;
 
-				for (int i = 0; i < internalGPSPoint.size(); i++) {
-					current = GPSCalc
-							.getDistanceTwoPointsMeter(
-									internalAggNodes.get(temp),
-									internalGPSPoint.get(i));
+				for (int i = 0; i < internalGpsPoints.size(); i++) {
+					current = GPSCalc.getDistanceTwoPointsMeter(getAggNodes()
+							.get(temp), internalGpsPoints.get(i));
 					if (current < best) {
 						best = current;
 						bestI = i;
 					}
 				}
-
-				pointGhostPointPairs
-						.add(PointGhostPointPair.createAttraction(
-								internalAggNodes.get(temp),
-								internalGPSPoint.get(bestI)));
+				pair = PointGhostPointPair.createAttraction(
+						getAggNodes().get(temp), internalGpsPoints.get(bestI));
+				pointGhostPointPairs.add(pair);
 			}
+
+			if (pair != null && pointIndex < getAggNodes().size() - 1) {
+				AggConnection conn = getAggNodes().get(pointIndex)
+						.getConnectionTo(getAggNodes().get(pointIndex + 1));
+				if (!newNodesPerConn.containsKey(conn)) {
+					newNodesPerConn.put(conn,
+							new ArrayList<PointGhostPointPair>());
+				}
+				newNodesPerConn.get(conn).add(pair);
+			}
+			// END
 		}
 	}
 
@@ -274,8 +300,13 @@ public class AttractionForceMerge implements IMergeHandler {
 		showDebugInfo();
 
 		// add nodes
+		List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
+				10);
+		List<AggConnection> newAggConnections;
+		// add nodes
 		AggNode lastNode = null;
 		AggConnection conn = null;
+
 		for (AggNode node : getAggNodes()) {
 			if (lastNode == null) {
 				lastNode = node;
@@ -287,9 +318,20 @@ public class AttractionForceMerge implements IMergeHandler {
 			if (conn == null) {
 				continue;
 			}
-			// aConn.add(new AggConnection(lastNode, node, aggContainer));
 			conn.tryToFill();
-
+			//TODO NICHT FUNKTIONIERT
+//			List<AggNode> aggNodeList = new ArrayList<AggNode>();
+//			if (newNodesPerConn.get(conn) != null) {
+//				for (PointGhostPointPair pair : newNodesPerConn.get(conn)) {
+//					aggNodeList.add(pair.source);
+//				}
+//				newAggConnections = aggContainer.insertNodesOrdered(
+//						conn.getFrom(), conn.getTo(), aggNodeList);
+//				changedAggConnections.addAll(newAggConnections);
+//			} else {
+//				// edge without
+//				changedAggConnections.add(conn);
+//			}
 			lastNode = node;
 		}
 
@@ -300,6 +342,13 @@ public class AttractionForceMerge implements IMergeHandler {
 			else
 				attractionForce(pgpp.source, pgpp.proj);
 		}
+		List<AggNode> changedAggPoints = AggConnection
+				.listToPoints(changedAggConnections);
+		// clean like in the GPSCleaner
+//		cleaner.clean(changedAggPoints);
+		// simplify
+//		rdpf.simplifyAgg(changedAggPoints, aggContainer);
+
 	}
 
 	// AttractionForce Parameter
@@ -314,11 +363,12 @@ public class AttractionForceMerge implements IMergeHandler {
 	public void attractionForce(AggNode currentNode, GPSPoint projection) {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				projection);
-//		 System.out.println("Att-Value = " + aValue);
-//		 System.out.println("Distance  = " + distance);
+		// System.out.println("Att-Value = " + aValue);
+		// System.out.println("Distance  = " + distance);
 		Double aValue = av.getValue(distance);
 		if (aValue != null) {
-			ILocation newPos = GPSCalc.getPointAt((av.getKey(distance) - aValue) / av.getKey(distance),
+			ILocation newPos = GPSCalc.getPointAt(
+					(av.getKey(distance) - aValue) / av.getKey(distance),
 					currentNode, projection);
 			aggContainer.moveNodeTo(currentNode, newPos);
 		}
@@ -329,15 +379,16 @@ public class AttractionForceMerge implements IMergeHandler {
 		// TODO Null gefahr
 		double angle = GPSCalc.getAngleBetweenEdges(before, after, trajStart,
 				trajEnd);
-//		System.out.println("Angle : " + angle);
-//		System.out.println("Cos   : " + Math.cos(angle));
-//		if (angle > 45
-//				|| Math.cos(angle) < 0)
-//				|| GPSCalc.getProjectionPoint(currentNode, trajStart, trajEnd) == null) // and
-//			// right
-//			// side
-//			// of
-//			return;
+		// System.out.println("Angle : " + angle);
+		// System.out.println("Cos   : " + Math.cos(angle));
+		// if (angle > 45
+		// || Math.cos(angle) < 0)
+		// || GPSCalc.getProjectionPoint(currentNode, trajStart, trajEnd) ==
+		// null) // and
+		// // right
+		// // side
+		// // of
+		// return;
 		ILocation aggProj = GPSCalc.getProjectionPoint(currentNode, before,
 				after);
 		if (aggProj == null)
@@ -349,11 +400,12 @@ public class AttractionForceMerge implements IMergeHandler {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				trajProj);
 		Double aValue = av.getValue(distance);
-//		System.out.println(currentNode);
-//		System.out.println("Att-Value = " + aValue);
-//		System.out.println("Distance  = " + distance);
+		// System.out.println(currentNode);
+		// System.out.println("Att-Value = " + aValue);
+		// System.out.println("Distance  = " + distance);
 		if (aValue != null) {
-			ILocation newPos = GPSCalc.getPointAt((av.getKey(distance) - aValue) / av.getKey(distance),
+			ILocation newPos = GPSCalc.getPointAt(
+					(av.getKey(distance) - aValue) / av.getKey(distance),
 					currentNode, trajProj);
 			// System.out.println("Current Node : " + currentNode.getLat() + "|"
 			// +

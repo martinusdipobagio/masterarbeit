@@ -272,6 +272,7 @@ public class Layer implements Hideable {
 						// draw them
 						g2.setColor(Color.WHITE);
 						g2.setStroke(ro.getStroke(16));
+
 						for (Tile<AggNode> tile : tiles) {
 							Rectangle2D.Double size = new Rectangle2D.Double(
 									tile.getSize().x, tile.getSize().y,
@@ -379,7 +380,8 @@ public class Layer implements Hideable {
 				RenderingOptions roTertiary = ro.getCopy();
 				roPrimary.color = new Color(219, 37, 37); // red
 				roSecondary.color = new Color(253, 143, 0); // orange
-				roTertiary.color = new Color(221, 255, 68); // yellow
+//				roTertiary.color = new Color(221, 255, 68); // yellow
+				roTertiary.color = new Color(218, 165, 32); // gold
 				// render roads
 				RenderingOptions roInternal = ro;
 				for (Road r : roadNetwork.roads) {
@@ -415,7 +417,8 @@ public class Layer implements Hideable {
 						if (lastPoint != null) {
 							drawLine(g2, lastPoint, point, ro);
 //TODO						
-							drawText(g2, lastPoint, point, ro);
+							if(!getName().equals("matching") && !getName().equals("merging"))
+								drawText(g2, lastPoint, point, ro);
 						}
 						drawPoint(g2, point, ro);
 						lastPoint = point;
@@ -428,6 +431,7 @@ public class Layer implements Hideable {
 					if (lastPoint != null) {
 						drawLine(g2, lastPoint, point, ro);
 //TODO					
+					if(!getName().equals("matching") && !getName().equals("merging"))
 						drawText(g2, lastPoint, point, ro);
 					}
 					drawPoint(g2, point, ro);
@@ -443,7 +447,8 @@ public class Layer implements Hideable {
 					if (lastPoint != null) {
 						drawLine(g2, lastPoint, point, ro, 1, true);
 //TODO					
-						drawText(g2, lastPoint, point, ro);
+						if(!getName().equals("matching") && !getName().equals("merging"))
+							drawText(g2, lastPoint, point, ro);
 					}
 					drawPoint(g2, point, ro);
 					lastPoint = point;

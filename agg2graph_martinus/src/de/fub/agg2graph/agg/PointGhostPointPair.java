@@ -14,7 +14,7 @@ import java.util.List;
 
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.Pair;
+import de.fub.agg2graph.structs.frechet.Pair;
 
 /**
  * Models a pair of a Point and its GhostPoint.

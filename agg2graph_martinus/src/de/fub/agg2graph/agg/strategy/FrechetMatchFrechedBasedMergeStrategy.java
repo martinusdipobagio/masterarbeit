@@ -21,7 +21,7 @@ import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.Pair;
+import de.fub.agg2graph.structs.frechet.Pair;
 import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FrechetMatchFrechedBasedMergeStrategy extends

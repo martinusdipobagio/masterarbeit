@@ -96,4 +96,9 @@ public abstract class AbstractAggregationStrategy implements
 				.asList(new String[] { "distance", "rdpf", "aggContainer" })));
 		return result;
 	}
+	
+	@Override
+	public AggNode getLastNode() {
+		return lastNode;
+	}
 }

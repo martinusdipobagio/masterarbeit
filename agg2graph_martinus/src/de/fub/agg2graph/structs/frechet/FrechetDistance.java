@@ -24,8 +24,6 @@ import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.Interval;
-import de.fub.agg2graph.structs.Pair;
 
 /**
  * 

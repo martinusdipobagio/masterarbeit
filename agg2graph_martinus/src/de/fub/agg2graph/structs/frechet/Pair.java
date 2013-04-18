@@ -1,4 +1,4 @@
-package de.fub.agg2graph.structs;
+package de.fub.agg2graph.structs.frechet;
 
 public class Pair<A, B> {
 	public B b;

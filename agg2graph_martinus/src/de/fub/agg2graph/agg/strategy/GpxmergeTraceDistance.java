@@ -23,7 +23,7 @@ import de.fub.agg2graph.structs.GPSPoint;
 
 public class GpxmergeTraceDistance implements ITraceDistance {
 
-	public double angleFactor = 0.7;
+	public double angleFactor = 0.05;
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only
@@ -52,8 +52,9 @@ public class GpxmergeTraceDistance implements ITraceDistance {
 
 	private double getDistanceViaGradient(AggConnection near,
 			GPSEdge currentEdge) {
-		double gradient = GPSCalc.getSmallGradientFromEdges(near, currentEdge);
-		if (gradient > 1000) {
+		double gradient = GPSCalc.getSmallGradientFromEdges(near, currentEdge);		
+		System.out.println("GRAD : " + gradient);
+		if (gradient > 700) {
 			return Double.MAX_VALUE;
 		}
 		double distFrom = GPSCalc.getDistancePointToEdgeMeter(near.getFrom(),
@@ -64,6 +65,10 @@ public class GpxmergeTraceDistance implements ITraceDistance {
 				currentEdge.getTo());
 		double dist = gradient * angleFactor + ((distFrom + distTo) / length)
 				* (1 - angleFactor);
+//		System.out.println("GRADIENT : " + gradient);
+//		System.out.println("GRADIENTFACTOR : " + gradient*angleFactor);
+//		System.out.println("DIST : " + ((distFrom + distTo) / length) * (1 - angleFactor));
+//		System.out.println("SUM : " + dist);
 		return dist;
 	}
 

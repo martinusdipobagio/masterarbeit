@@ -36,8 +36,8 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
-	public int maxLookahead = 5;
-	public double maxPathDifference = 100;	//1000;
+	public int maxLookahead = 10;
+	public double maxPathDifference = 500;	//1000;
 	public double maxInitDistance = 10; 	//150;
 	public int counter = 0;
 
@@ -211,10 +211,10 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
-				AggNode node = new AggNode(currentPoint, aggContainer);
-				node.setID("A-" + currentPoint.getID());
-				addNodeToAgg(aggContainer, node);
-				lastNode = node;
+//				AggNode node = new AggNode(currentPoint, aggContainer);
+//				node.setID("A-" + currentPoint.getID());
+//				addNodeToAgg(aggContainer, node);
+//				lastNode = node;
 				i++;
 			}
 		}
@@ -223,23 +223,23 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 //		int locCounter = 0;
 		for (IMergeHandler match : matches) {
 //			System.out.println(++locCounter + ". Match");
-//			System.out.println(match.getAggNodes());
+			System.out.println(match.getAggNodes());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
 		
-		try {
-			new File("test/input/output-test").mkdirs();
-			AggNode source = getLastNode();
-
-			List<GPSSegment> segments = SerializeAgg.getSerialize(source);
-			GPXWriter.writeSegments(new File(
-					new String("test/input/output-test/" + toString() + counter++ + ".gpx")), segments);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			new File("test/input/output-test").mkdirs();
+//			AggNode source = getLastNode();
+//
+//			List<GPSSegment> segments = SerializeAgg.getSerialize(source);
+//			GPXWriter.writeSegments(new File(
+//					new String("test/input/output-test/" + toString() + counter++ + ".gpx")), segments);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	private static void filterPath(List<AggNode> path) {

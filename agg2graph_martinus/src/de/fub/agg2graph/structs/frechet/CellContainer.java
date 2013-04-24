@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.fub.agg2graph.structs.ILocation;
 import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 
 /**
@@ -17,7 +18,7 @@ import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 public class CellContainer {
 
 	// Free space cells
-	private Cell[][] cells;
+	public Cell[][] cells;
 
 	// Parameter that secure the monotone requirements
 	int maxI; // The highest i
@@ -28,10 +29,10 @@ public class CellContainer {
 					// start (See also @leftLimit)
 
 	// List of all possible trails. This will be reseted after a new start
-	List<List<Cell>> allTrails = new ArrayList<List<Cell>>();
+	List<List<Cell>> allTrails;
 
 	// List of all best trails from each start
-	List<List<Cell>> allBestTrails = new ArrayList<List<Cell>>();
+	public List<List<Cell>> allBestTrails;
 
 	// The Block represent Agg column
 	List<Integer> relevancyBlocks = new ArrayList<Integer>();
@@ -43,17 +44,51 @@ public class CellContainer {
 	 *            = used FrechetDistance
 	 */
 	public CellContainer(FrechetDistance fd) {
+		allTrails  = new ArrayList<List<Cell>>();
+		allBestTrails = new ArrayList<List<Cell>>();
 		maxI = fd.getSizeP();
 		maxJ = fd.getSizeQ();
 		cells = new Cell[maxI + 1][maxJ];
 		for (Cell c : fd.cells) {
 			cells[c.i][c.j] = c;
 			// Add all irrelevant cells
-			if (!c.isRelevant && !relevancyBlocks.contains(c.i))
+			if (!c.isRelevant && !relevancyBlocks.contains(c.i)) {
+				System.out.println("NOT RELEVANT FOUND");
 				relevancyBlocks.add(c.i);
+			}
 		}
 	}
 
+	/**
+	 * Get the best trails. It is obligatory to call the function @getTrail() first,
+	 * since this function mark and generate the best trails.
+	 * @return
+	 */
+	public List<List<Cell>> getBestTrails() {
+		return allBestTrails;
+	}
+	
+	/**
+	 * Just test method to get the extracted "FromNode" and "ToNode"
+	 */
+	public void printProjection() {
+		
+		for(List<Cell> bestPart : allBestTrails) {
+			for(Cell bestCell : bestPart) {
+				ILocation aggFrom = bestCell.p.at((double)bestCell.from.x / bestCell.width);
+				ILocation aggTo = bestCell.p.at((double)bestCell.to.x / bestCell.width);
+				ILocation traFrom = bestCell.q.at((double)bestCell.from.y / bestCell.width);
+				ILocation traTo = bestCell.q.at((double)bestCell.to.y / bestCell.width);
+				System.out.println(aggFrom);
+				System.out.println(aggTo);
+				System.out.println(traFrom);
+				System.out.println(traTo);
+			}
+
+		}				
+		
+	}
+	
 	/**
 	 * Check the direction True = right = trace && False = top = agg
 	 * 
@@ -89,6 +124,7 @@ public class CellContainer {
 			if (block - minOffset > 1) {
 				getTrail(minOffset, (block - 1));
 				List<Cell> longest = getLongestTrail();
+				allBestTrails.add(longest);
 				drawMonotoneTrail(longest);
 			}
 
@@ -98,6 +134,7 @@ public class CellContainer {
 		if (maxI - minOffset >= 1) {
 			getTrail(minOffset, maxI - 1);
 			List<Cell> longest = getLongestTrail();
+			allBestTrails.add(longest);
 			drawMonotoneTrail(longest);
 		}
 	}
@@ -261,10 +298,8 @@ public class CellContainer {
 		}
 
 		if (allTrails.size() == 0)
-			return null;
+			return new ArrayList<Cell>();
 
-		allBestTrails.add(allTrails.get(index));
-		// System.out.println(allTrails.get(index));
 		return allTrails.get(index);
 	}
 

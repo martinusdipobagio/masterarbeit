@@ -38,8 +38,8 @@ public class FrechetBasedMerge implements IMergeHandler {
 	// contains only matched points/nodes
 	private List<AggNode> aggNodes = null;
 	private List<GPSPoint> gpsPoints = null;
-	int max = 0;
-	public int maxLookahead = 4;
+
+	public int maxLookahead = 10;
 	public double minContinuationAngle = 45;
 	// helper stuff
 	// private Map<AggNode, List<GPSPoint>> kNeighbours = new HashMap<AggNode,
@@ -56,9 +56,9 @@ public class FrechetBasedMerge implements IMergeHandler {
 	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
 			125);
 	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
-	public double maxPointGhostDist = 40; // meters
+	public double maxPointGhostDist = 10; // meters
 
-	private double distance = 0;
+	private double distance = 10;
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 
@@ -213,8 +213,6 @@ public class FrechetBasedMerge implements IMergeHandler {
 
 	@Override
 	public void mergePoints() {
-		this.max = aggNodes.size();
-
 		// add nodes
 		AggNode lastNode = null;
 		AggConnection conn = null;
@@ -264,10 +262,11 @@ public class FrechetBasedMerge implements IMergeHandler {
 		}
 
 		// // Value of epsilon not relevant in our use case.
-		FrechetDistance fd = new FrechetDistance(Av, Tv, 400.);
+		FrechetDistance fd = new FrechetDistance(Av, Tv, distance/92500);
 		// Compute critical values and the meta information needed by our
 		// algorithm.
 		double epsilon = fd.computeEpsilon();
+		System.out.println(epsilon);
 		// System.out.println("FrechetBasedMerge: Use epsilon of: " + epsilon
 		// + " isOk " + fd.isInDistance());
 		fd.computeMetaData();
@@ -300,7 +299,6 @@ public class FrechetBasedMerge implements IMergeHandler {
 					TreeSet<GPSPoint> affectedTrace = new TreeSet<GPSPoint>();
 					// Save meta information for display in the gui.
 					for (AggNode ti : affectedTraceLocations) {
-						// TODO in
 						// double dist = locationToMove.getDistanceTo(ti);
 						double dist = GPSCalc.getDistanceTwoPointsDouble(
 								locationToMove, ti);

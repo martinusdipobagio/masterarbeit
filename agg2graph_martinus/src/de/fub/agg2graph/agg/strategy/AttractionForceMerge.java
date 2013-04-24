@@ -36,7 +36,7 @@ public class AttractionForceMerge implements IMergeHandler {
 	// contains only matched points/nodes
 	private List<AggNode> aggNodes = null;
 	private List<GPSPoint> gpsPoints = null;
-	public int maxLookahead = 4;
+	public int maxLookahead = 10;
 	public double minContinuationAngle = 45;
 	// helper stuff
 	private Map<AggConnection, List<PointGhostPointPair>> newNodesPerConn;
@@ -49,16 +49,14 @@ public class AttractionForceMerge implements IMergeHandler {
 	private RenderingOptions roMatchGPS;
 	// cleaning stuff
 	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
-			125);
+			50);
 	private static AggCleaner cleaner = new AggCleaner().enableDefault();
-	public double maxPointGhostDist = 40; // meters
+	public double maxPointGhostDist = 10; // meters
 
-	private double distance = 0;
+	private double distance = 10;
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 
-	public double delta = 0.003;
-	private final int k = 3;
 	private AttractionValue av = new AttractionValue();
 
 	public AttractionForceMerge() {

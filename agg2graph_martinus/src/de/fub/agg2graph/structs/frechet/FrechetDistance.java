@@ -35,7 +35,7 @@ public class FrechetDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.frechet.dist");
 
-	public double maxDistance = 0.003;
+	public double maxDistance = 1;
 
 	public List<AggConnection> P; 	// AGG
 	public List<GPSEdge> Q; 		// TRA
@@ -88,11 +88,12 @@ public class FrechetDistance {
 		public int i;
 		public int j;
 		private double a, b, c, d;
-		private GPSEdge q;
-		private AggConnection p;
+		public GPSEdge q;
+		public AggConnection p;
+		public int width;
 		boolean isRelevant;
-		Point from = new Point(-1, -1);
-		Point to = new Point(-1, -1);
+		public Point from = new Point(-1, -1);
+		public Point to = new Point(-1, -1);
 
 		// Extension
 		List<Point> convexHull = new ArrayList<Point>(); // Convex Hull of white
@@ -133,6 +134,7 @@ public class FrechetDistance {
 
 		/** Draw the free space region of the cell with given epsilon. */
 		public BufferedImage getFreeSpace(BufferedImage img, int width) {
+			this.width = width;
 			BufferedImage buffer = img;
 			if (buffer == null) {
 				buffer = new BufferedImage(width, width,
@@ -959,8 +961,7 @@ public class FrechetDistance {
 
 		resizeCells();
 
-		double result = 0;
-		computeEpsilon();
+		double result = computeEpsilon();
 
 		this.P = null;
 		this.Q = null;

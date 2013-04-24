@@ -119,12 +119,12 @@ public class UIStepStorage extends StepStorage {
 		CleaningOptions o = getGpsCleaner().getCleaningOptions();
 		o.filterBySegmentLength = true;
 		o.minSegmentLength = 1;
-		o.maxSegmentLength = 10;
+		o.maxSegmentLength = 50;
 		o.filterByEdgeLength = true;
 		o.minEdgeLength = 0.3;
 		o.maxEdgeLength = 750;
 		o.filterZigzag = true;
-		o.maxZigzagAngle = 30;
+		o.maxZigzagAngle = 20;
 		o.filterFakeCircle = true;
 		o.maxFakeCircleAngle = 50;
 		o.filterOutliers = false;

@@ -50,6 +50,16 @@ public abstract class AbstractAggregationStrategy implements
 		}
 		// logger.debug("Added node " + node);
 	}
+	
+//	protected void addNodeToAgg(AggContainer agg, AggNode node, AggNode before, AggNode after) {
+//		agg.addNode(node);
+//		agg.splitConnection(conn, numParts)
+////		agg.removeConnection(conn)
+//		agg.addConnection(new AggConnection(before, node, agg));
+//		agg.addConnection(new AggConnection(node, after, agg));
+//		
+//		// logger.debug("Added node " + node);
+//	}
 
 	public List<IMergeHandler> getMatches() {
 		return matches;

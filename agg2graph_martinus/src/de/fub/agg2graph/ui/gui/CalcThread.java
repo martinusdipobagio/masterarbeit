@@ -200,8 +200,9 @@ public class CalcThread extends Thread {
 				path2.add(new GPSEdge(segment2.get(i), segment2.get(i+1)));
 			}
 //			Vector<GPSEdge> edge2 = segment2.convertToEdges();
-			//TODO Default 0.0003
-			FrechetDistance f = new FrechetDistance(path1, path2, 0.0003);
+			//TODO Default 10
+			FrechetDistance f = new FrechetDistance(path1, path2, 10.0/92500.0);
+//			f.computeEpsilon();
 			showFreeSpace(f);			
 		} 
 		stepStorage.levelReached = levels.get(task);

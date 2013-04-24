@@ -16,7 +16,7 @@ import de.fub.agg2graph.agg.strategy.HausdorffMatchAttractionMergeStrategy;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchDefaultMergeStrategy;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchFrechetBasedMergeStrategy;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchIterativeMergeStrategy;
-import de.fub.agg2graph.agg.strategy.SecondStrategy;
+import de.fub.agg2graph.agg.strategy.SecondAggregationStrategy;
 
 /**
  * A factory that returns the {@link IAggregationStrategy} currently set via the
@@ -49,10 +49,10 @@ public class AggregationStrategyFactory {
 	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;
 
-	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondStrategy.class;
+	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondAggregationStrategy.class;
 
 	//TODO
-	private static Class<? extends IAggregationStrategy> factoryClass = DefaultMatchFrechetBasedMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> factoryClass = SecondAggregationStrategy.class;
 
 	public static void setClass(Class<? extends IAggregationStrategy> theClass) {
 		factoryClass = theClass;

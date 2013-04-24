@@ -27,7 +27,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 0.003;
+	public double maxDistance = 10;
 	public int maxLookahead = 4;
 	public double maxPathDifference = 100;
 	public int minLengthFirstSegment = 1;
@@ -311,7 +311,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		// list.add(result);
 
 		// TODO bestValue
-		FrechetDistance fd = new FrechetDistance(maxDistance);
+		FrechetDistance fd = new FrechetDistance(maxDistance/92500);
 		List<GPSPoint> tpPoint = new ArrayList<GPSPoint>();
 		for (GPSEdge t : tp.path)
 			tpPoint.add(t.getFrom());
@@ -321,9 +321,10 @@ public class FreeSpaceMatch implements ITraceDistance {
 		for (AggConnection m : mp.path)
 			mpPoint.add(m.getFrom());
 		mpPoint.add(mp.path.get(mp.path.size() - 1).getTo());
-
-		System.out.printf("FD: %.8f Soll: %.8f\n",
-				this.bestValue = fd.getDistance(mp.path, tp.path), epsilon);
+		this.bestValue = 0;
+//				fd.getDistance(mp.path, tp.path);
+//		System.out.printf("FD: %.8f Soll: %.8f\n",
+//				bestValue, epsilon);
 		return result;
 		// } else {
 		// return Collections.emptyList();
@@ -375,7 +376,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		}
 		// TODO null gefahr
 		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start,
-				maxDistance);
+				maxDistance/92500);
 		bestValue = this.bestValue;
 
 		if (res == null)
@@ -391,7 +392,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		}
 		traceResult.add(res.b.get(res.b.size() - 1).getTo());
 
-		bestValueLength = aggResult.size();
+		bestValueLength = traceResult.size();
 //		System.out.println("AGG-After : " + aggResult);
 		return new Object[] { bestValue, bestValueLength, aggResult,
 				traceResult };

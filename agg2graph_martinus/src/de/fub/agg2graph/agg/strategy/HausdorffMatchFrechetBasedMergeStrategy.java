@@ -16,9 +16,9 @@ public class HausdorffMatchFrechetBasedMergeStrategy extends AbstractAggregation
 //	private static final Logger logger = Logger
 //			.getLogger("agg2graph.agg.hausdorff.strategy");
 
-	public int maxLookahead = 7;
-	public double maxPathDifference = 1000;
-	public double maxInitDistance = 150;
+	public int maxLookahead = 10;
+	public double maxPathDifference = 500;
+	public double maxInitDistance = 10;
 	public boolean firstSegmentAdded = false;
 	
 	private List<AggNode> aggNodes;

@@ -248,6 +248,14 @@ public class GPSCalc {
 		}
 		return new double[] { minDist, minPos };
 	}
+	
+	public static double traceLengthMeter(List<ILocation> trace) {
+		double sum = 0;
+		for(int i = 0; i < trace.size() - 1; i++) {
+			sum += getDistanceTwoPointsMeter(trace.get(i), trace.get(i+1));
+		}
+		return sum;
+	}
 
 	/**
 	 * Get gradient between two edges
@@ -365,14 +373,6 @@ public class GPSCalc {
 		Float64Vector vecB = getDistanceTwoPointsFloat64(pointB1, pointB2);
 		return Math.toDegrees(Math.acos((vecA.times(vecB).divide(vecA
 				.normValue() * vecB.normValue())).doubleValue()));
-	}
-
-	public static void main(String[] args) {
-		GPSPoint a1 = new GPSPoint(2, 0);
-		GPSPoint a2 = new GPSPoint(0, 2);
-		GPSPoint b1 = new GPSPoint(0, 0);
-		GPSPoint b2 = new GPSPoint(2, 0);
-		System.out.println(getAngleBetweenEdges(a1, a2, b1, b2));
 	}
 	
 	/**
@@ -717,5 +717,12 @@ public class GPSCalc {
 		} else {
 			return fval;
 		}
+	}
+	
+	public static void main(String[] args) {
+		GPSPoint p1 = new GPSPoint(52.51584545106186, 13.399699330329895);	
+		GPSPoint p2 = new GPSPoint(52.515812806312994, 13.399731516838074);
+		System.out.println(getDistanceTwoPointsMeter(p1, p2)/92500);
+		System.out.println(getDistanceTwoPointsDouble(p1, p2));
 	}
 }

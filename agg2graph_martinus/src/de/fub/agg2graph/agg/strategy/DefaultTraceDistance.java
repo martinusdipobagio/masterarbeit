@@ -29,8 +29,8 @@ public class DefaultTraceDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 60;
-	public int maxLookahead = 4;
+	public double maxDistance = 10;
+	public int maxLookahead = 10;
 	public double maxPathDifference = 100;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;

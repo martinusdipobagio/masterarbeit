@@ -77,7 +77,7 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				
 				Composite savedComposite = g2.getComposite();
 				g2.setComposite(AlphaComposite.SrcAtop.derive(0.6f));
-					g2.drawImage(cell.getFreeSpace(tile, tileSize), x*tileSize, y*tileSize, this);
+				g2.drawImage(cell.getFreeSpace(tile, tileSize), x*tileSize, y*tileSize, this);
 				g2.setComposite(AlphaComposite.SrcAtop.derive(0.4f));
 				g2.drawImage(cell.getParameterMarks(tile, tileSize), x*tileSize, y*tileSize, this);
 				
@@ -86,14 +86,15 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				g2.setComposite(savedComposite);
 			}
 		}
-
+		CellContainer cont = new CellContainer(f);
+		cont.getTrail();
+//		cont.printProjection();
 	}
 
 	/** Listener **/
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		CellContainer cont = new CellContainer(f);
-		cont.getTrail();
+		
 		repaint();
 	}
 }

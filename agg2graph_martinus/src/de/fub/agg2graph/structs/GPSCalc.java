@@ -720,9 +720,10 @@ public class GPSCalc {
 	}
 	
 	public static void main(String[] args) {
-		GPSPoint p1 = new GPSPoint(52.51584545106186, 13.399699330329895);	
-		GPSPoint p2 = new GPSPoint(52.515812806312994, 13.399731516838074);
-		System.out.println(getDistanceTwoPointsMeter(p1, p2)/92500);
-		System.out.println(getDistanceTwoPointsDouble(p1, p2));
+		GPSPoint p1a = new GPSPoint(0, 0);
+		GPSPoint p1b = new GPSPoint(5, 0);
+		GPSPoint p2a = new GPSPoint(0, 5);
+		GPSPoint p2b = new GPSPoint(5, 10);
+		System.out.println(GPSCalc.getAngleBetweenEdges(p1a, p1b, p2a, p2b));
 	}
 }

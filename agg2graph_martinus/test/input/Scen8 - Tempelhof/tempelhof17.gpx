@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.4679067" minlon="13.381005" maxlat="52.472023" maxlon="13.389265"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>2012_04_07_18_08_23.gpx</name>
+    <desc>Fahrt von Glockenturmstr. Berlin nach 15831 Mahlow</desc>
+    <link href="http://api.openstreetmap.org/user/schnullibaer/traces/1208111">
+    </link>
+    <trkseg>
+      <trkpt lat="52.4697667" lon="13.3811339">
+        <time>2012-04-07T16:25:13Z</time>
+      </trkpt>
+      <trkpt lat="52.4697525" lon="13.381437">
+        <time>2012-04-07T16:25:14Z</time>
+      </trkpt>
+      <trkpt lat="52.4697302" lon="13.3817406">
+        <time>2012-04-07T16:25:15Z</time>
+      </trkpt>
+      <trkpt lat="52.4697067" lon="13.3820485">
+        <time>2012-04-07T16:25:16Z</time>
+      </trkpt>
+      <trkpt lat="52.4696869" lon="13.3823147">
+        <time>2012-04-07T16:25:17Z</time>
+      </trkpt>
+      <trkpt lat="52.4696664" lon="13.3825989">
+        <time>2012-04-07T16:25:18Z</time>
+      </trkpt>
+      <trkpt lat="52.4696466" lon="13.3828586">
+        <time>2012-04-07T16:25:19Z</time>
+      </trkpt>
+      <trkpt lat="52.4696254" lon="13.3831241">
+        <time>2012-04-07T16:25:20Z</time>
+      </trkpt>
+      <trkpt lat="52.4696036" lon="13.3833876">
+        <time>2012-04-07T16:25:21Z</time>
+      </trkpt>
+      <trkpt lat="52.469581" lon="13.3836498">
+        <time>2012-04-07T16:25:22Z</time>
+      </trkpt>
+      <trkpt lat="52.4695645" lon="13.3838703">
+        <time>2012-04-07T16:25:23Z</time>
+      </trkpt>
+      <trkpt lat="52.4695481" lon="13.3840716">
+        <time>2012-04-07T16:25:24Z</time>
+      </trkpt>
+      <trkpt lat="52.4695344" lon="13.3842869">
+        <time>2012-04-07T16:25:25Z</time>
+      </trkpt>
+      <trkpt lat="52.4695142" lon="13.3844727">
+        <time>2012-04-07T16:25:26Z</time>
+      </trkpt>
+      <trkpt lat="52.4695003" lon="13.3847041">
+        <time>2012-04-07T16:25:27Z</time>
+      </trkpt>
+      <trkpt lat="52.4694915" lon="13.3848877">
+        <time>2012-04-07T16:25:28Z</time>
+      </trkpt>
+      <trkpt lat="52.4694809" lon="13.3850346">
+        <time>2012-04-07T16:25:29Z</time>
+      </trkpt>
+      <trkpt lat="52.4694647" lon="13.3851902">
+        <time>2012-04-07T16:25:30Z</time>
+      </trkpt>
+      <trkpt lat="52.4694257" lon="13.3852893">
+        <time>2012-04-07T16:25:31Z</time>
+      </trkpt>
+      <trkpt lat="52.4693708" lon="13.3853859">
+        <time>2012-04-07T16:25:32Z</time>
+      </trkpt>
+      <trkpt lat="52.4693117" lon="13.3854523">
+        <time>2012-04-07T16:25:33Z</time>
+      </trkpt>
+      <trkpt lat="52.4692436" lon="13.3854851">
+        <time>2012-04-07T16:25:34Z</time>
+      </trkpt>
+      <trkpt lat="52.4691744" lon="13.3854902">
+        <time>2012-04-07T16:25:35Z</time>
+      </trkpt>
+      <trkpt lat="52.4691091" lon="13.3854869">
+        <time>2012-04-07T16:25:36Z</time>
+      </trkpt>
+      <trkpt lat="52.469045" lon="13.3854811">
+        <time>2012-04-07T16:25:37Z</time>
+      </trkpt>
+      <trkpt lat="52.4689799" lon="13.3854706">
+        <time>2012-04-07T16:25:38Z</time>
+      </trkpt>
+      <trkpt lat="52.4689318" lon="13.3854665">
+        <time>2012-04-07T16:25:39Z</time>
+      </trkpt>
+      <trkpt lat="52.4688797" lon="13.385457">
+        <time>2012-04-07T16:25:40Z</time>
+      </trkpt>
+      <trkpt lat="52.468863" lon="13.3854578">
+        <time>2012-04-07T16:25:41Z</time>
+      </trkpt>
+      <trkpt lat="52.4688285" lon="13.38546">
+        <time>2012-04-07T16:25:42Z</time>
+      </trkpt>
+      <trkpt lat="52.46884" lon="13.3854642">
+        <time>2012-04-07T16:25:43Z</time>
+      </trkpt>
+      <trkpt lat="52.4688358" lon="13.385469">
+        <time>2012-04-07T16:25:44Z</time>
+      </trkpt>
+      <trkpt lat="52.4688365" lon="13.3854777">
+        <time>2012-04-07T16:25:45Z</time>
+      </trkpt>
+      <trkpt lat="52.4688378" lon="13.3854773">
+        <time>2012-04-07T16:25:46Z</time>
+      </trkpt>
+      <trkpt lat="52.4688366" lon="13.3854768">
+        <time>2012-04-07T16:25:47Z</time>
+      </trkpt>
+      <trkpt lat="52.468837" lon="13.3854735">
+        <time>2012-04-07T16:25:48Z</time>
+      </trkpt>
+      <trkpt lat="52.4688391" lon="13.3854742">
+        <time>2012-04-07T16:25:49Z</time>
+      </trkpt>
+      <trkpt lat="52.4688376" lon="13.3854738">
+        <time>2012-04-07T16:25:50Z</time>
+      </trkpt>
+      <trkpt lat="52.4688243" lon="13.3854856">
+        <time>2012-04-07T16:25:51Z</time>
+      </trkpt>
+      <trkpt lat="52.4687561" lon="13.3854581">
+        <time>2012-04-07T16:25:52Z</time>
+      </trkpt>
+      <trkpt lat="52.4687291" lon="13.3854473">
+        <time>2012-04-07T16:25:53Z</time>
+      </trkpt>
+      <trkpt lat="52.4686667" lon="13.3854468">
+        <time>2012-04-07T16:25:54Z</time>
+      </trkpt>
+      <trkpt lat="52.4686047" lon="13.3854592">
+        <time>2012-04-07T16:25:55Z</time>
+      </trkpt>
+      <trkpt lat="52.4685197" lon="13.3854491">
+        <time>2012-04-07T16:25:56Z</time>
+      </trkpt>
+      <trkpt lat="52.4684253" lon="13.3854396">
+        <time>2012-04-07T16:25:57Z</time>
+      </trkpt>
+      <trkpt lat="52.4683342" lon="13.3854423">
+        <time>2012-04-07T16:25:58Z</time>
+      </trkpt>
+      <trkpt lat="52.4682288" lon="13.385434">
+        <time>2012-04-07T16:25:59Z</time>
+      </trkpt>
+      <trkpt lat="52.4681278" lon="13.3854522">
+        <time>2012-04-07T16:26:00Z</time>
+      </trkpt>
+      <trkpt lat="52.4679991" lon="13.3854303">
+        <time>2012-04-07T16:26:01Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

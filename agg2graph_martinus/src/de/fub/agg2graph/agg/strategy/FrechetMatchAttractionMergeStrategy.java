@@ -25,8 +25,8 @@ public class FrechetMatchAttractionMergeStrategy extends
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
-	public int maxLookahead = 10;
-	public double maxPathDifference = 500;
+	public int maxLookahead = 5;
+	public double maxPathDifference = 10;
 	public double maxInitDistance = 10;
 
 	public enum State {

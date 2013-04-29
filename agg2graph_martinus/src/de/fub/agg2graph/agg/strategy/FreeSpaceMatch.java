@@ -29,7 +29,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 	public int maxOutliners = 10;
 	public double maxDistance = 10;
 	public int maxLookahead = 4;
-	public double maxPathDifference = 100;
+	public double maxPathDifference = 10;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
 

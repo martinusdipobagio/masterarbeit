@@ -32,9 +32,9 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
-	public int maxLookahead = 10;
-	public double maxPathDifference = 500;
-	public double maxInitDistance = 10;
+	public int maxLookahead = 5;
+	public double maxPathDifference = 20;
+	public double maxInitDistance = 20;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -217,10 +217,11 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 //		System.out.println("MATCHES : " + matches.size());
-		int locCounter = 0;
+//		int locCounter = 0;
 		for (IMergeHandler match : matches) {
-			System.out.println(++locCounter + ". Match");
-			
+//			System.out.println(++locCounter + ". Match");
+			System.out.println(match.getAggNodes());
+
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}

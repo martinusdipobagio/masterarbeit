@@ -12,7 +12,6 @@ package de.fub.agg2graph.agg.strategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +22,6 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy.State;
-import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
@@ -34,8 +31,8 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.gpxmerge.strategy");
 
-	public int maxLookahead = 10;
-	public double maxPathDifference = 500;
+	public int maxLookahead = 5;
+	public double maxPathDifference = 35;
 	public double maxInitDistance = 20;
 
 	public enum State {
@@ -86,22 +83,32 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 
 		int i = 0;
 		Set<AggConnection> nearEdges = null;
-		while (i < segment.size() - 1) {
+		while (i < segment.size()) {
+			State lastState = state;
+
+			if((i == segment.size() - 1)) {
+				if(lastState == State.IN_MATCH)
+					finishMatch();
+				break;
+			}
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
 			// START
-			GPSPoint firstPoint = segment.get(i);
+			GPSPoint firstPoint = segment.get(i);		
 			GPSPoint secondPoint = segment.get(i + 1);
 			GPSEdge currentEdge = new GPSEdge(firstPoint, secondPoint);
+
+			
 			nearEdges = aggContainer.getCachingStrategy().getCloseConnections(
 					currentEdge, maxInitDistance);
 			// END
 
-			State lastState = state;
+			
 
 			boolean isMatch = true;
 			if (nearEdges.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				Iterator<AggConnection> itNear = nearEdges.iterator();
 				Double grade = Double.MAX_VALUE;
@@ -110,17 +117,17 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 				while (itNear.hasNext()) {
 					AggConnection near = itNear.next();
 					Object[] distReturn = traceDistance.getPathDifference(
-							near.toPointList(), currentEdge.toPointList(), 0,
+							near.toPointList(), segment, i,
 							mergeHandler);
 					dist = (Double) distReturn[0];
-					if (dist < grade && dist < maxPathDifference) {
+					if (dist < maxPathDifference && dist < grade) {
 						grade = dist;
 						bestConn = near;
 					}
 				}
 
 				// do we have a successful match?
-				if (grade >= maxPathDifference || bestConn == null) {
+				if (bestConn == null) {
 					isMatch = false;
 				}
 				// else if (bestPath.size() <= 1 && bestPathLength <= 1) {
@@ -129,18 +136,18 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 
 				state = isMatch ? State.IN_MATCH : State.NO_MATCH;
 				if (isMatch) {
-					System.out.println("I = " + i);
-					System.out.println(bestConn.getFrom() + " : " + bestConn.getTo());
+//					System.out.println("I = " + i);
+//					System.out.println(bestConn.getFrom() + " : " + bestConn.getTo());
 					// make a merge handler if the match would start here
 					if (lastState == State.NO_MATCH) {
 						mergeHandler = baseMergeHandler.getCopy();
 						mergeHandler.setAggContainer(aggContainer);
 					}
-					isMatch = false;
+//					isMatch = false;
 					if(!mergeHandler.getAggNodes().contains(bestConn.getFrom()))
 						mergeHandler.addAggNode(bestConn.getFrom());
 					mergeHandler.addAggNode(bestConn.getTo());
-					if(!mergeHandler.getGpsPoints().contains(currentEdge.getTo()));
+					if(!mergeHandler.getGpsPoints().contains(currentEdge.getFrom()));
 						mergeHandler.addGPSPoint(currentEdge.getFrom());
 					mergeHandler.addGPSPoint(currentEdge.getTo());
 					
@@ -150,8 +157,8 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 			}
 
 			if (!isMatch
-					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
-							.size() - 1))) {
+					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i >= segment
+							.size() - 2))) {
 				finishMatch();
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
@@ -163,6 +170,7 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 //				lastNode = node;
 				i++;
 			}
+			System.out.println(isMatch + " : " + lastState + " " + state);
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 		// System.out.println("MATCHES : " + matches.size());
@@ -170,6 +178,7 @@ public class GpxmergeMatchDefaultMergeStrategy extends
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
 			 System.out.println(match.getAggNodes());
+			 System.out.println(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}

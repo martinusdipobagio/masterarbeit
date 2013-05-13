@@ -36,25 +36,15 @@ public class GPXWriter {
 			throws IOException {
 		StringBuilder sb = new StringBuilder();
 		
-//		Random r = new Random();			//TO DELETE
-//		FrequenceK freq = new FrequenceK(); //TO DELETE
-//		int nextVal;				        //TO DELETE
-		
 		for (GPSPoint point : segment) {
 			if(point.getK() < 1) {
-//				nextVal = r.nextInt(9) + 1;
 				sb.append(
-//						String.format(pointTemplate, point.getLat(), point.getLon()))
 						String.format(pointTemplate, point.getLat(), point.getLon(), 1))
 						.append("\n");
-						// TO DELETE
-//						String.format(pointTemplate, point.getLat(), point.getLon(), nextVal))
-//						.append("\n");
-//				freq.putToTable(nextVal);
+
 			} else {
 				sb.append(
 						String.format(pointTemplate, point.getLat(), point.getLon(), 1))
-//						String.format(pointTemplate, point.getLat(), point.getLon(), point.getK()))
 						.append("\n");
 			}
 			
@@ -62,8 +52,6 @@ public class GPXWriter {
 		FileWriter fstream = new FileWriter(targetFile);
 		fstream.write(String.format(fileTemplateOneSegment, sb.toString()));
 		fstream.close();
-		
-//		freq.printOut();
 	}
 	
 	public static void writeSegments(File targetFile, List<GPSSegment> segments)
@@ -90,7 +78,5 @@ public class GPXWriter {
 		FileWriter fstream = new FileWriter(targetFile);
 		fstream.write(String.format(fileTemplateMoreSegments, segmentBuilder.toString()));
 		fstream.close();
-		
-//		freq.printOut();
 	}
 }

@@ -36,9 +36,9 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
-	public int maxLookahead = 10;
-	public double maxPathDifference = 500;	//1000;
-	public double maxInitDistance = 10; 	//150;
+	public int maxLookahead = 5;
+	public double maxPathDifference = 20;
+	public double maxInitDistance = 20;
 	public int counter = 0;
 
 	public enum State {

@@ -10,6 +10,8 @@
  ******************************************************************************/
 package de.fub.agg2graph.agg.strategy;
 
+//import java.io.IOException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +25,10 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.management.MyStatistic;
+//import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
+import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
@@ -34,7 +39,17 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 
 	public int maxLookahead = 5;
 	public double maxPathDifference = 20;
-	public double maxInitDistance = 20;
+	public double maxInitDistance = 15;
+	
+	//Statistics variable
+	@SuppressWarnings("unused")
+	private double aggLength = 0;
+	@SuppressWarnings("unused")
+	private double traceLength = 0;
+	@SuppressWarnings("unused")
+	private double matchedAggLength = 0;
+	@SuppressWarnings("unused")
+	private double matchedTraceLength = 0;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -79,13 +94,14 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 				lastNode = node;
 				i++;
 			}
-			
+			aggLength =  GPSCalc.traceLengthMeter(segment);
 			return;
 		}
 
 		BoundedQueue<ILocation> lastParsedCurrentPoints = new BoundedQueue<ILocation>(
 				5);
 		int i = 0;
+		traceLength = GPSCalc.traceLengthMeter(segment);
 		while (i < segment.size()) {
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
@@ -204,6 +220,7 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
 							.size() - 1))) {
 				finishMatch();
+				i++; //TODO Martinus
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
@@ -216,15 +233,37 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 			}
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
-//		System.out.println("MATCHES : " + matches.size());
+		System.out.println("MATCHES : " + matches.size());
 //		int locCounter = 0;
+		matchedAggLength = 0;
+		matchedTraceLength = 0;
 		for (IMergeHandler match : matches) {
 //			System.out.println(++locCounter + ". Match");
-			System.out.println(match.getAggNodes());
-
+//			System.out.println(match.getAggNodes());
+//			System.out.println(match.getGpsPoints());
+//			System.out.println();
+			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
+			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
+		}
+		
+		//TODO Statistik-Zeug
+//		System.out.println(this.aggLength);
+//		System.out.println(this.traceLength);
+//		System.out.println(this.matchedAggLength);
+//		System.out.println(this.matchedTraceLength);
+		List<Double> value = new ArrayList<Double>();
+		value.add(this.aggLength);
+		value.add(this.matchedAggLength);
+		value.add(this.traceLength);
+		value.add(this.matchedTraceLength);
+		try {
+			MyStatistic.writefile("test/exp/DefaultMatch-AttractionMerge.txt", value);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -297,5 +336,9 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 				path.remove(path.size() - 1);
 			}
 		}
+	}
+	
+	public String toString() {
+		return "DefaultMatch-AttractionMerge";
 	}
 }

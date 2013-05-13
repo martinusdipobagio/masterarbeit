@@ -32,24 +32,24 @@ public class AggregationStrategyFactory {
 	private static Class<? extends IAggregationStrategy> defaultDefaultClass = DefaultMatchDefaultMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> defaultIterativeClass = DefaultMatchIterativeMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> defaultFrechetClass = DefaultMatchFrechetBasedMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;//TODO
 	
 	private static Class<? extends IAggregationStrategy> gpxDefaultClass = GpxmergeMatchDefaultMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> gpxIterativeClass = GpxmergeMatchIterativeMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> gpxIterativeClass = GpxmergeMatchIterativeMergeStrategy.class;//TODO
 	private static Class<? extends IAggregationStrategy> gpxFrechetClass = GpxmergeMatchFrechetBasedStrategy.class;
 	private static Class<? extends IAggregationStrategy> gpxAttractionClass = GpxmergeMatchAttractionMergeStrategy.class;
 	
 	private static Class<? extends IAggregationStrategy> hausdorffDefaultClass = HausdorffMatchDefaultMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> hausdorffIterativeClass = HausdorffMatchIterativeMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> hausdorffIterativeClass = HausdorffMatchIterativeMergeStrategy.class;//TODO
 	private static Class<? extends IAggregationStrategy> hausdorffFrechetClass = HausdorffMatchFrechetBasedMergeStrategy.class;	
 	private static Class<? extends IAggregationStrategy> hausdorffAttractionClass = HausdorffMatchAttractionMergeStrategy.class;
 	
 	private static Class<? extends IAggregationStrategy> frechetDefaultClass = FrechetMatchDefaultMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> frechetIterativeClass = FrechetMatchIterativeMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;//TODO
 	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;
 
-	private static Class<? extends IAggregationStrategy> secondStrategyClass = FrechetMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondAggregationStrategy.class;
 
 	//TODO
 	private static Class<? extends IAggregationStrategy> factoryClass = DefaultMatchAttractionMergeStrategy.class;

@@ -170,8 +170,6 @@ public class Layer implements Hideable {
 	}
 
 	/**
-	 * TODO
-	 * 
 	 * @param g2
 	 * @param location1
 	 * @param location2
@@ -417,8 +415,8 @@ public class Layer implements Hideable {
 						if (lastPoint != null) {
 							drawLine(g2, lastPoint, point, ro);
 //TODO						
-							if(!getName().equals("matching") && !getName().equals("merging"))
-								drawText(g2, lastPoint, point, ro);
+//							if(!getName().equals("matching") && !getName().equals("merging"))
+//								drawText(g2, lastPoint, point, ro);
 						}
 						drawPoint(g2, point, ro);
 						lastPoint = point;
@@ -431,8 +429,8 @@ public class Layer implements Hideable {
 					if (lastPoint != null) {
 						drawLine(g2, lastPoint, point, ro);
 //TODO					
-					if(!getName().equals("matching") && !getName().equals("merging"))
-						drawText(g2, lastPoint, point, ro);
+//					if(!getName().equals("matching") && !getName().equals("merging"))
+//						drawText(g2, lastPoint, point, ro);
 					}
 					drawPoint(g2, point, ro);
 					lastPoint = point;
@@ -447,8 +445,8 @@ public class Layer implements Hideable {
 					if (lastPoint != null) {
 						drawLine(g2, lastPoint, point, ro, 1, true);
 //TODO					
-						if(!getName().equals("matching") && !getName().equals("merging"))
-							drawText(g2, lastPoint, point, ro);
+//						if(!getName().equals("matching") && !getName().equals("merging"))
+//							drawText(g2, lastPoint, point, ro);
 					}
 					drawPoint(g2, point, ro);
 					lastPoint = point;

@@ -126,8 +126,8 @@ public class BidirectionalFrechetDistance {
 		double e1 = fd.computeEpsilon();
 		double e2 = reverseFd.computeEpsilon();
 
-//		return e1;
-		return Math.max(e1, e2);
+//		return Math.max(e1, e2); TODO: Original
+		return Math.min(e1, e2);
 	}
 //	
 	

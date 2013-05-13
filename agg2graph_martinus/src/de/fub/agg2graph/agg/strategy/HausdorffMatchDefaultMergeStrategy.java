@@ -26,7 +26,7 @@ public class HausdorffMatchDefaultMergeStrategy extends
 
 	public int maxLookahead = 10;
 	public double maxPathDifference = 500;
-	public double maxInitDistance = 10;
+	public double maxInitDistance = 20;
 
 	public enum State {
 		NO_MATCH, IN_MATCH

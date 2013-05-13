@@ -1,12 +1,12 @@
 package de.fub.agg2graph.agg.strategy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
@@ -14,26 +14,35 @@ import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchAttractionMergeStrategy.State;
+import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
 
-public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStrategy {
-	private static final Logger logger = Logger
-			.getLogger("agg2graph.agg.default.strategy");
+public class HausdorffMatchIterativeMergeStrategy extends
+		AbstractAggregationStrategy {
 
-	public int maxLookahead = 10;
-	public double maxPathDifference = 500;
-	public double maxInitDistance = 10;
-
+	public int maxLookahead = Integer.MAX_VALUE;
+	public double maxPathDifference = 200;
+	public double maxInitDistance = 15;
+	
 	public enum State {
 		NO_MATCH, IN_MATCH
 	}
 
 	private State state = State.NO_MATCH;
-		
+	
+	@SuppressWarnings("unused")
+	private double aggLength = 0;
+	@SuppressWarnings("unused")
+	private double traceLength = 0;
+	@SuppressWarnings("unused")
+	private double matchedAggLength = 0;
+	@SuppressWarnings("unused")
+	private double matchedTraceLength = 0;
+
 	public HausdorffMatchIterativeMergeStrategy() {
 		TraceDistanceFactory.setClass(HausdorffTraceDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
@@ -47,7 +56,6 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 	@SuppressWarnings("unchecked")
 	@Override
 	public void aggregate(GPSSegment segment) {
-		logger.setLevel(Level.OFF); // Level.ALL);
 
 		// reset all attributes
 		lastNode = null;
@@ -71,19 +79,19 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 				lastNode = node;
 				i++;
 			}
-
+			aggLength =  GPSCalc.traceLengthMeter(segment);
 			return;
 		}
 
 		BoundedQueue<ILocation> lastParsedCurrentPoints = new BoundedQueue<ILocation>(
 				5);
 		int i = 0;
+		traceLength = GPSCalc.traceLengthMeter(segment);
 		while (i < segment.size()) {
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
 			Set<AggNode> nearPoints = null;
 			GPSPoint currentPoint = segment.get(i);
-			logger.log(Level.FINE, "current point: " + currentPoint);
 
 			// no progress? (should not be necessary)
 			if (lastParsedCurrentPoints.size() > 2
@@ -114,8 +122,6 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 			/* Tinus - Filtering near points */
 			nearPoints = filterNearPoints(nearPoints);
 
-			logger.log(Level.FINE, "near points: " + nearPoints);
-
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
@@ -130,13 +136,13 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 						maxLookahead);
 
 				/* Tinus - Filtering Paths */
+				removeSamePath(paths);
 				for (List<AggNode> path : paths) {
 					filterPath(path);
 				}
 
+
 				// evaluate paths, pick best, continue
-				logger.log(Level.FINE, "Paths from " + nearPoints + " in agg: "
-						+ paths);
 				double bestDifference = Double.MAX_VALUE, difference;
 				int length;
 				List<AggNode> bestPath = null;
@@ -144,6 +150,8 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 				int bestPathLength = 0;
 
 				for (List<AggNode> path : paths) {
+					System.out.println("Best Path" + paths);
+
 					Object[] returnValues = traceDistance.getPathDifference(
 							path, segment, i, mergeHandler);
 					if(returnValues == null)
@@ -151,13 +159,10 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 					difference = (Double) returnValues[0];
 					length = (int) Math.round(Double.valueOf(returnValues[1]
 							.toString()));
-					logger.info(String.format(
-							"Difference of path %s and %s is %.3f", path,
-							segment.subList(i, i + length), difference));
+
 					if (difference < bestDifference
 							|| (difference == bestDifference && length > bestPathLength)) {
 						bestDifference = difference;
-						logger.log(Level.FINE, "This is the new best path.");
 						bestPathLength = length;
 						bestPath = new ArrayList<AggNode>((List<AggNode>)returnValues[2]);
 						bestTrace = new ArrayList<GPSPoint>((List<GPSPoint>)returnValues[3]);
@@ -171,10 +176,8 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 				// do we have a successful match?
 				if (bestDifference >= maxPathDifference || bestPath == null) {
 					// i++;
-					logger.log(Level.FINE,
-							"Best path not good enough (anymore)");
 					isMatch = false;
-				} else if (bestPath.size() <= 1 && bestPathLength <= 1) {
+				} else if (bestPath.size() < 1 && bestPathLength < 1) {
 					isMatch = false;
 				}
 
@@ -185,16 +188,10 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 						mergeHandler = baseMergeHandler.getCopy();
 						mergeHandler.setAggContainer(aggContainer);
 					}
-					logger.log(
-							Level.FINE,
-							String.format(
-									"best path found: %s, value: %.8f\ncomsuming %d GPS points: %s",
-									bestPath, bestDifference, bestPathLength,
-									segment.subList(i, i + bestPathLength)));
+
 					mergeHandler.addAggNodes(bestPath);
 					mergeHandler.addGPSPoints(bestTrace);
 					mergeHandler.setDistance(bestDifference);
-					logger.log(Level.FINE, "Path so far: " + mergeHandler);
 					i = i + bestPathLength - 1;
 				}
 			}
@@ -203,6 +200,7 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
 							.size() - 1))) {
 				finishMatch();
+				i++;
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
@@ -213,17 +211,35 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 				// lastNode = node;
 				i++;
 			}
+			else
+				i++;
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 		// System.out.println("MATCHES : " + matches.size());
 //		int locCounter = 0;
+		matchedAggLength = 0;
+		matchedTraceLength = 0;
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
 			System.out.println(match.getAggNodes());
+			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
+			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
+		
+		List<Double> value = new ArrayList<Double>();
+		value.add(this.aggLength);
+		value.add(this.matchedAggLength);
+		value.add(this.traceLength);
+		value.add(this.matchedTraceLength);
+//		try {
+//			MyStatistic.writefile("test/exp/HausdorffMatch-IterativeMerge.txt", value);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	private static void filterPath(List<AggNode> path) {
@@ -309,6 +325,23 @@ public class HausdorffMatchIterativeMergeStrategy extends AbstractAggregationStr
 				}
 				addPaths(paths, path, depth + 1, minDepth, maxDepth);
 				path.remove(path.size() - 1);
+			}
+		}
+	}
+	
+	/**
+	 * to remove same path. Bug from addPaths
+	 * @param paths
+	 */
+	private void removeSamePath(List<List<AggNode>> paths) {
+		for(int i = 0; i < paths.size(); i++) {
+			for(int j = 0; j < paths.size(); j++) {
+				if(paths.get(i).containsAll(paths.get(j)) && i != j) {
+					paths.remove(j);
+					if(i > j)
+						i--;
+					j--;
+				}
 			}
 		}
 	}

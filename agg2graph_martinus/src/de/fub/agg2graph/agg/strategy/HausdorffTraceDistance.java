@@ -20,9 +20,9 @@ public class HausdorffTraceDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 60;
+	public double maxDistance = 10;
 	public int maxLookahead = 4;
-	public double maxPathDifference = 100;
+	public double maxPathDifference = 10;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
 
@@ -43,50 +43,23 @@ public class HausdorffTraceDistance implements ITraceDistance {
 			List<GPSPoint> tracePoints, int startIndex, IMergeHandler dmh) {
 		double bestValue = Double.MIN_VALUE;
 		double bestValueLength = 0;
-		// List<AggNode> internalPath = new ArrayList<AggNode>();
-		// internalPath.addAll(aggPath);
 		List<AggNode> aggResult = new ArrayList<AggNode>();
 		List<GPSPoint> traceResult = new ArrayList<GPSPoint>();
-		/**
-		 * START
-		 */
+
 		List<AggNode> aggLocations = aggPath;
-		List<GPSPoint> tempAggLocations = new ArrayList<GPSPoint>();
-		for (AggNode loc : aggLocations)
-			tempAggLocations.add(loc);
-		
-		/* TEST */
-//		List<GPSPoint> traceLocations = tracePoints.subList(startIndex,
-//				tracePoints.size());
-		/* UNSAFE */
-		AggNode lastAgg = aggLocations.get(aggLocations.size() - 1);
-		double bestLastDistance = Double.MAX_VALUE;
-		int bestI = -1;
-		for(int i = startIndex; i < tracePoints.size(); i++) {
-			if(bestLastDistance > GPSCalc.getDistanceTwoPointsMeter(lastAgg, tracePoints.get(i))) {
-				bestI = i;
-				bestLastDistance = GPSCalc.getDistanceTwoPointsMeter(lastAgg, tracePoints.get(i));
-			}
-		}
-		List<GPSPoint> traceLocations = (bestI > -1) ? tracePoints.subList(startIndex, bestI+1)
-				: tracePoints.subList(startIndex, tracePoints.size());
-		int j = 0;
-		int bestK = 0;
-		double distance = 0;
-		double bestDistance = Double.MAX_VALUE;
+		List<GPSPoint> traceLocations = tracePoints;
 
-		// step 1a: get nearest point in agg from trace and create new temporary
-		// point if, the projection is not in agg
-		// maxInitDistance is ignored in this phase. Relevancy is calculated
-		// though
-		ILocation currentNode, projection;
+		// step 1a: get nearest distance in agg from trace
+		int j = startIndex;
+		double globalBestDistance = -1;
 		while (j < traceLocations.size()) {
+			int bestK = 0;
+			double distance = 0;
+			double bestDistance = Double.MAX_VALUE;
+			ILocation currentNode = traceLocations.get(j);
 
-			currentNode = traceLocations.get(j);
+			// Get the nearest distance to an edge/a point and mark it.
 			for (int k = 0; k < aggLocations.size() - 1; k++) {
-				// if(!aggLocations.get(k).isRelevant())
-				// continue;
-
 				distance = GPSCalc.getDistancePointToEdgeMeter(currentNode,
 						aggLocations.get(k), aggLocations.get(k + 1));
 
@@ -95,153 +68,66 @@ public class HausdorffTraceDistance implements ITraceDistance {
 					bestK = k;
 				}
 			}
+			if (bestDistance > globalBestDistance
+					&& bestDistance < Double.MAX_VALUE)
+				globalBestDistance = bestDistance;
+			else if (bestDistance == Double.MAX_VALUE)
+				break;
 
-			// If the projection is not in data, then create new node
-			projection = GPSCalc.getProjectionPoint(currentNode,
-					aggLocations.get(bestK), aggLocations.get(bestK + 1));
-			if (projection != null) {
-				GPSPoint node = new GPSPoint(projection);
-				// node.setK(aggLocations.get(bestK).getK());
-				// node.setRelevant(aggLocations.get(bestK).isRelevant());
-				// node.setID("A-" + j);
-				tempAggLocations.add(bestK + 1, node);
-			}
-			bestDistance = Double.MAX_VALUE;
 			j++;
 		}
 
-		// step 1b:
-		j = 0;
-		while (j < aggLocations.size() - 1) {
-			AggNode currentFrom = aggLocations.get(j);
-			AggNode currentTo = aggLocations.get(j + 1);
+		// There is absolut no match
+		if (globalBestDistance == -1)
+			return null;
 
-			// Distance check
-			//
-			// get the nearest points
+		// step 1b: get nearest distance in trace from agg
+		int l = 0;
+		while (l < aggLocations.size()) {
+			AggNode currentFrom = aggLocations.get(l);
 			double bestDistFrom = Double.MAX_VALUE;
-			double bestDistTo = Double.MAX_VALUE;
-			int bestKFrom = -1, bestKTo = -1;
-			for (int k = 0; k < traceLocations.size() - 1; k++) {
+			int bestKFrom = -1;
+
+			// Distance check & get the nearest points
+			for (int k = 0; k < Math.min(traceLocations.size() - 1, j); k++) {
 				double distFrom = GPSCalc.getDistancePointToEdgeMeter(
 						currentFrom, traceLocations.get(k),
 						traceLocations.get(k + 1));
-				double distTo = GPSCalc.getDistancePointToEdgeMeter(currentTo,
-						traceLocations.get(k), traceLocations.get(k + 1));
 				if (bestDistFrom > distFrom) {
 					bestDistFrom = distFrom;
 					bestKFrom = k;
-				}
-				if (bestDistTo > distTo) {
-					bestDistTo = distTo;
-					bestKTo = k;
+
 				}
 			}
-
-			if (bestDistFrom > maxDistance || bestDistTo > maxDistance) {
+			// If best distance is higher than max distance
+			if (bestDistFrom > maxDistance) {
 				break;
 			}
 
-			int tPointerFrom = getTempFromOriginal(currentFrom,
-					tempAggLocations);
-			int tPointerTo = getTempFromOriginal(currentTo, tempAggLocations);
-			// should be impossible
-			if (tPointerTo == -1) {
-				break;
-			}
-			// Distance between two nodes
-			boolean temp = true;
-			double distTemp;
-			while (tPointerTo - tPointerFrom > 1) {
-				temp = false;
-				// D
-				for (int k = 0; k < traceLocations.size() - 1; k++) {
-					distTemp = GPSCalc.getDistancePointToEdgeMeter(
-							tempAggLocations.get(tPointerFrom),
-							traceLocations.get(k), traceLocations.get(k + 1));
-					// at least one distance < max
-					if (distTemp < maxDistance) {
-						temp = true;
-						break;
-					}
-				}
-				if (!temp) {
-					break;
-				}
-				tPointerFrom++;
-			}
+			// Update global distance if necessary
+			if (bestDistFrom > globalBestDistance
+					&& bestDistFrom < Double.MAX_VALUE)
+				globalBestDistance = bestDistFrom;
 
-			if (!temp) {
-				break;
-			}
 
-			ILocation projFrom = GPSCalc.getProjectionPoint(currentFrom,
-					traceLocations.get(bestKFrom),
-					traceLocations.get(bestKFrom + 1));
-			if (projFrom == null) {
-				if (GPSCalc.getDistanceTwoPointsMeter(currentFrom,
-						traceLocations.get(bestKFrom)) < GPSCalc
-						.getDistanceTwoPointsMeter(currentFrom,
-								traceLocations.get(bestKFrom + 1)))
-					projFrom = traceLocations.get(bestKFrom);
-				else
-					projFrom = traceLocations.get(++bestKFrom);
-			}
+			// Add the projection to result
+			aggResult.add(currentFrom);
+			if(!traceResult.contains(traceLocations.get(bestKFrom)))
+				traceResult.add(traceLocations.get(bestKFrom));
+			if(!traceResult.contains(traceLocations.get(bestKFrom+1)))
+				traceResult.add(traceLocations.get(bestKFrom+1));
 
-			ILocation projTo = GPSCalc.getProjectionPoint(currentTo,
-					traceLocations.get(bestKTo),
-					traceLocations.get(bestKTo + 1));
-			if (projTo == null) {
-				if (GPSCalc.getDistanceTwoPointsMeter(currentTo,
-						traceLocations.get(bestKTo)) < GPSCalc
-						.getDistanceTwoPointsMeter(currentTo,
-								traceLocations.get(bestKTo + 1)))
-					projTo = traceLocations.get(bestKTo);
-				else
-					projTo = traceLocations.get(++bestKTo);
-			}
-
-			if (projFrom != null && projTo != null) {
-				if (j == 0) {
-					aggResult.add(currentFrom);
-					aggResult.add(currentTo);
-					traceResult.add(new GPSPoint(projFrom));
-					traceResult.add(new GPSPoint(projTo));
-				} else {
-					aggResult.add(currentTo);
-					traceResult.add(new GPSPoint(projTo));
-				}
-
-				if (bestValue < Math.max(bestDistFrom, bestDistTo))
-					bestValue = Math.max(bestDistFrom, bestDistTo);
-			} else {
-				break;
-			}
-			j++;
+			l++;
 		}
 
-		if (aggResult.size() != traceResult.size())
-			System.err.println("Irgendwas stimmt nicht");
-
+		bestValue = globalBestDistance;
 		bestValueLength = aggResult.size();
 
-		if (aggResult.size() <= 1)
+		if (aggResult.size() < 1)
 			return null;
 		else
 			return new Object[] { bestValue, bestValueLength, aggResult,
 					traceResult };
-		/**
-		 * END
-		 */
-	}
-
-	private int getTempFromOriginal(AggNode current, List<GPSPoint> temp) {
-		for (int j = 0; j < temp.size(); j++) {
-			if (current.getLat() == temp.get(j).getLat()
-					&& current.getLon() == temp.get(j).getLon())
-				return j;
-		}
-		return -1;
 	}
 
 	@Override

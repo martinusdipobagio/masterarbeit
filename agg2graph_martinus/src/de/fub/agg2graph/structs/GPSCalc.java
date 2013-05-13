@@ -10,6 +10,7 @@
  ******************************************************************************/
 package de.fub.agg2graph.structs;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.jscience.mathematics.vector.Float64Vector;
 
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
+import de.fub.agg2graph.input.GPXReader;
 import de.fub.agg2graph.structs.frechet.Interval;
 
 import uk.me.jstott.jcoord.LatLng;
@@ -249,7 +251,7 @@ public class GPSCalc {
 		return new double[] { minDist, minPos };
 	}
 	
-	public static double traceLengthMeter(List<ILocation> trace) {
+	public static double traceLengthMeter(List<? extends ILocation> trace) {
 		double sum = 0;
 		for(int i = 0; i < trace.size() - 1; i++) {
 			sum += getDistanceTwoPointsMeter(trace.get(i), trace.get(i+1));
@@ -257,6 +259,15 @@ public class GPSCalc {
 		return sum;
 	}
 
+	public static double traceLengthMeter(GPSSegment segment) {
+		double sum = 0;
+		for(int i = 0; i < segment.size() - 1; i++) {
+			sum += getDistanceTwoPointsMeter(segment.get(i), segment.get(i+1));
+
+		}
+		return sum;
+	}
+	
 	/**
 	 * Get gradient between two edges
 	 * 
@@ -720,10 +731,15 @@ public class GPSCalc {
 	}
 	
 	public static void main(String[] args) {
-		GPSPoint p1a = new GPSPoint(0, 0);
-		GPSPoint p1b = new GPSPoint(5, 0);
-		GPSPoint p2a = new GPSPoint(0, 5);
-		GPSPoint p2b = new GPSPoint(5, 10);
-		System.out.println(GPSCalc.getAngleBetweenEdges(p1a, p1b, p2a, p2b));
+//		GPSPoint p1a = new GPSPoint(0, 0);
+//		GPSPoint p1b = new GPSPoint(5, 0);
+//		GPSPoint p2a = new GPSPoint(0, 5);
+//		GPSPoint p2b = new GPSPoint(5, 10);
+//		System.out.println(GPSCalc.getAngleBetweenEdges(p1a, p1b, p2a, p2b));
+		
+		File f = new File("test/input/Scen8 - Tempelhof/tempelhof17.gpx");
+		GPSSegment segment = GPXReader.getSegments(f).get(0);
+		System.out.println(segment.size());
+		System.out.println(traceLengthMeter(segment));;
 	}
 }

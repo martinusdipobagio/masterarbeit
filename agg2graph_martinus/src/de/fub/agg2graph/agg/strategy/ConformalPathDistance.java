@@ -20,13 +20,7 @@ import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 
 public class ConformalPathDistance implements ITraceDistance {
 
-	public double aggReflectionFactor = 4;
-	public int maxOutliners = 10;
-	public double maxDistance = 10;
-	public int maxLookahead = 4;
-	public double maxPathDifference = 100;
-	public int minLengthFirstSegment = 1;
-	public double maxAngle = 37;
+	public double maxDistance = 25;
 
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;
@@ -54,6 +48,7 @@ public class ConformalPathDistance implements ITraceDistance {
 		//Frechet Distance and generate FreeSpaceDiagram
 		FrechetDistance fd = new FrechetDistance(path1, path2, maxDistance/92500);
 		drawImaginaryFreeSpace(fd);
+		
 		
 		//Generate Best Trail
 		CellContainer container = new CellContainer(fd);

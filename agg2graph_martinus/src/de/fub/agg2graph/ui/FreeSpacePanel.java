@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import de.fub.agg2graph.structs.frechet.CellContainer;
+import de.fub.agg2graph.structs.frechet.CheckPath;
 import de.fub.agg2graph.structs.frechet.FrechetDistance;
 import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 
@@ -43,6 +43,8 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 		add(eButton);
 		scroll.setViewportView(this);
 		this.setDoubleBuffered(true);
+		CheckPath c = new CheckPath(f);
+		c.algorithm1();
 	}
 
 
@@ -86,8 +88,8 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				g2.setComposite(savedComposite);
 			}
 		}
-		CellContainer cont = new CellContainer(f);
-		cont.getTrail();
+//		CellContainer cont = new CellContainer(f);
+//		cont.getTrail();
 //		cont.printProjection();
 	}
 

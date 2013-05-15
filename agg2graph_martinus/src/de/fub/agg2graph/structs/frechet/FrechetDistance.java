@@ -35,11 +35,11 @@ public class FrechetDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.frechet.dist");
 
-	public double maxDistance = 1;
+	public double maxDistance = 15;
 
-	public List<AggConnection> P; 	// AGG
-	public List<GPSEdge> Q; 		// TRA
-	public Cell[] cells = null; 	// List of Container
+	public List<AggConnection> P; // AGG
+	public List<GPSEdge> Q; // TRA
+	public Cell[] cells = null; // List of Container
 	AggContainer aggContainer;
 
 	public FrechetDistance(double maxDistance) {
@@ -92,18 +92,45 @@ public class FrechetDistance {
 		public AggConnection p;
 		public int width;
 		boolean isRelevant;
-		public Point from = new Point(-1, -1);
-		public Point to = new Point(-1, -1);
-
-		// Extension
-		List<Point> convexHull = new ArrayList<Point>(); // Convex Hull of white
-															// region
-		Integer convexTracker = Integer.MIN_VALUE; // A help variable to
-													// determine the hull
 
 		// intervals of the reachable space
-		Interval left;
-		Interval bottom;
+		Interval leftF;
+		Interval bottomF;
+		
+		Interval leftR;
+		Interval bottomR;
+		
+		public Interval getLeftF() {
+			return leftF;
+		}
+
+		public void setLeftF(Interval leftF) {
+			this.leftF = leftF;
+		}
+
+		public Interval getLeftR() {
+			return leftR;
+		}
+
+		public void setLeftR(Interval leftR) {
+			this.leftR = leftR;
+		}
+
+		public Interval getBottomF() {
+			return bottomF;
+		}
+
+		public void setBottomF(Interval bottomF) {
+			this.bottomF = bottomF;
+		}
+
+		public Interval getBottomR() {
+			return bottomR;
+		}
+
+		public void setBottomR(Interval bottomR) {
+			this.bottomR = bottomR;
+		}
 
 		public Cell(int i, int j) {
 			this.i = i;
@@ -115,21 +142,21 @@ public class FrechetDistance {
 		}
 
 		private void updateCell() {
-			left = GPSCalc.getSegmentCircleIntersection2(p.getFrom().getLon(),
+			leftF = GPSCalc.getSegmentCircleIntersection2(p.getFrom().getLon(),
 					p.getFrom().getLat(), p.getTo().getLon(), p.getTo()
 							.getLat(), q.getFrom().getLon(), q.getFrom()
 							.getLat(), maxDistance);
 
-			a = left.start;
-			b = left.end;
+			a = leftF.start;
+			b = leftF.end;
 
-			bottom = GPSCalc.getSegmentCircleIntersection2(
+			bottomF = GPSCalc.getSegmentCircleIntersection2(
 					q.getFrom().getLon(), q.getFrom().getLat(), q.getTo()
 							.getLon(), q.getTo().getLat(),
 					p.getFrom().getLon(), p.getFrom().getLat(), maxDistance);
 
-			c = bottom.start;
-			d = bottom.end;
+			c = bottomF.start;
+			d = bottomF.end;
 		}
 
 		/** Draw the free space region of the cell with given epsilon. */
@@ -150,8 +177,6 @@ public class FrechetDistance {
 			for (int s = 0; s < width; ++s) {
 				double sStep = s * stepsize;
 				ILocation pAtt = p.at(sStep);
-				convexTracker = Integer.MIN_VALUE;
-				List<Point> current = new ArrayList<Point>(2);
 
 				// TRA
 				for (int t = 0; t < width; ++t) {
@@ -160,82 +185,10 @@ public class FrechetDistance {
 
 					double distance = GPSCalc.getDistanceTwoPointsDouble(pAtt,
 							qAtt);
-					if (distance < maxDistance && isRelevant) {
-						buffer.setRGB(t, width - 1 - s, Color.WHITE.getRGB());
-						if (convexTracker == Integer.MIN_VALUE) {
-							current.add(new Point(s, t));
-							convexTracker = s;
-						} else if (convexTracker == s) {
-							if (current.size() == 2)
-								current.remove(1);
-							current.add(new Point(s, t));
-						}
-					} else {
-						buffer.setRGB(t, width - 1 - s, Color.BLACK.getRGB());
-					}
+					buffer.setRGB(t, width - 1 - s,
+							(distance < maxDistance) ? Color.WHITE.getRGB()
+									: Color.BLACK.getRGB());
 				}
-				convexHull.addAll(current);
-			}
-
-			// TRA
-			for (int t = 0; t < width; ++t) {
-				double tStep = t * stepsize;
-				ILocation qAtt = q.at(tStep);
-				convexTracker = Integer.MIN_VALUE;
-				List<Point> current = new ArrayList<Point>(2);
-
-				// AGG
-				for (int s = 0; s < width; ++s) {
-					double sStep = s * stepsize;
-					ILocation pAtt = p.at(sStep);
-
-					double distance = GPSCalc.getDistanceTwoPointsDouble(qAtt,
-							pAtt);
-
-					if (distance < maxDistance && isRelevant) {
-						if (convexTracker == Integer.MIN_VALUE) {
-							current.add(new Point(s, t));
-							convexTracker = t;
-						} else if (convexTracker == t) {
-							if (current.size() == 2)
-								current.remove(1);
-							current.add(new Point(s, t));
-						}
-					}
-				}
-				convexHull.addAll(current);
-			}
-
-			// Sorting All-List
-			Collections.sort(convexHull, new Comparator<Point>() {
-
-				@Override
-				public int compare(Point p1, Point p2) {
-					if (p1.y != p2.y)
-						return p1.y - p2.y;
-					else {
-						if (p1.x < p2.x)
-							return -1;
-						else if (p1.x > p2.x)
-							return 1;
-						return 0;
-					}
-				}
-			});
-
-			// Remove duplicate elements
-			for (int i = 0; i < convexHull.size() - 1; i++) {
-				if (convexHull.get(i).equals(convexHull.get(i + 1))) {
-					convexHull.remove(i--);
-				}
-			}
-
-			// Draw the path if possible
-			if (from.x != -1 && from.y != -1 && to.x != -1 && to.y != -1) {
-				Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-				g2.setColor(Color.BLUE);
-				g2.setStroke(new BasicStroke(5));
-				g2.drawLine(from.y, width - 1 - from.x, to.y, width - 1 - to.x);
 			}
 
 			return buffer;
@@ -274,24 +227,24 @@ public class FrechetDistance {
 
 			g2.setColor(Color.red);
 			g2.setStroke(new BasicStroke(2.f));
-			if (!left.isEmpty()) {
-				g2.draw(new Line2D.Double(4., width - left.start * width, 4.,
-						width - left.end * width));
+			if (!leftF.isEmpty()) {
+				g2.draw(new Line2D.Double(4., width - leftF.start * width, 4.,
+						width - leftF.end * width));
 			}
-			if (!bottom.isEmpty()) {
-				g2.draw(new Line2D.Double(bottom.start * width, width - 5.,
-						bottom.end * width, width - 5.));
+			if (!bottomF.isEmpty()) {
+				g2.draw(new Line2D.Double(bottomF.start * width, width - 5.,
+						bottomF.end * width, width - 5.));
 			}
 
 			g2.setComposite(AlphaComposite.SrcAtop.derive(0.4f));
-			if (!left.isEmpty()) {
-				g2.fill(new Rectangle2D.Double(4., width - left.end * width,
-						width - 8, (left.end - left.start) * width));
+			if (!leftF.isEmpty()) {
+				g2.fill(new Rectangle2D.Double(4., width - leftF.end * width,
+						width - 8, (leftF.end - leftF.start) * width));
 			}
 
-			if (!bottom.isEmpty()) {
-				g2.fill(new Rectangle2D.Double(bottom.start * width, 5.,
-						(bottom.end - bottom.start) * width, width - 10));
+			if (!bottomF.isEmpty()) {
+				g2.fill(new Rectangle2D.Double(bottomF.start * width, 5.,
+						(bottomF.end - bottomF.start) * width, width - 10));
 			}
 			return buffer;
 		}
@@ -320,108 +273,7 @@ public class FrechetDistance {
 		}
 
 		public String toString() {
-			return "(" + i + ", " + j + ") left=" + left + "  bottom=" + bottom;
-		}
-
-		/**
-		 * Check if there is white region
-		 * @return
-		 */
-		public boolean isWhiteEmpty() {
-			return convexHull.size() == 0 ? true : false;
-		}
-
-		/**
-		 * Get path with given direction
-		 * @param direction
-		 *            = true ? agg : trace;
-		 * @return
-		 */
-		public void getPath(boolean direction) {
-			int mXindex = -1;
-			int mYindex = -1;
-			Point to = new Point(-1, -1);
-
-			// get the most right x and lowest from this x -> direction trace
-			if (direction) {
-				for (Point p : convexHull) {
-					if (mYindex < p.y && p.y >= from.y) {
-						mYindex = p.y;
-					}
-				}
-				for (Point p : convexHull) {
-					if ((p.y == mYindex && p.x >= from.x)
-							&& (mXindex == -1 || mXindex > p.x)) {
-						mXindex = p.x;
-						to = p;
-					}
-				}
-			}
-			// get the most top y and most left from this y -> direction agg
-			else {
-				for (Point p : convexHull) {
-					if (mXindex < p.x && p.x >= from.x) {
-						mXindex = p.x;
-					}
-				}
-				for (Point p : convexHull) {
-					if ((p.x == mXindex && p.y >= from.y)
-							&& (mYindex == -1 || mYindex > p.y)) {
-						mYindex = p.y;
-						to = p;
-					}
-				}
-			}
-
-			this.to = to;
-			if (to.x == -1 || to.y == -1) {
-				// System.out.println("i = " + this.i + " : j = " + this.j);
-				// System.out.println("STIMMT nicht");
-			}
-		}
-
-		/**
-		 * Get the from point. from shall be very left and bottom
-		 * @param limit
-		 * @return from point
-		 */
-		public Point setLowestFrom(int limit) {
-			int y = Integer.MAX_VALUE, bestI = -1;
-			int best = Integer.MAX_VALUE, current;
-			for (int k = 0; k < convexHull.size(); k++) {
-				current = convexHull.get(k).x + convexHull.get(k).y;
-				if (best > current && y > convexHull.get(k).y
-						&& convexHull.get(k).y >= limit) {
-					best = current;
-					y = convexHull.get(k).y;
-					bestI = k;
-				}
-			}
-			if (bestI == -1)
-				return new Point(-1, -1);
-			return convexHull.get(bestI);
-		}
-
-		/**
-		 * Get the longest path of a cell
-		 * @return the y-Coord
-		 */
-		public int getLongestPath() {
-			int best = -1, current;
-			Point bestTo = null, currentTo;
-
-			for (int i = 0; i < convexHull.size(); i++) {
-				currentTo = convexHull.get(i);
-				if (from.x < currentTo.x && from.y < currentTo.y) {
-					current = (currentTo.x - from.x) + (currentTo.y - from.y);
-					if (best < current) {
-						bestTo = currentTo;
-						best = current;
-					}
-				}
-			}
-			this.to = bestTo;
-			return this.to.y;
+			return "(" + i + ", " + j + ") left=" + leftF + "  bottom=" + bottomF;
 		}
 	}
 
@@ -444,7 +296,7 @@ public class FrechetDistance {
 				.getLon(), lastSegOfP.getTo().getLat(), lastPointOfQ.getLon(),
 				lastPointOfQ.getLat(), maxDistance);
 
-		if (lastCell.left.isEmpty() && lastCell.bottom.isEmpty())
+		if (lastCell.leftF.isEmpty() && lastCell.bottomF.isEmpty())
 			return false; // the gate would be empty.
 		else if (GPSCalc.compareDouble(gate.end, 1.) == 0)
 			return true;
@@ -843,38 +695,38 @@ public class FrechetDistance {
 			if (nullnull == null)
 				return;
 
-			if (nullnull.left.start > 0 && nullnull.bottom.start > 0) {
-				nullnull.left = new Interval();
-				nullnull.bottom = new Interval();
+			if (nullnull.leftF.start > 0 && nullnull.bottomF.start > 0) {
+				nullnull.leftF = new Interval();
+				nullnull.bottomF = new Interval();
 			}
 		}
 
 		// Calculate Rv_i0
 		for (int i = iOfPivot + 1; i < P.size(); ++i) {
 			Cell cell = getCell(i, jOfPivot);
-			cell.left = new Interval();
-			if (cell.bottom.isEmpty()) {
+			cell.leftF = new Interval();
+			if (cell.bottomF.isEmpty()) {
 				continue;
 			}
 
 			Cell bottomCell = getCell(i - 1, jOfPivot);
-			if (bottomCell.bottom.isEmpty()
-					|| bottomCell.bottom.start > cell.bottom.end) {
-				cell.bottom = new Interval(); // Empty.
+			if (bottomCell.bottomF.isEmpty()
+					|| bottomCell.bottomF.start > cell.bottomF.end) {
+				cell.bottomF = new Interval(); // Empty.
 			}
 		}
 
 		// Calculate Rh_0j
 		for (int j = jOfPivot + 1; j < Q.size(); ++j) {
 			Cell cell = getCell(iOfPivot, j);
-			cell.bottom = new Interval();
-			if (cell.left.isEmpty()) {
+			cell.bottomF = new Interval();
+			if (cell.leftF.isEmpty()) {
 				continue; // All following cells will be made empty.
 			}
 
 			Cell leftCell = getCell(iOfPivot, j - 1);
-			if (leftCell.left.isEmpty() || leftCell.left.start > cell.left.end) {
-				cell.left = new Interval(); // Empty Interval.
+			if (leftCell.leftF.isEmpty() || leftCell.leftF.start > cell.leftF.end) {
+				cell.leftF = new Interval(); // Empty Interval.
 			}
 		}
 
@@ -888,28 +740,28 @@ public class FrechetDistance {
 				// Cell topCell = (i < P.size() - 1) ? getCell(i + 1, j) : null;
 
 				if (rightCell != null) {
-					if ((!cell.bottom.isEmpty())
-							|| cell.left.start < rightCell.left.start) {
-						rightCell.left = rightCell.left;
-					} else if (cell.left.isEmpty()
-							|| cell.left.start > rightCell.left.end) {
-						rightCell.left = new Interval(); // Empty.
+					if ((!cell.bottomF.isEmpty())
+							|| cell.leftF.start < rightCell.leftF.start) {
+						rightCell.leftF = rightCell.leftF;
+					} else if (cell.leftF.isEmpty()
+							|| cell.leftF.start > rightCell.leftF.end) {
+						rightCell.leftF = new Interval(); // Empty.
 					} else {
-						rightCell.left = new Interval(cell.left.start,
-								rightCell.left.end);
+						rightCell.leftF = new Interval(cell.leftF.start,
+								rightCell.leftF.end);
 					}
 				}
 
 				if (topCell != null) {
-					if ((!cell.left.isEmpty())
-							|| cell.bottom.start < topCell.bottom.start) {
-						topCell.bottom = topCell.bottom;
-					} else if (cell.bottom.isEmpty()
-							|| cell.bottom.start > topCell.bottom.end) {
-						topCell.bottom = new Interval();
+					if ((!cell.leftF.isEmpty())
+							|| cell.bottomF.start < topCell.bottomF.start) {
+						topCell.bottomF = topCell.bottomF;
+					} else if (cell.bottomF.isEmpty()
+							|| cell.bottomF.start > topCell.bottomF.end) {
+						topCell.bottomF = new Interval();
 					} else {
-						topCell.bottom = new Interval(cell.bottom.start,
-								topCell.bottom.end);
+						topCell.bottomF = new Interval(cell.bottomF.start,
+								topCell.bottomF.end);
 					}
 				}
 			}

@@ -53,7 +53,6 @@ public class HausdorffTraceDistance implements ITraceDistance {
 		int j = startIndex;
 		double globalBestDistance = -1;
 		while (j < traceLocations.size()) {
-			int bestK = 0;
 			double distance = 0;
 			double bestDistance = Double.MAX_VALUE;
 			ILocation currentNode = traceLocations.get(j);
@@ -65,7 +64,6 @@ public class HausdorffTraceDistance implements ITraceDistance {
 
 				if (bestDistance > distance && distance < maxDistance) {
 					bestDistance = distance;
-					bestK = k;
 				}
 			}
 			if (bestDistance > globalBestDistance
@@ -84,15 +82,14 @@ public class HausdorffTraceDistance implements ITraceDistance {
 		// step 1b: get nearest distance in trace from agg
 		int l = 0;
 		while (l < aggLocations.size()) {
-			AggNode currentFrom = aggLocations.get(l);
+			AggNode current = aggLocations.get(l);
 			double bestDistFrom = Double.MAX_VALUE;
 			int bestKFrom = -1;
 
 			// Distance check & get the nearest points
 			for (int k = 0; k < Math.min(traceLocations.size() - 1, j); k++) {
-				double distFrom = GPSCalc.getDistancePointToEdgeMeter(
-						currentFrom, traceLocations.get(k),
-						traceLocations.get(k + 1));
+				double distFrom = GPSCalc.getDistancePointToEdgeMeter(current,
+						traceLocations.get(k), traceLocations.get(k + 1));
 				if (bestDistFrom > distFrom) {
 					bestDistFrom = distFrom;
 					bestKFrom = k;
@@ -109,21 +106,22 @@ public class HausdorffTraceDistance implements ITraceDistance {
 					&& bestDistFrom < Double.MAX_VALUE)
 				globalBestDistance = bestDistFrom;
 
-
 			// Add the projection to result
-			aggResult.add(currentFrom);
-			if(!traceResult.contains(traceLocations.get(bestKFrom)))
+			aggResult.add(current);
+			if (!traceResult.contains(traceLocations.get(bestKFrom)))
 				traceResult.add(traceLocations.get(bestKFrom));
-			if(!traceResult.contains(traceLocations.get(bestKFrom+1)))
-				traceResult.add(traceLocations.get(bestKFrom+1));
+			if (!traceResult.contains(traceLocations.get(bestKFrom + 1))
+					&& GPSCalc.getDistanceTwoPointsMeter(current,
+							traceLocations.get(bestKFrom+1)) <= maxDistance)
+				traceResult.add(traceLocations.get(bestKFrom + 1));
 
 			l++;
 		}
 
 		bestValue = globalBestDistance;
-		bestValueLength = aggResult.size();
+		bestValueLength = traceLocations.subList(startIndex, Math.min(traceLocations.size() - 1, j)).size();
 
-		if (aggResult.size() < 1)
+		if (aggResult.size() <= 1)
 			return null;
 		else
 			return new Object[] { bestValue, bestValueLength, aggResult,

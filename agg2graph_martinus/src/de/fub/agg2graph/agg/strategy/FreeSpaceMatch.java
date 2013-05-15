@@ -23,7 +23,7 @@ import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FreeSpaceMatch implements ITraceDistance {
 
-	public double maxDistance = 10;
+	public double maxDistance = 15;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
 
@@ -288,11 +288,12 @@ public class FreeSpaceMatch implements ITraceDistance {
 			if (bfd.approximateDistance() > epsilon) {
 				break;
 			}
+			this.bestValue = bfd.approximateDistance();
 		}
 
 		Pair<List<AggConnection>, List<GPSEdge>> result = new Pair<List<AggConnection>, List<GPSEdge>>(
 				mp.getPath(), tp.getPath());
-		this.bestValue = 0;
+		this.bestValue *= 0;
 //				fd.getDistance(mp.path, tp.path);
 //		System.out.printf("FD: %.8f Soll: %.8f\n",
 //				bestValue, epsilon);
@@ -334,7 +335,6 @@ public class FreeSpaceMatch implements ITraceDistance {
 		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start, maxDistance/92500);
 		
 		bestValue = this.bestValue;
-
 		if (res == null) {
 			return null;
 		}
@@ -349,8 +349,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		}
 		traceResult.add(res.b.get(res.b.size() - 1).getTo());
 
-		bestValueLength = aggResult.size();
-		bestValue = 0;
+		bestValueLength = traceResult.size();
 		return new Object[] { bestValue, bestValueLength, aggResult,
 				traceResult };
 	}

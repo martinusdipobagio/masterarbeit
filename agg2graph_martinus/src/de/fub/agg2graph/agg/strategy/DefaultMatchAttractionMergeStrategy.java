@@ -25,6 +25,7 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.agg.strategy.GpxmergeMatchIterativeMergeStrategy.State;
 import de.fub.agg2graph.management.MyStatistic;
 //import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
@@ -38,7 +39,7 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 			.getLogger("agg2graph.agg.default.strategy");
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 20;
+	public double maxPathDifference = 15;
 	public double maxInitDistance = 15;
 	
 	//Statistics variable
@@ -143,6 +144,7 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// there is candidates for a match start
 				List<List<AggNode>> paths = getPathsByDepth(nearPoints, 1,
@@ -250,10 +252,10 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 		}
 		
 		//TODO Statistik-Zeug
-//		System.out.println(this.aggLength);
-//		System.out.println(this.traceLength);
-//		System.out.println(this.matchedAggLength);
-//		System.out.println(this.matchedTraceLength);
+		System.out.println(this.aggLength);
+		System.out.println(this.matchedAggLength);
+		System.out.println(this.traceLength);
+		System.out.println(this.matchedTraceLength);
 		List<Double> value = new ArrayList<Double>();
 		value.add(this.aggLength);
 		value.add(this.matchedAggLength);

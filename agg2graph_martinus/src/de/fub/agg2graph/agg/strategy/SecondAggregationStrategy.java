@@ -28,6 +28,7 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.agg.strategy.DefaultMatchAttractionMergeStrategy.State;
 import de.fub.agg2graph.input.GPXWriter;
 import de.fub.agg2graph.input.SerializeAgg;
 import de.fub.agg2graph.management.MyStatistic;
@@ -143,6 +144,7 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// get only nearest Point
 				AggNode nearest = nearestPoint(currentPoint, nearPoints);
@@ -162,6 +164,7 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 				// evaluate paths, pick best, continue
 				double bestDifference = Double.MAX_VALUE, difference;
 				int length;
+				int segmentLength = 0;
 				List<AggNode> bestPath = null;
 				List<List<Cell>> trails = null;
 				int bestPathLength = 0;
@@ -173,21 +176,18 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 					length = (int) Math.round(Double.valueOf(returnValues[1]
 							.toString()));
 
-					if (difference < bestDifference
-							|| (difference == bestDifference && length > bestPathLength)) {
+					if (bestPathLength < length) {
+						//TODO best Value
 						bestDifference = difference;
 						bestPathLength = length;
 						bestPath = path;
 						trails = (List<List<Cell>>) returnValues[2];
-						if (bestPath.size() == 0) {
-			
-						}
+						segmentLength = (Integer) returnValues[3];
 					}
 				}
 
-				System.out.println("BEst path length " + bestPathLength);
 				// do we have a successful match?
-				if (trails.size() == 0)
+				if (trails == null)
 					isMatch = false;
 
 				state = isMatch ? State.IN_MATCH : State.NO_MATCH;
@@ -207,12 +207,16 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 						mergeHandler.addGPSPoints(trace);
 						mergeHandler.setDistance(bestDifference);
 					}
-					finishMatch();
-					i = i + bestPathLength - 1;
+					i = i + segmentLength - 1;
 				}
 			}
 
-			if (!isMatch && lastState == State.NO_MATCH) {
+			if (!isMatch
+					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
+							.size() - 1))) {
+				finishMatch();
+				i++; //TODO Martinus
+			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
@@ -221,8 +225,7 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 //				addNodeToAgg(aggContainer, node);
 //				lastNode = node;
 				i++;
-			} else
-				i++;
+			}
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 		System.out.println("MATCHES : " + matches.size());
@@ -462,59 +465,59 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 		Set<AggConnection> conns = aggContainer.getCachingStrategy()
 				.getLoadedConnections();
 		List<AggNode> ret = new ArrayList<AggNode>(); // the extracted node
-		List<AggNode> copy = new ArrayList<AggNode>(); // ignoring copy elements
-
-		// For every cells, get the nodes from the "FromNode". For the last
-		// cell, take both "FromNode" and "ToNode"
-		// TODO: There are still problem if a cell has two new nodes "FromNode"
-		// and "ToNode"
-		for (int t = cells.size() - 1; t >= 0; t--) {
-			AggConnection current = cells.get(t).p;
-			for (AggConnection conn : conns) {
-				if (conn.getFrom().getLat() == current.getFrom().getLat()
-						&& conn.getFrom().getLon() == current.getFrom()
-								.getLon()
-						&& conn.getTo().getLat() == current.getTo().getLat()
-						&& conn.getTo().getLon() == current.getTo().getLon()) {
-
-					AggNode newNode = conn.at((double) cells.get(t).from.x
-							/ cells.get(t).width);
-					if (cells.get(t).from.x > 0
-							&& cells.get(t).from.x < cells.get(t).width - 1
-							&& !copy.contains(newNode)) {
-						aggContainer.insertNode(newNode, conn);
-						conns = aggContainer.getCachingStrategy()
-								.getLoadedConnections();
-						copy.add(newNode);
-					}
-					ret.add(newNode);
-
-					continue;
-				}
-			}
-		}
-
-		// Last Cell
-		Cell lastCell = cells.get(0);
-		AggConnection current = lastCell.p;
-		for (AggConnection conn : conns) {
-			if (conn.getFrom().getLat() == current.getFrom().getLat()
-					&& conn.getFrom().getLon() == current.getFrom().getLon()
-					&& conn.getTo().getLat() == current.getTo().getLat()
-					&& conn.getTo().getLon() == current.getTo().getLon()) {
-
-				AggNode newNode = conn.at((double) lastCell.to.x
-						/ lastCell.width);
-				if (lastCell.to.x > 0 && lastCell.to.x < lastCell.width - 1) {
-					aggContainer.insertNode(newNode, conn);
-					conns = aggContainer.getCachingStrategy()
-							.getLoadedConnections();
-				}
-				ret.add(newNode);
-
-				continue;
-			}
-		}
+//		List<AggNode> copy = new ArrayList<AggNode>(); // ignoring copy elements
+//
+//		// For every cells, get the nodes from the "FromNode". For the last
+//		// cell, take both "FromNode" and "ToNode"
+//		// TODO: There are still problem if a cell has two new nodes "FromNode"
+//		// and "ToNode"
+//		for (int t = cells.size() - 1; t >= 0; t--) {
+//			AggConnection current = cells.get(t).p;
+//			for (AggConnection conn : conns) {
+//				if (conn.getFrom().getLat() == current.getFrom().getLat()
+//						&& conn.getFrom().getLon() == current.getFrom()
+//								.getLon()
+//						&& conn.getTo().getLat() == current.getTo().getLat()
+//						&& conn.getTo().getLon() == current.getTo().getLon()) {
+//
+//					AggNode newNode = conn.at((double) cells.get(t).from.x
+//							/ cells.get(t).width);
+//					if (cells.get(t).from.x > 0
+//							&& cells.get(t).from.x < cells.get(t).width - 1
+//							&& !copy.contains(newNode)) {
+//						aggContainer.insertNode(newNode, conn);
+//						conns = aggContainer.getCachingStrategy()
+//								.getLoadedConnections();
+//						copy.add(newNode);
+//					}
+//					ret.add(newNode);
+//
+//					continue;
+//				}
+//			}
+//		}
+//
+//		// Last Cell
+//		Cell lastCell = cells.get(0);
+//		AggConnection current = lastCell.p;
+//		for (AggConnection conn : conns) {
+//			if (conn.getFrom().getLat() == current.getFrom().getLat()
+//					&& conn.getFrom().getLon() == current.getFrom().getLon()
+//					&& conn.getTo().getLat() == current.getTo().getLat()
+//					&& conn.getTo().getLon() == current.getTo().getLon()) {
+//
+//				AggNode newNode = conn.at((double) lastCell.to.x
+//						/ lastCell.width);
+//				if (lastCell.to.x > 0 && lastCell.to.x < lastCell.width - 1) {
+//					aggContainer.insertNode(newNode, conn);
+//					conns = aggContainer.getCachingStrategy()
+//							.getLoadedConnections();
+//				}
+//				ret.add(newNode);
+//
+//				continue;
+//			}
+//		}
 		return ret;
 	}
 
@@ -531,17 +534,17 @@ public class SecondAggregationStrategy extends AbstractAggregationStrategy {
 		// cell, take both "FromNode" and "ToNode"
 		// TODO: There are still problem if a cell has two new nodes "FromNode"
 		// and "ToNode"
-		for (int t = cells.size() - 1; t >= 0; t--) {
-			GPSPoint current = cells.get(t).q.at((double) cells.get(t).from.y
-					/ cells.get(t).width);
-			if (!ret.contains(current))
-				ret.add(current);
-		}
-		// Last Cell
-		Cell lastCell = cells.get(0);
-		GPSPoint current = lastCell.q.at((double) lastCell.to.y
-				/ lastCell.width);
-		ret.add(current);
+//		for (int t = cells.size() - 1; t >= 0; t--) {
+//			GPSPoint current = cells.get(t).q.at((double) cells.get(t).from.y
+//					/ cells.get(t).width);
+//			if (!ret.contains(current))
+//				ret.add(current);
+//		}
+//		// Last Cell
+//		Cell lastCell = cells.get(0);
+//		GPSPoint current = lastCell.q.at((double) lastCell.to.y
+//				/ lastCell.width);
+//		ret.add(current);
 		return ret;
 	}
 

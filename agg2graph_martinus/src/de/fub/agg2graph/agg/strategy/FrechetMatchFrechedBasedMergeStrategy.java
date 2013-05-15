@@ -122,6 +122,7 @@ public class FrechetMatchFrechedBasedMergeStrategy extends
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// get only nearest Point
 				AggNode nearest = nearestPoint(currentPoint, nearPoints);

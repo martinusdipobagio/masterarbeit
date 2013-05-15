@@ -122,7 +122,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 			boolean isMatch = true;
 			if (nearEdges.size() == 0) {
 				isMatch = false;
-				// state = State.NO_MATCH;
+				state = State.NO_MATCH;
 			} else {
 				Iterator<AggConnection> itNear = nearEdges.iterator();
 				Double grade = Double.MAX_VALUE;
@@ -193,9 +193,10 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 				// addNodeToAgg(aggContainer, node);
 				// lastNode = node;
 				i++;
-			} else {
-				i++;
-			}
+			} 
+//			else {
+//				i++;
+//			}
 			// System.out.println(isMatch + " : " + lastState + " " + state);
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
@@ -205,7 +206,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 		matchedTraceLength = 0;
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
-			// System.out.println(match.getAggNodes());
+			 System.out.println(match.getAggNodes());
 			// System.out.println(match.getGpsPoints());
 			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
 			matchedTraceLength += GPSCalc
@@ -229,22 +230,22 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 		// }
 
 		// TODO Statistik-Zeug
-		// System.out.println(this.aggLength);
-		// System.out.println(this.traceLength);
-		// System.out.println(this.matchedAggLength);
-		// System.out.println(this.matchedTraceLength);
-		List<Double> value = new ArrayList<Double>();
-		value.add(this.aggLength);
-		value.add(this.matchedAggLength);
-		value.add(this.traceLength);
-		value.add(this.matchedTraceLength);
-		try {
-			MyStatistic.writefile("test/exp/GpxMatch-AttractionMerge.txt",
-					value);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 System.out.println(this.aggLength);
+		 System.out.println(this.matchedAggLength);
+		 System.out.println(this.traceLength);
+		 System.out.println(this.matchedTraceLength);
+//		List<Double> value = new ArrayList<Double>();
+//		value.add(this.aggLength);
+//		value.add(this.matchedAggLength);
+//		value.add(this.traceLength);
+//		value.add(this.matchedTraceLength);
+//		try {
+//			MyStatistic.writefile("test/exp/GpxMatch-AttractionMerge.txt",
+//					value);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	protected void finishMatch() {

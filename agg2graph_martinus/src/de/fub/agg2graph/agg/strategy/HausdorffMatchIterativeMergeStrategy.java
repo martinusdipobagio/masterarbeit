@@ -27,7 +27,8 @@ public class HausdorffMatchIterativeMergeStrategy extends
 	public int maxLookahead = Integer.MAX_VALUE;
 	public double maxPathDifference = 200;
 	public double maxInitDistance = 15;
-	
+	List<GPSPoint> matchedPoints;
+
 	public enum State {
 		NO_MATCH, IN_MATCH
 	}
@@ -61,6 +62,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 		lastNode = null;
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
+		matchedPoints = new ArrayList<GPSPoint>();
 		state = State.NO_MATCH;
 
 		// insert first segment without changes (assuming somewhat cleaned
@@ -125,6 +127,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// get only nearest Point
 				AggNode nearest = nearestPoint(currentPoint, nearPoints);
@@ -150,7 +153,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 				int bestPathLength = 0;
 
 				for (List<AggNode> path : paths) {
-					System.out.println("Best Path" + paths);
+					System.out.println("Best Path " + i + " : " + paths);
 
 					Object[] returnValues = traceDistance.getPathDifference(
 							path, segment, i, mergeHandler);
@@ -190,6 +193,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 					}
 
 					mergeHandler.addAggNodes(bestPath);
+
 					mergeHandler.addGPSPoints(bestTrace);
 					mergeHandler.setDistance(bestDifference);
 					i = i + bestPathLength - 1;
@@ -211,8 +215,6 @@ public class HausdorffMatchIterativeMergeStrategy extends
 				// lastNode = node;
 				i++;
 			}
-			else
-				i++;
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 		// System.out.println("MATCHES : " + matches.size());
@@ -222,26 +224,33 @@ public class HausdorffMatchIterativeMergeStrategy extends
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
 			System.out.println(match.getAggNodes());
+			System.out.println(match.getGpsPoints());
 			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
 			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
-		
+		//TODO Statistik-Zeug
+//		System.out.println(this.aggLength);
+//		System.out.println(this.matchedAggLength);
+//		System.out.println(this.traceLength);
+//		System.out.println(this.matchedTraceLength);
+		if(matchedAggLength > aggLength || matchedTraceLength > traceLength)
+			System.out.println("STIMMT IRGENDWAS NICHT");
 		List<Double> value = new ArrayList<Double>();
 		value.add(this.aggLength);
 		value.add(this.matchedAggLength);
 		value.add(this.traceLength);
 		value.add(this.matchedTraceLength);
-//		try {
-//			MyStatistic.writefile("test/exp/HausdorffMatch-IterativeMerge.txt", value);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			MyStatistic.writefile("test/exp/HausdorffMatch-IterativeMerge.txt", value);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	
 	private static void filterPath(List<AggNode> path) {
 		boolean found = false;
 		for (int i = 0; i < path.size(); i++) {

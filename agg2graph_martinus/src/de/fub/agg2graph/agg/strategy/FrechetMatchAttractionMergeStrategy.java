@@ -26,8 +26,9 @@ public class FrechetMatchAttractionMergeStrategy extends
 		AbstractAggregationStrategy {
 	public int maxLookahead = Integer.MAX_VALUE;
 	public double maxPathDifference = 15;
-	public double maxInitDistance = 10;
+	public double maxInitDistance = 12.5;
 	List<AggNode> internalAggNodes = new ArrayList<AggNode>();
+	List<GPSPoint> matchedPoints;
 
 	@SuppressWarnings("unused")
 	private double aggLength = 0;
@@ -59,8 +60,9 @@ public class FrechetMatchAttractionMergeStrategy extends
 		lastNode = null;
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
+		matchedPoints = new ArrayList<GPSPoint>();
 		state = State.NO_MATCH;
-
+		
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
@@ -124,6 +126,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// get only nearest Point
 				AggNode nearest = nearestPoint(currentPoint, nearPoints);
@@ -184,9 +187,20 @@ public class FrechetMatchAttractionMergeStrategy extends
 						mergeHandler = baseMergeHandler.getCopy();
 						mergeHandler.setAggContainer(aggContainer);
 					}
-					
-					mergeHandler.addAggNodes(aggNodesExchange(bestPath));
+					bestPath = aggNodesExchange(bestPath);
+					mergeHandler.addAggNodes(bestPath);
+
+					bestTrace = gpsPointsExchange(bestTrace, segment);
+//					for(int j = 0; j < bestTrace.size(); j++) {
+//						if(!matchedPoints.contains(bestTrace.get(j))) {
+//							matchedPoints.add(bestTrace.get(j));
+//						} else {
+//							bestTrace.remove(j);
+//							j--;
+//						}
+//					}
 					mergeHandler.addGPSPoints(bestTrace);
+					
 					mergeHandler.setDistance(bestDifference);
 					i = i + bestPathLength - 1;
 				}
@@ -206,9 +220,10 @@ public class FrechetMatchAttractionMergeStrategy extends
 				// addNodeToAgg(aggContainer, node);
 				// lastNode = node;
 				i++;
-			} else {
-				i++;
-			}
+			} 
+//			else {
+//				i++;
+//			}
 		}
 		// step 2 and 3 of 3: ghost points, merge everything
 		// System.out.println("MATCHES : " + matches.size());
@@ -218,12 +233,18 @@ public class FrechetMatchAttractionMergeStrategy extends
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
 			System.out.println(match.getAggNodes());
+			System.out.println(match.getGpsPoints());
 			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
 			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
+		// TODO Statistik-Zeug
+//		System.out.println(this.aggLength);
+//		System.out.println(this.matchedAggLength);
+//		System.out.println(this.traceLength);
+//		System.out.println(this.matchedTraceLength);
 		List<Double> value = new ArrayList<Double>();
 		value.add(this.aggLength);
 		value.add(this.matchedAggLength);
@@ -258,6 +279,29 @@ public class FrechetMatchAttractionMergeStrategy extends
 		}
 
 		return bestPath;
+	}
+	
+	/**
+	 * Problem with new class
+	 * 
+	 * @param bestTrace
+	 * @return
+	 */
+	private List<GPSPoint> gpsPointsExchange(List<GPSPoint> bestTrace, GPSSegment segment) {
+		GPSPoint currentNode;
+		for (int i = 0; i < bestTrace.size(); i++) {
+			currentNode = bestTrace.get(i);
+			for (GPSPoint point : segment) {
+				if (currentNode.getLat() == point.getLat()
+						&& currentNode.getLon() == point.getLon()) {
+					bestTrace.remove(i);
+					bestTrace.add(i, point);
+					break;
+				}
+			}
+		}
+
+		return bestTrace;
 	}
 
 	private void filterPath(List<AggNode> path) {

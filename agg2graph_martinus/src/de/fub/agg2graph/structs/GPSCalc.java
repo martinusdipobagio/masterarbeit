@@ -10,7 +10,6 @@
  ******************************************************************************/
 package de.fub.agg2graph.structs;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,14 +18,12 @@ import org.jscience.mathematics.vector.Float64Vector;
 
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
-import de.fub.agg2graph.input.GPXReader;
 import de.fub.agg2graph.structs.frechet.Interval;
-
-import uk.me.jstott.jcoord.LatLng;
 
 public class GPSCalc {
 
 	private static Double precision = 100000000.0;
+	public static final double R = 6371; //6371
 
 	/**
 	 * Measure the distance between two points in meter
@@ -37,9 +34,17 @@ public class GPSCalc {
 	 * @param lon2
 	 * @return
 	 */
-	public static double getDistanceTwoPointsMeter(double lat1, double lon1,
-			double lat2, double lon2) {
-		return new LatLng(lat1, lon1).distance(new LatLng(lat2, lon2)) * 1000;
+	public static double getDistanceTwoPointsMeter(double fromLat, double fromLon,
+			double toLat, double toLon) {
+		double dLat = Math.toRadians(toLat - fromLat);
+		double dLon = Math.toRadians(toLon - fromLon);
+		fromLat = Math.toRadians(fromLat);
+		toLat = Math.toRadians(toLat);
+		
+		double a = Math.pow( Math.sin(dLat/2), 2 ) + Math.pow( Math.sin(dLon/2), 2 ) * Math.cos(fromLat) * Math.cos(toLat);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double d = R * c;
+		return d * 1000;
 	}
 
 	/**
@@ -118,6 +123,19 @@ public class GPSCalc {
 	public static double getDistanceTwoPointsDouble(ILocation from, ILocation to) {
 		double deltaLat = from.getLat() - to.getLat();
 		double deltaLong = from.getLon() - to.getLon();
+		return Math.sqrt(deltaLat * deltaLat + deltaLong * deltaLong);
+	}
+	
+	/**
+	 * Distance between two Points (WARNING: Fischer's Works) SquaredEuclidian
+	 * 
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public static double getDistanceTwoPointsDouble(double fromLat, double fromLon, double toLat, double toLon) {
+		double deltaLat = fromLat - toLat;
+		double deltaLong = fromLon - toLon;
 		return Math.sqrt(deltaLat * deltaLat + deltaLong * deltaLong);
 	}
 
@@ -676,7 +694,8 @@ public class GPSCalc {
 		return true;
 	}
 	
-	public static AggNode CalculateMean(AggNode locationToMove, Collection<GPSPoint> affectedTraceLocations, double epsilon, AggContainer aggContainer) {
+	public static AggNode calculateMean(AggNode locationToMove, Collection<GPSPoint> affectedTraceLocations, 
+			double epsilon, AggContainer aggContainer, boolean dampFactor) {
 		final double alon = locationToMove.getLon();
 		final double alat = locationToMove.getLat();
 	
@@ -690,7 +709,17 @@ public class GPSCalc {
 //			System.out.println("dist = " + dist);
 			if(dist > epsilon) continue;
 			
-			double damp = damp(dist, epsilon);
+//			double damp = damp(dist, epsilon);
+			double damp;
+			if(dampFactor) {
+				if(locationToMove.getK() >= 4)
+					damp = damp(dist, epsilon) / (Math.log10(locationToMove.getK()) / Math.log10(2));
+				else
+					damp = damp(dist, epsilon);
+			}
+			else 
+				damp = damp(dist, epsilon);
+
 			slon += damp*(ti.getLon() - alon);
 			slat += damp*(ti.getLat() - alat);
 			++div;
@@ -717,7 +746,7 @@ public class GPSCalc {
 		return new AggNode( (alat * n + elat) / (n + 1.), (alon * n +  elon) / (n + 1.), aggContainer);
 	}
 	
-	private static double damp(double distance, double epsilon) {
+	public static double damp(double distance, double epsilon) {
 		final double d = distance / (4*epsilon);
 		final double fval = Math.exp(-(5*d*d)); // clamp into [0..1] approx.
 				
@@ -728,18 +757,5 @@ public class GPSCalc {
 		} else {
 			return fval;
 		}
-	}
-	
-	public static void main(String[] args) {
-//		GPSPoint p1a = new GPSPoint(0, 0);
-//		GPSPoint p1b = new GPSPoint(5, 0);
-//		GPSPoint p2a = new GPSPoint(0, 5);
-//		GPSPoint p2b = new GPSPoint(5, 10);
-//		System.out.println(GPSCalc.getAngleBetweenEdges(p1a, p1b, p2a, p2b));
-		
-		File f = new File("test/input/Scen8 - Tempelhof/tempelhof17.gpx");
-		GPSSegment segment = GPXReader.getSegments(f).get(0);
-		System.out.println(segment.size());
-		System.out.println(traceLengthMeter(segment));;
 	}
 }

@@ -6,15 +6,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.FrechetMatchFrechedBasedMergeStrategy.State;
+import de.fub.agg2graph.agg.strategy.HausdorffMatchIterativeMergeStrategy.State;
 import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
@@ -25,10 +23,9 @@ import de.fub.agg2graph.structs.ILocation;
 public class FrechetMatchAttractionMergeStrategy extends
 		AbstractAggregationStrategy {
 	public int maxLookahead = Integer.MAX_VALUE;
-	public double maxPathDifference = 15;
+	public double maxPathDifference = 12.5;
 	public double maxInitDistance = 12.5;
 	List<AggNode> internalAggNodes = new ArrayList<AggNode>();
-	List<GPSPoint> matchedPoints;
 
 	@SuppressWarnings("unused")
 	private double aggLength = 0;
@@ -54,20 +51,20 @@ public class FrechetMatchAttractionMergeStrategy extends
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void aggregate(GPSSegment segment) {
+	public void aggregate(GPSSegment segment, boolean isAgg) {
 
 		// reset all attributes
 		lastNode = null;
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
-		matchedPoints = new ArrayList<GPSPoint>();
 		state = State.NO_MATCH;
-		
+
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
 		if (aggContainer.getCachingStrategy() == null
-				|| aggContainer.getCachingStrategy().getNodeCount() == 0) {
+				|| aggContainer.getCachingStrategy().getNodeCount() == 0
+				|| isAgg) {
 			int i = 0;
 			while (i < segment.size()) {
 				GPSPoint pointI = segment.get(i);
@@ -80,7 +77,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 				internalAggNodes.add(node);
 				i++;
 			}
-			aggLength =  GPSCalc.traceLengthMeter(segment);
+			aggLength = GPSCalc.traceLengthMeter(segment);
 			return;
 		}
 
@@ -130,7 +127,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 			} else {
 				// get only nearest Point
 				AggNode nearest = nearestPoint(currentPoint, nearPoints);
-				//unnecessary, but needed atm
+				// unnecessary, but needed atm
 				Set<AggNode> nearestSet = new HashSet<AggNode>();
 				nearestSet.add(nearest);
 				// there is candidates for a match start
@@ -153,22 +150,20 @@ public class FrechetMatchAttractionMergeStrategy extends
 				for (List<AggNode> path : paths) {
 					Object[] returnValues = traceDistance.getPathDifference(
 							path, segment, i, mergeHandler);
-					if(returnValues == null)
+					if (returnValues == null)
 						continue;
 					difference = (Double) returnValues[0];
 					length = (int) Math.round(Double.valueOf(returnValues[1]
 							.toString()));
-					
+
 					if (difference < bestDifference
 							|| (difference == bestDifference && length > bestPathLength)) {
 						bestDifference = difference;
 						bestPathLength = length;
-						bestPath = new ArrayList<AggNode>((List<AggNode>)returnValues[2]);
-						bestTrace = new ArrayList<GPSPoint>((List<GPSPoint>)returnValues[3]);
-						if (bestPath.size() == 0) {
-							int j = i;
-							i = j;
-						}
+						bestPath = new ArrayList<AggNode>(
+								(List<AggNode>) returnValues[2]);
+						bestTrace = new ArrayList<GPSPoint>(
+								(List<GPSPoint>) returnValues[3]);
 					}
 				}
 
@@ -187,20 +182,9 @@ public class FrechetMatchAttractionMergeStrategy extends
 						mergeHandler = baseMergeHandler.getCopy();
 						mergeHandler.setAggContainer(aggContainer);
 					}
-					bestPath = aggNodesExchange(bestPath);
-					mergeHandler.addAggNodes(bestPath);
 
-					bestTrace = gpsPointsExchange(bestTrace, segment);
-//					for(int j = 0; j < bestTrace.size(); j++) {
-//						if(!matchedPoints.contains(bestTrace.get(j))) {
-//							matchedPoints.add(bestTrace.get(j));
-//						} else {
-//							bestTrace.remove(j);
-//							j--;
-//						}
-//					}
+					mergeHandler.addAggNodes(aggNodesExchange(bestPath));
 					mergeHandler.addGPSPoints(bestTrace);
-					
 					mergeHandler.setDistance(bestDifference);
 					i = i + bestPathLength - 1;
 				}
@@ -210,52 +194,46 @@ public class FrechetMatchAttractionMergeStrategy extends
 					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
 							.size() - 1))) {
 				finishMatch();
-				i++;
+//				i++;
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
-				// AggNode node = new AggNode(currentPoint, aggContainer);
-				// node.setID("A-" + currentPoint.getID());
-				// addNodeToAgg(aggContainer, node);
-				// lastNode = node;
+				AggNode node = new AggNode(currentPoint, aggContainer);
+				node.setID("A-" + currentPoint.getID());
+				addNodeToAgg(aggContainer, node);
+				lastNode = node;
 				i++;
-			} 
-//			else {
-//				i++;
-//			}
+			}
 		}
+		
 		// step 2 and 3 of 3: ghost points, merge everything
 		// System.out.println("MATCHES : " + matches.size());
-//		int locCounter = 0;
+		// int locCounter = 0;
 		matchedAggLength = 0;
 		matchedTraceLength = 0;
 		for (IMergeHandler match : matches) {
 			// System.out.println(++locCounter + ". Match");
 			System.out.println(match.getAggNodes());
-			System.out.println(match.getGpsPoints());
 			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
-			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
+			matchedTraceLength += GPSCalc
+					.traceLengthMeter(match.getGpsPoints());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
-		// TODO Statistik-Zeug
-//		System.out.println(this.aggLength);
-//		System.out.println(this.matchedAggLength);
-//		System.out.println(this.traceLength);
-//		System.out.println(this.matchedTraceLength);
 		List<Double> value = new ArrayList<Double>();
-		value.add(this.aggLength);
-		value.add(this.matchedAggLength);
-		value.add(this.traceLength);
-		value.add(this.matchedTraceLength);
-		try {
-			MyStatistic.writefile("test/exp/FrechetMatch-AttractionMerge.txt", value);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		value.add(this.aggLength);
+//		value.add(this.matchedAggLength);
+//		value.add(this.traceLength);
+//		value.add(this.matchedTraceLength);
+//		try {
+//			MyStatistic.writefile("test/exp/FrechetMatch-AttractionMerge.txt",
+//					value);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	/**
@@ -279,29 +257,6 @@ public class FrechetMatchAttractionMergeStrategy extends
 		}
 
 		return bestPath;
-	}
-	
-	/**
-	 * Problem with new class
-	 * 
-	 * @param bestTrace
-	 * @return
-	 */
-	private List<GPSPoint> gpsPointsExchange(List<GPSPoint> bestTrace, GPSSegment segment) {
-		GPSPoint currentNode;
-		for (int i = 0; i < bestTrace.size(); i++) {
-			currentNode = bestTrace.get(i);
-			for (GPSPoint point : segment) {
-				if (currentNode.getLat() == point.getLat()
-						&& currentNode.getLon() == point.getLon()) {
-					bestTrace.remove(i);
-					bestTrace.add(i, point);
-					break;
-				}
-			}
-		}
-
-		return bestTrace;
 	}
 
 	private void filterPath(List<AggNode> path) {
@@ -368,7 +323,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 
 		return best;
 	}
-	
+
 	private void addPaths(List<List<AggNode>> paths, List<AggNode> path,
 			int depth, int minDepth, int maxDepth) {
 		if (depth > maxDepth) {
@@ -390,17 +345,18 @@ public class FrechetMatchAttractionMergeStrategy extends
 			}
 		}
 	}
-	
+
 	/**
 	 * to remove same path. Bug from addPaths
+	 * 
 	 * @param paths
 	 */
 	private void removeSamePath(List<List<AggNode>> paths) {
-		for(int i = 0; i < paths.size(); i++) {
-			for(int j = 0; j < paths.size(); j++) {
-				if(paths.get(i).containsAll(paths.get(j)) && i != j) {
+		for (int i = 0; i < paths.size(); i++) {
+			for (int j = 0; j < paths.size(); j++) {
+				if (paths.get(i).containsAll(paths.get(j)) && i != j) {
 					paths.remove(j);
-					if(i > j)
+					if (i > j)
 						i--;
 					j--;
 				}

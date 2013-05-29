@@ -143,16 +143,22 @@ public class CalcThread extends Thread {
 			int counter = 0;
 			// use clean data if cleaning step has been performed
 			if (stepStorage.levelReached >= 2) {
-				for (GPSSegment cleanSegment : stepStorage.cleanSegmentList) {
+				for (int i = 0; i < stepStorage.cleanSegmentList.size(); i++) {
 					System.out.println(String.format("adding segment no. %d",
 							++counter));
-					stepStorage.getAggContainer().addSegment(cleanSegment);
+					if(i < stepStorage.cleanSegmentList.size() - 1)
+						stepStorage.getAggContainer().addSegment(stepStorage.cleanSegmentList.get(i), true);
+					else
+						stepStorage.getAggContainer().addSegment(stepStorage.cleanSegmentList.get(i), false);
 				}
 			} else {
-				for (GPSSegment inputSegment : stepStorage.inputSegmentList) {
+				for (int i = 0; i < stepStorage.inputSegmentList.size(); i++) {
 					System.out.println(String.format("adding segment no. %d",
 							++counter));
-					stepStorage.getAggContainer().addSegment(inputSegment);
+					if(i < stepStorage.inputSegmentList.size() - 1)
+						stepStorage.getAggContainer().addSegment(stepStorage.inputSegmentList.get(i), true);
+					else
+						stepStorage.getAggContainer().addSegment(stepStorage.inputSegmentList.get(i), false);
 				}
 			}
 			//Save the result
@@ -201,7 +207,7 @@ public class CalcThread extends Thread {
 			}
 //			Vector<GPSEdge> edge2 = segment2.convertToEdges();
 			//TODO Default 10
-			FrechetDistance f = new FrechetDistance(path1, path2, 10.0/92500.0);
+			FrechetDistance f = new FrechetDistance(path1, path2, 15.0/92500.0);
 //			f.computeEpsilon();
 			showFreeSpace(f);			
 		} 

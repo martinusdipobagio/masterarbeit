@@ -99,8 +99,11 @@ public class AggContainer {
 		if (segments == null) {
 			return;
 		}
-		for (GPSSegment segment : segments) {
-			addSegment(segment);
+		for (int i = 0; i < segments.size(); i++) {
+			if(i < segments.size() - 1)
+				addSegment(segments.get(i), true);
+			else
+				addSegment(segments.get(i), false);
 		}
 	}
 
@@ -109,8 +112,8 @@ public class AggContainer {
 	 * 
 	 * @param segment
 	 */
-	public void addSegment(GPSSegment segment) {
-		aggregationStrategy.aggregate(segment);
+	public void addSegment(GPSSegment segment, boolean isAgg) {
+		aggregationStrategy.aggregate(segment, isAgg);
 	}
 
 	public void addNode(AggNode node) {

@@ -54,7 +54,7 @@ public class DefaultMatchIterativeMergeStrategy extends AbstractAggregationStrat
 	}
 
 	@Override
-	public void aggregate(GPSSegment segment) {
+	public void aggregate(GPSSegment segment, boolean isAgg) {
 		logger.setLevel(Level.OFF); // Level.ALL);
 
 		// reset all attributes

@@ -67,7 +67,7 @@ public class GPXWriter {
 							.append("\n");
 				} else {
 					pointBuilder.append(
-							String.format(pointTemplate, point.getLat(), point.getLon(), 1))
+							String.format(pointTemplate, point.getLat(), point.getLon(), point.getK()))
 							.append("\n");
 				}				
 			}
@@ -75,7 +75,7 @@ public class GPXWriter {
 					append("\n");
 		}
 		
-		FileWriter fstream = new FileWriter(targetFile);
+		FileWriter fstream = new FileWriter(targetFile, false);
 		fstream.write(String.format(fileTemplateMoreSegments, segmentBuilder.toString()));
 		fstream.close();
 	}

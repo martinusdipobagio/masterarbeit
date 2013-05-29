@@ -183,7 +183,7 @@ public class CLI {
 							logger.info(String.format("adding segment no. %d",
 									++counter));
 							stepStorage.getAggContainer().addSegment(
-									cleanSegment);
+									cleanSegment, true);
 						}
 						importHistory.wasImported(inputFile);
 					}

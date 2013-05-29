@@ -51,6 +51,10 @@ public abstract class AbstractAggregationStrategy implements
 		// logger.debug("Added node " + node);
 	}
 	
+	protected void resetLastNode() {
+		lastNode = null;
+	}
+	
 //	protected void addNodeToAgg(AggContainer agg, AggNode node, AggNode before, AggNode after) {
 //		agg.addNode(node);
 //		agg.splitConnection(conn, numParts)

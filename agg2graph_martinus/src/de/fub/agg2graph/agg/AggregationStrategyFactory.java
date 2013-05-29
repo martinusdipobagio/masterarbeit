@@ -5,16 +5,7 @@ import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy;
 import de.fub.agg2graph.agg.strategy.DefaultMatchFrechetBasedMergeStrategy;
 import de.fub.agg2graph.agg.strategy.DefaultMatchIterativeMergeStrategy;
 import de.fub.agg2graph.agg.strategy.FrechetMatchAttractionMergeStrategy;
-import de.fub.agg2graph.agg.strategy.FrechetMatchDefaultMergeStrategy;
-import de.fub.agg2graph.agg.strategy.FrechetMatchFrechedBasedMergeStrategy;
-import de.fub.agg2graph.agg.strategy.FrechetMatchIterativeMergeStrategy;
-import de.fub.agg2graph.agg.strategy.GpxmergeMatchAttractionMergeStrategy;
-import de.fub.agg2graph.agg.strategy.GpxmergeMatchDefaultMergeStrategy;
-import de.fub.agg2graph.agg.strategy.GpxmergeMatchFrechetBasedStrategy;
 import de.fub.agg2graph.agg.strategy.GpxmergeMatchIterativeMergeStrategy;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchAttractionMergeStrategy;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchDefaultMergeStrategy;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchFrechetBasedMergeStrategy;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchIterativeMergeStrategy;
 import de.fub.agg2graph.agg.strategy.SecondAggregationStrategy;
 
@@ -34,19 +25,10 @@ public class AggregationStrategyFactory {
 	private static Class<? extends IAggregationStrategy> defaultFrechetClass = DefaultMatchFrechetBasedMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;//TODO
 	
-	private static Class<? extends IAggregationStrategy> gpxDefaultClass = GpxmergeMatchDefaultMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> gpxIterativeClass = GpxmergeMatchIterativeMergeStrategy.class;//TODO
-	private static Class<? extends IAggregationStrategy> gpxFrechetClass = GpxmergeMatchFrechetBasedStrategy.class;
-	private static Class<? extends IAggregationStrategy> gpxAttractionClass = GpxmergeMatchAttractionMergeStrategy.class;
 	
-	private static Class<? extends IAggregationStrategy> hausdorffDefaultClass = HausdorffMatchDefaultMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> hausdorffIterativeClass = HausdorffMatchIterativeMergeStrategy.class;//TODO
-	private static Class<? extends IAggregationStrategy> hausdorffFrechetClass = HausdorffMatchFrechetBasedMergeStrategy.class;	
-	private static Class<? extends IAggregationStrategy> hausdorffAttractionClass = HausdorffMatchAttractionMergeStrategy.class;
 	
-	private static Class<? extends IAggregationStrategy> frechetDefaultClass = FrechetMatchDefaultMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> frechetIterativeClass = FrechetMatchIterativeMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> frechetFrechetClass = FrechetMatchFrechedBasedMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;//TODO
 
 	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondAggregationStrategy.class;
@@ -79,39 +61,19 @@ public class AggregationStrategyFactory {
 	 * TODO noch statisch
 	 */
 	public static String[] getAllStrategyName() {
-		String[] ret = new String[]{defaultDefaultClass.getName(), gpxDefaultClass.getName(), hausdorffDefaultClass.getName()};
+		String[] ret = new String[]{defaultDefaultClass.getName()};
 		return ret;
 	}
 	
 	public static void setClassByName(String name) {
 		if(name.equals(defaultDefaultClass.getName()))
 			factoryClass = defaultDefaultClass;
-		else if(name.equals(gpxDefaultClass.getName()))
-			factoryClass = gpxDefaultClass;
-		else if(name.equals(hausdorffDefaultClass.getName()))
-			factoryClass = hausdorffDefaultClass;
 	}
 	
 	public static IAggregationStrategy getClassByName(String name) {
 		if(name.equals(defaultDefaultClass.getName())) {
 			try {
 				return defaultDefaultClass.newInstance();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		} else if(name.equals(gpxDefaultClass.getName())) {
-			try {
-				return gpxDefaultClass.newInstance();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		} else if(name.equals(hausdorffDefaultClass.getName())) {
-			try {
-				return hausdorffDefaultClass.newInstance();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

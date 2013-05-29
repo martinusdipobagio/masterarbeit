@@ -88,9 +88,6 @@ public class FreeSpacePanel extends JPanel implements ChangeListener {
 				g2.setComposite(savedComposite);
 			}
 		}
-//		CellContainer cont = new CellContainer(f);
-//		cont.getTrail();
-//		cont.printProjection();
 	}
 
 	/** Listener **/

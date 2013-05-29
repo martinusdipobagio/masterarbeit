@@ -235,16 +235,6 @@ public class AttractionForceMerge implements IMergeHandler {
 		return null;
 	}
 
-	@SuppressWarnings("unused")
-	private ILocation testLength(GPSPoint point, ILocation newPoint) {
-		if (newPoint != null) {
-			if (GPSCalc.getDistanceTwoPointsMeter(point, newPoint) > maxPointGhostDist) {
-				return null;
-			}
-		}
-		return newPoint;
-	}
-
 	private void showDebugInfo() {
 		TestUI ui = (TestUI) Globals.get("ui");
 		if (ui == null) {
@@ -300,7 +290,6 @@ public class AttractionForceMerge implements IMergeHandler {
 		// add nodes
 		List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
 				10);
-		List<AggConnection> newAggConnections;
 		// add nodes
 		AggNode lastNode = null;
 		AggConnection conn = null;
@@ -317,19 +306,7 @@ public class AttractionForceMerge implements IMergeHandler {
 				continue;
 			}
 			conn.tryToFill();
-			//TODO NICHT FUNKTIONIERT
-//			List<AggNode> aggNodeList = new ArrayList<AggNode>();
-//			if (newNodesPerConn.get(conn) != null) {
-//				for (PointGhostPointPair pair : newNodesPerConn.get(conn)) {
-//					aggNodeList.add(pair.source);
-//				}
-//				newAggConnections = aggContainer.insertNodesOrdered(
-//						conn.getFrom(), conn.getTo(), aggNodeList);
-//				changedAggConnections.addAll(newAggConnections);
-//			} else {
-//				// edge without
-//				changedAggConnections.add(conn);
-//			}
+
 			lastNode = node;
 		}
 
@@ -340,12 +317,7 @@ public class AttractionForceMerge implements IMergeHandler {
 			else
 				attractionForce(pgpp.source, pgpp.proj);
 		}
-		List<AggNode> changedAggPoints = AggConnection
-				.listToPoints(changedAggConnections);
-		// clean like in the GPSCleaner
-//		cleaner.clean(changedAggPoints);
-		// simplify
-//		rdpf.simplifyAgg(changedAggPoints, aggContainer);
+
 
 	}
 
@@ -361,12 +333,13 @@ public class AttractionForceMerge implements IMergeHandler {
 	public void attractionForce(AggNode currentNode, GPSPoint projection) {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				projection);
-		// System.out.println("Att-Value = " + aValue);
-		// System.out.println("Distance  = " + distance);
-		Double aValue = av.getValue(distance);
+				Double aValue = av.getValue(distance);
+		currentNode.setK(currentNode.getK() + 1);
 		if (aValue != null) {
+			//To damp the movement due to k, log2 is used
+			double dampingFactor = Math.log10(currentNode.getK()) / Math.log10(2);
 			ILocation newPos = GPSCalc.getPointAt(
-					(av.getKey(distance) - aValue) / av.getKey(distance),
+					(av.getKey(distance) - aValue) / (av.getKey(distance) * dampingFactor),
 					currentNode, projection);
 			aggContainer.moveNodeTo(currentNode, newPos);
 		}
@@ -377,16 +350,6 @@ public class AttractionForceMerge implements IMergeHandler {
 		// TODO Null gefahr
 		double angle = GPSCalc.getAngleBetweenEdges(before, after, trajStart,
 				trajEnd);
-		// System.out.println("Angle : " + angle);
-		// System.out.println("Cos   : " + Math.cos(angle));
-		// if (angle > 45
-		// || Math.cos(angle) < 0)
-		// || GPSCalc.getProjectionPoint(currentNode, trajStart, trajEnd) ==
-		// null) // and
-		// // right
-		// // side
-		// // of
-		// return;
 		ILocation aggProj = GPSCalc.getProjectionPoint(currentNode, before,
 				after);
 		if (aggProj == null)
@@ -398,17 +361,14 @@ public class AttractionForceMerge implements IMergeHandler {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				trajProj);
 		Double aValue = av.getValue(distance);
-		// System.out.println(currentNode);
-		// System.out.println("Att-Value = " + aValue);
-		// System.out.println("Distance  = " + distance);
+		currentNode.setK(currentNode.getK() + 1);
 		if (aValue != null) {
+			//To damp the movement due to k, log2 is used
+			double dampingFactor = Math.log10(currentNode.getK()) / Math.log10(2);
 			ILocation newPos = GPSCalc.getPointAt(
-					(av.getKey(distance) - aValue) / av.getKey(distance),
+					(av.getKey(distance) - aValue) / (av.getKey(distance) * dampingFactor),
 					currentNode, trajProj);
-			// System.out.println("Current Node : " + currentNode.getLat() + "|"
-			// +
-			// currentNode.getLon());
-			// System.out.println("New Node     : " + newPos);
+
 			aggContainer.moveNodeTo(currentNode, newPos);
 		}
 	}

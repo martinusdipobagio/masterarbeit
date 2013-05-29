@@ -23,7 +23,7 @@ import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FreeSpaceMatch implements ITraceDistance {
 
-	public double maxDistance = 15;
+	public double maxDistance = 12.5;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
 
@@ -70,8 +70,8 @@ public class FreeSpaceMatch implements ITraceDistance {
 		public double expectedfd() {
 			Collection<AggConnection> ncandidates = map.getOutConnections(
 					(AggNode) nl, null);
-			Collection<AggConnection> pcandidates = map.getInConnections(
-					(AggNode) pl, null);
+//			Collection<AggConnection> pcandidates = map.getInConnections(
+//					(AggNode) pl, null);
 			double min = Double.POSITIVE_INFINITY;
 
 			for (AggConnection n : ncandidates) {
@@ -84,15 +84,15 @@ public class FreeSpaceMatch implements ITraceDistance {
 				}
 			}
 
-			for (AggConnection p : pcandidates) {
-				bfd.prependToP(p);
-				double appx = bfd.approximateDistance();
-				bfd.removeFirstOfP();
-				if (appx < min) {
-					min = appx;
-					proposedConsumee = p;
-				}
-			}
+			// for (AggConnection p : pcandidates) {
+			// bfd.prependToP(p);
+			// double appx = bfd.approximateDistance();
+			// bfd.removeFirstOfP();
+			// if (appx < min) {
+			// min = appx;
+			// proposedConsumee = p;
+			// }
+			// }
 
 			return min;
 		}
@@ -104,17 +104,18 @@ public class FreeSpaceMatch implements ITraceDistance {
 		 */
 		public boolean consume() {
 			if (proposedConsumee != null) {
-				if (proposedConsumee.getTo().compareTo((GPSPoint) pl) == 0) {
-					bfd.prependToP(proposedConsumee);
-					if (bfd.isInDistance()) {
-						path.add(0, proposedConsumee);
-						pl = proposedConsumee.getFrom();
-					} else {
-						bfd.removeFirstOfP();
-						return false;
-					}
-
-				} else if (proposedConsumee.getFrom().compareTo((GPSPoint) nl) == 0) {
+				// if (proposedConsumee.getTo().compareTo((GPSPoint) pl) == 0) {
+				// bfd.prependToP(proposedConsumee);
+				// if (bfd.isInDistance()) {
+				// path.add(0, proposedConsumee);
+				// pl = proposedConsumee.getFrom();
+				// } else {
+				// bfd.removeFirstOfP();
+				// return false;
+				// }
+				//
+				// } else
+				if (proposedConsumee.getFrom().compareTo((GPSPoint) nl) == 0) {
 					bfd.appendToP(proposedConsumee);
 					if (bfd.isInDistance()) {
 						path.add(proposedConsumee);
@@ -168,18 +169,18 @@ public class FreeSpaceMatch implements ITraceDistance {
 			return false;
 		}
 
-		public boolean initialPrevious() {
-			if (backward.hasPrevious()) {
-				GPSEdge test = backward.previous();
-				bfd.prependToQ(test);
-				previous = test;
-				path.add(0, test);
-				return true;
-			}
-
-			previous = null;
-			return false;
-		}
+//		public boolean initialPrevious() {
+//			if (backward.hasPrevious()) {
+//				GPSEdge test = backward.previous();
+//				bfd.prependToQ(test);
+//				previous = test;
+//				path.add(0, test);
+//				return true;
+//			}
+//
+//			previous = null;
+//			return false;
+//		}
 
 		public double expectedfd() {
 			double deltab = Double.POSITIVE_INFINITY;
@@ -191,12 +192,12 @@ public class FreeSpaceMatch implements ITraceDistance {
 				bfd.removeLastOfQ();
 				forward.previous();
 			}
-			if (backward.hasPrevious()) {
-				bfd.prependToQ(backward.previous());
-				deltab = bfd.approximateDistance();
-				bfd.removeFirstOfQ();
-				backward.next();
-			}
+//			if (backward.hasPrevious()) {
+//				bfd.prependToQ(backward.previous());
+//				deltab = bfd.approximateDistance();
+//				bfd.removeFirstOfQ();
+//				backward.next();
+//			}
 
 			if (deltaf < deltab) {
 				proposeForward = true;
@@ -223,22 +224,24 @@ public class FreeSpaceMatch implements ITraceDistance {
 				}
 				next = null;
 				return false;
-			} else {
-				if (backward.hasPrevious()) {
-					GPSEdge test = backward.previous();
-					bfd.prependToQ(test);
-					if (bfd.isInDistance()) {
-						previous = test;
-						path.add(0, test);
-						return true;
-					} else {
-						bfd.removeFirstOfQ();
-						backward.next();
-					}
-				}
-				previous = null;
-				return false;
 			}
+			return false;
+//			else {
+//				if (backward.hasPrevious()) {
+//					GPSEdge test = backward.previous();
+//					bfd.prependToQ(test);
+//					if (bfd.isInDistance()) {
+//						previous = test;
+//						path.add(0, test);
+//						return true;
+//					} else {
+//						bfd.removeFirstOfQ();
+//						backward.next();
+//					}
+//				}
+//				previous = null;
+//				return false;
+//			}
 		}
 
 		List<GPSEdge> getPath() {
@@ -256,11 +259,11 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 		// Set up the initial path to match against.
 		if (!tp.initialNext()) {
-			if (!tp.initialPrevious()) {
+//			if (!tp.initialPrevious()) {
 				// give up
 
 				return null;
-			}
+//			}
 		}
 		mp.expectedfd();
 		mp.consume();
@@ -288,19 +291,18 @@ public class FreeSpaceMatch implements ITraceDistance {
 			if (bfd.approximateDistance() > epsilon) {
 				break;
 			}
-			this.bestValue = bfd.approximateDistance();
 		}
 
 		Pair<List<AggConnection>, List<GPSEdge>> result = new Pair<List<AggConnection>, List<GPSEdge>>(
 				mp.getPath(), tp.getPath());
-		this.bestValue *= 0;
-//				fd.getDistance(mp.path, tp.path);
-//		System.out.printf("FD: %.8f Soll: %.8f\n",
-//				bestValue, epsilon);
+		this.bestValue = 0;
+		// fd.getDistance(mp.path, tp.path);
+		// System.out.printf("FD: %.8f Soll: %.8f\n",
+		// bestValue, epsilon);
 		return result;
 
 	}
-	
+
 	@Override
 	public Object[] getPathDifference(List<AggNode> aggPath,
 			List<GPSPoint> tracePoints, int startIndex, IMergeHandler dmh) {
@@ -312,9 +314,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 		List<AggNode> aggLocations = aggPath;
 		List<GPSPoint> traceLocations = tracePoints;
-				
 
-		
 		map = new TreeAggMap(aggContainer);
 		AggNode last = null;
 		for (AggNode node : aggLocations) {
@@ -326,15 +326,16 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 		start = traceLocations.get(startIndex);
 		trace = new Trace();
-		
-		
+
 		for (int i = startIndex; i < traceLocations.size(); i++) {
 			trace.insertEdgeLocation(i - startIndex, traceLocations.get(i));
 		}
 
-		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start, maxDistance/92500);
-		
+		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start,
+				maxDistance / 92500);
+
 		bestValue = this.bestValue;
+
 		if (res == null) {
 			return null;
 		}
@@ -350,6 +351,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		traceResult.add(res.b.get(res.b.size() - 1).getTo());
 
 		bestValueLength = traceResult.size();
+		bestValue = 0;
 		return new Object[] { bestValue, bestValueLength, aggResult,
 				traceResult };
 	}

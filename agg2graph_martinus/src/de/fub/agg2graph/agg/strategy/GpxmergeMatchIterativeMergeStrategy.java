@@ -67,7 +67,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 	}
 
 	@Override
-	public void aggregate(GPSSegment segment) {
+	public void aggregate(GPSSegment segment, boolean isAgg) {
 		logger.setLevel(Level.OFF); // Level.ALL);
 
 		// reset all attributes
@@ -80,7 +80,8 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 		// data!)
 		// attention: node counter is not necessarily accurate!
 		if (aggContainer.getCachingStrategy() == null
-				|| aggContainer.getCachingStrategy().getNodeCount() == 0) {
+				|| aggContainer.getCachingStrategy().getNodeCount() == 0
+				|| isAgg) {
 			int i = 0;
 			while (i < segment.size()) {
 				GPSPoint pointI = segment.get(i);

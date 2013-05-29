@@ -6,14 +6,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
 
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchAttractionMergeStrategy.State;
 import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
@@ -26,7 +24,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 
 	public int maxLookahead = Integer.MAX_VALUE;
 	public double maxPathDifference = 200;
-	public double maxInitDistance = 15;
+	public double maxInitDistance = 12.5;
 	List<GPSPoint> matchedPoints;
 
 	public enum State {
@@ -56,7 +54,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void aggregate(GPSSegment segment) {
+	public void aggregate(GPSSegment segment, boolean isAgg) {
 
 		// reset all attributes
 		lastNode = null;
@@ -69,7 +67,8 @@ public class HausdorffMatchIterativeMergeStrategy extends
 		// data!)
 		// attention: node counter is not necessarily accurate!
 		if (aggContainer.getCachingStrategy() == null
-				|| aggContainer.getCachingStrategy().getNodeCount() == 0) {
+				|| aggContainer.getCachingStrategy().getNodeCount() == 0
+				|| isAgg) {
 			int i = 0;
 			while (i < segment.size()) {
 				GPSPoint pointI = segment.get(i);
@@ -169,16 +168,11 @@ public class HausdorffMatchIterativeMergeStrategy extends
 						bestPathLength = length;
 						bestPath = new ArrayList<AggNode>((List<AggNode>)returnValues[2]);
 						bestTrace = new ArrayList<GPSPoint>((List<GPSPoint>)returnValues[3]);
-						if (bestPath.size() == 0) {
-							int j = i;
-							i = j;
-						}
 					}
 				}
 
 				// do we have a successful match?
 				if (bestDifference >= maxPathDifference || bestPath == null) {
-					// i++;
 					isMatch = false;
 				} else if (bestPath.size() < 1 && bestPathLength < 1) {
 					isMatch = false;
@@ -209,10 +203,10 @@ public class HausdorffMatchIterativeMergeStrategy extends
 				// if there is no close points or no valid match, add it to the
 				// aggregation
 				// Dibutuhkan kalau butuh cabang baru
-				// AggNode node = new AggNode(currentPoint, aggContainer);
-				// node.setID("A-" + currentPoint.getID());
-				// addNodeToAgg(aggContainer, node);
-				// lastNode = node;
+				AggNode node = new AggNode(currentPoint, aggContainer);
+				node.setID("A-" + currentPoint.getID());
+				addNodeToAgg(aggContainer, node);
+				lastNode = node;
 				i++;
 			}
 		}
@@ -236,19 +230,17 @@ public class HausdorffMatchIterativeMergeStrategy extends
 //		System.out.println(this.matchedAggLength);
 //		System.out.println(this.traceLength);
 //		System.out.println(this.matchedTraceLength);
-		if(matchedAggLength > aggLength || matchedTraceLength > traceLength)
-			System.out.println("STIMMT IRGENDWAS NICHT");
-		List<Double> value = new ArrayList<Double>();
-		value.add(this.aggLength);
-		value.add(this.matchedAggLength);
-		value.add(this.traceLength);
-		value.add(this.matchedTraceLength);
-		try {
-			MyStatistic.writefile("test/exp/HausdorffMatch-IterativeMerge.txt", value);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		List<Double> value = new ArrayList<Double>();
+//		value.add(this.aggLength);
+//		value.add(this.matchedAggLength);
+//		value.add(this.traceLength);
+//		value.add(this.matchedTraceLength);
+//		try {
+//			MyStatistic.writefile("test/exp/HausdorffMatch-IterativeMerge.txt", value);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	private static void filterPath(List<AggNode> path) {

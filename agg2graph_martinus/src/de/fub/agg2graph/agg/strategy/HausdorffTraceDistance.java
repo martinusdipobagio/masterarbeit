@@ -20,7 +20,7 @@ public class HausdorffTraceDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 10;
+	public double maxDistance = 12.5;
 	public int maxLookahead = 4;
 	public double maxPathDifference = 10;
 	public int minLengthFirstSegment = 1;
@@ -51,6 +51,8 @@ public class HausdorffTraceDistance implements ITraceDistance {
 
 		// step 1a: get nearest distance in agg from trace
 		int j = startIndex;
+		int currentK;
+		int bestK;
 		double globalBestDistance = -1;
 		while (j < traceLocations.size()) {
 			double distance = 0;
@@ -119,8 +121,9 @@ public class HausdorffTraceDistance implements ITraceDistance {
 		}
 
 		bestValue = globalBestDistance;
-		bestValueLength = traceLocations.subList(startIndex, Math.min(traceLocations.size() - 1, j)).size();
-
+//		bestValueLength = traceLocations.subList(startIndex, Math.min(traceLocations.size() - 1, j)).size();
+		bestValueLength = traceResult.size();
+		
 		if (aggResult.size() <= 1)
 			return null;
 		else

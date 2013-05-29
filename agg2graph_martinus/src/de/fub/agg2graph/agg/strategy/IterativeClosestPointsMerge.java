@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
-import java.util.Vector;
-import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,9 +21,6 @@ import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
-import de.fub.agg2graph.structs.frechet.FrechetDistance;
-import de.fub.agg2graph.structs.frechet.Pair;
-import de.fub.agg2graph.structs.frechet.TreeAggMap;
 import de.fub.agg2graph.ui.gui.Layer;
 import de.fub.agg2graph.ui.gui.RenderingOptions;
 import de.fub.agg2graph.ui.gui.TestUI;
@@ -177,7 +170,11 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 			// loop over all possible opposing lines
 			PointGhostPointPair pair = null;
 			// START
-			List<GPSPoint> neighbour = getKSmallest(gpsPoints, node, k);
+			List<GPSPoint> neighbour;
+			if(pointIndex == 0 || pointIndex == getAggNodes().size() - 1)
+				neighbour = getKSmallest(gpsPoints, node, 1);
+			else
+				neighbour = getKSmallest(gpsPoints, node, k);
 			if (neighbour.size() > 0) {
 				pair = PointGhostPointPair.createIterative(
 						node, neighbour, 0);
@@ -311,12 +308,7 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 
 	public void closestPointsMerge(AggNode a, List<GPSPoint> ts) {
 
-		// System.out.println("A        = " + a.getLat() + " <> " + a.getLon());
-		// for(int i = 0; i < ts.size(); i++) {
-		// System.out.println("Neigh " + i + "   = " + ts.get(i).getLat() +
-		// " <> " + ts.get(i).getLon());
-		// }
-		AggNode toMean = GPSCalc.CalculateMean(a, ts, delta, aggContainer);
+		AggNode toMean = GPSCalc.calculateMean(a, ts, delta, aggContainer, true);
 		AggNode to = GPSCalc.moveLocation(a, toMean, aggContainer);
 		// GPSCalc.moveLocation(map, a, toCopy, aggContainer);
 		aggContainer.moveNodeTo(a, to);
@@ -334,7 +326,6 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 		return outNode;
 	}
 
-	// TODO FAUL
 	@Override
 	public String toString() {
 		StringBuilder gps = new StringBuilder();

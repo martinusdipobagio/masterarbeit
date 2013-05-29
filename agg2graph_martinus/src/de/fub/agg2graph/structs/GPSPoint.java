@@ -130,8 +130,15 @@ public class GPSPoint extends AbstractLocation {
 		return deltaLat * deltaLat + deltaLong * deltaLong;
 	}
 
+//	public String toString() {
+//		return this.getLat() + "|" + this.getLon();
+//	}
+	
 	public String toString() {
-		return this.getLat() + "|" + this.getLon();
+		if (ID != null) {
+			return "{" + ID + "}";
+		}
+		return "I [lat=" + getLat() + ", lon=" + getLon() + "]";
 	}
 
 	public static GPSPoint min(GPSPoint a, GPSPoint b) {

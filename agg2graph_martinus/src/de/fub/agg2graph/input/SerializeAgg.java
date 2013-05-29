@@ -11,6 +11,16 @@ public class SerializeAgg {
 
 //	public static List<GPSSegment> myResult = new ArrayList<GPSSegment>();
 	
+	public static GPSSegment getSegmentFromLastNode(AggNode last) {
+		GPSSegment result = new GPSSegment();
+		result.add(last);
+		while(!last.getIn().isEmpty()) {
+			last = last.getIn().iterator().next().getFrom();
+			result.add(0, last);
+		}
+		return result;
+	}
+	
 	public static List<GPSSegment> getSerialize(AggNode root) {
 		List<GPSSegment> result = new ArrayList<GPSSegment>();
 		if(root != null) {

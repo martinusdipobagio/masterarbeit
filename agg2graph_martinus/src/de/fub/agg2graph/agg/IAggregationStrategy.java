@@ -21,7 +21,7 @@ import de.fub.agg2graph.structs.GPSSegment;
  * @author Johannes Mitlmeier
  */
 public interface IAggregationStrategy {
-	public void aggregate(GPSSegment segment);
+	public void aggregate(GPSSegment segment, boolean isAgg);
 
 	public void setAggContainer(AggContainer aggContainer);
 

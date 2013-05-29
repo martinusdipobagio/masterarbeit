@@ -4,14 +4,12 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -66,13 +64,24 @@ public class FrechetDistance {
 		calculateReachableSpace();
 	}
 
-	void updateFreeSpace() {
+	public void updateFreeSpace() {
 		for (int i = 0; i < P.size(); ++i) {
 			for (int j = 0; j < Q.size(); ++j) {
-				getCell(i, j).updateCell();
+				if(getCell(i, j).isRelevant)
+					getCell(i, j).updateCell();
 			}
 		}
 		calculateReachableSpace();
+	}
+	
+	//TODO: To Delete
+	public void updateFreeSpaceW() {
+		for (int i = 0; i < P.size(); ++i) {
+			for (int j = 0; j < Q.size(); ++j) {
+				if(getCell(i, j).isRelevant)
+					getCell(i, j).updateCell();
+			}
+		}
 	}
 
 	public double getEpsilon() {
@@ -138,10 +147,11 @@ public class FrechetDistance {
 			p = P.get(i);
 			q = Q.get(j);
 			isRelevant = p.getFrom().isRelevant();
-			updateCell();
+			if(isRelevant)
+				updateCell();
 		}
 
-		private void updateCell() {
+		void updateCell() {
 			leftF = GPSCalc.getSegmentCircleIntersection2(p.getFrom().getLon(),
 					p.getFrom().getLat(), p.getTo().getLon(), p.getTo()
 							.getLat(), q.getFrom().getLon(), q.getFrom()

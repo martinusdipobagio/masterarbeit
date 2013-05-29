@@ -9,7 +9,8 @@ import de.fub.agg2graph.structs.frechet.FrechetDistance.Cell;
 /**
  * This class is used to determined the monotone (and later conformal path) in
  * the free space diagram. All possible path are computed with dynamic
- * programming. From Algorithm 1 Alt'95
+ * programming. From Algorithm 1 Alt'95.
+ * TODO: It is still discrete at the end
  * 
  * @author Martinus
  * 
@@ -26,8 +27,8 @@ public class CheckPath {
 
 	// Head
 	Point start;
-	Point head;
-	List<Point> heads;
+	Point end;
+	List<Pair<Point, Point>> pathList;
 
 	/**
 	 * Constructor from the @FrechetDistance i = agg ; j = trace
@@ -42,32 +43,56 @@ public class CheckPath {
 		for (Cell c : fd.cells) {
 			cells[c.i][c.j] = c;
 		}
+		fd.updateFreeSpace();
 		maxDistance = fd.getEpsilon();
 		start = new Point();
-		head = new Point();
-		heads = new ArrayList<Point>();
+		end = new Point();
+		pathList = new ArrayList<Pair<Point, Point>>();
+	}
+	
+	public List<Pair<Point, Point>> getPathList() {
+		algorithm1();
+		
+		return pathList;
+	}
+
+	public void algorithm1() {
+		int i = 0;
+		int j = 0;
+		boolean moreWhiteSpace = true;
+		Point nextStart = null;
+		start.setLocation(i, j);
+		while (moreWhiteSpace) {
+			algorithm1(start.x, start.y);
+			Pair<Point, Point> newPath = new Pair<Point, Point>(start, end);
+			pathList.add(newPath);
+			nextStart = checkAnotherWhiteSpaces(end.x, end.y);
+			
+			if (nextStart != null) {
+				start = new Point(nextStart);
+				end = new Point();
+			} else {
+				moreWhiteSpace = false;
+			}
+		}
+
+		for (Pair<Point, Point> path : pathList) {
+			System.out.println(path.a + " : " + path.b);
+		}
+		// TODO: for debug-test only
+		// for (int i = 0; i < this.i; i++) {
+		// for (int j = 0; j < this.j; j++) {
+		// System.out.println("i = " + i + " : j = " + j);
+		// System.out.println("leftR   = "
+		// + !cells[i][j].getLeftR().isEmpty());
+		// System.out.println("bottomR = "
+		// + !cells[i][j].getBottomR().isEmpty());
+		// }
+		// }
 	}
 
 	/**
 	 * Algorithm 1 from Alt's paper
-	 */
-	public void algorithm1() {
-		// Start Point should be (0,0) else TODO
-		algorithm1(0, 0);
-		start.setLocation(0, 0);
-		System.out.println(head);
-		// TODO: for debug-test only
-		 for(int i = 0; i < this.i; i++) {
-		 for(int j = 0; j < this.j; j++) {
-		 System.out.println("i = " + i + " : j = " + j);
-		 System.out.println("leftR   = " + !cells[i][j].getLeftR().isEmpty());
-		 System.out.println("bottomR = " +
-		 !cells[i][j].getBottomR().isEmpty());
-		 }
-		 }
-	}
-
-	/**
 	 * 
 	 * @param i
 	 *            vertical
@@ -92,11 +117,47 @@ public class CheckPath {
 				Cell current = cells[it][jt];
 				if (!current.getBottomR().isEmpty()
 						|| !current.getLeftR().isEmpty())
-					updateHead(it, jt);
+					updateEnd(it, jt);
 			}
 		}
 	}
 
+	/**
+	 * This function is used to search another monotone path. It determines the
+	 * next start.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	private Point checkAnotherWhiteSpaces(int x, int y) {
+		List<Point> candidates = new ArrayList<Point>();
+		for (int it = x; it < this.i; it++) {
+			for (int jt = y; jt < this.j; jt++) {
+				Cell current = cells[it][jt];
+				if (!current.getBottomF().isEmpty()
+						|| !current.getLeftF().isEmpty()) {
+					if (it > x || jt > y) {
+						candidates.add(new Point(it, jt));
+					}
+				}
+			}
+		}
+		Point best = new Point(-1, -1);
+		for (Point candidate : candidates) {
+			if (best.x + best.y > candidate.x + candidate.y || best.x == -1
+					|| best.y == -1)
+				best = candidate;
+		}
+		return ((best.x == -1 || best.y == -1) ? null : best);
+	}
+
+	/**
+	 * Help function of Algorithm 1 alt'95
+	 * 
+	 * @param i
+	 * @param j
+	 */
 	private void construct(int i, int j) {
 		if (i < (this.i - 1)) {
 			calculateBottom(i, j);
@@ -105,13 +166,13 @@ public class CheckPath {
 			calculateLeft(i, j);
 		}
 		// only for check
-		if (i == (this.i - 1) && j == (this.j - 1)) {
-			Cell current = cells[i][j];
-			if (!current.getBottomR().isEmpty()
-					&& !current.getLeftR().isEmpty()) {
-				System.out.println("MATCHED");
-			}
-		}
+		// if (i == (this.i - 1) && j == (this.j - 1)) {
+		// Cell current = cells[i][j];
+		// if (!current.getBottomR().isEmpty()
+		// && !current.getLeftR().isEmpty()) {
+		// System.out.println("MATCHED");
+		// }
+		// }
 	}
 
 	/**
@@ -126,8 +187,6 @@ public class CheckPath {
 
 		// if current bottom is empty, then bottomR = bottomF
 		if (current.getBottomR().isEmpty() && !current.getLeftR().isEmpty()) {
-			// start = top.getBottomF().start;
-			// end = top.getBottomF().end;
 			Interval bottom = new Interval(top.getBottomF().start,
 					top.getBottomF().end);
 			top.setBottomR(bottom);
@@ -204,61 +263,12 @@ public class CheckPath {
 	}
 
 	/**
-	 * Update head, if the point is further than head
+	 * Update end, if the point is further than head
 	 * 
 	 * @param current
 	 */
-	private void updateHead(int i, int j) {
-		if ((i + j) > (head.x + head.y))
-			head.setLocation(i, j);
-	}
-
-	/**
-	 * TODO: Check correctness
-	 * Check connectivity from head to start
-	 */
-	public boolean checkConnectivity() {
-		Cell current = cells[head.x][head.y];
-		boolean startFound = false;
-		if (i == start.x
-				&& j == start.y
-				&& (!current.getBottomR().isEmpty() || !current.getLeftR()
-						.isEmpty()))
-			startFound = true;
-		else {
-			if (i > start.x && !current.getBottomR().isEmpty()) {
-				if(checkConnectivity(head.x - 1, head.y))
-					startFound = true;
-			}
-			if (j > start.y && !current.getLeftR().isEmpty()) {
-				if(checkConnectivity(head.x, head.y - 1))
-					startFound = true;
-			}
-		}
-
-		return startFound;
-	}
-
-	private boolean checkConnectivity(int i, int j) {
-		Cell current = cells[i][j];
-		boolean startFound = false;
-		
-		if (i == start.x
-				&& j == start.y
-				&& (!current.getBottomR().isEmpty() || !current.getLeftR()
-						.isEmpty()))
-			startFound = true;
-		else {
-			if (i > start.x && !current.getBottomR().isEmpty()) {
-				if(checkConnectivity(i - 1, j))
-					startFound = true;
-			}
-			if (j > start.y && !current.getLeftR().isEmpty()) {
-				if(checkConnectivity(i, j - 1))
-					startFound = true;
-			}
-		}
-
-		return startFound;
+	private void updateEnd(int i, int j) {
+		if ((i + j) > (end.x + end.y))
+			end.setLocation(i, j);
 	}
 }

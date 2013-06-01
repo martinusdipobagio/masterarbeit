@@ -18,7 +18,7 @@ public class GPSFilter {
 	public List<GPSSegment> irrelevantPart = new ArrayList<GPSSegment>();
 	
 	public GPSFilter enableDefault() {
-		fo.kRequirement = 4;
+		fo.setkRequirement(4);
 		
 		return this;
 	}
@@ -26,7 +26,7 @@ public class GPSFilter {
 	public GPSSegment filter(GPSSegment segment) {
 		List<GPSPoint> pointList = segment;
 		for(GPSPoint point : pointList) {
-			if(point.getK() < fo.kRequirement)
+			if(point.getK() < fo.getkRequirement())
 				point.setRelevant(false);
 			else
 				point.setRelevant(true);

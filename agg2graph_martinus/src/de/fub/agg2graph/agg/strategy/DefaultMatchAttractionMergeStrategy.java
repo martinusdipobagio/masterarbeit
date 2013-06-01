@@ -11,6 +11,8 @@
 package de.fub.agg2graph.agg.strategy;
 
 //import java.io.IOException;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +26,9 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.input.GPXWriter;
+import de.fub.agg2graph.input.SerializeAgg;
+import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
@@ -34,21 +39,14 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.strategy");
 
+	MyStatistic statistic;
+	int counter = 1;
+	
 	public int maxLookahead = 5;
 	public double maxPathDifference = 15;
 	public double maxInitDistance = 12.5;
 	
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
-	
-	//Statistics variable
-	@SuppressWarnings("unused")
-	private double aggLength = 0;
-	@SuppressWarnings("unused")
-	private double traceLength = 0;
-	@SuppressWarnings("unused")
-	private double matchedAggLength = 0;
-	@SuppressWarnings("unused")
-	private double matchedTraceLength = 0;
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -61,6 +59,7 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 	 * instances of this class.
 	 */
 	public DefaultMatchAttractionMergeStrategy() {
+		statistic = new MyStatistic("test/exp/Evaluation-DefaultMatchAttratctionMerge.txt");
 		TraceDistanceFactory.setClass(DefaultTraceDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
 		MergeHandlerFactory.setClass(AttractionForceMerge.class);
@@ -96,15 +95,16 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 				i++;
 			}
 			lastNodes.add(lastNode);
-			aggLength =  GPSCalc.traceLengthMeter(segment);
+			statistic.setAggLength(GPSCalc.traceLengthMeter(segment));
 			return;
 		}
 
 		BoundedQueue<ILocation> lastParsedCurrentPoints = new BoundedQueue<ILocation>(
 				5);
-		int i = 0;
+		int i;
 
-		traceLength = GPSCalc.traceLengthMeter(segment);
+		statistic.setTraceLength(GPSCalc.traceLengthMeter(segment));
+
 		i = 0;
 		while (i < segment.size()) {
 			// step 1: find starting point
@@ -237,53 +237,48 @@ public class DefaultMatchAttractionMergeStrategy extends AbstractAggregationStra
 			}
 		}
 		
-		lastNodes.add(lastNode);
+		//New Segment
+		if(getAddAllowed())
+			lastNodes.add(lastNode);
 		
 		// step 2 and 3 of 3: ghost points, merge everything
 		System.out.println("MATCHES : " + matches.size());
-//		int locCounter = 0;
-		matchedAggLength = 0;
-		matchedTraceLength = 0;
+		statistic.resetMatchedAggLength();
+		statistic.resetMatchedTraceLength();
 		for (IMergeHandler match : matches) {
 //			System.out.println(++locCounter + ". Match");
-			System.out.println(match.getAggNodes());
-			System.out.println(match.getGpsPoints());
+//			System.out.println(match.getAggNodes());
+//			System.out.println(match.getGpsPoints());
 //			System.out.println();
-			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
-			matchedTraceLength += GPSCalc.traceLengthMeter(match.getGpsPoints());
+			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match.getAggNodes()));
+			statistic.setMatchedTraceLength(GPSCalc.traceLengthMeter(match.getGpsPoints()));
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
 				
-//		try {
-//			List<GPSSegment> segments = new ArrayList<GPSSegment>();
-//			for(AggNode last : lastNodes) {
-//				segments.add(SerializeAgg.getSegmentFromLastNode(last));
-//			}
-//			GPXWriter.writeSegments(new File(
-//					new String("test/input/draw-gpx/" + "MYTest" + ".gpx")), segments);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-		//TODO Statistik-Zeug
-//		System.out.println(this.aggLength);
-//		System.out.println(this.matchedAggLength);
-//		System.out.println(this.traceLength);
-//		System.out.println(this.matchedTraceLength);
-//		List<Double> value = new ArrayList<Double>();
-//		value.add(this.aggLength);
-//		value.add(this.matchedAggLength);
-//		value.add(this.traceLength);
-//		value.add(this.matchedTraceLength);
-//		try {
-//			MyStatistic.writefile("test/exp/DefaultMatch-AttractionMerge.txt", value);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		/** Save new Map */
+		try {
+			List<GPSSegment> segments = new ArrayList<GPSSegment>();
+			for(AggNode last : lastNodes) {
+				segments.add(SerializeAgg.getSegmentFromLastNode(last));
+			}
+			GPXWriter.writeSegments(new File(
+					new String("test/input/map 2.0a/" + "map" + counter++ + ".gpx")), segments);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/** Statistic record */
+		try {
+			statistic.writefile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		statistic.resetAll();
+		lastNodes.clear();
 	}
 
 	private static void filterPath(List<AggNode> path) {

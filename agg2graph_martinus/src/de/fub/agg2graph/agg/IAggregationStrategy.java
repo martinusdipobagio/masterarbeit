@@ -41,4 +41,8 @@ public interface IAggregationStrategy {
 	
 	//TODO Martinus
 	public AggNode getLastNode();
+	
+	public void setAddAllowed(boolean allowed);
+	
+	public boolean getAddAllowed();
 }

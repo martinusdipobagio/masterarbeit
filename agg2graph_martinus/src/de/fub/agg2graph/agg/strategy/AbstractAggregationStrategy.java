@@ -30,6 +30,8 @@ public abstract class AbstractAggregationStrategy implements
 	protected IMergeHandler baseMergeHandler;
 	protected IMergeHandler mergeHandler;
 	protected AggNode lastNode = null;
+	
+	protected boolean addAllowed = true;
 
 	@Override
 	public void clear() {
@@ -114,5 +116,15 @@ public abstract class AbstractAggregationStrategy implements
 	@Override
 	public AggNode getLastNode() {
 		return lastNode;
+	}
+	
+	@Override
+	public void setAddAllowed(boolean allowed) {
+		this.addAllowed = allowed;
+	}
+	
+	@Override
+	public boolean getAddAllowed() {
+		return this.addAllowed;
 	}
 }

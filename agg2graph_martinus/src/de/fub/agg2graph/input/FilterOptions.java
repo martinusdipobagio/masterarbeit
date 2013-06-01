@@ -1,6 +1,19 @@
 package de.fub.agg2graph.input;
 
+/**
+ * 
+ * @author Martinus
+ *
+ */
 public class FilterOptions {
 
-	public int kRequirement = 1;
+	private int kRequirement = 1;
+
+	public int getkRequirement() {
+		return kRequirement;
+	}
+
+	public void setkRequirement(int kRequirement) {
+		this.kRequirement = kRequirement;
+	}
 }

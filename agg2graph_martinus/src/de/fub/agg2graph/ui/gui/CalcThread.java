@@ -237,15 +237,12 @@ public class CalcThread extends Thread {
 	
 	private void showFreeSpace(final FrechetDistance f) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
-
 			@Override
 			public void run() {
-				show();
-				
+				show();				
 			}
 
 			private void show() {
-				
 				JFrame freeSpaceView = new JFrame();
 				freeSpaceView.setTitle("Free Space Diagram");
 				freeSpaceView.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -256,8 +253,7 @@ public class CalcThread extends Thread {
 				freeSpaceView.getContentPane().add(freeSpace);
 				freeSpaceView.pack();
 				freeSpaceView.setVisible(true);
-			}
-			
+			}			
 		});
 	}
 }

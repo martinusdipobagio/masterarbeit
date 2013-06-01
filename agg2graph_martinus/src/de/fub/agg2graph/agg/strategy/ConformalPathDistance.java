@@ -55,27 +55,6 @@ public class ConformalPathDistance implements ITraceDistance {
 		List<List<AggNode>> aggResults = extractAgg(ret, aggPath, tracePoints);
 		List<List<GPSPoint>> traceResults = extractTrace(ret, aggPath, tracePoints);
 		return new Object[] {segmentLength, aggResults, traceResults};
-//		drawImaginaryFreeSpace(pfd);
-//		
-//		
-//		//Generate Best Trail
-//		CellContainer container = new CellContainer(fd);
-//		container.getTrail();
-//		List<List<Cell>> ret = container.getBestTrails();
-//
-//		//	To determine the score of a trail. L1 Distances in white regions are calculated
-//		for(List<Cell> cells : ret) {
-//			for(Cell c : cells) {
-//				bestValueLength += ((c.to.x - c.from.x) + (c.to.y + c.from.y));
-//			}
-//		}
-//		
-//		// TODO Best Value
-//		
-//		//
-//		segmentLength = fd.getSizeQ();
-//		
-//		return new Object[] { bestValue, bestValueLength, ret, segmentLength };
 	}
 	
 	private List<List<AggNode>> extractAgg(List<Pair<Point, Point>> ret,

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="agg2graph">
+<bounds minlat="0" minlon="0" maxlat="0" maxlon="0"/>
+<node id="1" lat="52.5169125" lon="13.3856363" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="2" lat="52.5169830" lon="13.3856878" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="3" lat="52.5169945" lon="13.3859558" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="4" lat="52.5170059" lon="13.3861217" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="5" lat="52.5170288" lon="13.3863525" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="6" lat="52.5170288" lon="13.3866158" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="7" lat="52.5170441" lon="13.3868246" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="8" lat="52.5170555" lon="13.3870230" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="9" lat="52.5170822" lon="13.3871784" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="10" lat="52.5170937" lon="13.3874044" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="11" lat="52.5170975" lon="13.3876190" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="12" lat="52.5171204" lon="13.3878012" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="13" lat="52.5171204" lon="13.3879890" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="14" lat="52.5171318" lon="13.3881979" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="15" lat="52.5171318" lon="13.3883858" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="16" lat="52.5171623" lon="13.3885517" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<node id="17" lat="52.5171413" lon="13.3888178" version="1" changeset="1" user="agg2graph" uid="1" visible="true" timestamp="2013-05-30T15:32:26Z"></node>
+<way id="1" highway="tertiary" oneway="yes" visible="true" timestamp="2013-05-30T15:32:26Z" version="1" changeset="1" user="agg2graph" uid="1">
+<nd ref="17"/>
+<nd ref="2"/>
+<nd ref="3"/>
+<nd ref="4"/>
+<nd ref="5"/>
+<nd ref="6"/>
+<nd ref="7"/>
+<nd ref="8"/>
+<nd ref="9"/>
+<nd ref="10"/>
+<nd ref="11"/>
+<nd ref="12"/>
+<nd ref="13"/>
+<nd ref="14"/>
+<nd ref="15"/>
+<nd ref="16"/>
+<nd ref="17"/>
+</way>
+</osm>

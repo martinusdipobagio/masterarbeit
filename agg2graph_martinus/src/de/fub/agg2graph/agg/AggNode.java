@@ -139,7 +139,6 @@ public class AggNode extends GPSPoint {
 	public void addTurn(AggNode before, AggNode after) {
 		// keep it tracked
 		String key = before.getID() + "#" + after.getID();
-		// System.out.println("adding turn " + key);
 		int counter = 0;
 		if (turnMap.containsKey(key)) {
 			counter = turnMap.get(key);

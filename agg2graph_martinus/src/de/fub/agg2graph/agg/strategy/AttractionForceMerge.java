@@ -17,7 +17,6 @@ import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.PointGhostPointPair;
 import de.fub.agg2graph.graph.RamerDouglasPeuckerFilter;
 import de.fub.agg2graph.input.Globals;
-import de.fub.agg2graph.structs.CartesianCalc;
 import de.fub.agg2graph.structs.ClassObjectEditor;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
@@ -288,8 +287,8 @@ public class AttractionForceMerge implements IMergeHandler {
 		showDebugInfo();
 
 		// add nodes
-		List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
-				10);
+//		List<AggConnection> changedAggConnections = new ArrayList<AggConnection>(
+//				10);
 		// add nodes
 		AggNode lastNode = null;
 		AggConnection conn = null;

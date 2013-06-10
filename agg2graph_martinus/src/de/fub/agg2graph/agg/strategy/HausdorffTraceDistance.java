@@ -20,11 +20,10 @@ public class HausdorffTraceDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 12.5;
+	public double maxDistance = 5;
 	public int maxLookahead = 4;
 	public double maxPathDifference = 10;
 	public int minLengthFirstSegment = 1;
-	public double maxAngle = 37;
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only

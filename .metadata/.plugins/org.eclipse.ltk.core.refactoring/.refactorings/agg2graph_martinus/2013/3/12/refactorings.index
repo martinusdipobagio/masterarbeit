@@ -1,0 +1,28 @@
+1363904971400	Rename type 'HausdorffPointToPointTraceDistance'
+1363905033696	Delete element
+1363905035899	Delete element
+1363905044762	Rename type 'HausdorffMatchAggregationStrategy'
+1363905056504	Rename type 'FrechetMatchAggregationStrategy'
+1363905067492	Rename type 'GpxmergeAggregationStrategy'
+1363906352063	Rename field 'hausdorffP2PClass'
+1363906373051	Rename field 'hausdorffT2TClass'
+1364071657398	Rename local variable 'map'
+1364112747643	Delete elements
+1364112753580	Copy file
+1364112757205	Copy file
+1364112772408	Delete element
+1364112798814	Copy file
+1364113309165	Copy compilation unit
+1364116227074	Copy compilation unit
+1364118004906	Copy compilation unit
+1364118029374	Delete element
+1364121605008	Rename local variable 'agg'
+1364155330639	Copy files
+1364155430964	Copy files
+1364155466316	Copy files
+1364155666264	Delete element
+1364155668919	Copy file
+1364164929666	Rename type 'FrechetMatchIterationMergeAggregationStrategy'
+1364165448212	Rename type 'DefaultAggregationStrategy'
+1364165453039	Copy compilation unit
+1364165470427	Rename type 'CopyOfDefaultMatchDefaultMergeStrategy'

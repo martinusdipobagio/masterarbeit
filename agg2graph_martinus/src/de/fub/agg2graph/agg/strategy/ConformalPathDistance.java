@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggContainer;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
@@ -21,7 +20,7 @@ import de.fub.agg2graph.structs.frechet.PartialFrechetDistance;
 
 public class ConformalPathDistance implements ITraceDistance {
 
-	public double maxDistance = 12.5;
+	public double maxDistance = 7.5;
 
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;
@@ -50,6 +49,8 @@ public class ConformalPathDistance implements ITraceDistance {
 		tracePoints = tracePoints.subList(startIndex, tracePoints.size());
 		
 		//Partial Frechet Distance
+		if(path1.size() == 0 || path2.size() == 0)
+			return new Object[] {0, new ArrayList<List<AggNode>>(), new ArrayList<List<GPSPoint>>()};
 		PartialFrechetDistance pfd = new PartialFrechetDistance(path1, path2, maxDistance/92500);
 		List<Pair<Point, Point>> ret = pfd.getPathList();
 		List<List<AggNode>> aggResults = extractAgg(ret, aggPath, tracePoints);
@@ -92,7 +93,6 @@ public class ConformalPathDistance implements ITraceDistance {
 			for(int i = start; i <= Math.min(end, tracePoints.size()); i++) {
 				trace.add(tracePoints.get(i));
 			}
-			//TODO: Still discrete
 			int aggEnd = r.b.x;
 			if(end + 1 < tracePoints.size()) {
 				if(GPSCalc.getDistanceTwoPointsMeter(tracePoints.get(end + 1), aggPath.get(aggEnd)) <= maxDistance)

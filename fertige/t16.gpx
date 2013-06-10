@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.507811" minlon="13.3749969" maxlat="52.51938" maxlon="13.3994578"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <trkseg>
+      <trkpt lat="52.5110036" lon="13.3978079">
+        <time>2012-10-24T06:16:10Z</time>
+      </trkpt>
+      <trkpt lat="52.5109739" lon="13.3973324">
+        <time>2012-10-24T06:16:15Z</time>
+      </trkpt>
+      <trkpt lat="52.5109501" lon="13.3968766">
+        <time>2012-10-24T06:16:21Z</time>
+      </trkpt>
+      <trkpt lat="52.5109288" lon="13.3965736">
+        <time>2012-10-24T06:16:26Z</time>
+      </trkpt>
+      <trkpt lat="52.510865" lon="13.3961709">
+        <time>2012-10-24T06:16:32Z</time>
+      </trkpt>
+      <trkpt lat="52.5108068" lon="13.3958592">
+        <time>2012-10-24T06:16:37Z</time>
+      </trkpt>
+      <trkpt lat="52.5107198" lon="13.3954598">
+        <time>2012-10-24T06:17:12Z</time>
+      </trkpt>
+      <trkpt lat="52.5106757" lon="13.3948629">
+        <time>2012-10-24T06:17:18Z</time>
+      </trkpt>
+      <trkpt lat="52.5106077" lon="13.3941642">
+        <time>2012-10-24T06:17:24Z</time>
+      </trkpt>
+      <trkpt lat="52.5106357" lon="13.3936378">
+        <time>2012-10-24T06:17:29Z</time>
+      </trkpt>
+      <trkpt lat="52.5106786" lon="13.393081">
+        <time>2012-10-24T06:17:35Z</time>
+      </trkpt>
+      <trkpt lat="52.5105593" lon="13.3921517">
+        <time>2012-10-24T06:18:25Z</time>
+      </trkpt>
+      <trkpt lat="52.5104347" lon="13.3917867">
+        <time>2012-10-24T06:18:30Z</time>
+      </trkpt>
+      <trkpt lat="52.5104344" lon="13.3915685">
+        <time>2012-10-24T06:18:36Z</time>
+      </trkpt>
+      <trkpt lat="52.5104506" lon="13.3912936">
+        <time>2012-10-24T06:18:42Z</time>
+      </trkpt>
+      <trkpt lat="52.5104191" lon="13.3906367">
+        <time>2012-10-24T06:18:48Z</time>
+      </trkpt>
+      <trkpt lat="52.510383" lon="13.3901447">
+        <time>2012-10-24T06:18:53Z</time>
+      </trkpt>
+      <trkpt lat="52.5103418" lon="13.3894445">
+        <time>2012-10-24T06:18:59Z</time>
+      </trkpt>
+      <trkpt lat="52.5103247" lon="13.3889065">
+        <time>2012-10-24T06:19:05Z</time>
+      </trkpt>
+      <trkpt lat="52.5103098" lon="13.388487">
+        <time>2012-10-24T06:19:10Z</time>
+      </trkpt>
+      <trkpt lat="52.5102824" lon="13.3878285">
+        <time>2012-10-24T06:19:16Z</time>
+      </trkpt>
+      <trkpt lat="52.5102549" lon="13.3874359">
+        <time>2012-10-24T06:20:00Z</time>
+      </trkpt>
+      <trkpt lat="52.5101976" lon="13.3865608">
+        <time>2012-10-24T06:20:06Z</time>
+      </trkpt>
+      <trkpt lat="52.5101497" lon="13.3856266">
+        <time>2012-10-24T06:20:12Z</time>
+      </trkpt>
+      <trkpt lat="52.5100509" lon="13.3846495">
+        <time>2012-10-24T06:20:18Z</time>
+      </trkpt>
+      <trkpt lat="52.5099752" lon="13.3836602">
+        <time>2012-10-24T06:20:24Z</time>
+      </trkpt>
+      <trkpt lat="52.5099623" lon="13.3826854">
+        <time>2012-10-24T06:20:30Z</time>
+      </trkpt>
+      <trkpt lat="52.5099519" lon="13.3816165">
+        <time>2012-10-24T06:20:36Z</time>
+      </trkpt>
+      <trkpt lat="52.5098537" lon="13.3804395">
+        <time>2012-10-24T06:20:42Z</time>
+      </trkpt>
+      <trkpt lat="52.5097794" lon="13.3794709">
+        <time>2012-10-24T06:20:47Z</time>
+      </trkpt>
+      <trkpt lat="52.509729" lon="13.3784911">
+        <time>2012-10-24T06:20:52Z</time>
+      </trkpt>
+      <trkpt lat="52.5096546" lon="13.3773253">
+        <time>2012-10-24T06:20:58Z</time>
+      </trkpt>
+      <trkpt lat="52.5096004" lon="13.3762177">
+        <time>2012-10-24T06:21:04Z</time>
+      </trkpt>
+      <trkpt lat="52.509542" lon="13.3756042">
+        <time>2012-10-24T06:21:09Z</time>
+      </trkpt>
+      <trkpt lat="52.5095066" lon="13.3750932">
+        <time>2012-10-24T06:21:15Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

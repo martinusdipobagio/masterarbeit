@@ -108,6 +108,7 @@ public class EvaluationAutoTest {
 		for(GPSSegment a : agg) {
 			filteredAgg.add(gpsFilter.filter(a));
 		}
+		aggContainer.getAggregationStrategy().setAddAllowed(gpsFilter.getFilterOptions().getNewSegmentAllowed());
 		
 		return filteredAgg;
 	}

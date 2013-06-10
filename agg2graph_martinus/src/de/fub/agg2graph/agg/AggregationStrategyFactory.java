@@ -33,8 +33,7 @@ public class AggregationStrategyFactory {
 
 	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondAggregationStrategy.class;
 
-	//TODO
-	private static Class<? extends IAggregationStrategy> factoryClass = DefaultMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> factoryClass = SecondAggregationStrategy.class;//TODO
 
 	public static void setClass(Class<? extends IAggregationStrategy> theClass) {
 		factoryClass = theClass;

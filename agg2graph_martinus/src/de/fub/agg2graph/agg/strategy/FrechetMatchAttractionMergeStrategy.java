@@ -1,5 +1,6 @@
 package de.fub.agg2graph.agg.strategy;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,7 +13,8 @@ import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.agg.strategy.HausdorffMatchIterativeMergeStrategy.State;
+import de.fub.agg2graph.input.GPXWriter;
+import de.fub.agg2graph.input.SerializeAgg;
 import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
@@ -22,19 +24,16 @@ import de.fub.agg2graph.structs.ILocation;
 
 public class FrechetMatchAttractionMergeStrategy extends
 		AbstractAggregationStrategy {
+	MyStatistic statistic;
+	int counter = 1;
+
 	public int maxLookahead = Integer.MAX_VALUE;
 	public double maxPathDifference = 12.5;
 	public double maxInitDistance = 12.5;
 	List<AggNode> internalAggNodes = new ArrayList<AggNode>();
 
-	@SuppressWarnings("unused")
-	private double aggLength = 0;
-	@SuppressWarnings("unused")
-	private double traceLength = 0;
-	@SuppressWarnings("unused")
-	private double matchedAggLength = 0;
-	@SuppressWarnings("unused")
-	private double matchedTraceLength = 0;
+	List<AggNode> lastNodes = new ArrayList<AggNode>();
+	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -43,6 +42,8 @@ public class FrechetMatchAttractionMergeStrategy extends
 	private State state = State.NO_MATCH;
 
 	public FrechetMatchAttractionMergeStrategy() {
+		statistic = new MyStatistic(
+				"test/exp/Evaluation-FrechetMatchAttractionMerge.txt");
 		TraceDistanceFactory.setClass(FreeSpaceMatch.class);
 		traceDistance = TraceDistanceFactory.getObject();
 		MergeHandlerFactory.setClass(AttractionForceMerge.class);
@@ -52,7 +53,6 @@ public class FrechetMatchAttractionMergeStrategy extends
 	@SuppressWarnings("unchecked")
 	@Override
 	public void aggregate(GPSSegment segment, boolean isAgg) {
-
 		// reset all attributes
 		lastNode = null;
 		mergeHandler = null;
@@ -77,14 +77,19 @@ public class FrechetMatchAttractionMergeStrategy extends
 				internalAggNodes.add(node);
 				i++;
 			}
-			aggLength = GPSCalc.traceLengthMeter(segment);
+			lastNodes.add(lastNode);
+			statistic.setAggLength(GPSCalc.traceLengthMeter(segment));
+			statistic.setAggPoints(segment.size());
 			return;
 		}
 
 		BoundedQueue<ILocation> lastParsedCurrentPoints = new BoundedQueue<ILocation>(
 				5);
 		int i = 0;
-		traceLength = GPSCalc.traceLengthMeter(segment);
+
+		statistic.setTraceLength(GPSCalc.traceLengthMeter(segment));
+		statistic.setTracePoints(segment.size());
+		long matchStart = System.currentTimeMillis();
 		while (i < segment.size()) {
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
@@ -194,46 +199,112 @@ public class FrechetMatchAttractionMergeStrategy extends
 					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
 							.size() - 1))) {
 				finishMatch();
-//				i++;
+				// i++;
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
-				// Dibutuhkan kalau butuh cabang baru
-				AggNode node = new AggNode(currentPoint, aggContainer);
-				node.setID("A-" + currentPoint.getID());
-				addNodeToAgg(aggContainer, node);
-				lastNode = node;
+				if (getAddAllowed()) {
+					AggNode node = new AggNode(currentPoint, aggContainer);
+					node.setID("A-" + currentPoint.getID());
+					node.setK(1);
+					addNodeToAgg(aggContainer, node);
+					lastNode = node;
+				}
 				i++;
 			}
 		}
-		
+		long matchEnd = System.currentTimeMillis();
+		statistic.setRuntimeMatch(matchEnd - matchStart);
+
+		// New Segment
+		if (getAddAllowed() && lastNode != null) {
+			List<AggNode> newSegment = new ArrayList<AggNode>();
+			AggNode currentLast = lastNode;
+			newSegment.add(0, currentLast);
+			while (!lastNode.getIn().isEmpty()) {
+				lastNode = lastNode.getIn().iterator().next().getFrom();
+				if (GPSCalc.getDistanceTwoPointsMeter(currentLast, lastNode) < 100) {
+					newSegment.add(0, lastNode);
+				} else {
+					if (newSegment.size() > 1) {
+						lastNewNodes.add(new GPSSegment(newSegment));
+					}
+					newSegment = new ArrayList<AggNode>();
+				}
+				currentLast = lastNode;
+			}
+			if (newSegment.size() > 1) {
+				lastNewNodes.add(new GPSSegment(newSegment));
+			}
+		}
+
 		// step 2 and 3 of 3: ghost points, merge everything
-		// System.out.println("MATCHES : " + matches.size());
-		// int locCounter = 0;
-		matchedAggLength = 0;
-		matchedTraceLength = 0;
+		System.out.println(counter + ". MATCHES : " + matches.size());
+		System.out.println("New Segment : " + getAddAllowed());
+		statistic.resetMatchedAggLength();
+		statistic.resetMatchedAggPoints();
+		statistic.resetMatchedTraceLength();
+		statistic.resetMatchedTracePoints();
+		
+		long mergeStart = System.currentTimeMillis();
 		for (IMergeHandler match : matches) {
-			// System.out.println(++locCounter + ". Match");
-			System.out.println(match.getAggNodes());
-			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
-			matchedTraceLength += GPSCalc
-					.traceLengthMeter(match.getGpsPoints());
+			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
+					.getAggNodes()));
+			statistic.setMatchedAggPoints(match.getAggNodes().size());
+			statistic.setMatchedTraceLength(GPSCalc.traceLengthMeter(match
+					.getGpsPoints()));
+			statistic.setMatchedTracePoints(match
+					.getGpsPoints().size());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
-		List<Double> value = new ArrayList<Double>();
-//		value.add(this.aggLength);
-//		value.add(this.matchedAggLength);
-//		value.add(this.traceLength);
-//		value.add(this.matchedTraceLength);
-//		try {
-//			MyStatistic.writefile("test/exp/FrechetMatch-AttractionMerge.txt",
-//					value);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		long mergeEnd = System.currentTimeMillis();
+		statistic.setRuntimeMerge(mergeEnd - mergeStart);
+		
+		Runtime runtime = Runtime.getRuntime();
+		// Run the garbage collector
+		runtime.gc();
+		
+		// Calculate the used memory
+		long memory = runtime.totalMemory() - runtime.freeMemory();
+		statistic.setMemoryUsed(bytesToMegabytes(memory));
+
+		for(GPSSegment lastNewNode : lastNewNodes) {
+			statistic.setNewAggLength(GPSCalc.traceLengthMeter(lastNewNode));
+			statistic.setNewAggPoints(lastNewNode.size());
+		}
+		
+		/** Save new Map */
+		try {
+			List<GPSSegment> segments = new ArrayList<GPSSegment>();
+			for (AggNode last : lastNodes) {
+				segments.add(SerializeAgg.getSegmentFromLastNode(last));
+			}
+
+			// Extension
+			if (lastNewNodes.size() > 0 && getAddAllowed())
+				segments.addAll(lastNewNodes);
+
+			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
+					+ "map" + counter++ + ".gpx")), segments);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/** Statistic record */
+		try {
+			statistic.writefile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		statistic.resetAll();
+		lastNodes.clear();
+		internalAggNodes.clear();
+		lastNodes.clear();
+		lastNewNodes.clear();
 	}
 
 	/**
@@ -288,10 +359,10 @@ public class FrechetMatchAttractionMergeStrategy extends
 		 * connect to previous node lastNode is the last non-matched node or the
 		 * outNode of the last match
 		 */
-		aggContainer.connect(lastNode, mergeHandler.getInNode());
-		mergeHandler.setBeforeNode(lastNode);
-		// remember outgoing node (for later connection)
-		lastNode = mergeHandler.getOutNode();
+		// aggContainer.connect(lastNode, mergeHandler.getInNode());
+		// mergeHandler.setBeforeNode(lastNode);
+		// // remember outgoing node (for later connection)
+		// lastNode = mergeHandler.getOutNode();
 	}
 
 	/*
@@ -362,5 +433,11 @@ public class FrechetMatchAttractionMergeStrategy extends
 				}
 			}
 		}
+	}
+
+	private static final long MEGABYTE = 1024L * 1024L;
+
+	public static long bytesToMegabytes(long bytes) {
+		return bytes / MEGABYTE;
 	}
 }

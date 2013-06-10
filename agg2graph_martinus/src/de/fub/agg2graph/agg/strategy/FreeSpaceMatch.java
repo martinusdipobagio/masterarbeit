@@ -23,7 +23,7 @@ import de.fub.agg2graph.structs.frechet.TreeAggMap;
 
 public class FreeSpaceMatch implements ITraceDistance {
 
-	public double maxDistance = 12.5;
+	public double maxDistance = 7.5;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 37;
 
@@ -337,6 +337,8 @@ public class FreeSpaceMatch implements ITraceDistance {
 		bestValue = this.bestValue;
 
 		if (res == null) {
+			return null;
+		} else if(res.a.size() == 0 || res.b.size() == 0) {
 			return null;
 		}
 

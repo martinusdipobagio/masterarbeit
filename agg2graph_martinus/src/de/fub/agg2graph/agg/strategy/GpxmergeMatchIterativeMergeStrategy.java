@@ -10,13 +10,12 @@
  ******************************************************************************/
 package de.fub.agg2graph.agg.strategy;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
@@ -24,6 +23,8 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
+import de.fub.agg2graph.input.GPXWriter;
+import de.fub.agg2graph.input.SerializeAgg;
 import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSEdge;
@@ -32,26 +33,19 @@ import de.fub.agg2graph.structs.GPSSegment;
 
 public class GpxmergeMatchIterativeMergeStrategy extends
 		AbstractAggregationStrategy {
-	private static final Logger logger = Logger
-			.getLogger("agg2graph.agg.gpxmerge.strategy");
+	MyStatistic statistic;
+	int counter = 1;
 
 	public int maxLookahead = 5;
 	public double maxPathDifference = 35;
-	public double maxInitDistance = 15;
+	public double maxInitDistance = 12.5;
+
+	List<AggNode> lastNodes = new ArrayList<AggNode>();
+	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();
 
 	public enum State {
 		NO_MATCH, IN_MATCH
 	}
-
-	// Statistics variable
-//	@SuppressWarnings("unused")
-	private double aggLength = 0;
-//	@SuppressWarnings("unused")
-	private double traceLength = 0;
-//	@SuppressWarnings("unused")
-	private double matchedAggLength = 0;
-//	@SuppressWarnings("unused")
-	private double matchedTraceLength = 0;
 
 	private State state = State.NO_MATCH;
 
@@ -60,6 +54,8 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 	 * instances of this class.
 	 */
 	public GpxmergeMatchIterativeMergeStrategy() {
+		statistic = new MyStatistic(
+				"test/exp/Evaluation-GPXMergeIterativeMerge.txt");
 		TraceDistanceFactory.setClass(GpxmergeTraceDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
 		MergeHandlerFactory.setClass(IterativeClosestPointsMerge.class);
@@ -68,8 +64,6 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 
 	@Override
 	public void aggregate(GPSSegment segment, boolean isAgg) {
-		logger.setLevel(Level.OFF); // Level.ALL);
-
 		// reset all attributes
 		lastNode = null;
 		mergeHandler = null;
@@ -93,14 +87,17 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 				lastNode = node;
 				i++;
 			}
-			aggLength = GPSCalc.traceLengthMeter(segment);
+			lastNodes.add(lastNode);
+			statistic.setAggLength(GPSCalc.traceLengthMeter(segment));
+			statistic.setAggPoints(segment.size());
 			return;
 		}
 
 		int i = 0;
 		Set<AggConnection> nearEdges = null;
-		traceLength = GPSCalc.traceLengthMeter(segment);
-
+		statistic.setTraceLength(GPSCalc.traceLengthMeter(segment));
+		statistic.setTracePoints(segment.size());
+		long matchStart = System.currentTimeMillis();
 		while (i < segment.size()) {
 			State lastState = state;
 
@@ -188,65 +185,104 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
-				// Dibutuhkan kalau butuh cabang baru
-				// AggNode node = new AggNode(currentPoint, aggContainer);
-				// node.setID("A-" + currentPoint.getID());
-				// addNodeToAgg(aggContainer, node);
-				// lastNode = node;
+				if (getAddAllowed()) {
+					GPSPoint currentPoint = segment.get(i);
+					AggNode node = new AggNode(currentPoint, aggContainer);
+					node.setID("A-" + currentPoint.getID());
+					node.setK(1);
+					addNodeToAgg(aggContainer, node);
+					lastNode = node;
+				}
 				i++;
-			} 
-//			else {
-//				i++;
-//			}
-			// System.out.println(isMatch + " : " + lastState + " " + state);
+			}
 		}
-		// step 2 and 3 of 3: ghost points, merge everything
-		// System.out.println("MATCHES : " + matches.size());
-		// int locCounter = 0;
-		matchedAggLength = 0;
-		matchedTraceLength = 0;
-		for (IMergeHandler match : matches) {
-			// System.out.println(++locCounter + ". Match");
-			 System.out.println(match.getAggNodes());
-			// System.out.println(match.getGpsPoints());
-			matchedAggLength += GPSCalc.traceLengthMeter(match.getAggNodes());
-			matchedTraceLength += GPSCalc
-					.traceLengthMeter(match.getGpsPoints());
-			if (!match.isEmpty()) {
-				match.mergePoints();
+		long matchEnd = System.currentTimeMillis();
+		statistic.setRuntimeMatch(matchEnd - matchStart);
+
+		// New Segment
+		if (getAddAllowed() && lastNode != null) {
+			List<AggNode> newSegment = new ArrayList<AggNode>();
+			AggNode currentLast = lastNode;
+			newSegment.add(0, currentLast);
+			while (!lastNode.getIn().isEmpty()) {
+				lastNode = lastNode.getIn().iterator().next().getFrom();
+				if (GPSCalc.getDistanceTwoPointsMeter(currentLast, lastNode) < 100) {
+					newSegment.add(0, lastNode);
+				} else {
+					if (newSegment.size() > 1) {
+						lastNewNodes.add(new GPSSegment(newSegment));
+					}
+					newSegment = new ArrayList<AggNode>();
+				}
+				currentLast = lastNode;
+			}
+			if (newSegment.size() > 1) {
+				lastNewNodes.add(new GPSSegment(newSegment));
 			}
 		}
 
-		// try {
-		// new File("test/input/output-test").mkdirs();
-		// AggNode source = getLastNode();
-		//
-		// List<GPSSegment> segments = SerializeAgg.getSerialize(source);
-		// GPXWriter.writeSegments(new File(
-		// new String("test/input/output-test/" + toString() + counter++ +
-		// ".gpx")), segments);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		// step 2 and 3 of 3: ghost points, merge everything
+		System.out.println(counter + ". MATCHES : " + matches.size());
+		System.out.println("New Segment : " + getAddAllowed());
+		statistic.resetMatchedAggLength();
+		statistic.resetMatchedAggPoints();
+		statistic.resetMatchedTraceLength();
+		statistic.resetMatchedTracePoints();
 
-		// TODO Statistik-Zeug
-		 System.out.println(this.aggLength);
-		 System.out.println(this.matchedAggLength);
-		 System.out.println(this.traceLength);
-		 System.out.println(this.matchedTraceLength);
-//		List<Double> value = new ArrayList<Double>();
-//		value.add(this.aggLength);
-//		value.add(this.matchedAggLength);
-//		value.add(this.traceLength);
-//		value.add(this.matchedTraceLength);
-//		try {
-//			MyStatistic.writefile("test/exp/GpxMatch-AttractionMerge.txt",
-//					value);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		long mergeStart = System.currentTimeMillis();
+		for (IMergeHandler match : matches) {
+			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
+					.getAggNodes()));
+			statistic.setMatchedAggPoints(match.getAggNodes().size());
+			statistic.setMatchedTraceLength(GPSCalc.traceLengthMeter(match
+					.getGpsPoints()));
+			statistic.setMatchedTracePoints(match
+					.getGpsPoints().size());
+		}
+		long mergeEnd = System.currentTimeMillis();
+		statistic.setRuntimeMerge(mergeEnd - mergeStart);
+
+		Runtime runtime = Runtime.getRuntime();
+		// Run the garbage collector
+		runtime.gc();
+
+		// Calculate the used memory
+		long memory = runtime.totalMemory() - runtime.freeMemory();
+		statistic.setMemoryUsed(bytesToMegabytes(memory));
+
+		/** Save new Map */
+		try {
+			List<GPSSegment> segments = new ArrayList<GPSSegment>();
+			for (AggNode last : lastNodes) {
+				segments.add(SerializeAgg.getSegmentFromLastNode(last));
+			}
+
+			// Extension
+			if (lastNewNodes.size() > 0 && getAddAllowed())
+				segments.addAll(lastNewNodes);
+
+			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
+					+ "map" + counter++ + ".gpx")), segments);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for(GPSSegment lastNewNode : lastNewNodes) {
+			statistic.setNewAggLength(GPSCalc.traceLengthMeter(lastNewNode));
+			statistic.setNewAggPoints(lastNewNode.size());
+		}
+		
+		/** Statistic record */
+		try {
+			statistic.writefile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		statistic.resetAll();
+		lastNodes.clear();
+		lastNewNodes.clear();
 	}
 
 	protected void finishMatch() {
@@ -257,14 +293,20 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 		 * connect to previous node lastNode is the last non-matched node or the
 		 * outNode of the last match
 		 */
-		aggContainer.connect(lastNode, mergeHandler.getInNode());
-		mergeHandler.setBeforeNode(lastNode);
-		// remember outgoing node (for later connection)
-		lastNode = mergeHandler.getOutNode();
+		// aggContainer.connect(lastNode, mergeHandler.getInNode());
+		// mergeHandler.setBeforeNode(lastNode);
+		// // remember outgoing node (for later connection)
+		// lastNode = mergeHandler.getOutNode();
 	}
 
 	@Override
 	public String toString() {
-		return "DefaultMatch-DefaultMerge";
+		return "GPXMatch-DefaultMerge";
+	}
+
+	private static final long MEGABYTE = 1024L * 1024L;
+
+	public static long bytesToMegabytes(long bytes) {
+		return bytes / MEGABYTE;
 	}
 }

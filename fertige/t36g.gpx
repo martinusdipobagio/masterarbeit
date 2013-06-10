@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.507811" minlon="13.3749969" maxlat="52.51938" maxlon="13.3994578"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>05.08.2011_BerlinMoabit.gpx</name>
+    <desc>Radtour 05.08.2011 Quer Berlin</desc>
+    <link href="http://api.openstreetmap.org/user/Bagalute/traces/1098142">
+    </link>
+    <trkseg>
+      <trkpt lat="52.51602" lon="13.37671">
+        <time>2011-08-05T11:42:38Z</time>
+      </trkpt>
+      <trkpt lat="52.516028" lon="13.376698">
+        <time>2011-08-05T11:42:39Z</time>
+      </trkpt>
+      <trkpt lat="52.516036" lon="13.376687">
+        <time>2011-08-05T11:42:40Z</time>
+      </trkpt>
+      <trkpt lat="52.516045" lon="13.37667">
+        <time>2011-08-05T11:42:41Z</time>
+      </trkpt>
+      <trkpt lat="52.516055" lon="13.376648">
+        <time>2011-08-05T11:42:42Z</time>
+      </trkpt>
+      <trkpt lat="52.516066" lon="13.376625">
+        <time>2011-08-05T11:42:43Z</time>
+      </trkpt>
+      <trkpt lat="52.516079" lon="13.376602">
+        <time>2011-08-05T11:42:44Z</time>
+      </trkpt>
+      <trkpt lat="52.51609" lon="13.376577">
+        <time>2011-08-05T11:42:45Z</time>
+      </trkpt>
+      <trkpt lat="52.516099" lon="13.376544">
+        <time>2011-08-05T11:42:46Z</time>
+      </trkpt>
+      <trkpt lat="52.516106" lon="13.376504">
+        <time>2011-08-05T11:42:47Z</time>
+      </trkpt>
+      <trkpt lat="52.516109" lon="13.376461">
+        <time>2011-08-05T11:42:48Z</time>
+      </trkpt>
+      <trkpt lat="52.516108" lon="13.376419">
+        <time>2011-08-05T11:42:49Z</time>
+      </trkpt>
+      <trkpt lat="52.516104" lon="13.37638">
+        <time>2011-08-05T11:42:50Z</time>
+      </trkpt>
+      <trkpt lat="52.516106" lon="13.376343">
+        <time>2011-08-05T11:42:51Z</time>
+      </trkpt>
+      <trkpt lat="52.516108" lon="13.376302">
+        <time>2011-08-05T11:42:52Z</time>
+      </trkpt>
+      <trkpt lat="52.516109" lon="13.37626">
+        <time>2011-08-05T11:42:53Z</time>
+      </trkpt>
+      <trkpt lat="52.516109" lon="13.37622">
+        <time>2011-08-05T11:42:54Z</time>
+      </trkpt>
+      <trkpt lat="52.516105" lon="13.376179">
+        <time>2011-08-05T11:42:55Z</time>
+      </trkpt>
+      <trkpt lat="52.516097" lon="13.376135">
+        <time>2011-08-05T11:42:56Z</time>
+      </trkpt>
+      <trkpt lat="52.516089" lon="13.376089">
+        <time>2011-08-05T11:42:57Z</time>
+      </trkpt>
+      <trkpt lat="52.516082" lon="13.376039">
+        <time>2011-08-05T11:42:58Z</time>
+      </trkpt>
+      <trkpt lat="52.516079" lon="13.375988">
+        <time>2011-08-05T11:42:59Z</time>
+      </trkpt>
+      <trkpt lat="52.516077" lon="13.375938">
+        <time>2011-08-05T11:43:00Z</time>
+      </trkpt>
+      <trkpt lat="52.516072" lon="13.375891">
+        <time>2011-08-05T11:43:01Z</time>
+      </trkpt>
+      <trkpt lat="52.516066" lon="13.375843">
+        <time>2011-08-05T11:43:02Z</time>
+      </trkpt>
+      <trkpt lat="52.516061" lon="13.375794">
+        <time>2011-08-05T11:43:03Z</time>
+      </trkpt>
+      <trkpt lat="52.516059" lon="13.375749">
+        <time>2011-08-05T11:43:04Z</time>
+      </trkpt>
+      <trkpt lat="52.516056" lon="13.375706">
+        <time>2011-08-05T11:43:05Z</time>
+      </trkpt>
+      <trkpt lat="52.516055" lon="13.375665">
+        <time>2011-08-05T11:43:06Z</time>
+      </trkpt>
+      <trkpt lat="52.516052" lon="13.375623">
+        <time>2011-08-05T11:43:07Z</time>
+      </trkpt>
+      <trkpt lat="52.516048" lon="13.375585">
+        <time>2011-08-05T11:43:08Z</time>
+      </trkpt>
+      <trkpt lat="52.516043" lon="13.375547">
+        <time>2011-08-05T11:43:09Z</time>
+      </trkpt>
+      <trkpt lat="52.516041" lon="13.375509">
+        <time>2011-08-05T11:43:10Z</time>
+      </trkpt>
+      <trkpt lat="52.516038" lon="13.375469">
+        <time>2011-08-05T11:43:11Z</time>
+      </trkpt>
+      <trkpt lat="52.516034" lon="13.375426">
+        <time>2011-08-05T11:43:12Z</time>
+      </trkpt>
+      <trkpt lat="52.516031" lon="13.37538">
+        <time>2011-08-05T11:43:13Z</time>
+      </trkpt>
+      <trkpt lat="52.516025" lon="13.375334">
+        <time>2011-08-05T11:43:14Z</time>
+      </trkpt>
+      <trkpt lat="52.51602" lon="13.375283">
+        <time>2011-08-05T11:43:15Z</time>
+      </trkpt>
+      <trkpt lat="52.516017" lon="13.37523">
+        <time>2011-08-05T11:43:16Z</time>
+      </trkpt>
+      <trkpt lat="52.516013" lon="13.375175">
+        <time>2011-08-05T11:43:17Z</time>
+      </trkpt>
+      <trkpt lat="52.516008" lon="13.375117">
+        <time>2011-08-05T11:43:18Z</time>
+      </trkpt>
+      <trkpt lat="52.516006" lon="13.375061">
+        <time>2011-08-05T11:43:19Z</time>
+      </trkpt>
+      <trkpt lat="52.516004" lon="13.375006">
+        <time>2011-08-05T11:43:20Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

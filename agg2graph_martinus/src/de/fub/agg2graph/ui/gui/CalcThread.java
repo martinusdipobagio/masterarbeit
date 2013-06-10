@@ -111,11 +111,17 @@ public class CalcThread extends Thread {
 
 //			// Filter data
 			GPSFilter gpsFilter = stepStorage.getGpsFilter();
-			GPSSegment firstSegment = stepStorage.inputSegmentList.get(0);
-			GPSSegment filteredSegment = gpsFilter.filter(firstSegment);
-			stepStorage.inputSegmentList.remove(0);
-			stepStorage.inputSegmentList.add(0, filteredSegment);
-
+//			GPSSegment firstSegment = stepStorage.inputSegmentList.get(0);
+		
+			for(int i = 0; i < stepStorage.inputSegmentList.size() - 1; i++) {
+				stepStorage.inputSegmentList.add(i, gpsFilter.filter(stepStorage.inputSegmentList.get(i)));
+				stepStorage.inputSegmentList.remove(i + 1);
+			}
+			
+			//Set allowed
+			stepStorage.getAggContainer().getAggregationStrategy().
+				setAddAllowed(gpsFilter.getFilterOptions().getNewSegmentAllowed());
+			
 			repaintEverything();
 		} else if (task.equals("clean")) {
 			stepStorage.clear(levels.get(task));

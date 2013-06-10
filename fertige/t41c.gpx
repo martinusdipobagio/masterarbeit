@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.507811" minlon="13.3749969" maxlat="52.51938" maxlon="13.3994578"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>10.08.2011_Teufelsberg_Spandau.gpx</name>
+    <desc>Radtour durch Berlin</desc>
+    <link href="http://api.openstreetmap.org/user/Bagalute/traces/1086767">
+    </link>
+    <trkseg>
+      <trkpt lat="52.516912" lon="13.396372">
+        <time>2011-08-10T09:26:51Z</time>
+      </trkpt>
+      <trkpt lat="52.516926" lon="13.396358">
+        <time>2011-08-10T09:26:52Z</time>
+      </trkpt>
+      <trkpt lat="52.516942" lon="13.396345">
+        <time>2011-08-10T09:26:53Z</time>
+      </trkpt>
+      <trkpt lat="52.516939" lon="13.396347">
+        <time>2011-08-10T09:26:54Z</time>
+      </trkpt>
+      <trkpt lat="52.516959" lon="13.396337">
+        <time>2011-08-10T09:26:55Z</time>
+      </trkpt>
+      <trkpt lat="52.516974" lon="13.396321">
+        <time>2011-08-10T09:26:56Z</time>
+      </trkpt>
+      <trkpt lat="52.516993" lon="13.396326">
+        <time>2011-08-10T09:26:57Z</time>
+      </trkpt>
+      <trkpt lat="52.517019" lon="13.39634">
+        <time>2011-08-10T09:26:58Z</time>
+      </trkpt>
+      <trkpt lat="52.517038" lon="13.396334">
+        <time>2011-08-10T09:26:59Z</time>
+      </trkpt>
+      <trkpt lat="52.517056" lon="13.396339">
+        <time>2011-08-10T09:27:00Z</time>
+      </trkpt>
+      <trkpt lat="52.517081" lon="13.396333">
+        <time>2011-08-10T09:27:01Z</time>
+      </trkpt>
+      <trkpt lat="52.517107" lon="13.3963">
+        <time>2011-08-10T09:27:02Z</time>
+      </trkpt>
+      <trkpt lat="52.517132" lon="13.396273">
+        <time>2011-08-10T09:27:03Z</time>
+      </trkpt>
+      <trkpt lat="52.517154" lon="13.396273">
+        <time>2011-08-10T09:27:04Z</time>
+      </trkpt>
+      <trkpt lat="52.517176" lon="13.396274">
+        <time>2011-08-10T09:27:05Z</time>
+      </trkpt>
+      <trkpt lat="52.517197" lon="13.396275">
+        <time>2011-08-10T09:27:06Z</time>
+      </trkpt>
+      <trkpt lat="52.517216" lon="13.396281">
+        <time>2011-08-10T09:27:07Z</time>
+      </trkpt>
+      <trkpt lat="52.517234" lon="13.396288">
+        <time>2011-08-10T09:27:08Z</time>
+      </trkpt>
+      <trkpt lat="52.517262" lon="13.396296">
+        <time>2011-08-10T09:27:09Z</time>
+      </trkpt>
+      <trkpt lat="52.517281" lon="13.396304">
+        <time>2011-08-10T09:27:10Z</time>
+      </trkpt>
+      <trkpt lat="52.517301" lon="13.396309">
+        <time>2011-08-10T09:27:11Z</time>
+      </trkpt>
+      <trkpt lat="52.517322" lon="13.396315">
+        <time>2011-08-10T09:27:12Z</time>
+      </trkpt>
+      <trkpt lat="52.517336" lon="13.396319">
+        <time>2011-08-10T09:27:13Z</time>
+      </trkpt>
+      <trkpt lat="52.517342" lon="13.396323">
+        <time>2011-08-10T09:27:14Z</time>
+      </trkpt>
+      <trkpt lat="52.517344" lon="13.396325">
+        <time>2011-08-10T09:27:15Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

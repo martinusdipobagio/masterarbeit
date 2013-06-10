@@ -34,7 +34,6 @@ public class GPSSegment extends LinkedList<GPSPoint> {
 			point = new GPSPoint(loc);
 			if (loc.getID() == null) {
 				point.setID(UUID.randomUUID().toString());
-				System.out.println(point);
 			} else {
 				point.setID(loc.getID());
 			}

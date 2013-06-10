@@ -94,16 +94,4 @@ public class AttractionValue {
 		str = str.concat(strComma);
 		return Double.parseDouble(str);
 	}
-	
-	public static void main(String[] args) {
-		AttractionValue a = new AttractionValue();
-		System.out.println(a.getValue(0.71));
-		System.out.println(a.getValue(0.75));
-		System.out.println(a.getValue(1));
-		System.out.println(a.getValue(1.249));
-		System.out.println(a.getValue(1.26));
-		System.out.println(a.getValue(1.5));
-		System.out.println(a.getValue(7.3));
-		System.out.println(a.getValue(7.6));
-	}
 }

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.507811" minlon="13.3749969" maxlat="52.51938" maxlon="13.3994578"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <trkseg>
+      <trkpt lat="52.517442" lon="13.398079">
+        <time>2010-04-07T03:49:02Z</time>
+      </trkpt>
+      <trkpt lat="52.517394" lon="13.398113">
+        <time>2010-04-07T03:49:03Z</time>
+      </trkpt>
+      <trkpt lat="52.51735" lon="13.398157">
+        <time>2010-04-07T03:49:04Z</time>
+      </trkpt>
+      <trkpt lat="52.517305" lon="13.398192">
+        <time>2010-04-07T03:49:05Z</time>
+      </trkpt>
+      <trkpt lat="52.517258" lon="13.398212">
+        <time>2010-04-07T03:49:06Z</time>
+      </trkpt>
+      <trkpt lat="52.51721" lon="13.398224">
+        <time>2010-04-07T03:49:07Z</time>
+      </trkpt>
+      <trkpt lat="52.516707" lon="13.398308">
+        <time>2010-04-07T03:49:17Z</time>
+      </trkpt>
+      <trkpt lat="52.516148" lon="13.3984">
+        <time>2010-04-07T03:49:28Z</time>
+      </trkpt>
+      <trkpt lat="52.515912" lon="13.398488">
+        <time>2010-04-07T03:49:33Z</time>
+      </trkpt>
+      <trkpt lat="52.515828" lon="13.398552">
+        <time>2010-04-07T03:49:35Z</time>
+      </trkpt>
+      <trkpt lat="52.515788" lon="13.398579">
+        <time>2010-04-07T03:49:36Z</time>
+      </trkpt>
+      <trkpt lat="52.515652" lon="13.398652">
+        <time>2010-04-07T03:49:41Z</time>
+      </trkpt>
+      <trkpt lat="52.515635" lon="13.398665">
+        <time>2010-04-07T03:49:48Z</time>
+      </trkpt>
+      <trkpt lat="52.515572" lon="13.398505">
+        <time>2010-04-07T03:49:53Z</time>
+      </trkpt>
+      <trkpt lat="52.515554" lon="13.398431">
+        <time>2010-04-07T03:49:54Z</time>
+      </trkpt>
+      <trkpt lat="52.515538" lon="13.398351">
+        <time>2010-04-07T03:49:55Z</time>
+      </trkpt>
+      <trkpt lat="52.515467" lon="13.398096">
+        <time>2010-04-07T03:49:58Z</time>
+      </trkpt>
+      <trkpt lat="52.515431" lon="13.398032">
+        <time>2010-04-07T03:49:59Z</time>
+      </trkpt>
+      <trkpt lat="52.515383" lon="13.397998">
+        <time>2010-04-07T03:50:00Z</time>
+      </trkpt>
+      <trkpt lat="52.515335" lon="13.398">
+        <time>2010-04-07T03:50:01Z</time>
+      </trkpt>
+      <trkpt lat="52.515287" lon="13.398025">
+        <time>2010-04-07T03:50:02Z</time>
+      </trkpt>
+      <trkpt lat="52.514921" lon="13.398193">
+        <time>2010-04-07T03:50:09Z</time>
+      </trkpt>
+      <trkpt lat="52.514865" lon="13.398219">
+        <time>2010-04-07T03:50:10Z</time>
+      </trkpt>
+      <trkpt lat="52.514812" lon="13.398245">
+        <time>2010-04-07T03:50:11Z</time>
+      </trkpt>
+      <trkpt lat="52.514347" lon="13.398467">
+        <time>2010-04-07T03:50:20Z</time>
+      </trkpt>
+      <trkpt lat="52.513864" lon="13.398747">
+        <time>2010-04-07T03:50:29Z</time>
+      </trkpt>
+      <trkpt lat="52.513458" lon="13.398979">
+        <time>2010-04-07T03:50:37Z</time>
+      </trkpt>
+      <trkpt lat="52.513368" lon="13.399052">
+        <time>2010-04-07T03:50:39Z</time>
+      </trkpt>
+      <trkpt lat="52.513293" lon="13.399144">
+        <time>2010-04-07T03:50:41Z</time>
+      </trkpt>
+      <trkpt lat="52.513268" lon="13.399198">
+        <time>2010-04-07T03:50:42Z</time>
+      </trkpt>
+      <trkpt lat="52.513247" lon="13.399263">
+        <time>2010-04-07T03:50:43Z</time>
+      </trkpt>
+      <trkpt lat="52.513225" lon="13.399327">
+        <time>2010-04-07T03:50:44Z</time>
+      </trkpt>
+      <trkpt lat="52.513202" lon="13.399395">
+        <time>2010-04-07T03:50:45Z</time>
+      </trkpt>
+      
+    </trkseg>
+  </trk>
+</gpx>

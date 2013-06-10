@@ -1,0 +1,105 @@
+1364327793225	Delete elements
+1364327833084	Copy compilation unit
+1364327847411	Rename type 'CopyOfDefaultMatchDefaultMergeStrategy'
+1364327865036	Rename type 'CopyOfDefaultFrechetBasedMergeStrategy'
+1364327886926	Rename type 'DefaultFrechetBasedMergeStrategy'
+1364327900286	Rename type 'DefaultMatchDefaultMergeStrategy'
+1364327976878	Delete element
+1364327989409	Rename type 'IterativeClosestPointMerge'
+1364328466527	Rename type 'DefaultMatchAttractionForceMergeStrategy'
+1364388775907	Rename field 'fromAgg'
+1364388786589	Rename field 'fromTrace'
+1364392464441	Rename local variable 'weighted'
+1364394461394	Rename field 'defaultClass'
+1364394473598	Rename field 'frechetClass'
+1364394487418	Rename field 'gpxClass'
+1364394520395	Rename field 'defaultFrechetClass'
+1364394853651	Copy compilation unit
+1364394930727	Rename type 'FrechetBasedMerge'
+1364394994246	Rename type 'CopyOfFrechetBasedMerge'
+1364407014713	Copy compilation unit
+1364407030135	Delete element
+1364407042753	Rename type 'CopyOfIterativeClosestPointsMerge'
+1364409977633	Copy compilation unit
+1364568451664	Move files
+1364583360710	Rename resource '1.gpx'
+1364583366669	Copy file
+1364583369482	Copy file
+1364583373191	Copy file
+1364583383988	Rename resource 'Copy (2) of total.gpx'
+1364583936296	Rename resource 'Copy (3) of total.gpx'
+1364583939628	Delete element
+1364583945542	Rename resource '2'
+1364584218975	Rename resource 'Copy of total.gpx'
+1364585109525	Rename resource '1.gpx'
+1364585116878	Rename resource '2.gpx'
+1364585126974	Rename resource '3.gpx'
+1364585137792	Rename resource '4.gpx'
+1364585482579	Copy file
+1364586691576	Copy file
+1364586772703	Rename resource 'roadsplit.gpx'
+1364586781829	Copy file
+1364586849060	Rename resource 'roadsplit.gpx'
+1364586875014	Copy file
+1364586992078	Rename resource 'roadsplit.gpx'
+1364586996193	Copy file
+1364587071422	Rename resource 'roadsplit.gpx'
+1364587228979	Rename resource 'Scen2 - RoadSplit'
+1364587450237	Move file
+1364587568621	Delete elements
+1364587575026	Rename resource 'roadsplit2.gpx'
+1364587581725	Copy file
+1364587588240	Rename resource 'Copy of 2.gpx'
+1364588017104	Copy file
+1364588027139	Rename resource 'roadsplit.gpx'
+1364588070897	Copy file
+1364588146633	Move file
+1364588156031	Rename resource 'roadsplit.gpx'
+1364589057724	Copy file
+1364589114912	Rename resource 'normal.gpx'
+1364589124179	Copy file
+1364589132303	Rename resource 'normal.gpx'
+1364589184699	Copy file
+1364589248764	Rename resource 'normal.gpx'
+1364589256167	Copy file
+1364589260631	Rename resource 'normal.gpx'
+1364661925785	Copy compilation unit
+1364661931446	Copy compilation unit
+1364661933368	Copy compilation unit
+1364661953439	Rename type 'Copy_2_of_HausdorffMatchDefaultAggregationStrategy'
+1364661978915	Rename type 'CopyOfHausdorffMatchDefaultAggregationStrategy'
+1364662014380	Rename type 'Copy_3_of_HausdorffMatchDefaultAggregationStrategy'
+1364662025333	Rename type 'HausdorffMatchDefaultAggregationStrategy'
+1364662040098	Rename type 'HausdorffMatchAttractionMergeAggregationStrategy'
+1364662053132	Rename type 'HausdorffMatchIterativeMergeAggregationStrategy'
+1364663196433	Rename type 'FrechetMatchDefaultAggregationStrategy'
+1364663204141	Rename type 'FrechetMatchIterativeMergeAggregationStrategy'
+1364663210596	Copy compilation unit
+1364663211960	Copy compilation unit
+1364663224635	Rename type 'Copy_2_of_FrechetMatchIterativeMergeStrategy'
+1364663256590	Rename type 'CopyOfFrechetMatchIterativeMergeStrategy'
+1364663274629	Copy compilation unit
+1364663276191	Copy compilation unit
+1364663277518	Copy compilation unit
+1364663298686	Rename type 'Copy_2_of_GpxmergeDefaultAggregationStrategy'
+1364663316778	Rename type 'GpxmergeDefaultAggregationStrategy'
+1364663369558	Rename type 'CopyOfGpxmergeDefaultAggregationStrategy'
+1364663389513	Rename type 'Copy_3_of_GpxmergeDefaultAggregationStrategy'
+1364665528835	Delete element
+1364665542025	Copy compilation unit
+1364726667750	Rename local variable 'currentFrom'
+1364726753160	Rename local variable 'projectionFrom'
+1364726778875	Rename local variable 'distFrom'
+1364726787014	Rename local variable 'bestDistFrom'
+1364726808744	Rename local variable 'bestJFrom'
+1364732158674	Delete element
+1364734340749	Rename type 'BidirectionalFrechetDistance'
+1364737140461	Delete element
+1364744604487	Rename field 'aggNodes'
+1364747351055	Rename local variable 'projectionFrom'
+1364747356635	Rename local variable 'projectionTo'
+1364748384450	Rename local variable 'currentTo'
+1364757252597	Rename local variable 'j'
+1364757285023	Rename local variable 'bestJ'
+1364757946827	Rename local variable 'j'
+1364758240932	Rename local variable 'j'

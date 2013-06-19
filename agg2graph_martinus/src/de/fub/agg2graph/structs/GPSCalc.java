@@ -707,7 +707,8 @@ public class GPSCalc {
 		for(ILocation ti : affectedTraceLocations) {
 			double dist = ((GPSPoint) locationToMove).getDistanceTo((GPSPoint) ti);
 //			System.out.println("dist = " + dist);
-			if(dist > epsilon) continue;
+			if(dist > epsilon) 
+				continue;
 			
 //			double damp = damp(dist, epsilon);
 			double damp;

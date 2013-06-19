@@ -27,8 +27,8 @@ public class ChangeDirector {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String name = "konstanzerstrasse3.gpx";
-		String directory = "Scen2 - Konstanzstrasse_Enge_Kreuzungen/";
+		String name = "m9.gpx";
+		String directory = "01-Testefr/";
 		File f = new File("test/input/"+directory+name);
 		
 		List<GPSSegment> segment = read(f);

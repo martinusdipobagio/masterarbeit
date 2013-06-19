@@ -25,7 +25,6 @@ public class FreeSpaceMatch implements ITraceDistance {
 
 	public double maxDistance = 7.5;
 	public int minLengthFirstSegment = 1;
-	public double maxAngle = 37;
 
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;
@@ -332,7 +331,7 @@ public class FreeSpaceMatch implements ITraceDistance {
 		}
 
 		Pair<List<AggConnection>, List<GPSEdge>> res = match(map, trace, start,
-				maxDistance / 92500);
+				maxDistance / 92500.0);
 
 		bestValue = this.bestValue;
 

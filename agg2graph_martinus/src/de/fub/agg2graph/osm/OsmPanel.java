@@ -40,6 +40,7 @@ public class OsmPanel extends JMapViewer {
 		controller.setMovementMouseButton(MouseEvent.BUTTON1);
 		setZoomContolsVisible(false);
 		setIgnoreRepaint(true);
+		setEnabled(true);
 	}
 
 	public void showArea(DoubleRect area) {

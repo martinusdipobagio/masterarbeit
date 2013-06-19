@@ -87,5 +87,13 @@ public class GPXReader {
 		Collections.sort(result, comparator);
 		return result;
 	}
+	
+	public static List<Integer> getKs(File sourceFile) {
+		GPXPointReaderHandler handler = process(sourceFile);
+		if (handler == null) {
+			return null;
+		}
+		return handler.getK();
+	}
 
 }

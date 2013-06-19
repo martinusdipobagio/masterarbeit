@@ -74,6 +74,7 @@ public class GPXPointReaderHandler extends DefaultHandler {
 					point.setLat(Float.parseFloat(atts.getValue(i)));
 				} else if ("k".equals(atts.getQName(i))) {
 					point.setK(Integer.parseInt(atts.getValue(i)));
+					ks.add(Integer.parseInt(atts.getValue(i)));
 				}
 			}
 			points.add(point);

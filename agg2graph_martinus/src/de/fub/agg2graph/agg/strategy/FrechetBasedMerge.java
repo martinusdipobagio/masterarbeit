@@ -51,7 +51,7 @@ public class FrechetBasedMerge implements IMergeHandler {
 	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 12.5; // meters
 
-	private double distance = 12.5;
+	private double distance = 12.5;//12.5
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 
@@ -154,6 +154,9 @@ public class FrechetBasedMerge implements IMergeHandler {
 	private void showDebugMerge(AggNode locationToMove,
 			TreeSet<GPSPoint> affectedTrace) {
 		TestUI ui = (TestUI) Globals.get("ui");
+		if (ui == null) {
+			return;
+		}
 		Layer mergingLayer = ui.getLayerManager().getLayer("merging");
 
 		List<ILocation> line = new ArrayList<ILocation>(2);
@@ -312,6 +315,7 @@ public class FrechetBasedMerge implements IMergeHandler {
 									&& locationToMove.getLon() == a.getLon())
 								locationToMove = a;
 						}
+						locationToMove.setK(locationToMove.getK() + 1);
 						aggContainer.moveNodeTo(locationToMove, to);
 					}
 				}
@@ -348,6 +352,7 @@ public class FrechetBasedMerge implements IMergeHandler {
 								&& locationToMove.getLon() == a.getLon())
 							locationToMove = a;
 					}
+					locationToMove.setK(locationToMove.getK() + 1);
 					aggContainer.moveNodeTo(locationToMove, to);
 				}
 			}

@@ -28,7 +28,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 	int counter = 1;
 
 	public int maxLookahead = Integer.MAX_VALUE;
-	public double maxPathDifference = 12.5;
+	public double maxPathDifference = 7.5;
 	public double maxInitDistance = 12.5;
 	List<AggNode> internalAggNodes = new ArrayList<AggNode>();
 
@@ -161,8 +161,7 @@ public class FrechetMatchAttractionMergeStrategy extends
 					length = (int) Math.round(Double.valueOf(returnValues[1]
 							.toString()));
 
-					if (difference < bestDifference
-							|| (difference == bestDifference && length > bestPathLength)) {
+					if (length > bestPathLength) {
 						bestDifference = difference;
 						bestPathLength = length;
 						bestPath = new ArrayList<AggNode>(
@@ -246,8 +245,34 @@ public class FrechetMatchAttractionMergeStrategy extends
 		statistic.resetMatchedTraceLength();
 		statistic.resetMatchedTracePoints();
 		
+		//Merging double points in matches
+		IMergeHandler lastMatch = null;
+		for(int j = 0; j < matches.size(); j++) {
+			IMergeHandler currentMatch;
+			if(j == 0) {
+				lastMatch = matches.get(j);
+				continue;
+			}
+			currentMatch = matches.get(j);
+			List<AggNode> lastAgg = lastMatch.getAggNodes();
+			List<GPSPoint> lastGpsPoints = lastMatch.getGpsPoints();
+			List<AggNode> currentAgg = currentMatch.getAggNodes();
+			List<GPSPoint> currentGpsPoints = currentMatch.getGpsPoints();
+			if(lastAgg.get(lastAgg.size()-1).equals(currentAgg.get(0))
+					|| lastGpsPoints.get(lastGpsPoints.size()-1).equals(currentGpsPoints.get(0))) {
+				lastMatch.addAggNodes(currentAgg.subList(1, currentAgg.size()));
+				lastMatch.addGPSPoints(currentGpsPoints.subList(1,currentGpsPoints.size()));
+				matches.remove(j);
+				j--;
+			} else {
+				lastMatch = currentMatch;
+			}			
+		}
+		
 		long mergeStart = System.currentTimeMillis();
 		for (IMergeHandler match : matches) {
+//			System.out.println(match.getAggNodes());
+//			System.out.println(match.getGpsPoints());
 			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
 					.getAggNodes()));
 			statistic.setMatchedAggPoints(match.getAggNodes().size());
@@ -301,7 +326,6 @@ public class FrechetMatchAttractionMergeStrategy extends
 			e.printStackTrace();
 		}
 		statistic.resetAll();
-		lastNodes.clear();
 		internalAggNodes.clear();
 		lastNodes.clear();
 		lastNewNodes.clear();
@@ -315,15 +339,22 @@ public class FrechetMatchAttractionMergeStrategy extends
 	 */
 	private List<AggNode> aggNodesExchange(List<AggNode> bestPath) {
 		AggNode currentNode;
+		boolean found;
 		for (int i = 0; i < bestPath.size(); i++) {
+			found = false;
 			currentNode = bestPath.get(i);
 			for (AggNode internal : internalAggNodes) {
 				if (currentNode.getLat() == internal.getLat()
 						&& currentNode.getLon() == internal.getLon()) {
 					bestPath.remove(i);
 					bestPath.add(i, internal);
+					found = true;
 					break;
 				}
+			}
+			if(!found) {
+				bestPath.remove(i);
+				i--;
 			}
 		}
 

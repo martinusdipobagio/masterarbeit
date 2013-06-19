@@ -119,7 +119,7 @@ public class UIStepStorage extends StepStorage {
 		CleaningOptions o = getGpsCleaner().getCleaningOptions();
 		o.filterBySegmentLength = true;
 		o.minSegmentLength = 1;
-		o.maxSegmentLength = 50;
+		o.maxSegmentLength = 100;
 		o.filterByEdgeLength = true;
 		o.minEdgeLength = 0.3;
 		o.maxEdgeLength = 750;

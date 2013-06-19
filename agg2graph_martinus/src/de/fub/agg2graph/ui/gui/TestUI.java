@@ -41,6 +41,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -49,8 +50,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import de.fub.agg2graph.agg.AggContainer;
+import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IAggregationStrategy;
 import de.fub.agg2graph.agg.tiling.CachingStrategyFactory;
@@ -297,13 +302,13 @@ public class TestUI {
 		updateTrackSelectionPanel();
 
 		JButton btnSaveagg = new JButton("save");
-//		btnSaveagg.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// save agg
-//				uiStepStorage.getAggContainer().getCachingStrategy().save();
-//			}
-//		});
+		btnSaveagg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// save agg
+				uiStepStorage.getAggContainer().getCachingStrategy().save();
+			}
+		});
 		btnSaveagg.setMnemonic('s');
 		gbc = new GridBagConstraints();
 		gbc.weightx = 0.5;
@@ -312,35 +317,35 @@ public class TestUI {
 		settingsInnerPanels[3].add(btnSaveagg, gbc);
 
 		JButton btnLoadagg = new JButton("load");
-//		btnLoadagg.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// load agg
-//				makeAgg(((File) sourceFolderCombo.getSelectedItem()).getName());
-//				if (tc.isInMemory()) {
-//					JOptionPane.showMessageDialog(frmTestui,
-//							"No aggregation found.");
-//					return;
-//				}
-//				try {
-//					tc.loadTile(tm.getRoot(), true);
-//				} catch (ParserConfigurationException e1) {
-//					e1.printStackTrace();
-//				} catch (SAXException e1) {
-//					e1.printStackTrace();
-//				} catch (IOException e1) {
-//					e1.printStackTrace();
-//				}
-//				if (dataBoundingBox.isFresh()) {
-//					Set<AggNode> nodes = tm.getRoot().getInnerNodes();
-//					List<AggNode> nodeList = new ArrayList<AggNode>(nodes
-//							.size());
-//					nodeList.addAll(nodes);
-//					parseDim(nodeList);
-//				}
-//				layerManager.repaintAllLayers();
-//			}
-//		});
+		btnLoadagg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// load agg
+				makeAgg(((File) sourceFolderCombo.getSelectedItem()).getName());
+				if (tc.isInMemory()) {
+					JOptionPane.showMessageDialog(frmTestui,
+							"No aggregation found.");
+					return;
+				}
+				try {
+					tc.loadTile(tm.getRoot(), true);
+				} catch (ParserConfigurationException e1) {
+					e1.printStackTrace();
+				} catch (SAXException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				if (dataBoundingBox.isFresh()) {
+					Set<AggNode> nodes = tm.getRoot().getInnerNodes();
+					List<AggNode> nodeList = new ArrayList<AggNode>(nodes
+							.size());
+					nodeList.addAll(nodes);
+					parseDim(nodeList);
+				}
+				layerManager.repaintAllLayers();
+			}
+		});
 		btnLoadagg.setMnemonic('l');
 		gbc = new GridBagConstraints();
 		gbc.weightx = 0.5;
@@ -348,27 +353,6 @@ public class TestUI {
 		gbc.gridy = 0;
 		settingsInnerPanels[3].add(btnLoadagg, gbc);
 
-		//TODO Tinus
-		aggregationsStrategy = new ObjectSelectionComboBox();
-		aggregationsStrategy.setMinimumSize(new Dimension(350, 20));
-		aggregationsStrategy.setPreferredSize(new Dimension(350, 20));
-		aggregationsStrategy.setSize(new Dimension(150, 20));
-		for(String strategy : AggregationStrategyFactory.getAllStrategyName()) {
-			aggregationsStrategy.addItem(AggregationStrategyFactory.getClassByName(strategy), strategy);
-		}
-		aggregationsStrategy.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				updateClass(e);
-			}
-		});
-		gbc = new GridBagConstraints();
-		gbc.weightx = 0.5;
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		settingsInnerPanels[3].add(new JLabeledComponentPanel(new JLabel(
-				"Aggregation Strategy: "), aggregationsStrategy), gbc);
-		//TODO finito
 		panel_10 = new JPanel();
 		panel_9.add(panel_10, BorderLayout.SOUTH);
 		panel_10.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

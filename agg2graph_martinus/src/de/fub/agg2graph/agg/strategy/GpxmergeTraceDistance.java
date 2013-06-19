@@ -26,6 +26,7 @@ public class GpxmergeTraceDistance implements ITraceDistance {
 
 	public double angleFactor = 0.05;
 	public double maxAngle = 37;
+	public double maxGradient = 700;
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only
@@ -61,7 +62,7 @@ public class GpxmergeTraceDistance implements ITraceDistance {
 		
 		angle = GPSCalc.getAngleBetweenEdges(near.getFrom(), near.getTo(), currentEdge.getFrom(), currentEdge.getTo());
 
-		if (gradient > 700 || !CartesianCalc.isAngleMax(angle, maxAngle)) {
+		if (gradient > maxGradient || !CartesianCalc.isAngleMax(angle, maxAngle)) {
 			return Double.MAX_VALUE;
 		}
 		double distFrom = GPSCalc.getDistancePointToEdgeMeter(near.getFrom(),

@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
@@ -27,19 +25,24 @@ import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
 import de.fub.agg2graph.input.GPXWriter;
 import de.fub.agg2graph.input.SerializeAgg;
+import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
+import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
 
-public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrategy {
-	private static final Logger logger = Logger
-			.getLogger("agg2graph.agg.default.strategy");
+public class DefaultMatchDefaultMergeStrategy extends
+		AbstractAggregationStrategy {
+	MyStatistic statistic;
+	int counter = 1;
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 20;
-	public double maxInitDistance = 20;
-	public int counter = 0;
+	public double maxPathDifference = 200;
+	public double maxInitDistance = 30;//12.5
+
+	List<AggNode> lastNodes = new ArrayList<AggNode>();
+	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();
 
 	public enum State {
 		NO_MATCH, IN_MATCH
@@ -52,15 +55,16 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 	 * instances of this class.
 	 */
 	public DefaultMatchDefaultMergeStrategy() {
+		statistic = new MyStatistic(
+				"test/exp/Evaluation-DefaultMatchDefaultMerge.txt");
 		TraceDistanceFactory.setClass(DefaultTraceDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
+		MergeHandlerFactory.setClass(DefaultMergeHandler.class);
 		baseMergeHandler = MergeHandlerFactory.getObject();
 	}
 
 	@Override
 	public void aggregate(GPSSegment segment, boolean isAgg) {
-		logger.setLevel(Level.OFF); // Level.ALL);
-
 		// reset all attributes
 		lastNode = null;
 		mergeHandler = null;
@@ -70,8 +74,10 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
+		//
 		if (aggContainer.getCachingStrategy() == null
-				|| aggContainer.getCachingStrategy().getNodeCount() == 0) {
+				|| aggContainer.getCachingStrategy().getNodeCount() == 0
+				|| isAgg) {
 			int i = 0;
 			while (i < segment.size()) {
 				GPSPoint pointI = segment.get(i);
@@ -83,20 +89,26 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 				lastNode = node;
 				i++;
 			}
-			
+			lastNodes.add(lastNode);
+			statistic.setAggLength(GPSCalc.traceLengthMeter(segment));
+			statistic.setAggPoints(segment.size());
 			return;
 		}
 
 		BoundedQueue<ILocation> lastParsedCurrentPoints = new BoundedQueue<ILocation>(
 				5);
+
 		int i = 0;
+
+		statistic.setTraceLength(GPSCalc.traceLengthMeter(segment));
+		statistic.setTracePoints(segment.size());
+		long matchStart = System.currentTimeMillis();
 		while (i < segment.size()) {
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
 			Set<AggNode> nearPoints = null;
 			GPSPoint currentPoint = segment.get(i);
-			logger.log(Level.FINE, "current point: " + currentPoint);
-			
+
 			// no progress? (should not be necessary)
 			if (lastParsedCurrentPoints.size() > 2
 					&& lastParsedCurrentPoints.get(
@@ -111,7 +123,7 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 			lastParsedCurrentPoints.offer(currentPoint);
 
 			State lastState = state;
-			
+
 			// get all close points, but none that are already in the current
 			// match (because we would kinda search backwards)
 			nearPoints = aggContainer.getCachingStrategy().getCloseNodes(
@@ -122,46 +134,39 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 					nearPoints.remove(nodes.get(j));
 				}
 			}
-			
+
 			/* Tinus - Filtering near points */
 			nearPoints = filterNearPoints(nearPoints);
 
-			logger.log(Level.FINE, "near points: " + nearPoints);
-			
 			boolean isMatch = true;
 			if (nearPoints.size() == 0) {
 				isMatch = false;
+				state = State.NO_MATCH;
 			} else {
 				// there is candidates for a match start
 				List<List<AggNode>> paths = getPathsByDepth(nearPoints, 1,
 						maxLookahead);
-				
+
 				/* Tinus - Filtering Paths */
-				for(List<AggNode> path : paths) {
+				for (List<AggNode> path : paths) {
 					filterPath(path);
 				}
-				
+
 				// evaluate paths, pick best, continue
-				logger.log(Level.FINE, "Paths from " + nearPoints + " in agg: "
-						+ paths);
 				double bestDifference = Double.MAX_VALUE, difference;
 				int length;
 				List<AggNode> bestPath = null;
 				int bestPathLength = 0;
-				
+
 				for (List<AggNode> path : paths) {
 					Object[] returnValues = traceDistance.getPathDifference(
 							path, segment, i, mergeHandler);
 					difference = (Double) returnValues[0];
 					length = (int) Math.round(Double.valueOf(returnValues[1]
 							.toString()));
-					logger.info(String.format(
-							"Difference of path %s and %s is %.3f", path,
-							segment.subList(i, i + length), difference));
 					if (difference < bestDifference
 							|| (difference == bestDifference && length > bestPathLength)) {
 						bestDifference = difference;
-						logger.log(Level.FINE, "This is the new best path.");
 						bestPathLength = length;
 						bestPath = path;
 						if (bestPath.size() == 0) {
@@ -173,9 +178,6 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 
 				// do we have a successful match?
 				if (bestDifference >= maxPathDifference || bestPath == null) {
-//					i++;
-					logger.log(Level.FINE,
-							"Best path not good enough (anymore)");
 					isMatch = false;
 				} else if (bestPath.size() <= 1 && bestPathLength <= 1) {
 					isMatch = false;
@@ -188,17 +190,10 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 						mergeHandler = baseMergeHandler.getCopy();
 						mergeHandler.setAggContainer(aggContainer);
 					}
-					logger.log(
-							Level.FINE,
-							String.format(
-									"best path found: %s, value: %.8f\ncomsuming %d GPS points: %s",
-									bestPath, bestDifference, bestPathLength,
-									segment.subList(i, i + bestPathLength)));
 					mergeHandler.addAggNodes(bestPath);
 					mergeHandler.addGPSPoints(segment.subList(i, i
 							+ bestPathLength));
 					mergeHandler.setDistance(bestDifference);
-					logger.log(Level.FINE, "Path so far: " + mergeHandler);
 					i = i + bestPathLength - 1;
 				}
 			}
@@ -210,44 +205,115 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
-				// Dibutuhkan kalau butuh cabang baru
-//				AggNode node = new AggNode(currentPoint, aggContainer);
-//				node.setID("A-" + currentPoint.getID());
-//				addNodeToAgg(aggContainer, node);
-//				lastNode = node;
+
+				if (getAddAllowed()) {
+					AggNode node = new AggNode(currentPoint, aggContainer);
+					node.setID("A-" + currentPoint.getID());
+					node.setK(1);
+					addNodeToAgg(aggContainer, node);
+					lastNode = node;
+				}
 				i++;
 			}
 		}
+		long matchEnd = System.currentTimeMillis();
+		statistic.setRuntimeMatch(matchEnd - matchStart);
+
+		// New Segment
+		if (getAddAllowed() && lastNode != null) {
+			List<AggNode> newSegment = new ArrayList<AggNode>();
+			AggNode currentLast = lastNode;
+			newSegment.add(0, currentLast);
+			while (!lastNode.getIn().isEmpty()) {
+				lastNode = lastNode.getIn().iterator().next().getFrom();
+				if (GPSCalc.getDistanceTwoPointsMeter(currentLast, lastNode) < 100) {
+					newSegment.add(0, lastNode);
+				} else {
+					if (newSegment.size() > 1) {
+						lastNewNodes.add(new GPSSegment(newSegment));
+					}
+					newSegment = new ArrayList<AggNode>();
+				}
+				currentLast = lastNode;
+			}
+			if (newSegment.size() > 1) {
+				lastNewNodes.add(new GPSSegment(newSegment));
+			}
+		}
+
 		// step 2 and 3 of 3: ghost points, merge everything
-//		System.out.println("MATCHES : " + matches.size());
-//		int locCounter = 0;
+		System.out.println(counter + ". MATCHES : " + matches.size());
+		System.out.println("New Segment : " + getAddAllowed());
+		statistic.resetMatchedAggLength();
+		statistic.resetMatchedAggPoints();
+		statistic.resetMatchedTraceLength();
+		statistic.resetMatchedTracePoints();
+
+		long mergeStart = System.currentTimeMillis();
 		for (IMergeHandler match : matches) {
-//			System.out.println(++locCounter + ". Match");
-			System.out.println(match.getAggNodes());
+			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
+					.getAggNodes()));
+			statistic.setMatchedAggPoints(match.getAggNodes().size());
+			statistic.setMatchedTraceLength(GPSCalc.traceLengthMeter(match
+					.getGpsPoints()));
+			statistic.setMatchedTracePoints(match
+					.getGpsPoints().size());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
+		long mergeEnd = System.currentTimeMillis();
+		statistic.setRuntimeMerge(mergeEnd - mergeStart);
 		
-//		try {
-//			new File("test/input/output-test").mkdirs();
-//			AggNode source = getLastNode();
-//
-//			List<GPSSegment> segments = SerializeAgg.getSerialize(source);
-//			GPXWriter.writeSegments(new File(
-//					new String("test/input/output-test/" + toString() + counter++ + ".gpx")), segments);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		Runtime runtime = Runtime.getRuntime();
+		// Run the garbage collector
+		runtime.gc();
+		
+		// Calculate the used memory
+		long memory = runtime.totalMemory() - runtime.freeMemory();
+		statistic.setMemoryUsed(bytesToMegabytes(memory));
+
+		for(GPSSegment lastNewNode : lastNewNodes) {
+			statistic.setNewAggLength(GPSCalc.traceLengthMeter(lastNewNode));
+			statistic.setNewAggPoints(lastNewNode.size());
+		}
+		/** Save new Map */
+		try {
+			List<GPSSegment> segments = new ArrayList<GPSSegment>();
+			// Original Map
+			for (AggNode last : lastNodes) {
+				segments.add(SerializeAgg.getSegmentFromLastNode(last));
+			}
+			
+			// Extension
+			if (lastNewNodes.size() > 0 && getAddAllowed())
+				segments.addAll(lastNewNodes);
+
+			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
+					+ "map" + counter++ + ".gpx")), segments);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/** Statistic record */
+		try {
+			statistic.writefile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		statistic.resetAll();
+		lastNodes.clear();
+		lastNewNodes.clear();
 	}
 
 	private static void filterPath(List<AggNode> path) {
 		boolean found = false;
-		for(int i = 0 ; i < path.size() ; i++) {
-			if(!found && !path.get(i).isRelevant())
+		for (int i = 0; i < path.size(); i++) {
+			if (!found && !path.get(i).isRelevant())
 				found = true;
-			else if(found) {
+			else if (found) {
 				path.remove(i);
 				i--;
 			}
@@ -256,8 +322,8 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 
 	private Set<AggNode> filterNearPoints(Set<AggNode> nearPoints) {
 		Iterator<AggNode> nearIt = nearPoints.iterator();
-		while(nearIt.hasNext()) {
-			if(!nearIt.next().isRelevant())
+		while (nearIt.hasNext()) {
+			if (!nearIt.next().isRelevant())
 				nearIt.remove();
 		}
 		return nearPoints;
@@ -271,10 +337,10 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 		 * connect to previous node lastNode is the last non-matched node or the
 		 * outNode of the last match
 		 */
-		aggContainer.connect(lastNode, mergeHandler.getInNode());
-		mergeHandler.setBeforeNode(lastNode);
-		// remember outgoing node (for later connection)
-		lastNode = mergeHandler.getOutNode();
+//		 aggContainer.connect(lastNode, mergeHandler.getInNode());
+//		 mergeHandler.setBeforeNode(lastNode);
+		 // remember outgoing node (for later connection)
+//		 lastNode = mergeHandler.getOutNode();
 	}
 
 	/*
@@ -312,9 +378,14 @@ public class DefaultMatchDefaultMergeStrategy extends AbstractAggregationStrateg
 			}
 		}
 	}
-	
-	@Override
+
 	public String toString() {
-		return "DefaultMatch-DefaultMerge";
+		return "DefaultMatch-AttractionMerge";
+	}
+
+	private static final long MEGABYTE = 1024L * 1024L;
+
+	public static long bytesToMegabytes(long bytes) {
+		return bytes / MEGABYTE;
 	}
 }

@@ -29,11 +29,11 @@ public class DefaultTraceDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 10;
-	public double maxDistance = 7.5;
+	public double maxDistance = 30;//7.5
 	public int maxLookahead = 5;
-	public double maxPathDifference = 10;
+	public double maxPathDifference = 20;//10
 	public int minLengthFirstSegment = 1;
-	public double maxAngle = 20;
+	public double maxAngle = 60;
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only

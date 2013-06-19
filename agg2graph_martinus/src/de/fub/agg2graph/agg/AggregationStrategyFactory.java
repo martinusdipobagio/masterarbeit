@@ -2,12 +2,18 @@ package de.fub.agg2graph.agg;
 
 import de.fub.agg2graph.agg.strategy.DefaultMatchAttractionMergeStrategy;
 import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy;
-import de.fub.agg2graph.agg.strategy.DefaultMatchFrechetBasedMergeStrategy;
+import de.fub.agg2graph.agg.strategy.DefaultMatchFrechetMergeStrategy;
 import de.fub.agg2graph.agg.strategy.DefaultMatchIterativeMergeStrategy;
 import de.fub.agg2graph.agg.strategy.FrechetMatchAttractionMergeStrategy;
+import de.fub.agg2graph.agg.strategy.FrechetMatchIterativeMergeStrategy;
+import de.fub.agg2graph.agg.strategy.GpxmergeMatchAttractionMergeStrategy;
 import de.fub.agg2graph.agg.strategy.GpxmergeMatchIterativeMergeStrategy;
+import de.fub.agg2graph.agg.strategy.HausdorffMatchDefaultMergeStrategy;
+import de.fub.agg2graph.agg.strategy.HausdorffMatchFrechetMergeStrategy;
+import de.fub.agg2graph.agg.strategy.HausdorffMatchAttractionMergeStrategy;
 import de.fub.agg2graph.agg.strategy.HausdorffMatchIterativeMergeStrategy;
-import de.fub.agg2graph.agg.strategy.SecondAggregationStrategy;
+import de.fub.agg2graph.agg.strategy.SecondAggregationStrategyAttraction;
+import de.fub.agg2graph.agg.strategy.SecondAggregationStrategyIterative;
 
 /**
  * A factory that returns the {@link IAggregationStrategy} currently set via the
@@ -21,19 +27,25 @@ public class AggregationStrategyFactory {
 	 * Default class to return. Can be overwritten by calls to setClass.
 	 */
 	private static Class<? extends IAggregationStrategy> defaultDefaultClass = DefaultMatchDefaultMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultFrechetClass = DefaultMatchFrechetMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> defaultIterativeClass = DefaultMatchIterativeMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> defaultFrechetClass = DefaultMatchFrechetBasedMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;//TODO
 	
-	private static Class<? extends IAggregationStrategy> gpxIterativeClass = GpxmergeMatchIterativeMergeStrategy.class;//TODO
+	private static Class<? extends IAggregationStrategy> gpxAttractionClass = GpxmergeMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> gpxIterativeClass = GpxmergeMatchIterativeMergeStrategy.class;
 	
-	private static Class<? extends IAggregationStrategy> hausdorffIterativeClass = HausdorffMatchIterativeMergeStrategy.class;//TODO
+	private static Class<? extends IAggregationStrategy> hausdorffDefaultClass = HausdorffMatchDefaultMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> hausdorffFrechetClass = HausdorffMatchFrechetMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> hausdorffAttractionClass = HausdorffMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> hausdorffIterativeClass = HausdorffMatchIterativeMergeStrategy.class;
 	
-	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;//TODO
+	private static Class<? extends IAggregationStrategy> frechetAttractionClass = FrechetMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> frechetIterativeClass = FrechetMatchIterativeMergeStrategy.class;
 
-	private static Class<? extends IAggregationStrategy> secondStrategyClass = SecondAggregationStrategy.class;
+	private static Class<? extends IAggregationStrategy> secondStrategyAttractionClass = SecondAggregationStrategyAttraction.class;
+	private static Class<? extends IAggregationStrategy> secondStrategyIterativeClass = SecondAggregationStrategyIterative.class;
 
-	private static Class<? extends IAggregationStrategy> factoryClass = SecondAggregationStrategy.class;//TODO
+	private static Class<? extends IAggregationStrategy> factoryClass = HausdorffMatchDefaultMergeStrategy.class;
 
 	public static void setClass(Class<? extends IAggregationStrategy> theClass) {
 		factoryClass = theClass;
@@ -60,19 +72,19 @@ public class AggregationStrategyFactory {
 	 * TODO noch statisch
 	 */
 	public static String[] getAllStrategyName() {
-		String[] ret = new String[]{defaultDefaultClass.getName()};
+		String[] ret = new String[]{defaultAttractionClass.getName()};
 		return ret;
 	}
 	
 	public static void setClassByName(String name) {
-		if(name.equals(defaultDefaultClass.getName()))
-			factoryClass = defaultDefaultClass;
+		if(name.equals(defaultAttractionClass.getName()))
+			factoryClass = defaultAttractionClass;
 	}
 	
 	public static IAggregationStrategy getClassByName(String name) {
-		if(name.equals(defaultDefaultClass.getName())) {
+		if(name.equals(defaultAttractionClass.getName())) {
 			try {
-				return defaultDefaultClass.newInstance();
+				return defaultAttractionClass.newInstance();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

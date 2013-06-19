@@ -29,7 +29,7 @@ public class HausdorffMatchIterativeMergeStrategy extends
 
 	public int maxLookahead = Integer.MAX_VALUE;
 	public double maxPathDifference = 200;
-	public double maxInitDistance = 12.5;
+	public double maxInitDistance = 35;//12.5
 	List<GPSPoint> matchedPoints;
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();

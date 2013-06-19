@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -111,7 +112,6 @@ public class CalcThread extends Thread {
 
 //			// Filter data
 			GPSFilter gpsFilter = stepStorage.getGpsFilter();
-//			GPSSegment firstSegment = stepStorage.inputSegmentList.get(0);
 		
 			for(int i = 0; i < stepStorage.inputSegmentList.size() - 1; i++) {
 				stepStorage.inputSegmentList.add(i, gpsFilter.filter(stepStorage.inputSegmentList.get(i)));
@@ -243,20 +243,24 @@ public class CalcThread extends Thread {
 	
 	private void showFreeSpace(final FrechetDistance f) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			FreeSpacePanel freeSpace;
 			@Override
 			public void run() {
-				show();				
+				show();
+				setFrechetDistance(freeSpace, f);
+			}
+
+			private void setFrechetDistance(FreeSpacePanel freeSpace, FrechetDistance f) {
+				freeSpace.setFrechetDistance(f);
 			}
 
 			private void show() {
 				JFrame freeSpaceView = new JFrame();
 				freeSpaceView.setTitle("Free Space Diagram");
-				freeSpaceView.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-				
-				FreeSpacePanel freeSpace = new FreeSpacePanel(freeSpaceView, f);
-				freeSpace.setPreferredSize(new Dimension (600, 800));
-
-				freeSpaceView.getContentPane().add(freeSpace);
+				freeSpaceView.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);				
+				freeSpace = new FreeSpacePanel(freeSpaceView);
+				freeSpaceView.add(freeSpace.scroll);
+				freeSpace.setPreferredSize(new Dimension (800, 600));
 				freeSpaceView.pack();
 				freeSpaceView.setVisible(true);
 			}			

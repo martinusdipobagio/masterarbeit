@@ -37,7 +37,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 	int counter = 1;
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 35;
+	public double maxPathDifference = 40;
 	public double maxInitDistance = 12.5;
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
@@ -115,6 +115,8 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 
 			nearEdges = aggContainer.getCachingStrategy().getCloseConnections(
 					currentEdge, maxInitDistance);
+			/* TODO Tinus - Filtering near points */
+			nearEdges = filterNearPoints(nearEdges);
 			// END
 
 			boolean isMatch = true;
@@ -164,8 +166,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 					if (!mergeHandler.getAggNodes().contains(bestConn.getTo()))
 						mergeHandler.addAggNode(bestConn.getTo());
 					if (!mergeHandler.getGpsPoints().contains(
-							currentEdge.getFrom()))
-						;
+							currentEdge.getFrom()));
 					mergeHandler.addGPSPoint(currentEdge.getFrom());
 					if (!mergeHandler.getGpsPoints().contains(
 							currentEdge.getTo()))
@@ -231,6 +232,8 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 
 		long mergeStart = System.currentTimeMillis();
 		for (IMergeHandler match : matches) {
+//			System.out.println(match.getAggNodes());
+//			System.out.println(match.getGpsPoints());
 			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
 					.getAggNodes()));
 			statistic.setMatchedAggPoints(match.getAggNodes().size());
@@ -238,6 +241,9 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 					.getGpsPoints()));
 			statistic.setMatchedTracePoints(match
 					.getGpsPoints().size());
+			if (!match.isEmpty()) {
+				match.mergePoints();
+			}
 		}
 		long mergeEnd = System.currentTimeMillis();
 		statistic.setRuntimeMerge(mergeEnd - mergeStart);
@@ -284,6 +290,15 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 		lastNodes.clear();
 		lastNewNodes.clear();
 	}
+	
+	private Set<AggConnection> filterNearPoints(Set<AggConnection> nearEdges) {
+		Iterator<AggConnection> nearIt = nearEdges.iterator();
+		while (nearIt.hasNext()) {
+			if (!nearIt.next().isRelevant())
+				nearIt.remove();
+		}
+		return nearEdges;
+	}
 
 	protected void finishMatch() {
 		// last match is over now
@@ -301,7 +316,7 @@ public class GpxmergeMatchIterativeMergeStrategy extends
 
 	@Override
 	public String toString() {
-		return "GPXMatch-DefaultMerge";
+		return "GPXMatch-IterativeMerge";
 	}
 
 	private static final long MEGABYTE = 1024L * 1024L;

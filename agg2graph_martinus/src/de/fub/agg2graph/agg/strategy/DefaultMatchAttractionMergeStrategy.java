@@ -17,6 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Assert;
+
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.AggregationStrategyFactory;
@@ -39,7 +41,7 @@ public class DefaultMatchAttractionMergeStrategy extends
 
 	public int maxLookahead = 5;
 	public double maxPathDifference = 15;
-	public double maxInitDistance = 12.5;
+	public double maxInitDistance = 30;//12.5
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
 	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();
@@ -70,7 +72,7 @@ public class DefaultMatchAttractionMergeStrategy extends
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
 		state = State.NO_MATCH;
-
+		
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
@@ -299,12 +301,12 @@ public class DefaultMatchAttractionMergeStrategy extends
 		}
 
 		/** Statistic record */
-		try {
-			statistic.writefile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			statistic.writefile();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		statistic.resetAll();
 		lastNodes.clear();
 		lastNewNodes.clear();

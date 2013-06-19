@@ -51,7 +51,7 @@ public class ConformalPathDistance implements ITraceDistance {
 		//Partial Frechet Distance
 		if(path1.size() == 0 || path2.size() == 0)
 			return new Object[] {0, new ArrayList<List<AggNode>>(), new ArrayList<List<GPSPoint>>()};
-		PartialFrechetDistance pfd = new PartialFrechetDistance(path1, path2, maxDistance/92500);
+		PartialFrechetDistance pfd = new PartialFrechetDistance(path1, path2, maxDistance/92500.0);
 		List<Pair<Point, Point>> ret = pfd.getPathList();
 		List<List<AggNode>> aggResults = extractAgg(ret, aggPath, tracePoints);
 		List<List<GPSPoint>> traceResults = extractTrace(ret, aggPath, tracePoints);
@@ -68,14 +68,13 @@ public class ConformalPathDistance implements ITraceDistance {
 			for(int i = start; i <= Math.min(end, aggPath.size()); i++) {
 				agg.add(aggPath.get(i));
 			}
-			//TODO: Still discrete
 			int gpsEnd = r.b.y;
 			if(end + 1 < aggPath.size()) {
 				if(GPSCalc.getDistanceTwoPointsMeter(aggPath.get(end + 1), tracePoints.get(gpsEnd)) <= maxDistance)
 					agg.add(aggPath.get(end + 1));
 				else if(gpsEnd + 1 < tracePoints.size()) { 
 					if(GPSCalc.getDistanceTwoPointsMeter(aggPath.get(end + 1), tracePoints.get(gpsEnd + 1)) <= maxDistance)
-					agg.add(aggPath.get(end + 1));
+						agg.add(aggPath.get(end + 1));
 				}
 			}				
 			
@@ -114,36 +113,4 @@ public class ConformalPathDistance implements ITraceDistance {
 		result.add(new ClassObjectEditor(this));
 		return result;
 	}
-	
-//	/**
-//	 * This class force @FrechetDistance to generate FreeSpaceDiagram.
-//	 * For the optimization of calculation, there will be no real image.
-//	 * @param f
-//	 */
-//	private void drawImaginaryFreeSpace(FrechetDistance f) {
-//		f.updateFreeSpaceW();
-//
-//		int tileSize = 40;
-//		int startx = 0;
-//		int starty = 0;
-//		int endx = f.getSizeQ() - 1;
-//		int endy = f.getSizeP() - 1;
-//		BufferedImage tile = new BufferedImage(tileSize, tileSize, BufferedImage.TYPE_INT_RGB);
-//
-//		//For Every Cell
-//		for(int y =  starty ; y <= endy; ++y) {
-//			for(int x = startx; x <= endx; ++x) {
-//				Cell cell = f.getCell((f.getSizeP() - y - 1 ), x);
-//				if(cell == null)
-//					continue;
-//
-//				cell.getFreeSpace(tile, tileSize);
-//				cell.getParameterMarks(tile, tileSize);
-//				tile = cell.getReachableMarks(tile, tileSize);
-//
-//			}
-//		}
-//		
-//		//Update the bottom left
-//	}	
 }

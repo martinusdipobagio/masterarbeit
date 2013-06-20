@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.5144321" minlon="13.376892" maxlat="52.515672" maxlon="13.380677"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>gpslib.ru.gpx</name>
+    <desc>Европа</desc>
+    <link href="http://api.openstreetmap.org/user/gpslib-ru/traces/1457195">
+    </link>
+    <trkseg>
+      <trkpt lat="52.515427" lon="13.377537">
+        <time>2013-05-09T08:11:34Z</time>
+      </trkpt>
+      <trkpt lat="52.515205" lon="13.377498">
+        <time>2013-05-09T08:11:36Z</time>
+      </trkpt>
+      <trkpt lat="52.51502" lon="13.377443">
+        <time>2013-05-09T08:11:38Z</time>
+      </trkpt>
+      <trkpt lat="52.51489" lon="13.377415">
+        <time>2013-05-09T08:11:40Z</time>
+      </trkpt>
+      <trkpt lat="52.51481" lon="13.377397">
+        <time>2013-05-09T08:11:42Z</time>
+      </trkpt>
+      <trkpt lat="52.514705" lon="13.377407">
+        <time>2013-05-09T08:11:58Z</time>
+      </trkpt>
+      <trkpt lat="52.514663" lon="13.377435">
+        <time>2013-05-09T08:12:28Z</time>
+      </trkpt>
+      <trkpt lat="52.51459" lon="13.3775">
+        <time>2013-05-09T08:12:30Z</time>
+      </trkpt>
+      <trkpt lat="52.514562" lon="13.377643">
+        <time>2013-05-09T08:12:32Z</time>
+      </trkpt>
+      <trkpt lat="52.51457" lon="13.377865">
+        <time>2013-05-09T08:12:34Z</time>
+      </trkpt>
+      <trkpt lat="52.514587" lon="13.37815">
+        <time>2013-05-09T08:12:36Z</time>
+      </trkpt>
+      <trkpt lat="52.514607" lon="13.378478">
+        <time>2013-05-09T08:12:38Z</time>
+      </trkpt>
+      <trkpt lat="52.51463" lon="13.37883">
+        <time>2013-05-09T08:12:40Z</time>
+      </trkpt>
+      <trkpt lat="52.514668" lon="13.379178">
+        <time>2013-05-09T08:12:42Z</time>
+      </trkpt>
+      <trkpt lat="52.51472" lon="13.37951">
+        <time>2013-05-09T08:12:44Z</time>
+      </trkpt>
+      <trkpt lat="52.514773" lon="13.37982">
+        <time>2013-05-09T08:12:46Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -21,17 +21,17 @@ import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.structs.GPSPoint;
 
 public class DefaultAggregationStrategyTest extends TestCase {
-	private DefaultMatchDefaultMergeStrategy das;
-	private DefaultTraceDistance dtd;
-	private DefaultMergeHandler dmh;
+	private PathScoreMatchDefaultMergeStrategy das;
+	private PathScoreDistance dtd;
+	private WeightedClosestPointMerge dmh;
 	private List<AggNode> path;
 	private List<GPSPoint> points;
 	private static double epsilon = 1E-2;
 
 	@Override
 	public void setUp() {
-		das = new DefaultMatchDefaultMergeStrategy();
-		dtd = (DefaultTraceDistance) das.getTraceDist();
+		das = new PathScoreMatchDefaultMergeStrategy();
+		dtd = (PathScoreDistance) das.getTraceDist();
 		dtd.maxOutliners = 1;
 		dtd.maxDistance = 40;
 		das.maxInitDistance = 100;
@@ -39,7 +39,7 @@ public class DefaultAggregationStrategyTest extends TestCase {
 		dtd.maxPathDifference = 100;
 		dtd.minLengthFirstSegment = 1;
 		dtd.maxAngle = 20;
-		dmh = new DefaultMergeHandler(null);
+		dmh = new WeightedClosestPointMerge(null);
 		path = new ArrayList<AggNode>();
 		points = new ArrayList<GPSPoint>();
 	}

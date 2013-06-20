@@ -24,7 +24,7 @@ import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.ILocation;
 
-public class DefaultTraceDistance implements ITraceDistance {
+public class PathScoreDistance implements ITraceDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;

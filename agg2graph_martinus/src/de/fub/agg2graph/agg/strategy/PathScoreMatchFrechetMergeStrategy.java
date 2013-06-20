@@ -32,7 +32,7 @@ import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
 
-public class DefaultMatchIterativeMergeStrategy extends
+public class PathScoreMatchFrechetMergeStrategy extends
 		AbstractAggregationStrategy {
 	MyStatistic statistic;
 	int counter = 1;
@@ -54,12 +54,12 @@ public class DefaultMatchIterativeMergeStrategy extends
 	 * Preferably use the {@link AggregationStrategyFactory} for creating
 	 * instances of this class.
 	 */
-	public DefaultMatchIterativeMergeStrategy() {
+	public PathScoreMatchFrechetMergeStrategy() {
 		statistic = new MyStatistic(
-				"test/exp/Evaluation-DefaultMatchIterativeMerge.txt");
+				"test/exp/Evaluation-DefaultMatchFrechetMerge.txt");
 		TraceDistanceFactory.setClass(PathScoreDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
-		MergeHandlerFactory.setClass(IterativeClosestPointsMerge.class);
+		MergeHandlerFactory.setClass(FrechetBasedMerge.class);
 		baseMergeHandler = MergeHandlerFactory.getObject();
 	}
 
@@ -280,31 +280,31 @@ public class DefaultMatchIterativeMergeStrategy extends
 		}
 		
 		/** Save new Map */
-		try {
-			List<GPSSegment> segments = new ArrayList<GPSSegment>();
-			// Original Map
-			for (AggNode last : lastNodes) {
-				segments.add(SerializeAgg.getSegmentFromLastNode(last));
-			}
-			
-			// Extension
-			if (lastNewNodes.size() > 0 && getAddAllowed())
-				segments.addAll(lastNewNodes);
-
-			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
-					+ "map" + counter++ + ".gpx")), segments);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			List<GPSSegment> segments = new ArrayList<GPSSegment>();
+//			// Original Map
+//			for (AggNode last : lastNodes) {
+//				segments.add(SerializeAgg.getSegmentFromLastNode(last));
+//			}
+//			
+//			// Extension
+//			if (lastNewNodes.size() > 0 && getAddAllowed())
+//				segments.addAll(lastNewNodes);
+//
+//			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
+//					+ "map" + counter++ + ".gpx")), segments);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		/** Statistic record */
-		try {
-			statistic.writefile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			statistic.writefile();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		statistic.resetAll();
 		lastNodes.clear();
 		lastNewNodes.clear();
@@ -382,7 +382,7 @@ public class DefaultMatchIterativeMergeStrategy extends
 	}
 
 	public String toString() {
-		return "DefaultMatch-IterativeMerge";
+		return "DefaultMatch-AttractionMerge";
 	}
 
 	private static final long MEGABYTE = 1024L * 1024L;

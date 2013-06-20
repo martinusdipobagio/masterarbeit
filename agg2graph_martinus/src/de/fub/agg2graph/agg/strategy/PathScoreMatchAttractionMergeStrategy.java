@@ -17,6 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Assert;
+
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.AggregationStrategyFactory;
@@ -32,7 +34,7 @@ import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
 
-public class DefaultMatchIterativeMergeStrategy extends
+public class PathScoreMatchAttractionMergeStrategy extends
 		AbstractAggregationStrategy {
 	MyStatistic statistic;
 	int counter = 1;
@@ -54,12 +56,12 @@ public class DefaultMatchIterativeMergeStrategy extends
 	 * Preferably use the {@link AggregationStrategyFactory} for creating
 	 * instances of this class.
 	 */
-	public DefaultMatchIterativeMergeStrategy() {
+	public PathScoreMatchAttractionMergeStrategy() {
 		statistic = new MyStatistic(
-				"test/exp/Evaluation-DefaultMatchIterativeMerge.txt");
+				"test/exp/Evaluation-DefaultMatchAttractionMerge.txt");
 		TraceDistanceFactory.setClass(PathScoreDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
-		MergeHandlerFactory.setClass(IterativeClosestPointsMerge.class);
+		MergeHandlerFactory.setClass(AttractionForceMerge.class);
 		baseMergeHandler = MergeHandlerFactory.getObject();
 	}
 
@@ -70,7 +72,7 @@ public class DefaultMatchIterativeMergeStrategy extends
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
 		state = State.NO_MATCH;
-
+		
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
@@ -299,12 +301,12 @@ public class DefaultMatchIterativeMergeStrategy extends
 		}
 
 		/** Statistic record */
-		try {
-			statistic.writefile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			statistic.writefile();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		statistic.resetAll();
 		lastNodes.clear();
 		lastNewNodes.clear();
@@ -382,7 +384,7 @@ public class DefaultMatchIterativeMergeStrategy extends
 	}
 
 	public String toString() {
-		return "DefaultMatch-IterativeMerge";
+		return "DefaultMatch-AttractionMerge";
 	}
 
 	private static final long MEGABYTE = 1024L * 1024L;

@@ -1,6 +1,6 @@
 package de.fub.agg2graph.agg;
 
-import de.fub.agg2graph.agg.strategy.DefaultTraceDistance;
+import de.fub.agg2graph.agg.strategy.PathScoreDistance;
 
 /**
  * A factory that returns the {@link ITraceDistance} currently set via the
@@ -13,7 +13,7 @@ public class TraceDistanceFactory {
 	/*
 	 * Default class to return. Can be overwritten by calls to setClass.
 	 */
-	private static Class<?> factoryClass = DefaultTraceDistance.class;
+	private static Class<?> factoryClass = PathScoreDistance.class;
 //	private static Class<?> factoryClass = FreeSpaceMatch.class;
 //	private static Class<?> factoryClass = HausdorffDistance.class;
 

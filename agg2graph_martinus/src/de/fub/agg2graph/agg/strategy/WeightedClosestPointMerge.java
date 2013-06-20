@@ -39,7 +39,7 @@ import de.fub.agg2graph.ui.gui.Layer;
 import de.fub.agg2graph.ui.gui.RenderingOptions;
 import de.fub.agg2graph.ui.gui.TestUI;
 
-public class DefaultMergeHandler implements IMergeHandler {
+public class WeightedClosestPointMerge implements IMergeHandler {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.merge");
 
@@ -65,7 +65,7 @@ public class DefaultMergeHandler implements IMergeHandler {
 	private double distance = 50;
 	private AggNode beforeNode;
 
-	public DefaultMergeHandler() {
+	public WeightedClosestPointMerge() {
 		// debugging
 		logger.setLevel(Level.ALL);
 		roMatchGPS = new RenderingOptions();
@@ -76,13 +76,13 @@ public class DefaultMergeHandler implements IMergeHandler {
 		gpsPoints = new ArrayList<GPSPoint>();
 	}
 
-	public DefaultMergeHandler(AggContainer aggContainer) {
+	public WeightedClosestPointMerge(AggContainer aggContainer) {
 		this();
 
 		this.aggContainer = aggContainer;
 	}
 
-	public DefaultMergeHandler(AggContainer aggContainer,
+	public WeightedClosestPointMerge(AggContainer aggContainer,
 			List<AggNode> aggNodes, List<GPSPoint> gpsPoints) {
 		this(aggContainer);
 		this.aggNodes = aggNodes;
@@ -451,7 +451,7 @@ public class DefaultMergeHandler implements IMergeHandler {
 
 	@Override
 	public IMergeHandler getCopy() {
-		DefaultMergeHandler object = new DefaultMergeHandler();
+		WeightedClosestPointMerge object = new WeightedClosestPointMerge();
 		object.aggContainer = this.aggContainer;
 		object.maxLookahead = this.maxLookahead;
 		object.minContinuationAngle = this.minContinuationAngle;

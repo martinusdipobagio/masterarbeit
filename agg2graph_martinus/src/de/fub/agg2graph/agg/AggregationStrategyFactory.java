@@ -1,8 +1,8 @@
 package de.fub.agg2graph.agg;
 
-import de.fub.agg2graph.agg.strategy.DefaultMatchAttractionMergeStrategy;
-import de.fub.agg2graph.agg.strategy.DefaultMatchDefaultMergeStrategy;
-import de.fub.agg2graph.agg.strategy.DefaultMatchFrechetMergeStrategy;
+import de.fub.agg2graph.agg.strategy.PathScoreMatchAttractionMergeStrategy;
+import de.fub.agg2graph.agg.strategy.PathScoreMatchDefaultMergeStrategy;
+import de.fub.agg2graph.agg.strategy.PathScoreMatchFrechetMergeStrategy;
 import de.fub.agg2graph.agg.strategy.DefaultMatchIterativeMergeStrategy;
 import de.fub.agg2graph.agg.strategy.FrechetMatchAttractionMergeStrategy;
 import de.fub.agg2graph.agg.strategy.FrechetMatchIterativeMergeStrategy;
@@ -26,9 +26,9 @@ public class AggregationStrategyFactory {
 	/*
 	 * Default class to return. Can be overwritten by calls to setClass.
 	 */
-	private static Class<? extends IAggregationStrategy> defaultDefaultClass = DefaultMatchDefaultMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> defaultFrechetClass = DefaultMatchFrechetMergeStrategy.class;
-	private static Class<? extends IAggregationStrategy> defaultAttractionClass = DefaultMatchAttractionMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultDefaultClass = PathScoreMatchDefaultMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultFrechetClass = PathScoreMatchFrechetMergeStrategy.class;
+	private static Class<? extends IAggregationStrategy> defaultAttractionClass = PathScoreMatchAttractionMergeStrategy.class;
 	private static Class<? extends IAggregationStrategy> defaultIterativeClass = DefaultMatchIterativeMergeStrategy.class;
 	
 	private static Class<? extends IAggregationStrategy> gpxAttractionClass = GpxmergeMatchAttractionMergeStrategy.class;

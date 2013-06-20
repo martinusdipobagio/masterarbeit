@@ -1,6 +1,6 @@
 package de.fub.agg2graph.agg;
 
-import de.fub.agg2graph.agg.strategy.DefaultMergeHandler;
+import de.fub.agg2graph.agg.strategy.WeightedClosestPointMerge;
 
 /**
  * A factory that returns the {@link IMergeHandler} currently set via the
@@ -13,7 +13,7 @@ public class MergeHandlerFactory {
 	/*
 	 * Default class to return. Can be overwritten by calls to setClass.
 	 */
-	private static Class<?> factoryClass = DefaultMergeHandler.class;
+	private static Class<?> factoryClass = WeightedClosestPointMerge.class;
 
 	public static void setClass(Class<?> clazz) {
 		factoryClass = clazz;

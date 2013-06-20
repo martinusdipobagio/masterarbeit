@@ -17,8 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
-
 import de.fub.agg2graph.agg.AggConnection;
 import de.fub.agg2graph.agg.AggNode;
 import de.fub.agg2graph.agg.AggregationStrategyFactory;
@@ -34,13 +32,13 @@ import de.fub.agg2graph.structs.GPSPoint;
 import de.fub.agg2graph.structs.GPSSegment;
 import de.fub.agg2graph.structs.ILocation;
 
-public class DefaultMatchAttractionMergeStrategy extends
+public class PathScoreMatchDefaultMergeStrategy extends
 		AbstractAggregationStrategy {
 	MyStatistic statistic;
 	int counter = 1;
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 15;
+	public double maxPathDifference = 200;
 	public double maxInitDistance = 30;//12.5
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
@@ -56,12 +54,12 @@ public class DefaultMatchAttractionMergeStrategy extends
 	 * Preferably use the {@link AggregationStrategyFactory} for creating
 	 * instances of this class.
 	 */
-	public DefaultMatchAttractionMergeStrategy() {
+	public PathScoreMatchDefaultMergeStrategy() {
 		statistic = new MyStatistic(
-				"test/exp/Evaluation-DefaultMatchAttractionMerge.txt");
-		TraceDistanceFactory.setClass(DefaultTraceDistance.class);
+				"test/exp/Evaluation-DefaultMatchDefaultMerge.txt");
+		TraceDistanceFactory.setClass(PathScoreDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
-		MergeHandlerFactory.setClass(AttractionForceMerge.class);
+		MergeHandlerFactory.setClass(WeightedClosestPointMerge.class);
 		baseMergeHandler = MergeHandlerFactory.getObject();
 	}
 
@@ -72,7 +70,7 @@ public class DefaultMatchAttractionMergeStrategy extends
 		mergeHandler = null;
 		matches = new ArrayList<IMergeHandler>();
 		state = State.NO_MATCH;
-		
+
 		// insert first segment without changes (assuming somewhat cleaned
 		// data!)
 		// attention: node counter is not necessarily accurate!
@@ -204,7 +202,6 @@ public class DefaultMatchAttractionMergeStrategy extends
 					&& (lastState == State.IN_MATCH && (state == State.NO_MATCH || i == segment
 							.size() - 1))) {
 				finishMatch();
-				// i++; //TODO Martinus
 			} else if (!isMatch && lastState == State.NO_MATCH) {
 				// if there is no close points or no valid match, add it to the
 				// aggregation
@@ -280,7 +277,6 @@ public class DefaultMatchAttractionMergeStrategy extends
 			statistic.setNewAggLength(GPSCalc.traceLengthMeter(lastNewNode));
 			statistic.setNewAggPoints(lastNewNode.size());
 		}
-		
 		/** Save new Map */
 		try {
 			List<GPSSegment> segments = new ArrayList<GPSSegment>();
@@ -301,12 +297,12 @@ public class DefaultMatchAttractionMergeStrategy extends
 		}
 
 		/** Statistic record */
-//		try {
-//			statistic.writefile();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			statistic.writefile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		statistic.resetAll();
 		lastNodes.clear();
 		lastNewNodes.clear();
@@ -341,10 +337,10 @@ public class DefaultMatchAttractionMergeStrategy extends
 		 * connect to previous node lastNode is the last non-matched node or the
 		 * outNode of the last match
 		 */
-		// aggContainer.connect(lastNode, mergeHandler.getInNode());
-		// mergeHandler.setBeforeNode(lastNode);
-		// // remember outgoing node (for later connection)
-		// lastNode = mergeHandler.getOutNode();
+//		 aggContainer.connect(lastNode, mergeHandler.getInNode());
+//		 mergeHandler.setBeforeNode(lastNode);
+		 // remember outgoing node (for later connection)
+//		 lastNode = mergeHandler.getOutNode();
 	}
 
 	/*

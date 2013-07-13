@@ -89,7 +89,6 @@ public class TestUI {
 	public DoubleRect dataBoundingBox = null;
 	public JTabbedPane tabbedPane;
 	private TileManager tm;
-	@SuppressWarnings("unused")
 	private TileCache tc;
 	private CalcThread ct;
 	private JPanel panel_11;
@@ -100,14 +99,23 @@ public class TestUI {
 	private JPanel trackSelectionPanel;
 	private final static int MAX_SELECTABLE_TRACES = 50;
 	public Set<File> deselectedTraceFiles;
+	public String aggCode = null;
 
 	public static void main(String[] args) {
 		MiniProfiler.print();
 
-		TestUI ui = new TestUI();
-		Globals.put("ui", ui);
+//		if (args.length == 0) {
+//			TestUI ui = new TestUI();
+//			Globals.put("ui", ui);
+//
+//			ui.show(true);
+//		} else {
+//			TestUI ui = new TestUI(args[0]);
+			TestUI ui = new TestUI("E11");
+			Globals.put("ui", ui);
 
-		ui.show(true);
+			ui.show(true);
+//		}
 	}
 
 	/**
@@ -168,6 +176,19 @@ public class TestUI {
 	 * Create the application.
 	 */
 	public TestUI() {
+		initialize();
+
+		uiStepStorage = new UIStepStorage(this);
+		uiStepStorage.setOpenOsmExportFile(true);
+
+		addSettingsPanels();
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TestUI(String aggCode) {
+		this.aggCode = aggCode;
 		initialize();
 
 		uiStepStorage = new UIStepStorage(this);
@@ -380,7 +401,7 @@ public class TestUI {
 				ct.start();
 			}
 		});
-		
+
 		processButtons[1].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -426,7 +447,7 @@ public class TestUI {
 				ct.start();
 			}
 		});
-		
+
 		processButtons[6].addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -434,15 +455,16 @@ public class TestUI {
 				// load input data
 				ct = new CalcThread(outerThis);
 				ct.setTask("free");
-				ct.start();				
+				ct.start();
 			}
 		});
 	}
 
 	@SuppressWarnings("unchecked")
 	protected void updateClass(ActionEvent e) {
-		AggregationStrategyFactory.setClass((Class<? extends IAggregationStrategy>) 
-				((ObjectSelectionComboBox) e.getSource()).getSelectedItem().getClass() );		
+		AggregationStrategyFactory
+				.setClass((Class<? extends IAggregationStrategy>) ((ObjectSelectionComboBox) e
+						.getSource()).getSelectedItem().getClass());
 	}
 
 	private void updateTrackSelectionPanel() {
@@ -522,6 +544,16 @@ public class TestUI {
 					aggStrat, cacheStrat);
 		} else {
 			aggStrat = AggregationStrategyFactory.getObject();
+			if (aggCode != null)
+				try {
+					aggStrat = AggregationStrategyFactory.getObject(aggCode);
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			cacheStrat = CachingStrategyFactory.getObject();
 			agg = AggContainer.createContainer(new File("test/agg/" + name),
 					aggStrat, cacheStrat);

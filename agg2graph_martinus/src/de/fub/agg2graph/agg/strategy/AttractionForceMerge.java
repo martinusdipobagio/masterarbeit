@@ -35,28 +35,30 @@ public class AttractionForceMerge implements IMergeHandler {
 	// contains only matched points/nodes
 	private List<AggNode> aggNodes = null;
 	private List<GPSPoint> gpsPoints = null;
-	public int maxLookahead = 10;
-	public double minContinuationAngle = 45;
+	
+	// Mapping distance to force
+	private AttractionValue av = new AttractionValue();
+
 	// helper stuff
 	private Map<AggConnection, List<PointGhostPointPair>> newNodesPerConn;
 	private List<PointGhostPointPair> pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
 
-	private AggNode inNode;
-	private AggNode outNode;
-
 	private AggContainer aggContainer;
 	private RenderingOptions roMatchGPS;
 	// cleaning stuff
-	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
-			50);
-	private static AggCleaner cleaner = new AggCleaner().enableDefault();
-	public double maxPointGhostDist = 10; // meters
-
+	
+	/** Unused parameters */
+	private AggNode inNode;
+	private AggNode outNode;
 	private double distance = 10;
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
+	public double maxPointGhostDist = 10; // meters
+	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
+			50);
+	public int maxLookahead = 10;
+	public double minContinuationAngle = 45;
 
-	private AttractionValue av = new AttractionValue();
 
 	public AttractionForceMerge() {
 		// debugging
@@ -156,7 +158,7 @@ public class AttractionForceMerge implements IMergeHandler {
 		Pair<GPSPoint, GPSPoint> pairTraj = null;
 
 		// Not interested with too few points
-		if (getAggNodes().size() < 3 || getGpsPoints().size() < 2)
+		if (getAggNodes().size() < 2 || getGpsPoints().size() < 2)
 			return;
 
 		inNode = aggNodes.get(0);
@@ -172,7 +174,6 @@ public class AttractionForceMerge implements IMergeHandler {
 			// loop over all possible opposing lines
 			List<GPSPoint> internalGpsPoints = getGpsPoints();
 			PointGhostPointPair pair = null;
-			// START
 			// For all point with exception start and end point
 			if (!(pointIndex == 0 || pointIndex == getAggNodes().size() - 1)) {
 				for (int i = 0; i < internalGpsPoints.size() - 1; i++) {
@@ -225,7 +226,6 @@ public class AttractionForceMerge implements IMergeHandler {
 				}
 				newNodesPerConn.get(conn).add(pair);
 			}
-			// END
 		}
 	}
 
@@ -333,6 +333,8 @@ public class AttractionForceMerge implements IMergeHandler {
 		double distance = GPSCalc.getDistanceTwoPointsMeter(currentNode,
 				projection);
 				Double aValue = av.getValue(distance);
+				
+		
 		currentNode.setK(currentNode.getK() + 1);
 		if (aValue != null) {
 			//To damp the movement due to k, log2 is used
@@ -346,9 +348,6 @@ public class AttractionForceMerge implements IMergeHandler {
 
 	public void attractionForce(AggNode currentNode, AggNode before,
 			AggNode after, GPSPoint trajStart, GPSPoint trajEnd) {
-		// TODO Null gefahr
-		double angle = GPSCalc.getAngleBetweenEdges(before, after, trajStart,
-				trajEnd);
 		ILocation aggProj = GPSCalc.getProjectionPoint(currentNode, before,
 				after);
 		if (aggProj == null)
@@ -382,7 +381,6 @@ public class AttractionForceMerge implements IMergeHandler {
 		return outNode;
 	}
 
-	// TODO FAUL
 	@Override
 	public String toString() {
 		StringBuilder gps = new StringBuilder();

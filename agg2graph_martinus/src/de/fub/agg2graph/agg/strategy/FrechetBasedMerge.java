@@ -49,9 +49,9 @@ public class FrechetBasedMerge implements IMergeHandler {
 	private RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0,
 			125);
 	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
-	public double maxPointGhostDist = 12.5; // meters
+	public double maxPointGhostDist = 20; // meters
 
-	private double distance = 12.5;//12.5
+	private double distance = 20;//12.5
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 
@@ -182,21 +182,6 @@ public class FrechetBasedMerge implements IMergeHandler {
 		}
 		matchingLayer.addObject(aggNodesClone);
 		matchingLayer.addObject(gpsPoints); // , roMatchGPS);
-		//
-		// Iterator<AggNode> it = AtoT.keySet().iterator();
-		// AggNode nextKey;
-		// while (it.hasNext()) {
-		// nextKey = it.next();
-		// if (AtoT.get(nextKey) == null)
-		// continue;
-		// List<ILocation> line = new ArrayList<ILocation>(2);
-		// for (ILocation to : AtoT.get(nextKey)) {
-		// line.add(new GPSPoint(nextKey));
-		// line.add(new GPSPoint(to));
-		// mergingLayer.addObject(line);
-		// line = new ArrayList<ILocation>(2);
-		// }
-		// }
 	}
 
 	@Override

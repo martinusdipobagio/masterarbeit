@@ -155,7 +155,7 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 		pointGhostPointPairs = new ArrayList<PointGhostPointPair>();
 
 		// Not interested with too few points
-		if (getAggNodes().size() < 3 || getGpsPoints().size() < 2)
+		if (getAggNodes().size() < 2 || getGpsPoints().size() < 2)
 			return;
 
 		inNode = aggNodes.get(0);
@@ -169,7 +169,6 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 			logger.log(Level.FINER, "agg node " + node);
 			// loop over all possible opposing lines
 			PointGhostPointPair pair = null;
-			// START
 			List<GPSPoint> neighbour;
 			if(pointIndex == 0 || pointIndex == getAggNodes().size() - 1)
 				neighbour = getKSmallest(gpsPoints, node, 1);
@@ -190,7 +189,6 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 				}
 				newNodesPerConn.get(conn).add(pair);
 			}
-			// END
 		}
 	}
 

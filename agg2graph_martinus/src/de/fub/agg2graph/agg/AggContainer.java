@@ -76,6 +76,18 @@ public class AggContainer {
 				AggregationStrategyFactory.getObject(),
 				CachingStrategyFactory.getObject());
 	}
+	
+	public static AggContainer createContainer(File sourceFolder, String codeAgg) {
+		try {
+			return createContainer(sourceFolder,
+					AggregationStrategyFactory.getObject(codeAgg),
+					CachingStrategyFactory.getObject());
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void setDataSource(File sourceFolder) {
 		if (sourceFolder == null) {

@@ -10,8 +10,6 @@
  ******************************************************************************/
 package de.fub.agg2graph.agg.strategy;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,9 +21,6 @@ import de.fub.agg2graph.agg.AggregationStrategyFactory;
 import de.fub.agg2graph.agg.IMergeHandler;
 import de.fub.agg2graph.agg.MergeHandlerFactory;
 import de.fub.agg2graph.agg.TraceDistanceFactory;
-import de.fub.agg2graph.input.GPXWriter;
-import de.fub.agg2graph.input.SerializeAgg;
-import de.fub.agg2graph.management.MyStatistic;
 import de.fub.agg2graph.structs.BoundedQueue;
 import de.fub.agg2graph.structs.GPSCalc;
 import de.fub.agg2graph.structs.GPSPoint;
@@ -34,11 +29,10 @@ import de.fub.agg2graph.structs.ILocation;
 
 public class PathScoreMatchDefaultMergeStrategy extends
 		AbstractAggregationStrategy {
-	MyStatistic statistic;
 	int counter = 1;
 
 	public int maxLookahead = 5;
-	public double maxPathDifference = 200;
+	public double maxPathDifference = 15;
 	public double maxInitDistance = 30;//12.5
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
@@ -55,8 +49,6 @@ public class PathScoreMatchDefaultMergeStrategy extends
 	 * instances of this class.
 	 */
 	public PathScoreMatchDefaultMergeStrategy() {
-		statistic = new MyStatistic(
-				"test/exp/Evaluation-DefaultMatchDefaultMerge.txt");
 		TraceDistanceFactory.setClass(PathScoreDistance.class);
 		traceDistance = TraceDistanceFactory.getObject();
 		MergeHandlerFactory.setClass(WeightedClosestPointMerge.class);
@@ -90,8 +82,6 @@ public class PathScoreMatchDefaultMergeStrategy extends
 				i++;
 			}
 			lastNodes.add(lastNode);
-			statistic.setAggLength(GPSCalc.traceLengthMeter(segment));
-			statistic.setAggPoints(segment.size());
 			return;
 		}
 
@@ -100,9 +90,6 @@ public class PathScoreMatchDefaultMergeStrategy extends
 
 		int i = 0;
 
-		statistic.setTraceLength(GPSCalc.traceLengthMeter(segment));
-		statistic.setTracePoints(segment.size());
-		long matchStart = System.currentTimeMillis();
 		while (i < segment.size()) {
 			// step 1: find starting point
 			// get close points, within 10 meters (merge candidates)
@@ -216,8 +203,6 @@ public class PathScoreMatchDefaultMergeStrategy extends
 				i++;
 			}
 		}
-		long matchEnd = System.currentTimeMillis();
-		statistic.setRuntimeMatch(matchEnd - matchStart);
 
 		// New Segment
 		if (getAddAllowed() && lastNode != null) {
@@ -244,66 +229,13 @@ public class PathScoreMatchDefaultMergeStrategy extends
 		// step 2 and 3 of 3: ghost points, merge everything
 		System.out.println(counter + ". MATCHES : " + matches.size());
 		System.out.println("New Segment : " + getAddAllowed());
-		statistic.resetMatchedAggLength();
-		statistic.resetMatchedAggPoints();
-		statistic.resetMatchedTraceLength();
-		statistic.resetMatchedTracePoints();
 
-		long mergeStart = System.currentTimeMillis();
 		for (IMergeHandler match : matches) {
-			statistic.setMatchedAggLength(GPSCalc.traceLengthMeter(match
-					.getAggNodes()));
-			statistic.setMatchedAggPoints(match.getAggNodes().size());
-			statistic.setMatchedTraceLength(GPSCalc.traceLengthMeter(match
-					.getGpsPoints()));
-			statistic.setMatchedTracePoints(match
-					.getGpsPoints().size());
 			if (!match.isEmpty()) {
 				match.mergePoints();
 			}
 		}
-		long mergeEnd = System.currentTimeMillis();
-		statistic.setRuntimeMerge(mergeEnd - mergeStart);
 		
-		Runtime runtime = Runtime.getRuntime();
-		// Run the garbage collector
-		runtime.gc();
-		
-		// Calculate the used memory
-		long memory = runtime.totalMemory() - runtime.freeMemory();
-		statistic.setMemoryUsed(bytesToMegabytes(memory));
-
-		for(GPSSegment lastNewNode : lastNewNodes) {
-			statistic.setNewAggLength(GPSCalc.traceLengthMeter(lastNewNode));
-			statistic.setNewAggPoints(lastNewNode.size());
-		}
-		/** Save new Map */
-		try {
-			List<GPSSegment> segments = new ArrayList<GPSSegment>();
-			// Original Map
-			for (AggNode last : lastNodes) {
-				segments.add(SerializeAgg.getSegmentFromLastNode(last));
-			}
-			
-			// Extension
-			if (lastNewNodes.size() > 0 && getAddAllowed())
-				segments.addAll(lastNewNodes);
-
-			GPXWriter.writeSegments(new File(new String("test/input/map 2.0a/"
-					+ "map" + counter++ + ".gpx")), segments);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		/** Statistic record */
-		try {
-			statistic.writefile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		statistic.resetAll();
 		lastNodes.clear();
 		lastNewNodes.clear();
 	}

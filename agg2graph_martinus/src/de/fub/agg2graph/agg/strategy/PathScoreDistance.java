@@ -28,12 +28,12 @@ public class PathScoreDistance implements ITraceDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
-	public int maxOutliners = 10;
-	public double maxDistance = 30;//7.5
-	public int maxLookahead = 5;
-	public double maxPathDifference = 20;//10
+	public int maxOutliners = 0;
+	public double maxDistance = 12.5;
+	public int maxLookahead = 3;
+	public double maxPathDifference = 20;
 	public int minLengthFirstSegment = 1;
-	public double maxAngle = 60;
+	public double maxAngle = 17.5;
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only

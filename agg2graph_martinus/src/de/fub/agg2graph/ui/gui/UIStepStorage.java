@@ -53,7 +53,8 @@ public class UIStepStorage extends StepStorage {
 
 		// init layers
 		RenderingOptions x = new RenderingOptions();
-		x.color = new Color(97, 123, 228); // blue
+//		x.color = new Color(97, 123, 228); // blue
+		x.color = new Color(0, 0, 204); // blue
 		x.renderingType = RenderingType.ALL;
 		x.zIndex = -1;
 		x.opacity = 1;
@@ -62,7 +63,8 @@ public class UIStepStorage extends StepStorage {
 		lm.addLayerToPanel(rawLayer, ui.getMainPanel());
 
 		x = new RenderingOptions();
-		x.color = new Color(39, 172, 88); // green
+//		x.color = new Color(39, 172, 88); // green
+		x.color = new Color(0, 153, 0); // green
 		x.renderingType = RenderingType.ALL;
 		x.zIndex = 0;
 		x.opacity = 1;
@@ -71,9 +73,11 @@ public class UIStepStorage extends StepStorage {
 		lm.addLayerToPanel(cleanLayer, ui.getMainPanel());
 
 		x = new RenderingOptions();
-		x.color = new Color(232, 23, 79); // red
+//		x.color = new Color(232, 23, 79); // red
+		x.color = new Color(255, 0, 51); // red
 		x.zIndex = 1;
-		x.opacity = 0.7;
+//		x.opacity = 0.7;
+		x.opacity = 1;
 		Layer matchingLayer = new Layer("matching", "Matching", x);
 		lm.addLayerToPanel(matchingLayer, new RenderingPanel(ui));
 		lm.addLayerToPanel(matchingLayer, ui.getMainPanel());

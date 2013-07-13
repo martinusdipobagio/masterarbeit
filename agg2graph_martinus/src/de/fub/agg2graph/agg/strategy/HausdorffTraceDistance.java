@@ -18,7 +18,7 @@ import de.fub.agg2graph.structs.ILocation;
 public class HausdorffTraceDistance implements ITraceDistance {
 	private static final Logger logger = Logger
 			.getLogger("agg2graph.agg.default.dist");
-	public double maxDistance = 30;//7.5
+	public double maxDistance = 12.5;//7.5
 
 	/**
 	 * Compute the difference of a path to the aggregation. This measure only
@@ -118,7 +118,7 @@ public class HausdorffTraceDistance implements ITraceDistance {
 //		bestValueLength = traceLocations.subList(startIndex, Math.min(traceLocations.size() - 1, j)).size();
 		bestValueLength = traceResult.size();
 		
-		if (aggResult.size() <= 1)
+		if (aggResult.size() <= 1 || traceResult.size() <= 1)
 			return null;
 		else
 			return new Object[] { bestValue, bestValueLength, aggResult,

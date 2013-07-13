@@ -98,7 +98,6 @@ public class RamerDouglasPeuckerFilter {
 		for (int i = startIndex + 1; i < endIndex; i++) {
 			double distance = GPSCalc.getDistancePointToEdgeMeter(points.get(i),
 					start, end);
-			// System.out.println(distance);
 			if (distance > dmax) {
 				idx = i;
 				dmax = distance;

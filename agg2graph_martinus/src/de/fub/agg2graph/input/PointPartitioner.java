@@ -31,12 +31,12 @@ public class PointPartitioner {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String name = "m7.gpx";
+		String name = "map135.gpx";
 		String directory = "01-Tester/";
 		File f = new File("test/input/"+directory+name);
 		
 		List<GPSSegment> segment = read(f);
-		write(f, segment, 3);
+		write(f, segment, 2);
 		
 	}
 }

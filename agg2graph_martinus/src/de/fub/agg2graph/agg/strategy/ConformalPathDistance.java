@@ -20,7 +20,7 @@ import de.fub.agg2graph.structs.frechet.PartialFrechetDistance;
 
 public class ConformalPathDistance implements ITraceDistance {
 
-	public double maxDistance = 7.5;
+	public double maxDistance = 10;
 
 	public static AggContainer aggContainer;
 	public IAggregatedMap map;

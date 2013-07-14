@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.514968" minlon="13.406325" maxlat="52.517657" maxlon="13.411602"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>GPX_Track_524706849410755787.gpx</name>
+    <desc>Unterwegs_in_Deutschland</desc>
+    <link href="http://api.openstreetmap.org/user/-jha-/traces/1427859">
+    </link>
+    <trkseg>
+      <trkpt lat="52.517133" lon="13.409142">
+        <time>2013-03-29T20:58:21Z</time>
+      </trkpt>
+      <trkpt lat="52.517038" lon="13.409033">
+        <time>2013-03-29T20:58:22Z</time>
+      </trkpt>
+      <trkpt lat="52.51694" lon="13.40892">
+        <time>2013-03-29T20:58:23Z</time>
+      </trkpt>
+      <trkpt lat="52.516843" lon="13.408802">
+        <time>2013-03-29T20:58:24Z</time>
+      </trkpt>
+      <trkpt lat="52.516743" lon="13.408678">
+        <time>2013-03-29T20:58:25Z</time>
+      </trkpt>
+      <trkpt lat="52.516628" lon="13.408548">
+        <time>2013-03-29T20:58:26Z</time>
+      </trkpt>
+      <trkpt lat="52.516507" lon="13.408417">
+        <time>2013-03-29T20:58:27Z</time>
+      </trkpt>
+      <trkpt lat="52.51638" lon="13.408287">
+        <time>2013-03-29T20:58:28Z</time>
+      </trkpt>
+      <trkpt lat="52.516253" lon="13.408162">
+        <time>2013-03-29T20:58:29Z</time>
+      </trkpt>
+      <trkpt lat="52.516135" lon="13.40804">
+        <time>2013-03-29T20:58:30Z</time>
+      </trkpt>
+      <trkpt lat="52.51601" lon="13.407917">
+        <time>2013-03-29T20:58:31Z</time>
+      </trkpt>
+      <trkpt lat="52.515885" lon="13.40778">
+        <time>2013-03-29T20:58:32Z</time>
+      </trkpt>
+      <trkpt lat="52.515753" lon="13.407632">
+        <time>2013-03-29T20:58:33Z</time>
+      </trkpt>
+      <trkpt lat="52.515622" lon="13.407485">
+        <time>2013-03-29T20:58:34Z</time>
+      </trkpt>
+      <trkpt lat="52.515488" lon="13.407338">
+        <time>2013-03-29T20:58:35Z</time>
+      </trkpt>
+      <trkpt lat="52.515357" lon="13.407183">
+        <time>2013-03-29T20:58:36Z</time>
+      </trkpt>
+      <trkpt lat="52.515225" lon="13.407028">
+        <time>2013-03-29T20:58:37Z</time>
+      </trkpt>
+      
+      
+    </trkseg>
+  </trk>
+</gpx>

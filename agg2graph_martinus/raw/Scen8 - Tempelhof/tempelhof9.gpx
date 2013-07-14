@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.4679067" minlon="13.381005" maxlat="52.472023" maxlon="13.389265"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>GPX_Track_532405266681238859.gpx</name>
+    <desc>Unterwegs_in_Deutschland</desc>
+    <link href="http://api.openstreetmap.org/user/-jha-/traces/1281594">
+    </link>
+    <trkseg>
+      <trkpt lat="52.467952" lon="13.385385">
+        <time>2012-07-21T10:20:24Z</time>
+      </trkpt>
+      <trkpt lat="52.468052" lon="13.385387">
+        <time>2012-07-21T10:20:25Z</time>
+      </trkpt>
+      <trkpt lat="52.468154" lon="13.385399">
+        <time>2012-07-21T10:20:27Z</time>
+      </trkpt>
+      <trkpt lat="52.468255" lon="13.385383">
+        <time>2012-07-21T10:20:49Z</time>
+      </trkpt>
+      <trkpt lat="52.468431" lon="13.385382">
+        <time>2012-07-21T10:20:52Z</time>
+      </trkpt>
+      <trkpt lat="52.468596" lon="13.385377">
+        <time>2012-07-21T10:20:54Z</time>
+      </trkpt>
+      <trkpt lat="52.468693" lon="13.385368">
+        <time>2012-07-21T10:20:55Z</time>
+      </trkpt>
+      <trkpt lat="52.468785" lon="13.385367">
+        <time>2012-07-21T10:20:56Z</time>
+      </trkpt>
+      <trkpt lat="52.46889" lon="13.385369">
+        <time>2012-07-21T10:20:57Z</time>
+      </trkpt>
+      <trkpt lat="52.46899" lon="13.38537">
+        <time>2012-07-21T10:20:58Z</time>
+      </trkpt>
+      <trkpt lat="52.469102" lon="13.385386">
+        <time>2012-07-21T10:20:59Z</time>
+      </trkpt>
+      <trkpt lat="52.469231" lon="13.385402">
+        <time>2012-07-21T10:21:00Z</time>
+      </trkpt>
+      <trkpt lat="52.469395" lon="13.385396">
+        <time>2012-07-21T10:21:01Z</time>
+      </trkpt>
+      <trkpt lat="52.469551" lon="13.385393">
+        <time>2012-07-21T10:21:02Z</time>
+      </trkpt>
+      <trkpt lat="52.4697" lon="13.385398">
+        <time>2012-07-21T10:21:03Z</time>
+      </trkpt>
+      <trkpt lat="52.469851" lon="13.385409">
+        <time>2012-07-21T10:21:04Z</time>
+      </trkpt>
+      <trkpt lat="52.470003" lon="13.385423">
+        <time>2012-07-21T10:21:05Z</time>
+      </trkpt>
+      <trkpt lat="52.470158" lon="13.385431">
+        <time>2012-07-21T10:21:06Z</time>
+      </trkpt>
+      <trkpt lat="52.470303" lon="13.385398">
+        <time>2012-07-21T10:21:07Z</time>
+      </trkpt>
+      <trkpt lat="52.47044" lon="13.385408">
+        <time>2012-07-21T10:21:08Z</time>
+      </trkpt>
+      <trkpt lat="52.470576" lon="13.385413">
+        <time>2012-07-21T10:21:09Z</time>
+      </trkpt>
+      <trkpt lat="52.470713" lon="13.385417">
+        <time>2012-07-21T10:21:10Z</time>
+      </trkpt>
+      <trkpt lat="52.470832" lon="13.385425">
+        <time>2012-07-21T10:21:11Z</time>
+      </trkpt>
+      <trkpt lat="52.47098" lon="13.385448">
+        <time>2012-07-21T10:21:12Z</time>
+      </trkpt>
+      <trkpt lat="52.471138" lon="13.385448">
+        <time>2012-07-21T10:21:13Z</time>
+      </trkpt>
+      <trkpt lat="52.471281" lon="13.385453">
+        <time>2012-07-21T10:21:14Z</time>
+      </trkpt>
+      <trkpt lat="52.471428" lon="13.385458">
+        <time>2012-07-21T10:21:15Z</time>
+      </trkpt>
+      <trkpt lat="52.471576" lon="13.38546">
+        <time>2012-07-21T10:21:16Z</time>
+      </trkpt>
+      <trkpt lat="52.471723" lon="13.385463">
+        <time>2012-07-21T10:21:17Z</time>
+      </trkpt>
+      <trkpt lat="52.471873" lon="13.385474">
+        <time>2012-07-21T10:21:18Z</time>
+      </trkpt>
+      <trkpt lat="52.472023" lon="13.38549">
+        <time>2012-07-21T10:21:19Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

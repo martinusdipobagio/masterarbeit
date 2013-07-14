@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.507811" minlon="13.3749969" maxlat="52.51938" maxlon="13.3994578"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <trkseg>
+      <trkpt lat="52.515742" lon="13.399401">
+        <time>2010-04-08T18:31:03Z</time>
+      </trkpt>
+      <trkpt lat="52.515724" lon="13.399322">
+        <time>2010-04-08T18:31:04Z</time>
+      </trkpt>
+      <trkpt lat="52.515704" lon="13.399242">
+        <time>2010-04-08T18:31:05Z</time>
+      </trkpt>
+      <trkpt lat="52.515684" lon="13.399165">
+        <time>2010-04-08T18:31:06Z</time>
+      </trkpt>
+      <trkpt lat="52.515663" lon="13.39909">
+        <time>2010-04-08T18:31:07Z</time>
+      </trkpt>
+      <trkpt lat="52.515646" lon="13.399017">
+        <time>2010-04-08T18:31:08Z</time>
+      </trkpt>
+      <trkpt lat="52.515637" lon="13.398895">
+        <time>2010-04-08T18:31:10Z</time>
+      </trkpt>
+      <trkpt lat="52.515661" lon="13.39883">
+        <time>2010-04-08T18:31:11Z</time>
+      </trkpt>
+      <trkpt lat="52.515729" lon="13.398747">
+        <time>2010-04-08T18:31:13Z</time>
+      </trkpt>
+      <trkpt lat="52.516024" lon="13.398516">
+        <time>2010-04-08T18:31:21Z</time>
+      </trkpt>
+      <trkpt lat="52.51614" lon="13.398479">
+        <time>2010-04-08T18:31:24Z</time>
+      </trkpt>
+      <trkpt lat="52.516502" lon="13.398439">
+        <time>2010-04-08T18:31:32Z</time>
+      </trkpt>
+      <trkpt lat="52.516944" lon="13.398355">
+        <time>2010-04-08T18:31:42Z</time>
+      </trkpt>
+      <trkpt lat="52.517274" lon="13.398267">
+        <time>2010-04-08T18:31:50Z</time>
+      </trkpt>
+      <trkpt lat="52.517479" lon="13.398133">
+        <time>2010-04-08T18:31:57Z</time>
+      </trkpt>
+      <trkpt lat="52.5175" lon="13.398135">
+        <time>2010-04-08T18:31:58Z</time>
+      </trkpt>
+      <trkpt lat="52.51752" lon="13.398163">
+        <time>2010-04-08T18:31:59Z</time>
+      </trkpt>
+      <trkpt lat="52.517532" lon="13.398214">
+        <time>2010-04-08T18:32:00Z</time>
+      </trkpt>
+      <trkpt lat="52.517535" lon="13.398275">
+        <time>2010-04-08T18:32:01Z</time>
+      </trkpt>
+      <trkpt lat="52.517538" lon="13.398344">
+        <time>2010-04-08T18:32:02Z</time>
+      </trkpt>
+      <trkpt lat="52.517574" lon="13.398926">
+        <time>2010-04-08T18:32:09Z</time>
+      </trkpt>
+      <trkpt lat="52.517599" lon="13.399115">
+        <time>2010-04-08T18:32:11Z</time>
+      </trkpt>
+      <trkpt lat="52.517623" lon="13.399209">
+        <time>2010-04-08T18:32:12Z</time>
+      </trkpt>
+      <trkpt lat="52.517651" lon="13.399294">
+        <time>2010-04-08T18:32:13Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

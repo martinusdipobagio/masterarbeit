@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.512108" minlon="13.344292" maxlat="52.516743" maxlon="13.356328"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>ways2.gpx</name>
+    <desc>highways on Berlin</desc>
+    <link href="http://api.openstreetmap.org/user/anbr/traces/888872">
+    </link>
+    <trkseg>
+      <trkpt lat="52.516741" lon="13.344628">
+        <time>2010-10-13T14:42:30Z</time>
+      </trkpt>
+      <trkpt lat="52.516741" lon="13.344628">
+        <time>2010-10-13T14:42:50Z</time>
+      </trkpt>
+      <trkpt lat="52.516579" lon="13.344988">
+        <time>2010-10-13T14:43:12Z</time>
+      </trkpt>
+      <trkpt lat="52.51634" lon="13.345522">
+        <time>2010-10-13T14:43:34Z</time>
+      </trkpt>
+      <trkpt lat="52.516323" lon="13.345558">
+        <time>2010-10-13T14:43:51Z</time>
+      </trkpt>
+      <trkpt lat="52.516203" lon="13.345827">
+        <time>2010-10-13T14:44:09Z</time>
+      </trkpt>
+      <trkpt lat="52.515921" lon="13.346484">
+        <time>2010-10-13T14:44:23Z</time>
+      </trkpt>
+      <trkpt lat="52.515921" lon="13.346484">
+        <time>2010-10-13T14:44:49Z</time>
+      </trkpt>
+      <trkpt lat="52.515815" lon="13.346734">
+        <time>2010-10-13T14:45:16Z</time>
+      </trkpt>
+      <trkpt lat="52.515635" lon="13.347159">
+        <time>2010-10-13T14:45:28Z</time>
+      </trkpt>
+      <trkpt lat="52.515513" lon="13.347445">
+        <time>2010-10-13T14:45:40Z</time>
+      </trkpt>
+      <trkpt lat="52.515513" lon="13.347445">
+        <time>2010-10-13T14:46:01Z</time>
+      </trkpt>
+      <trkpt lat="52.51541" lon="13.347685">
+        <time>2010-10-13T14:46:24Z</time>
+      </trkpt>
+      <trkpt lat="52.515112" lon="13.348355">
+        <time>2010-10-13T14:46:33Z</time>
+      </trkpt>
+      <trkpt lat="52.5151" lon="13.348383">
+        <time>2010-10-13T14:46:43Z</time>
+      </trkpt>
+      <trkpt lat="52.5151" lon="13.348383">
+        <time>2010-10-13T14:47:19Z</time>
+      </trkpt>
+      <trkpt lat="52.51497" lon="13.348674">
+        <time>2010-10-13T14:47:42Z</time>
+      </trkpt>
+      <trkpt lat="52.514928" lon="13.34877">
+        <time>2010-10-13T14:47:43Z</time>
+      </trkpt>
+      <trkpt lat="52.514879" lon="13.348862">
+        <time>2010-10-13T14:47:44Z</time>
+      </trkpt>
+      <trkpt lat="52.514822" lon="13.348952">
+        <time>2010-10-13T14:47:45Z</time>
+      </trkpt>
+      <trkpt lat="52.514692" lon="13.349161">
+        <time>2010-10-13T14:47:46Z</time>
+      </trkpt>
+      <trkpt lat="52.514634" lon="13.349161">
+        <time>2010-10-13T14:47:47Z</time>
+      </trkpt>
+      <trkpt lat="52.514547" lon="13.349161">
+        <time>2010-10-13T14:47:48Z</time>
+      </trkpt>
+      <trkpt lat="52.51422" lon="13.34929">
+        <time>2010-10-13T14:47:52Z</time>
+      </trkpt>
+      <trkpt lat="52.514162" lon="13.349367">
+        <time>2010-10-13T14:47:53Z</time>
+      </trkpt>
+      <trkpt lat="52.514091" lon="13.349462">
+        <time>2010-10-13T14:47:54Z</time>
+      </trkpt>
+      <trkpt lat="52.514062" lon="13.349559">
+        <time>2010-10-13T14:47:55Z</time>
+      </trkpt>
+      <trkpt lat="52.514016" lon="13.349712">
+        <time>2010-10-13T14:47:56Z</time>
+      </trkpt>
+      <trkpt lat="52.513969" lon="13.349867">
+        <time>2010-10-13T14:47:57Z</time>
+      </trkpt>
+      <trkpt lat="52.513848" lon="13.350167">
+        <time>2010-10-13T14:47:58Z</time>
+      </trkpt>
+      <trkpt lat="52.513785" lon="13.350183">
+        <time>2010-10-13T14:47:59Z</time>
+      </trkpt>
+      <trkpt lat="52.513708" lon="13.350203">
+        <time>2010-10-13T14:48:00Z</time>
+      </trkpt>
+      <trkpt lat="52.513623" lon="13.350225">
+        <time>2010-10-13T14:48:01Z</time>
+      </trkpt>
+      <trkpt lat="52.513533" lon="13.350249">
+        <time>2010-10-13T14:48:02Z</time>
+      </trkpt>
+      <trkpt lat="52.513437" lon="13.350274">
+        <time>2010-10-13T14:48:03Z</time>
+      </trkpt>
+      <trkpt lat="52.51216" lon="13.350606">
+        <time>2010-10-13T14:48:13Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

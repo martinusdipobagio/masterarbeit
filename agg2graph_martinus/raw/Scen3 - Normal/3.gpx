@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.526601" minlon="13.342497" maxlat="52.530987" maxlon="13.344998"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>201108_Borkheide_Berlin_Wedding_bike_tidy.gpx</name>
+    <desc>2011.08 Borkheide - Berlin-Wedding, by bicycle, Garmin GPSmap 60CSx, tracklog: auto, tidy</desc>
+    <link href="http://api.openstreetmap.org/user/meridianeum/traces/1219159">
+    </link>
+    <trkseg>
+      <trkpt lat="52.526866" lon="13.343484">
+        <time>2011-08-01T11:06:13Z</time>
+      </trkpt>
+      <trkpt lat="52.526906" lon="13.343488">
+        <time>2011-08-01T11:06:14Z</time>
+      </trkpt>
+      <trkpt lat="52.527296" lon="13.343496">
+        <time>2011-08-01T11:06:21Z</time>
+      </trkpt>
+      <trkpt lat="52.527775" lon="13.343505">
+        <time>2011-08-01T11:06:30Z</time>
+      </trkpt>
+      <trkpt lat="52.528212" lon="13.343511">
+        <time>2011-08-01T11:06:39Z</time>
+      </trkpt>
+      <trkpt lat="52.5286179" lon="13.343495">
+        <time>2011-08-01T11:06:47Z</time>
+      </trkpt>
+      <trkpt lat="52.528692" lon="13.343464">
+        <time>2011-08-01T11:06:52Z</time>
+      </trkpt>
+      <trkpt lat="52.528753" lon="13.343461">
+        <time>2011-08-01T11:06:56Z</time>
+      </trkpt>
+      <trkpt lat="52.528957" lon="13.343563">
+        <time>2011-08-01T11:07:02Z</time>
+      </trkpt>
+      <trkpt lat="52.528997" lon="13.343544">
+        <time>2011-08-01T11:07:05Z</time>
+      </trkpt>
+      <trkpt lat="52.529052" lon="13.34343">
+        <time>2011-08-01T11:07:09Z</time>
+      </trkpt>
+      <trkpt lat="52.529273" lon="13.343464">
+        <time>2011-08-01T11:07:14Z</time>
+      </trkpt>
+      <trkpt lat="52.5295809" lon="13.343473">
+        <time>2011-08-01T11:07:21Z</time>
+      </trkpt>
+      <trkpt lat="52.529895" lon="13.343471">
+        <time>2011-08-01T11:07:26Z</time>
+      </trkpt>
+      <trkpt lat="52.530337" lon="13.343501">
+        <time>2011-08-01T11:07:34Z</time>
+      </trkpt>
+      <trkpt lat="52.53067" lon="13.343443">
+        <time>2011-08-01T11:07:41Z</time>
+      </trkpt>
+      <trkpt lat="52.5309429" lon="13.343441">
+        <time>2011-08-01T11:07:46Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

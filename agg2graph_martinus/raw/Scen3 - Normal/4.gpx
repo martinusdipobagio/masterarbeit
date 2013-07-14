@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:josm="http://josm.openstreetmap.de/gpx-extensions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="52.526601" minlon="13.342497" maxlat="52.530987" maxlon="13.344998"/>
+    <extensions>
+      <josm:from-server>true</josm:from-server>
+    </extensions>
+  </metadata>
+  <trk>
+    <name>21.09.2009_um_B_Motorrad.gpx</name>
+    <desc>um B</desc>
+    <link href="http://api.openstreetmap.org/user/Marc%20Michel/traces/1011357">
+    </link>
+    <trkseg>
+      <trkpt lat="52.5271949" lon="13.343199">
+        <time>2009-09-21T10:56:09Z</time>
+      </trkpt>
+            <trkpt lat="52.528812" lon="13.343201">
+        <time>2009-09-21T10:55:54Z</time>
+      </trkpt>
+      <trkpt lat="52.529" lon="13.3435219">
+        <time>2009-09-21T10:55:09Z</time>
+      </trkpt>      
+      <trkpt lat="52.52962" lon="13.3448429">
+        <time>2009-09-21T10:54:54Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

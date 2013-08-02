@@ -29,8 +29,8 @@ public class PathScoreDistance implements ITraceDistance {
 			.getLogger("agg2graph.agg.default.dist");
 	public double aggReflectionFactor = 4;
 	public int maxOutliners = 0;
-	public double maxDistance = 12.5;
-	public int maxLookahead = 3;
+	public double maxDistance = 20;
+	public int maxLookahead = 5;
 	public double maxPathDifference = 20;
 	public int minLengthFirstSegment = 1;
 	public double maxAngle = 17.5;

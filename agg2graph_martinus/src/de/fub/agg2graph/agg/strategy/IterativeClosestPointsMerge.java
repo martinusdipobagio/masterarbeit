@@ -305,14 +305,10 @@ public class IterativeClosestPointsMerge implements IMergeHandler {
 	}
 
 	public void closestPointsMerge(AggNode a, List<GPSPoint> ts) {
-
 		AggNode toMean = GPSCalc.calculateMean(a, ts, delta, aggContainer, true);
 		AggNode to = GPSCalc.moveLocation(a, toMean, aggContainer);
-		// GPSCalc.moveLocation(map, a, toCopy, aggContainer);
 		a.setK(a.getK() + 1);
 		aggContainer.moveNodeTo(a, to);
-		// System.out.println("t         = " + to.getLat() + " <> " +
-		// to.getLon());
 	}
 
 	@Override

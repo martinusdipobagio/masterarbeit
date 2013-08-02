@@ -162,7 +162,10 @@ public class AggregationEvaluationAutoTest {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, InterruptedException {
 //		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest(args[0], args[1]);
-		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest("A13Eval", "");
+		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest("A11Eval", "filelist3.txt");	//PathDefault
+//		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest("C13Eval", "filelist3.txt");	//HausdorffAttraction
+//		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest("B12Eval", "filelist3.txt"); //GPXIterative
+//		AggregationEvaluationAutoTest autoTest = new AggregationEvaluationAutoTest("E11Eval", "filelist3.txt"); //SecondAttraction
 		autoTest.runEvaluation();
 	}
 }

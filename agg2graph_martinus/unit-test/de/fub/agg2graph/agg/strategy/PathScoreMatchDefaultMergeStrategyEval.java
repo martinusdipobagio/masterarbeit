@@ -39,7 +39,7 @@ public class PathScoreMatchDefaultMergeStrategyEval extends
 
 	public int maxLookahead = 5;
 	public double maxPathDifference = 20;
-	public double maxInitDistance = 17.5;//17.5
+	public double maxInitDistance = 25;//17.5
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
 	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();

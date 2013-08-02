@@ -51,7 +51,7 @@ public class FrechetBasedMerge implements IMergeHandler {
 	// private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 20; // meters
 
-	private double distance = 20;//12.5
+	private double distance = 10;//12.5
 	@SuppressWarnings("unused")
 	private AggNode beforeNode;
 

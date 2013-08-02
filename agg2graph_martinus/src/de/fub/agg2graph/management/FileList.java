@@ -21,6 +21,12 @@ public class FileList {
 		return list;
 	}
 	
+	/**
+	 * Get token from a line if n == 0
+	 * @param line
+	 * @param n
+	 * @return
+	 */
 	private static String getToken(String line, int n) {
 		StringTokenizer st = new StringTokenizer(line);
 		while(st.hasMoreTokens()) {
@@ -32,18 +38,28 @@ public class FileList {
 		}	
 		return null;
 	}
-	
-	public static List<String> getAggFile(List<String> list) {
-		List<String> aggFiles = new ArrayList<String>();
-		String end = ".gpx";
+
+	/** Part of Match- and MergeAutoTest to read input files */
+	/**
+	 * Part of Match- and MergeAutoTest, get kRequirements ==> 1st Token
+	 * @param list
+	 * @return
+	 */
+	public static List<Integer> getRequirement(List<String> list) {
+		List<Integer> kReqs = new ArrayList<Integer>();
 		for(String line : list) {
-			String file = getToken(line, 2).concat(end);
-			aggFiles.add(file);
+			Integer k = Integer.parseInt(getToken(line, 0));
+			kReqs.add(k);
 		}
 		
-		return aggFiles;
+		return kReqs;
 	}
-	
+
+	/**
+	 * Part of Match- and MergeAutoTest, get Traces ==> 2nd Token
+	 * @param list
+	 * @return
+	 */
 	public static List<String> getTraceFile(List<String> list) {
 		List<String> traceFiles = new ArrayList<String>();
 		String end = ".gpx";
@@ -54,16 +70,66 @@ public class FileList {
 		
 		return traceFiles;
 	}
-	
-	public static List<Integer> getRequirement(List<String> list) {
-		List<Integer> kReqs = new ArrayList<Integer>();
+
+	/**
+	 * Part of Match- and MergeAutoTest, get Agg ==> 3rd Token
+	 * @param list
+	 * @return
+	 */
+	public static List<String> getAggFile(List<String> list) {
+		List<String> aggFiles = new ArrayList<String>();
+		String end = ".gpx";
 		for(String line : list) {
-			Integer k = Integer.parseInt(getToken(line, 0));
-			kReqs.add(k);
+			String file = getToken(line, 2).concat(end);
+			aggFiles.add(file);
 		}
 		
-		return kReqs;
+		return aggFiles;
 	}
+	/** Part of Statistic to read file */
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static List<String> getTrace(List<String> list) {
+		List<String> aggFiles = new ArrayList<String>();
+		String end = ".gpx";
+		for(String line : list) {
+			String file = getToken(line, 0).concat(end);
+			aggFiles.add(file);
+		}
+		
+		return aggFiles;
+	}
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static List<String> getAggFileFirst(List<String> list) {
+		List<String> aggFiles = new ArrayList<String>();
+		String end = ".gpx";
+		for(String line : list) {
+			String file = getToken(line, 1).concat(end);
+			aggFiles.add(file);
+		}
+		
+		return aggFiles;
+	}
+	
+	public static List<String> getAggFileSecond(List<String> list) {
+		List<String> aggFiles = new ArrayList<String>();
+		String end = ".gpx";
+		for(String line : list) {
+			String file = getToken(line, 2).concat(end);
+			aggFiles.add(file);
+		}
+		
+		return aggFiles;
+	}
+	
+	
 	
 	public static void main(String[] args) throws IOException {
 //		String location = "test/configuration/";

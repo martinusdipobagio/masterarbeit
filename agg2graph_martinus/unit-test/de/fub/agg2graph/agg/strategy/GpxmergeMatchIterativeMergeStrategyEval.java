@@ -36,9 +36,8 @@ public class GpxmergeMatchIterativeMergeStrategyEval extends
 	MyStatistic statistic;
 	int counter = 1;
 
-	public int maxLookahead = 5;
-	public double maxPathDifference = 40;
-	public double maxInitDistance = 12.5;
+	public double maxPathDifference = 80;
+	public double maxInitDistance = 25;
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
 	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();

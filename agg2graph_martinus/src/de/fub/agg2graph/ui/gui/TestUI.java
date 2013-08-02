@@ -111,7 +111,7 @@ public class TestUI {
 //			ui.show(true);
 //		} else {
 //			TestUI ui = new TestUI(args[0]);
-			TestUI ui = new TestUI("E11");
+			TestUI ui = new TestUI("C12");
 			Globals.put("ui", ui);
 
 			ui.show(true);

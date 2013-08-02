@@ -28,8 +28,8 @@ public class HausdorffMatchFrechetMergeStrategyEval extends
 	int counter = 1;
 
 	public int maxLookahead = Integer.MAX_VALUE;
-	public double maxPathDifference = 200;
-	public double maxInitDistance = 17.5;//12.5
+	public double maxPathDifference = 400;
+	public double maxInitDistance = 50;//12.5
 	List<GPSPoint> matchedPoints;
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();

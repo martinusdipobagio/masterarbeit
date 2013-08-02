@@ -144,18 +144,14 @@ public class GpxmergeMatchAttractionMergeStrategy extends
 						mergeHandler.setAggContainer(aggContainer);
 					}
 					// isMatch = false;
-					if (!mergeHandler.getAggNodes()
-							.contains(bestConn.getFrom()))
+					if (!mergeHandler.getAggNodes().contains(bestConn.getFrom()))
 						mergeHandler.addAggNode(bestConn.getFrom());
 					if (!mergeHandler.getAggNodes().contains(bestConn.getTo()))
 						mergeHandler.addAggNode(bestConn.getTo());
-					if (!mergeHandler.getGpsPoints().contains(
-							currentEdge.getFrom()));
-					mergeHandler.addGPSPoint(currentEdge.getFrom());
-					if (!mergeHandler.getGpsPoints().contains(
-							currentEdge.getTo()))
-						;
-					mergeHandler.addGPSPoint(currentEdge.getTo());
+					if (!mergeHandler.getGpsPoints().contains(currentEdge.getFrom()))
+						mergeHandler.addGPSPoint(currentEdge.getFrom());
+					if (!mergeHandler.getGpsPoints().contains(currentEdge.getTo()))
+						mergeHandler.addGPSPoint(currentEdge.getTo());
 
 					mergeHandler.setDistance(grade);
 					i++;
@@ -210,6 +206,9 @@ public class GpxmergeMatchAttractionMergeStrategy extends
 
 		for (IMergeHandler match : matches) {
 			if (!match.isEmpty()) {
+				System.out.println(match.getGpsPoints());
+				System.out.println(match.getAggNodes());
+				System.out.println();
 				match.mergePoints();
 			}
 		}

@@ -62,7 +62,7 @@ public class WeightedClosestPointMerge implements IMergeHandler {
 //	private static AggCleaner cleaner = new AggCleaner().enableDefault();
 	public double maxPointGhostDist = 50; //10 meters
 
-	private double distance = 50;
+	private double distance = 20;
 	private AggNode beforeNode;
 
 	public WeightedClosestPointMerge() {

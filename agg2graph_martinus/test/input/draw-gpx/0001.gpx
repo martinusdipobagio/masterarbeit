@@ -1,13 +1,9 @@
 <?xml version="1.0"?>
 <gpx version="1.1" creator="GPXWriter" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
 <trk><trkseg>
-<trkpt lat="52.51272450339751" lon="13.383681178092957" k="1" />
-<trkpt lat="52.5127277681029" lon="13.38383138179779" k="1" />
-<trkpt lat="52.512753885737546" lon="13.383992314338684" k="1" />
-<trkpt lat="52.512750621034066" lon="13.384121060371399" k="1" />
-<trkpt lat="52.512763679846515" lon="13.384287357330322" k="1" />
-<trkpt lat="52.512773473953324" lon="13.384421467781067" k="1" />
-<trkpt lat="52.512783268057944" lon="13.3845716714859" k="1" />
-<trkpt lat="52.51279306216038" lon="13.384700417518616" k="1" />
-<trkpt lat="52.51281265035866" lon="13.38484525680542" k="1" />
+<trkpt lat="52.469648472151846" lon="13.382656574249268" k="1" />
+<trkpt lat="52.469638668436296" lon="13.382994532585144" k="1" />
+<trkpt lat="52.469615793091585" lon="13.383273482322693" k="1" />
+<trkpt lat="52.46958638191662" lon="13.383530974388123" k="1" />
+<trkpt lat="52.469570042366485" lon="13.38382601737976" k="1" />
 </trkseg></trk></gpx>

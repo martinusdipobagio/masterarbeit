@@ -229,7 +229,7 @@ public class GPSCalc {
 	 * 
 	 * @param point
 	 * @param start
-	 * @param end
+	 * @param nextToLast
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
@@ -474,7 +474,7 @@ public class GPSCalc {
 	 * @http://mathworld.wolfram.com/Point-LineDistance2-Dimensional.html
 	 * @param point
 	 * @param start
-	 * @param end
+	 * @param nextToLast
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")

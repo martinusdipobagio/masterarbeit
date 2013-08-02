@@ -38,7 +38,7 @@ public class SecondAggregationStrategyAttractionEval extends AbstractAggregation
 	int counter = 1;
 
 	public int maxLookahead = Integer.MAX_VALUE;
-	public double maxInitDistance = 105;
+	public double maxInitDistance = 25;
 
 	List<AggNode> lastNodes = new ArrayList<AggNode>();
 	List<GPSSegment> lastNewNodes = new ArrayList<GPSSegment>();

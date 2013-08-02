@@ -147,6 +147,21 @@ public class QualityTest {
 		return fewestValue;
 	}
 	
+	public Double getAveragePoints() {
+		Double averageValue = 0.0;
+		Double sumValue = 0.0;
+		Set<String> key = numberOfPoints.keySet();
+		for(String k : key) {
+			sumValue += numberOfPoints.get(k);
+		}
+		averageValue = sumValue / (key.size() * 1.0);
+		System.out.println("AveragePoints");
+		System.out.println("Name : " + averageValue);
+		System.out.println();
+		
+		return averageValue;
+	}
+	
 	public static void main(String[] args) {
 		String[] dir = {"Scen1 - Kreisverkehr/",  "Scen2 - Konstanzerstrasse/", 
 				"Scen3 - Normal/",  "Scen4 - Rudolstadter/",
@@ -237,6 +252,6 @@ public class QualityTest {
 		qt.getNumberOfPoints();
 		qt.getMostPoints();
 		qt.getFewestPoints();
-			
+		qt.getAveragePoints();
 	}
 }

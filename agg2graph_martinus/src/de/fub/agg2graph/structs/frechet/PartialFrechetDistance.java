@@ -1,3 +1,18 @@
+/*******************************************************************************
+   Copyright 2013 Martinus Dipobagio
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+******************************************************************************/
 package de.fub.agg2graph.structs.frechet;
 
 import java.awt.Point;
@@ -7,7 +22,8 @@ import java.util.List;
 import de.fub.agg2graph.structs.GPSEdge;
 
 /**
- * TODO: More Continuity
+ * Partial Frechet Distance is Frechet Distance's extention for calculating
+ * two trajectories which share only some similarities
  * @author Martinus
  *
  */
@@ -16,15 +32,18 @@ public class PartialFrechetDistance extends FrechetDistance {
 	// Free space cells
 	public Cell[][] cells;
 
-	// Parameter that secure the monotone requirements
-	int i; // The highest i
-	int j; // The highest j
+	/* Parameter that secure the monotone requirements */
+	// The highest i
+	int i;
+	// The highest j
+	int j; 
 	double maxDistance;
 
-	// Head
+	/* Denote the start and next to last white space */
 	Point start;
-	Point end;
-	List<Pair<Point, Point>> pathList;
+	Point nextToLast;
+
+	List<Pair<Point, Point>> conformalPath;
 
 	public PartialFrechetDistance(double maxDistance) {
 		super(maxDistance);
@@ -47,6 +66,10 @@ public class PartialFrechetDistance extends FrechetDistance {
 		}
 	}
 	
+	
+	/**
+	 * Generate free space diagram
+	 */
 	private void init() {
 		i = super.getSizeP();
 		j = super.getSizeQ();
@@ -57,10 +80,13 @@ public class PartialFrechetDistance extends FrechetDistance {
 		updateFreeSpace();
 		maxDistance = super.getEpsilon();
 		this.start = new Point(0, 0);
-		end = new Point();
-		pathList = new ArrayList<Pair<Point, Point>>();
+		nextToLast = new Point();
+		conformalPath = new ArrayList<Pair<Point, Point>>();
 	}
 
+	/**
+	 * Generate the conformal path. See the paper about conformal path.
+	 */
 	public void partialCalculateReachableSpace() {
 		int i = 0;
 		int j = 0;
@@ -68,28 +94,20 @@ public class PartialFrechetDistance extends FrechetDistance {
 		Point nextStart = null;
 		start.setLocation(i, j);
 		while (moreWhiteSpace) {
+			//Get the longest monotone path from the cell (i, j)
 			partialCalculateReachableSpace(start.x, start.y);
-			Pair<Point, Point> newPath = new Pair<Point, Point>(start, end);
-			pathList.add(newPath);
-			nextStart = checkAnotherWhiteSpaces(end.x, end.y);
+			Pair<Point, Point> newPath = new Pair<Point, Point>(start, nextToLast);
+			conformalPath.add(newPath);
 			
+			//Check, if there are more white space after cell(i, j)
+			nextStart = checkAnotherWhiteSpaces(nextToLast.x, nextToLast.y);
 			if (nextStart != null) {
 				start = new Point(nextStart);
-				end = new Point();
+				nextToLast = new Point();
 			} else {
 				moreWhiteSpace = false;
 			}
 		}
-		// TODO: for debug-test only
-		// for (int i = 0; i < this.i; i++) {
-		// for (int j = 0; j < this.j; j++) {
-		// System.out.println("i = " + i + " : j = " + j);
-		// System.out.println("leftR   = "
-		// + !cells[i][j].getLeftR().isEmpty());
-		// System.out.println("bottomR = "
-		// + !cells[i][j].getBottomR().isEmpty());
-		// }
-		// }
 	}
 
 	/**
@@ -166,14 +184,6 @@ public class PartialFrechetDistance extends FrechetDistance {
 		if (j < (this.j - 1)) {
 			calculateLeft(i, j);
 		}
-		// only for check
-		// if (i == (this.i - 1) && j == (this.j - 1)) {
-		// Cell current = cells[i][j];
-		// if (!current.getBottomR().isEmpty()
-		// && !current.getLeftR().isEmpty()) {
-		// System.out.println("MATCHED");
-		// }
-		// }
 	}
 
 	/**
@@ -269,16 +279,14 @@ public class PartialFrechetDistance extends FrechetDistance {
 	 * @param current
 	 */
 	private void updateEnd(int i, int j) {
-		if ((i + j) > (end.x + end.y))
-			end.setLocation(i, j);
+		if ((i + j) > (nextToLast.x + nextToLast.y))
+			nextToLast.setLocation(i, j);
 	}
 	
-	public List<Pair<Point, Point>> getPathList() {
+	public List<Pair<Point, Point>> getConformalPath() {
 		partialCalculateReachableSpace();
-//		for(Pair<Point, Point> p : pathList) {
-//			System.out.println("Start : " + p.a + " <> End : " + p.b);
-//		}
-		return pathList;
+
+		return conformalPath;
 	}
 	
 }
